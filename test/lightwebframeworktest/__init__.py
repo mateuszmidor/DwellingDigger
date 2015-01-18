@@ -1,0 +1,1 @@
+from web_page_template_test import WebPageTemplateTest
