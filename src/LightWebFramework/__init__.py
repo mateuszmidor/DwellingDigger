@@ -1,1 +1,0 @@
-from WebPageTemplate import WebPageTemplate

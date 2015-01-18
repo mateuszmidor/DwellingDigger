@@ -4,7 +4,7 @@ Created on 16-01-2015
 
 @author: mateusz
 '''
-import LightWebFramework
+from lightwebframework.light_web_framework import LightWebFramework
 
 '''
 Predefined map points and coordinates
@@ -16,15 +16,17 @@ MAP_ZOOM = 11
 TEMPLATE_HTML_FILENAME = u"data/DesktopView.htm"
 RESULT_HTML_FILENAME = u"DwellingMap.html"
 
-'''
-Creates "DwellingMap.html" showing some predefined points on Cracow map
-'''
-def demoRun():
-    html = LightWebFramework.WebPageTemplate.fromFile(TEMPLATE_HTML_FILENAME)
-    html.setField(u"$POINTS$", POINTS)
-    html.setField(u"$MAP_CENTER_LONG$", MAP_CENTER_LONG)
-    html.setField(u"$MAP_CENTER_LATT$", MAP_CENTER_LATT)
-    html.setField(u"$MAP_ZOOM$", MAP_ZOOM)
-    html.saveToFile(RESULT_HTML_FILENAME)
-    
-    print("Demo web page saved as %s" % RESULT_HTML_FILENAME)
+class DesktopMain:
+    '''
+    Creates "DwellingMap.html" showing some predefined points on Cracow map
+    '''
+    @staticmethod
+    def demo_run():
+        FIELDS = {u"$POINTS$": POINTS,
+                  u"$MAP_CENTER_LONG$": MAP_CENTER_LONG,
+                  u"$MAP_CENTER_LATT$": MAP_CENTER_LATT,
+                  u"$MAP_ZOOM$" : MAP_ZOOM}
+                  
+        LightWebFramework.render_page_as_file(TEMPLATE_HTML_FILENAME, RESULT_HTML_FILENAME, FIELDS)
+        
+        print("Demo web page saved as %s" % RESULT_HTML_FILENAME)
