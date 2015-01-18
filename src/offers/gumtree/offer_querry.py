@@ -33,7 +33,7 @@ class OfferQuerry(object):
         self.minArea = minArea # square meters
         self.maxArea = maxArea
         
-    def asUrlString(self):
+    def as_url_string(self):
         whereabouts = self.whereabouts
         if (whereabouts != ""):
             whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc

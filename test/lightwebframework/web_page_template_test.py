@@ -8,7 +8,7 @@ from lightwebframework.web_page_template import WebPageTemplate
 
 class WebPageTemplateTest(unittest.TestCase):
 
-    def testSetField(self):
+    def test_set_field(self):
         SOURCE_HTML = "<HTML><HEAD><TITLE>$TITLE$</TITLE></HEAD></HTML>"
         page = WebPageTemplate.from_html_string(SOURCE_HTML)
         page.set_field("$TITLE$", "WebPageTemplateTest")
