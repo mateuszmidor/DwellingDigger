@@ -6,7 +6,7 @@ Created on 19-01-2015
 @author: mateusz
 '''
 import unittest
-from offers.gumtree.search_offers import SearchOffers
+from offers.gumtree.offer_searcher import OfferSearcher
 
 class WebDocumentFetcherStub():
     """This guy is used in OfferUrls.get_urls to return predefined html content"""
@@ -25,7 +25,7 @@ class SearchOffersTes(unittest.TestCase):
                       "http://www.gumtree.pl/offer2",
                       "http://www.gumtree.pl/offer3"]
 
-        for url in SearchOffers.search("http://SEARCH_RESULT_PAGE", 3, WebDocumentFetcherStub):
+        for url in OfferSearcher.search("http://SEARCH_RESULT_PAGE", 3, WebDocumentFetcherStub):
             self.assertTrue(url in OFFER_URLS, "Unexpected offer url fetched")
             OFFER_URLS.remove(url)
                

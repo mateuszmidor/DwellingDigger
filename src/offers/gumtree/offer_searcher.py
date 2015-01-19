@@ -7,14 +7,14 @@ Created on 19-01-2015
 '''
 import re
 
-class SearchOffers():
+class OfferSearcher():
     """This class querries Gumtree for offers and returns urls to these offers"""
     
     @staticmethod
     def search(search_querry, offer_limit, web_document_fetcher):
         """This method returns generator of urls to be used in for...in construction"""
         
-        urls = SearchOffers(search_querry, offer_limit, web_document_fetcher)
+        urls = OfferSearcher(search_querry, offer_limit, web_document_fetcher)
         
         # url generator
         while(True):
