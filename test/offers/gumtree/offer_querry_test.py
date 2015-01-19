@@ -10,7 +10,7 @@ from offers.gumtree.offer_querry import OfferQuerry
 class OfferQuerryTest(unittest.TestCase):
 
 
-    def testRaisesOnEmptyCity(self):
+    def test_raises_on_empty_city(self):
         try:
             OfferQuerry.compose(city="")
             self.fail("Empty 'city' param should cause ValueError exception")
