@@ -9,7 +9,7 @@ import unittest
 from offers.gumtree.offer_searcher import OfferSearcher
 
 class WebDocumentFetcherStub():
-    """This guy is used in OfferUrls.get_urls to return predefined html content"""
+    """This guy is used in OfferSearcher.search to return predefined html content"""
 
     @staticmethod
     def fetch(url):
@@ -25,7 +25,9 @@ class SearchOffersTes(unittest.TestCase):
                       "http://www.gumtree.pl/offer2",
                       "http://www.gumtree.pl/offer3"]
 
-        for url in OfferSearcher.search("http://SEARCH_RESULT_PAGE", 3, WebDocumentFetcherStub):
+        SEARCH_QUERY = "http://SEARCH_QUERY_URL"
+        
+        for url in OfferSearcher.search(SEARCH_QUERY, 3, WebDocumentFetcherStub):
             self.assertTrue(url in OFFER_URLS, "Unexpected offer url fetched")
             OFFER_URLS.remove(url)
                
