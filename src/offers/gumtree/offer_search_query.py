@@ -32,6 +32,9 @@ class OfferSearchQuery(object):
         self.minArea = minArea # square meters
         self.maxArea = maxArea
         
+    def __str__(self):
+        return self.as_url_string()
+    
     def as_url_string(self):
         whereabouts = self.whereabouts
         if (whereabouts != ""):
