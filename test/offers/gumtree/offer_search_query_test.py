@@ -23,11 +23,11 @@ class OfferSearchQuerryTest(unittest.TestCase):
         EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/c9008l3200208?A_AreaInMeters_max=70&A_AreaInMeters_min=30&A_ForRentBy=ownr&A_NumberRooms=10&AdType=2&isSearchForm=true&maxPrice=1000&maxPriceBackend=200000&minPrice=500&minPriceBackend=100000'
         query = OfferSearchQuery.compose(city="Krakow",
                                            whereabouts="Nowa Huta",
-                                           numRooms="1",
-                                           minPrice="500",
-                                           maxPrice="1000",
-                                           minArea="30",
-                                           maxArea="70")
+                                           num_rooms="1",
+                                           min_price="500",
+                                           max_price="1000",
+                                           min_area="30",
+                                           max_area="70")
         self.assertEquals(EXPECTED_QUERY_STRING, query.as_url_string())
         
 if __name__ == "__main__":
