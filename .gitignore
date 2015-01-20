@@ -52,3 +52,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Software Ideas Modeller backup files
+doc/*.simp.bak
+
+# Desktop mode output map
+DwellingMap.html
