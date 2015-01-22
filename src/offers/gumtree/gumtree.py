@@ -4,10 +4,10 @@ Created on 20-01-2015
 @author: mateusz
 FACADE. All needed functionality from gumtree package you can find here
 '''
-from offers.gumtree.offer_search_query import OfferSearchQuery
-from offers.gumtree.offer_searcher import OfferSearcher
-from offers.web_document_fetcher import WebDocumentFetcher
-from offers.gumtree.offer_extractor import OfferExtractor
+from src.offers.gumtree.offer_search_query import OfferSearchQuery
+from src.offers.gumtree.offer_searcher import OfferSearcher
+from src.offers.gumtree.offer_extractor import OfferExtractor
+from src.offers.web_document_fetcher import WebDocumentFetcher
 
 class Gumtree(object):
     '''

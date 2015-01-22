@@ -2,9 +2,9 @@
 Created on 18-01-2015
 
 @author: mateusz
-FACADE. All needed functionality you can find here
+FACADE. All needed functionality from lightwebframework you can find here
 '''
-from lightwebframework.web_page_template import WebPageTemplate
+from web_page_template import WebPageTemplate
 
 class LightWebFramework(object):
     '''

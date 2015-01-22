@@ -3,7 +3,7 @@ Created on 16-01-2015
 
 @author: mateusz
 '''
-from desktop_main import DesktopMain
+from src.desktop_main import DesktopMain
 
 '''
 This is for manual testing purposes

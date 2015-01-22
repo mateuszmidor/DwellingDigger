@@ -3,7 +3,7 @@ Created on 19-01-2015
 
 @author: mateusz
 '''
-from thirdparty import urllib3
+from src.thirdparty import urllib3
 
 class WebDocumentFetcher(object):
     '''
