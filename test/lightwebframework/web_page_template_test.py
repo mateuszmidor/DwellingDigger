@@ -4,7 +4,7 @@ Created on 18-01-2015
 @author: mateusz
 '''
 import unittest
-from lightwebframework.web_page_template import WebPageTemplate
+from src.lightwebframework.web_page_template import WebPageTemplate
 
 class WebPageTemplateTest(unittest.TestCase):
 

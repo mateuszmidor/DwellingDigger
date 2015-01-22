@@ -4,7 +4,7 @@ Created on 18-01-2015
 @author: mateusz
 '''
 import unittest
-from offers.gumtree.offer_search_query import OfferSearchQuery
+from src.offers.gumtree.offer_search_query import OfferSearchQuery
 
 class OfferSearchQuerryTest(unittest.TestCase):
 

@@ -6,7 +6,7 @@ Created on 20-01-2015
 @author: mateusz
 '''
 import unittest
-from offers.gumtree.offer_extractor import OfferExtractor
+from src.offers.gumtree.offer_extractor import OfferExtractor
 
 class OfferExtractorTest(unittest.TestCase):
 

@@ -4,7 +4,7 @@ Created on 19-01-2015
 @author: mateusz
 '''
 import unittest
-from offers.web_document_fetcher import WebDocumentFetcher
+from src.offers.web_document_fetcher import WebDocumentFetcher
 
 class WebDocumentFetcherTest(unittest.TestCase):
     '''
