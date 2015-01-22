@@ -5,6 +5,10 @@ Created on 16-01-2015
 @author: mateusz
 '''
 from lightwebframework.light_web_framework import LightWebFramework
+from offers.gumtree.offer_searcher import OfferSearcher
+from offers.gumtree.offer_search_query import OfferSearchQuery
+from offers.web_document_fetcher import WebDocumentFetcher
+from offers.gumtree.gumtree import Gumtree
 
 '''
 Predefined map points and coordinates
@@ -17,16 +21,45 @@ TEMPLATE_HTML_FILENAME = u"data/DesktopView.htm"
 RESULT_HTML_FILENAME = u"DwellingMap.html"
 
 class DesktopMain:
-    '''
-    Creates "DwellingMap.html" showing some predefined points on Cracow map
-    '''
+
     @staticmethod
     def demo_run():
+        DesktopMain.print_top_5_one_room_offers_in_details()
+        
+    @staticmethod
+    def print_top_5_one_room_offers_in_details():
+        """Prints out details of 5 offers found on Gumtree"""
+        
+        offers = Gumtree.get_offers(city="Kraków", 
+                                    whereabouts="Prądnik",
+                                    num_rooms="1", 
+                                    max_price="1200",
+                                    max_offer_count=5)
+        for i, offer in enumerate(offers, 1):
+            print "%i." % i
+            print offer["title"]
+            print offer["date"]
+            print offer["price"]
+            print offer["address_section"]
+            print offer["summary"]
+            print
+
+    @staticmethod
+    def print_top_5_one_room_urls_to_offers():
+        """Prints out 5 urls to offers found on Gumtree"""
+        
+        query = OfferSearchQuery.compose(city="Krakow", max_price="1000")
+        for url in OfferSearcher.search(query, 5, WebDocumentFetcher):
+            print url
+            
+    @staticmethod
+    def generate_html_document_with_predefined_points_on_map():
+        """Creates "DwellingMap.html" showing some predefined points on Cracow map"""
+     
         FIELDS = {u"$POINTS$": POINTS,
                   u"$MAP_CENTER_LONG$": MAP_CENTER_LONG,
                   u"$MAP_CENTER_LATT$": MAP_CENTER_LATT,
                   u"$MAP_ZOOM$" : MAP_ZOOM}
-                  
+                   
         LightWebFramework.render_page_as_file(TEMPLATE_HTML_FILENAME, RESULT_HTML_FILENAME, FIELDS)
-        
         print("Demo web page saved as %s" % RESULT_HTML_FILENAME)
