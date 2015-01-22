@@ -42,11 +42,11 @@ class OfferSearchQuery(object):
             whereabouts += "/"  # whereabouts is http request address section; so must be followed by "/"
             
         # gumtree encodes one room as '10'. stupid, ha?
-        numRooms = self.num_rooms
-        if (numRooms == "1"):
-            numRooms = "10" 
+        num_rooms = self.num_rooms
+        if (num_rooms == "1"):
+            num_rooms = "10" 
         
-        query = OfferSearchQuery.__TEMPLATE.format(_city=self.city, _whereabouts=whereabouts, _num_rooms=numRooms,
+        query = OfferSearchQuery.__TEMPLATE.format(_city=self.city, _whereabouts=whereabouts, _num_rooms=num_rooms,
                                                 _min_price=self.min_price, _max_price=self.max_price, _min_area=self.min_area,
                                                 _max_area=self.max_area)
         
