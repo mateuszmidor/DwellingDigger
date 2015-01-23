@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 '''
 Created on 22-01-2015
 
@@ -93,15 +95,16 @@ class OfferSearchQuery(object):
             
         # Build the argument list
         args = ""
-        args = self.__add_num_rooms(args, self.num_rooms)
         args = self.__add_min_price(args, self.min_price)
         args = self.__add_max_price(args, self.max_price)
+        args = self.__add_num_rooms(args, self.num_rooms)
         args = self.__add_min_area(args, self.min_area)
         args = self.__add_max_area(args, self.max_area)
         
         # Build the full url from base url and argument list
         full_url = url
-        if (args != ""): full_url += "?" + args
+        if (args != ""): 
+            full_url += "?" + args
         
         return full_url
         
