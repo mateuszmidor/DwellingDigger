@@ -16,7 +16,7 @@ class OfferSearchQuery(object):
     
     "OLX offer query url example:"
     'http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-kurdwan%C3%B3w/?search%5Bfilter_float_price%3Afrom%5D=800&search%5Bfilter_float_price%3Ato%5D=1600&search%5Bfilter_enum_rooms%5D%5B0%5D=two&search%5Bfilter_float_m%3Afrom%5D=40&search%5Bfilter_float_m%3Ato%5D=70'
-    __OLX_QUERY_BASE_URL = 'http://olx.pl/nieruchomosci/mieszkania/wynajem/'
+    __OLX_QUERY_BASE_URL = 'http://olx.pl/nieruchomosci/mieszkania/wynajem'
 
     @classmethod
     def compose(cls, city="", whereabouts="", num_rooms="", min_price="", max_price="", min_area="", max_area=""):
@@ -41,10 +41,10 @@ class OfferSearchQuery(object):
     def __add_city(self, url, city):
         """
         Adds CITY section to base url:
-        http://olx.pl/nieruchomosci/mieszkania/wynajem/CITY/
+        http://olx.pl/nieruchomosci/mieszkania/wynajem/CITY
         """
         
-        return url + city + "/"
+        return url + "/" + city
     
     def __add_whereabouts(self, url, whereabouts):
         """
@@ -54,7 +54,7 @@ class OfferSearchQuery(object):
         
         if (whereabouts == ""): return url # whereabouts is not a must
         whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
-        return url + "q-" + whereabouts + "/" 
+        return url + "/q-" + whereabouts 
         
     def __add_arg(self, args, template, new_arg):
         """ Method for building http request argument list """
@@ -112,9 +112,7 @@ class OfferSearchQuery(object):
         args = self.__add_max_area(args, self.max_area)
         
         # Build the full url from base url and argument list
-        full_url = url
-        if (args != ""): 
-            full_url += "?" + args
+        full_url = url + "?" + args
         
         return full_url
         
