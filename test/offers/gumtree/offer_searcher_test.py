@@ -17,7 +17,7 @@ class WebDocumentFetcherStub():
         return SEARCH_RESULT_PAGE
     
     
-class SearchOffersTes(unittest.TestCase):
+class SearchOffersTest(unittest.TestCase):
 
     def test_get_urls(self):
         """Check if we can get all offer urls that reside in predefined gumtree offer search result"""

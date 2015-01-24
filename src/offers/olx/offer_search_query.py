@@ -39,12 +39,22 @@ class OfferSearchQuery(object):
         return self.as_url_string()
     
     def __add_city(self, url, city):
+        """
+        Adds CITY section to base url:
+        http://olx.pl/nieruchomosci/mieszkania/wynajem/CITY/
+        """
+        
         return url + city + "/"
     
     def __add_whereabouts(self, url, whereabouts):
+        """
+        Adds optional WHEREABOUTS section to url:
+        http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-WHEREABOUTS/
+        """
+        
         if (whereabouts == ""): return url # whereabouts is not a must
         whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
-        return url + "q-" + whereabouts + "/" # eg. http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-kurdwanów/
+        return url + "q-" + whereabouts + "/" 
         
     def __add_arg(self, args, template, new_arg):
         """ Method for building http request argument list """
