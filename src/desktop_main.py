@@ -5,10 +5,14 @@ Created on 16-01-2015
 @author: mateusz
 '''
 from lightwebframework.light_web_framework import LightWebFramework
-from offers.gumtree.offer_searcher import OfferSearcher
-from offers.gumtree.offer_search_query import OfferSearchQuery
 from offers.web_document_fetcher import WebDocumentFetcher
+from offers.gumtree.offer_search_query import OfferSearchQuery as GumtreeOfferSearchQuery
+from offers.gumtree.offer_searcher import OfferSearcher as GumtreeOfferSearcher
 from offers.gumtree.gumtree import Gumtree
+
+from src.offers.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
+from src.offers.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
+from src.offers.olx.olx import Olx
 
 '''
 Predefined map points and coordinates
@@ -24,10 +28,38 @@ class DesktopMain:
 
     @staticmethod
     def demo_run():
-        DesktopMain.print_top_5_one_room_offers_in_details()
-        
+        DesktopMain.print_top_5_one_room_offers_on_olx_in_details()
+     
     @staticmethod
-    def print_top_5_one_room_offers_in_details():
+    def print_top_5_one_room_offers_on_olx_in_details():
+        """Prints out details of 5 offers found on OLX"""
+        
+        offers = Olx.get_offers(city="Krakow", 
+                                    num_rooms="1", 
+                                    max_price="1200",
+                                    max_offer_count=5)
+        for i, offer in enumerate(offers, 1):
+            print "%i." % i
+            print "Title:" , offer["title"]
+            print "Date:", offer["date"]
+            print "Price:", offer["price"]
+            print "Address:", offer["address_section"]
+            print "Summary:", offer["summary"]
+            print "Url:", offer["url"]
+            print
+              
+    @staticmethod
+    def print_top_5_one_room_urls_to_offers_on_olx():
+        """Prints out 5 urls to offers found on OLX"""
+        
+        query = OlxOfferSearchQuery.compose(city="Krakow",  whereabouts="ruczaj")
+        print query
+        urls = OlxOfferSearcher.search(query, 100, WebDocumentFetcher)
+        for i, url in enumerate(urls, 1):
+            print "{0}. {1}".format(i, url)
+             
+    @staticmethod
+    def print_top_5_one_room_offers_on_gumtree_in_details():
         """Prints out details of 5 offers found on Gumtree"""
         
         offers = Gumtree.get_offers(city="Kraków", 
@@ -45,11 +77,11 @@ class DesktopMain:
             print
 
     @staticmethod
-    def print_top_5_one_room_urls_to_offers():
+    def print_top_5_one_room_urls_to_offers_on_gumtree():
         """Prints out 5 urls to offers found on Gumtree"""
         
-        query = OfferSearchQuery.compose(city="Krakow", max_price="1000")
-        for url in OfferSearcher.search(query, 5, WebDocumentFetcher):
+        query = GumtreeOfferSearchQuery.compose(city="Krakow", max_price="1000")
+        for url in GumtreeOfferSearcher.search(query, 5, WebDocumentFetcher):
             print url
             
     @staticmethod
