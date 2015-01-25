@@ -26,4 +26,5 @@ class Gumtree(object):
         for url in urls:
             offer_page = WebDocumentFetcher.fetch(url)
             offer = OfferExtractor.extract(offer_page)
+            offer["url"] = url
             yield offer
