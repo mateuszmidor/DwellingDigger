@@ -24,7 +24,7 @@ class OfferSearchQuery(object):
     
     def __init__(self, city, whereabouts, num_rooms, min_price, max_price, min_area, max_area):
         # city is obligatory
-        if (not city):
+        if not city:
             raise ValueError("City is obligatory to compose a valid offer search query")
         
         self.city = city
@@ -52,7 +52,9 @@ class OfferSearchQuery(object):
         http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-WHEREABOUTS/
         """
         
-        if (whereabouts == ""): return url # whereabouts is not a must
+        if whereabouts == "": 
+            return url # whereabouts is not a must
+        
         whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
         return url + "/q-" + whereabouts 
         
@@ -60,11 +62,11 @@ class OfferSearchQuery(object):
         """ Method for building http request argument list """
         
         # Nothing to add
-        if (new_arg == ""):
+        if new_arg == "":
             return args
         
         # If we already have some arguments - add ampersand separator
-        if (args != ""): 
+        if args != "": 
             args += "&"
         
         # Add new argument to argument list and return

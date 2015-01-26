@@ -23,7 +23,7 @@ class WebPageTemplate():
         self.__html = html
         
     def set_field(self, fieldname, value):
-        if (isinstance(value, str)):
+        if isinstance(value, str):
             value = unicode(value, 'utf-8') # from string
         else:
             value = unicode(value) # from eg float, integer, etc

@@ -21,7 +21,7 @@ class OfferSearchQuery(object):
     
     def __init__(self, city, whereabouts, num_rooms, min_price, max_price, min_area, max_area):
         # city is obligatory
-        if (not city):
+        if not city:
             raise ValueError("City is obligatory to compose a valid offer search query")
         
         self.city = city
@@ -37,13 +37,13 @@ class OfferSearchQuery(object):
     
     def as_url_string(self):
         whereabouts = self.whereabouts
-        if (whereabouts != ""):
+        if whereabouts != "":
             whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
             whereabouts += "/"  # whereabouts is http request address section; so must be followed by "/"
             
         # gumtree encodes one room as '10'. stupid, ha?
         num_rooms = self.num_rooms
-        if (num_rooms == "1"):
+        if num_rooms == "1":
             num_rooms = "10" 
         
         query = OfferSearchQuery.__TEMPLATE.format(_city=self.city, _whereabouts=whereabouts, _num_rooms=num_rooms,
