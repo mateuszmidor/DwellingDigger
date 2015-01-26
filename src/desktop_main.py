@@ -39,24 +39,24 @@ class DesktopMain:
                                     max_price="1200",
                                     max_offer_count=5)
         for i, offer in enumerate(offers, 1):
-            print "%i." % i
-            print "Title:" , offer["title"]
-            print "Date:", offer["date"]
-            print "Price:", offer["price"]
-            print "Address:", offer["address_section"]
-            print "Summary:", offer["summary"]
-            print "Url:", offer["url"]
-            print
+            print("%i." % i)
+            print("Title:" , offer["title"])
+            print("Date:", offer["date"])
+            print("Price:", offer["price"])
+            print("Address:", offer["address_section"])
+            print("Summary:", offer["summary"])
+            print("Url:", offer["url"])
+            print()
               
     @staticmethod
     def print_top_5_one_room_urls_to_offers_on_olx():
         """Prints out 5 urls to offers found on OLX"""
         
         query = OlxOfferSearchQuery.compose(city="Krakow",  whereabouts="ruczaj")
-        print query
+        print(query)
         urls = OlxOfferSearcher.search(query, 100, WebDocumentFetcher)
         for i, url in enumerate(urls, 1):
-            print "{0}. {1}".format(i, url)
+            print("{0}. {1}".format(i, url))
              
     @staticmethod
     def print_top_5_one_room_offers_on_gumtree_in_details():
@@ -68,13 +68,13 @@ class DesktopMain:
                                     max_price="1200",
                                     max_offer_count=5)
         for i, offer in enumerate(offers, 1):
-            print "%i." % i
-            print offer["title"]
-            print offer["date"]
-            print offer["price"]
-            print offer["address_section"]
-            print offer["summary"]
-            print
+            print("%i." % i)
+            print(offer["title"])
+            print(offer["date"])
+            print(offer["price"])
+            print(offer["address_section"])
+            print(offer["summary"])
+            print()
 
     @staticmethod
     def print_top_5_one_room_urls_to_offers_on_gumtree():
@@ -82,7 +82,7 @@ class DesktopMain:
         
         query = GumtreeOfferSearchQuery.compose(city="Krakow", max_price="1000")
         for url in GumtreeOfferSearcher.search(query, 5, WebDocumentFetcher):
-            print url
+            print(url)
             
     @staticmethod
     def generate_html_document_with_predefined_points_on_map():
