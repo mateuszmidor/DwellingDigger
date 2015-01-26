@@ -28,10 +28,10 @@ class DesktopMain:
 
     @staticmethod
     def demo_run():
-        DesktopMain.print_top_5_one_room_offers_on_olx_in_details()
+        DesktopMain.print_5_olx_offer_details()
      
     @staticmethod
-    def print_top_5_one_room_offers_on_olx_in_details():
+    def print_5_olx_offer_details():
         """Prints out details of 5 offers found on OLX"""
         
         offers = Olx.get_offers(city="Krakow", 
@@ -49,7 +49,7 @@ class DesktopMain:
             print()
               
     @staticmethod
-    def print_top_5_one_room_urls_to_offers_on_olx():
+    def print_5_olx_offer_urls():
         """Prints out 5 urls to offers found on OLX"""
         
         query = OlxOfferSearchQuery.compose(city="Krakow",  whereabouts="ruczaj")
@@ -59,7 +59,7 @@ class DesktopMain:
             print("{0}. {1}".format(i, url))
              
     @staticmethod
-    def print_top_5_one_room_offers_on_gumtree_in_details():
+    def print_5_gumtree_offer_details():
         """Prints out details of 5 offers found on Gumtree"""
         
         offers = Gumtree.get_offers(city="Kraków", 
@@ -77,7 +77,7 @@ class DesktopMain:
             print()
 
     @staticmethod
-    def print_top_5_one_room_urls_to_offers_on_gumtree():
+    def print_5_gumtree_offer_urls():
         """Prints out 5 urls to offers found on Gumtree"""
         
         query = GumtreeOfferSearchQuery.compose(city="Krakow", max_price="1000")
@@ -85,7 +85,7 @@ class DesktopMain:
             print(url)
             
     @staticmethod
-    def generate_html_document_with_predefined_points_on_map():
+    def generate_html_with_points():
         """Creates "DwellingMap.html" showing some predefined points on Cracow map"""
      
         FIELDS = {u"$POINTS$": POINTS,
