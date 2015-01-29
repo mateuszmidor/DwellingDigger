@@ -28,8 +28,30 @@ class DesktopMain:
 
     @staticmethod
     def demo_run():
-        DesktopMain.print_5_olx_offer_details()
+        DesktopMain.print_learning_samples()
+        # DesktopMain.print_5_o€lx_offer_details()
      
+    @staticmethod
+    def print_learning_samples():
+        """ 
+        Prints learning samples for AddressExtractor. It looks like this:
+        # 1.
+        source= [address section]
+        source= [title]
+        source= [summary]
+        expected= [to be manually filled]
+        ... repeat
+        """   
+
+        offers = Gumtree.get_offers(city="Kraków", 
+                                    max_offer_count=1000)
+        for i, offer in enumerate(offers, 1):
+            print("# %i." % i)
+            print("source=%s" % offer["address_section"])
+            print("source=%s" % offer["title"].replace("\n", "").replace("\r", ""))
+            print("source=%s" % offer["summary"].replace("\n", "").replace("\r", ""))
+            print("expected= ")
+                     
     @staticmethod
     def print_5_olx_offer_details():
         """Prints out details of 5 offers found on OLX"""
@@ -80,7 +102,7 @@ class DesktopMain:
     def print_5_gumtree_offer_urls():
         """Prints out 5 urls to offers found on Gumtree"""
         
-        query = GumtreeOfferSearchQuery.compose(city="Krakow", max_price="1000")
+        query = GumtreeOfferSearchQuery.compose(city="Krakow")
         for url in GumtreeOfferSearcher.search(query, 5, WebDocumentFetcher):
             print(url)
             
