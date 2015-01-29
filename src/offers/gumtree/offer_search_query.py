@@ -41,12 +41,14 @@ class OfferSearchQuery(object):
             whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
             whereabouts += "/"  # whereabouts is http request address section; so must be followed by "/"
             
+        city = urllib.quote(self.city) # escape special characters like spaces etc
+        
         # gumtree encodes one room as '10'. stupid, ha?
         num_rooms = self.num_rooms
         if num_rooms == "1":
             num_rooms = "10" 
         
-        query = OfferSearchQuery.__TEMPLATE.format(_city=self.city, _whereabouts=whereabouts, _num_rooms=num_rooms,
+        query = OfferSearchQuery.__TEMPLATE.format(_city=city, _whereabouts=whereabouts, _num_rooms=num_rooms,
                                                 _min_price=self.min_price, _max_price=self.max_price, _min_area=self.min_area,
                                                 _max_area=self.max_area)
         

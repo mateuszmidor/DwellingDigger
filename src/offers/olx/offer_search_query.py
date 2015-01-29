@@ -44,7 +44,7 @@ class OfferSearchQuery(object):
         http://olx.pl/nieruchomosci/mieszkania/wynajem/CITY
         """
         
-        return url + "/" + city
+        return url + "/" + urllib.quote(city) # escape special characters like spaces etc.
     
     def __add_whereabouts(self, url, whereabouts):
         """
