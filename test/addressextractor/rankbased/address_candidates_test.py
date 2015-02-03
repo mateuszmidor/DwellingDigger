@@ -29,7 +29,7 @@ class AddressCandidatesTest(unittest.TestCase):
         c.precision_rank = 2
         candidates.append(c)
         
-        candidates.sort_by_correctness_and_precision()
+        candidates.sort_by_correctness_precision()
         
         self.assertEqual(c, candidates[0], "Highest ranked address candidate not found on first position")
         self.assertEqual(b, candidates[1], "Medium ranked address candidate not found on second position")
