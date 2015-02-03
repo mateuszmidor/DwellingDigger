@@ -7,11 +7,9 @@ import unittest
 from src.addressextractor.rankbased.address_candidates import AddressCandidates
 from src.addressextractor.rankbased.address_candidate import AddressCandidate
 
-
 class AddressCandidatesTest(unittest.TestCase):
 
-
-    def test_sort_by_correctness_and_precision(self):
+    def test_sort_by_correctness_precision(self):
         candidates = AddressCandidates()
         
         a = AddressCandidate()
@@ -34,7 +32,6 @@ class AddressCandidatesTest(unittest.TestCase):
         self.assertEqual(c, candidates[0], "Highest ranked address candidate not found on first position")
         self.assertEqual(b, candidates[1], "Medium ranked address candidate not found on second position")
         self.assertEqual(a, candidates[2], "Lowest ranked address candidate not found on third position")
-        pass
 
 
 if __name__ == "__main__":
