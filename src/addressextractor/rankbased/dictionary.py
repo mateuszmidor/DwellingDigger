@@ -9,7 +9,8 @@ class Dictionary(object):
     '''
     This class represents a dictionary of known addresses.
     It allows to load the addresses from file.
-    It enforces that the stored addresses are always lowercase
+    It enforces that the stored addresses are always lowercase,
+    no empty entries are allowed in dictionary
     '''
     
     # Storage for dictionary contents
@@ -20,19 +21,37 @@ class Dictionary(object):
         
         dictionary = Dictionary()
         lines = filereader.read_lines(filename)
-        map(dictionary.add, lines)
+        map(dictionary.append, lines)
         return dictionary
+
 
     def __init__(self):
         self.__keys = list()
-                
+             
+
+    def append(self, value):
+        address = self.__format_address_string(value)
+        self.__add_address_if_not_empty(address)
+
+
+    def __format_address_string(self, value):
+        return value.strip("\n\r\t ").lower()
+
+        
+    def __add_address_if_not_empty(self, address):
+        if address != "":
+            self.__keys.append(address.lower())
+
+        
     def __iter__(self):
         ''' Provide iterator interface '''
-        
-        return self.__keys
+        return self.__keys.__iter__()
+    
     
     def __contains__(self, key):
+        ''' Provide "KEY in COLLECTION" interface '''
         return key in self.__keys
     
-    def add(self, value):
-        self.__keys.append(value.lower())
+    def __len__(self):
+        ''' Provide len interface '''
+        return self.__keys.__len__()
