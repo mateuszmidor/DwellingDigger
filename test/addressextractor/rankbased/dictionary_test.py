@@ -62,9 +62,9 @@ class DictionaryTest(unittest.TestCase):
         entries = ["1", "2", "3"]
         d = Dictionary(entries)
         
-        for entry in d:
-            self.assertTrue(entry in entries, "Alien element found in dictionary: '%entry'" % entry)
-            entries.remove(entry)
+        for s in d:
+            self.assertTrue(s in entries, "Alien element found in dictionary: '%s'" % s)
+            entries.remove(s)
         self.assertEquals(len(entries), 0, "Dictionary iterator hasn't gone over all the elements")
            
     def test_len_interface(self):
@@ -73,7 +73,9 @@ class DictionaryTest(unittest.TestCase):
         d = Dictionary([])
         self.assertEqual(len(d), 0, "len(empty_dictionary) should return 0")
         
+        d = Dictionary(["1", "2", "3"])
         self.assertEqual(len(d), 3, "len(3_elements_dictionary) should return 3")
+        
         
         
 if __name__ == "__main__":

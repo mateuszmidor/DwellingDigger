@@ -20,9 +20,7 @@ class Dictionary(object):
     def from_file(filename, filereader = TextFileReader):
         
         lines = filereader.read_lines(filename)
-        dictionary = Dictionary()
-        dictionary.extend(lines)
-        return dictionary
+        return Dictionary(lines)
 
 
     def __init__(self, entries = []):
