@@ -31,5 +31,8 @@ class Dictionary(object):
         
         return self.__keys
     
+    def __contains__(self, key):
+        return key in self.__keys
+    
     def add(self, value):
         self.__keys.append(value.lower())
