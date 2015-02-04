@@ -16,24 +16,38 @@ class FileReaderStub:
 
 class DictionaryTest(unittest.TestCase):
 
+
+    def test_append(self):
+        """ Test if dictionary properly formats provided string and discards if empty """
+        
+        entries = ["LINE 1", " line 2  ", "\n\rline 3\t", ""]
+        d = Dictionary()
+        map(d.append, entries)
+        
+        self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
+        self.assertTrue("line 2" in d, "'line 2' not found in dictionary")
+        self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
+        self.assertTrue("" not in d, "Empty string should not have gotten into dictionary")
+        
+        
+    def test_extend(self):
+        """ Test if dictionary properly formats provided list of strings and discards empty strings """
+        
+        entries = ["LINE 1", " line 2  ", "\n\rline 3\t", ""]
+        d = Dictionary()
+        d.extend(entries)
+        
+        self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
+        self.assertTrue("line 2" in d, "'line 2' not found in dictionary")
+        self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
+        self.assertTrue("" not in d, "Empty string should not have gotten into dictionary")
+        
     def test_from_file(self):
         """ Test if dictionary properly formats strings read from file and discards empty strings """
         
         file_lines = ["LINE 1", " line 2  ", "\n\rline 3\t", ""]
         d = Dictionary.from_file("foo_bar.txt", FileReaderStub(file_lines))
 
-        self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
-        self.assertTrue("line 2" in d, "'line 2' not found in dictionary")
-        self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
-        self.assertTrue("" not in d, "Empty string should not have gotten into dictionary")
-
-    def test_append(self):
-        """" Test if dictionary properly formats provided strings and discards empty strings"""
-        
-        entries = ["LINE 1", " line 2  ", "\n\rline 3\t", ""]
-        d = Dictionary()
-        map(d.append, entries)
-        
         self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
         self.assertTrue("line 2" in d, "'line 2' not found in dictionary")
         self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
@@ -59,6 +73,8 @@ class DictionaryTest(unittest.TestCase):
         entries = ["1", "2", "3"]
         map(d.append, entries) 
         self.assertEqual(len(d), 3, "len(3_elements_dictionary) should return 3")
+        
+        
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

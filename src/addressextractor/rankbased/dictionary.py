@@ -19,9 +19,9 @@ class Dictionary(object):
     @staticmethod
     def from_file(filename, filereader = TextFileReader):
         
-        dictionary = Dictionary()
         lines = filereader.read_lines(filename)
-        map(dictionary.append, lines)
+        dictionary = Dictionary()
+        dictionary.extend(lines)
         return dictionary
 
 
@@ -34,6 +34,10 @@ class Dictionary(object):
         self.__add_address_if_not_empty(address)
 
 
+    def extend(self, values):
+        map(self.append, values)
+        
+        
     def __format_address_string(self, value):
         return value.strip("\n\r\t ").lower()
 
