@@ -20,9 +20,11 @@ class DictionaryTest(unittest.TestCase):
     def test_append(self):
         """ Test if dictionary properly formats provided string and discards if empty """
         
-        entries = ["LINE 1", " line 2  ", "\n\rline 3\t", ""]
         d = Dictionary()
-        map(d.append, entries)
+        d.append("LINE 1")  # should lowercase this string
+        d.append(" line 2  ")  # should strip spaces
+        d.append("\n\rline 3\t")  # should strip newline and tabulator
+        d.append("")  # should discard this empty string
         
         self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
         self.assertTrue("line 2" in d, "'line 2' not found in dictionary")
@@ -42,11 +44,12 @@ class DictionaryTest(unittest.TestCase):
         self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
         self.assertTrue("" not in d, "Empty string should not have gotten into dictionary")
         
+        
     def test_from_file(self):
         """ Test if dictionary properly formats strings read from file and discards empty strings """
         
-        file_lines = ["LINE 1", " line 2  ", "\n\rline 3\t", ""]
-        d = Dictionary.from_file("foo_bar.txt", FileReaderStub(file_lines))
+        file_reader = FileReaderStub(["LINE 1", " line 2  ", "\n\rline 3\t", ""])
+        d = Dictionary.from_file("foo_bar.txt", file_reader)
 
         self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
         self.assertTrue("line 2" in d, "'line 2' not found in dictionary")
@@ -56,26 +59,23 @@ class DictionaryTest(unittest.TestCase):
     def test_iterator_interface(self):
         """ Test if dictionary provides iterator that goes over all contained elements """
         
-        d = Dictionary()
         entries = ["1", "2", "3"]
-        map(d.append, entries)
-        for s in d:
-            self.assertTrue(s in entries, "Alien element found in dictionary: '%s'" % s)
-            entries.remove(s)
+        d = Dictionary(entries)
+        
+        for entry in d:
+            self.assertTrue(entry in entries, "Alien element found in dictionary: '%entry'" % entry)
+            entries.remove(entry)
         self.assertEquals(len(entries), 0, "Dictionary iterator hasn't gone over all the elements")
            
     def test_len_interface(self):
         """ Test if len(dictionary) returns it's actual size """
         
-        d = Dictionary()
+        d = Dictionary([])
         self.assertEqual(len(d), 0, "len(empty_dictionary) should return 0")
         
-        entries = ["1", "2", "3"]
-        map(d.append, entries) 
         self.assertEqual(len(d), 3, "len(3_elements_dictionary) should return 3")
         
         
-        
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
+    # import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

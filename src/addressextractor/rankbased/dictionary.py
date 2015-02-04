@@ -25,8 +25,9 @@ class Dictionary(object):
         return dictionary
 
 
-    def __init__(self):
+    def __init__(self, entries = []):
         self.__keys = list()
+        self.extend(entries)
              
 
     def append(self, value):
