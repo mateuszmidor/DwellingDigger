@@ -47,7 +47,7 @@ class RankBasedExtractor(object):
     def __extract_address_with_number(self, address, source, candidates):
         pattern = self.__compose_pattern(address)
         f = re.search(pattern, source, re.IGNORECASE)
-        if (f):
+        if f:
             address = f.group(0)
             self.__add_address_candidate(address, source, candidates)
         
