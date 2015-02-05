@@ -7,12 +7,14 @@ import unittest
 from src.addressextractor.rankbased.dictionary import Dictionary
 
 class FileReaderStub:
+    """ Stubs FileReader by returning predefined lines on read_lines(filename) call """
     
     def __init__(self, lines):
         self.lines = lines
         
     def read_lines(self, filename):
         return self.lines 
+
 
 class DictionaryTest(unittest.TestCase):
 
@@ -23,7 +25,7 @@ class DictionaryTest(unittest.TestCase):
         d = Dictionary()
         d.append("LINE 1")  # should lowercase this string
         d.append(" line 2  ")  # should strip spaces
-        d.append("\n\rline 3\t")  # should strip newline and tabulator
+        d.append("\n\rline 3\t")  # should strip newline, carriage return and tabulator
         d.append("")  # should discard this empty string
         
         self.assertTrue("line 1" in d, "'line 1' not found in dictionary")
@@ -56,6 +58,7 @@ class DictionaryTest(unittest.TestCase):
         self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
         self.assertTrue("" not in d, "Empty string should not have gotten into dictionary")
         
+        
     def test_iterator_interface(self):
         """ Test if dictionary provides iterator that goes over all contained elements """
         
@@ -66,6 +69,7 @@ class DictionaryTest(unittest.TestCase):
             self.assertTrue(s in entries, "Alien element found in dictionary: '%s'" % s)
             entries.remove(s)
         self.assertEquals(len(entries), 0, "Dictionary iterator hasn't gone over all the elements")
+           
            
     def test_len_interface(self):
         """ Test if len(dictionary) returns it's actual size """

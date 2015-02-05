@@ -23,27 +23,27 @@ class Dictionary(object):
         return Dictionary(lines)
 
 
-    def __init__(self, entries = []):
+    def __init__(self, addresses = []):
         self.__keys = list()
-        self.extend(entries)
+        self.extend(addresses)
+
+
+    def extend(self, addresses):
+        map(self.append, addresses)
              
 
-    def append(self, value):
-        address = self.__format_address_string(value)
+    def append(self, address):
+        address = self.__format_address_string(address)
         self.__add_address_if_not_empty(address)
-
-
-    def extend(self, values):
-        map(self.append, values)
         
         
-    def __format_address_string(self, value):
-        return value.strip("\n\r\t ").lower()
+    def __format_address_string(self, s):
+        return s.strip("\n\r\t ").lower()
 
         
     def __add_address_if_not_empty(self, address):
         if address != "":
-            self.__keys.append(address.lower())
+            self.__keys.append(address)
 
         
     def __iter__(self):
@@ -53,7 +53,8 @@ class Dictionary(object):
     
     def __contains__(self, key):
         ''' Provide "KEY in COLLECTION" interface '''
-        return key in self.__keys
+        return self.__keys.__contains__(key)
+    
     
     def __len__(self):
         ''' Provide len interface '''
