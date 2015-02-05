@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Created on 04-02-2015
 
@@ -16,26 +18,41 @@ class Declinator(object):
                     }
     
     
-
-
     @staticmethod
     def declinate_dictionary(dictionary):
+        """ Iterate over all addresses in dictionary and generate declinations when possible """
         
         declinations = list()
         for address in dictionary:
-            d = Declinator.generate_declination(address)
-            declinations.append(d)
+            declination = Declinator.__declinate(address)
+            Declinator.__append_if_differs(declination, address, declinations)
             
-        map(dictionary.append, declinations)
+        dictionary.extend(declinations)
+        
         
     @staticmethod
-    def generate_declination(address):
+    def __declinate(address):
+        """ Check if address can be declinated, if so - change the address ending to modal form and return """
         
         for normal, modal in Declinator.NORMAL_MODAL.iteritems():
             if address.endswith(normal):
                 return address.replace(normal, modal)
         
-        # If no declination of address is possible, return empty string;
-        # According the Dictionary policy, empty string will not be added
-        return ""
+        # If no declination of address possible, return original form
+        return address
         
+       
+    @staticmethod 
+    def __append_if_differs(declination, address, declinations):
+        if declination != address:
+            declinations.append(declination)
+        
+    @staticmethod
+    def undeclinate(address):
+        for normal, modal in Declinator.NORMAL_MODAL.iteritems():
+            if address.endswith(modal):
+                return address.replace(modal, normal)
+            
+        # If no undeclination of address possible, return original form
+        return address 
+    
