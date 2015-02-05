@@ -7,16 +7,16 @@ Created on 5 lut 2015
 '''
 import unittest
 from src.addressextractor.rankbased.dictionary import Dictionary
-from src.addressextractor.rankbased.extractor import Extractor
+from src.addressextractor.rankbased.rank_based_extractor import RankBasedExtractor
 
 
-class ExtractorTest(unittest.TestCase):
+class RankBasedExtractorTest(unittest.TestCase):
 
 
     def test_extract_street(self):
         """ Test extracts street name along with number """
         streets = Dictionary(["Wielicka"])
-        extractor = Extractor(streets)
+        extractor = RankBasedExtractor(streets)
         sources = ["Kraków, Podgórze, Wielicka 30"]
         result = extractor.extract(sources)
         expected = "Wielicka 30"
@@ -29,7 +29,7 @@ class ExtractorTest(unittest.TestCase):
         
         streets = Dictionary(["Wielicka"])
         districts = Dictionary(["Podgórze"])
-        extractor = Extractor(streets, districts)
+        extractor = RankBasedExtractor(streets, districts)
         sources = ["Kraków, Podgórze, Wielicka 30"]
         result = extractor.extract(sources)
         expected = "Wielicka 30"

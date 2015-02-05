@@ -6,16 +6,16 @@ Created on 5 lut 2015
 @author: m.midor
 '''
 import unittest
-from src.addressextractor.rankbased.asciisator import Asciisator
+from src.addressextractor.rankbased.asciinator import Asciinator
 from src.addressextractor.rankbased.dictionary import Dictionary
 
 
-class AsciisatorTest(unittest.TestCase):
+class AsciinatorTest(unittest.TestCase):
 
 
-    def test_asciisate_dictionary(self):
+    def test_asciinate_dictionary(self):
         d = Dictionary([u"górska", u"czyżyny", u"nowosądecka", u"prądnik"])
-        Asciisator.asciisate_dictionary(d)
+        Asciinator.asciinate_dictionary(d)
         
         self.assertTrue("gorska" in d, "Asciisation for 'górska' failed")
         self.assertTrue("czyzyny" in d, "Asciisation for 'czyżyny' failed")

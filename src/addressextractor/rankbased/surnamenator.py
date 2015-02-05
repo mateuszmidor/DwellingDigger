@@ -7,29 +7,29 @@ Created on 5 lut 2015
 '''
 import re
 
-class Surnamesator(object):
+class Surnamenator(object):
     '''
-    This class extracts possible surnames from addresses 
+    This class extracts possible surnames from address dictionary and adds them to dictionary 
     eg. "Michała Sochy" -> "Sochy"
     '''
 
 
     @staticmethod
-    def surnamesate_dictionary(dictionary):
+    def surnamenate_dictionary(dictionary):
         """ Iterate over dictionary entries and extract surnames if any, then add them to dictinoary """
         
         surnames = list()
         for address in dictionary:
-            surname = Surnamesator.__surnamisate(address)
-            Surnamesator.__append_if_differs(surname, address, surnames)
+            surname = Surnamenator.__surnamenate(address)
+            Surnamenator.__append_if_differs(surname, address, surnames)
             
         dictionary.extend(surnames)        
         
     
     @staticmethod
-    def __surnamisate(address):
-        if Surnamesator.__contains_surname(address):
-            return Surnamesator.__extract_surname(address)
+    def __surnamenate(address):
+        if Surnamenator.__contains_surname(address):
+            return Surnamenator.__extract_surname(address)
         
         # Return original address if no surname found
         return address

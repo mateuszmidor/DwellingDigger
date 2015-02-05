@@ -9,7 +9,7 @@ from src.addressextractor.rankbased.address_candidate import AddressCandidate
 from src.addressextractor.rankbased.address_candidates import AddressCandidates
 
 
-class Extractor(object):
+class RankBasedExtractor(object):
     '''
     Extracts address using provided address dictionaries and rank evaluators,
     and returns best ranked result as string

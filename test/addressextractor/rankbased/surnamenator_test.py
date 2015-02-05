@@ -7,15 +7,15 @@ Created on 5 lut 2015
 '''
 import unittest
 from src.addressextractor.rankbased.dictionary import Dictionary
-from src.addressextractor.rankbased.surnamesator import Surnamesator
+from src.addressextractor.rankbased.surnamenator import Surnamenator
 
 
-class SurnamesatorTest(unittest.TestCase):
+class SurnamenatorTest(unittest.TestCase):
 
 
-    def test_surnamesate_dictionary(self):
+    def test_surnamenate_dictionary(self):
         d = Dictionary(["Balona", "Andrzeja Damiana Drzazgi", "Michała Sochy", "Pawła Wesołego-Miłosia"])
-        Surnamesator.surnamesate_dictionary(d)
+        Surnamenator.surnamenate_dictionary(d)
         
         self.assertTrue("balona" in d, "Surnamesation for 'Balona' failed")
         self.assertTrue("drzazgi" in d, "Surnamesation for 'Andrzeja Damiana Drzazgi' failed")

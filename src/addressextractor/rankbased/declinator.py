@@ -8,7 +8,7 @@ Created on 04-02-2015
 
 class Declinator(object):
     '''
-    This class declinates words
+    This class declinates words from dictionary, then puts them into that dictionary
     '''
     
     NORMAL_MODAL = {"ska" : "skiej", # krakowskiej
