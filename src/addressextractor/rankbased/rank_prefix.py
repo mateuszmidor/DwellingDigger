@@ -44,7 +44,7 @@ class RankPrefix(object):
           
         
     def __escape_special_characters(self, s):
-        return s.replace(".", "\.")  
+        return s.replace(".", r"\.")  
     
     
     def __compose_pattern(self, prefix, addres):
