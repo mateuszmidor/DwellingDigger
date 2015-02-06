@@ -13,7 +13,8 @@ class TextFileReader(object):
     @staticmethod
     def read_lines(filename):
         try:
-            return codecs.open(filename, "utf-8").readlines()
+            return codecs.open(filename, "r", "utf-8").readlines()
         except IOError as e:  # @UnusedVariable
+            print e
             #logger.exception(e)
             return list()
