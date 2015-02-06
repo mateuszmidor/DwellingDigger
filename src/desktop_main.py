@@ -43,8 +43,8 @@ class DesktopMain:
         ... repeat
         """   
 
-        offers = Gumtree.get_offers(city="Kraków", 
-                                    max_offer_count=1000)
+        offers = Olx.get_offers(city="Krakow", 
+                                    max_offer_count=100)
         for i, offer in enumerate(offers, 1):
             print("# %i." % i)
             print("source=%s" % offer["address_section"])

@@ -9,10 +9,10 @@ from src.addressextractor.rankbased.address_candidate import AddressCandidate
 from src.addressextractor.rankbased.address_candidates import AddressCandidates
 
 
-class RankBasedExtractor(object):
+class AddressExtractor(object):
     '''
-    Extracts address using provided address dictionaries and rank evaluators,
-    and returns best ranked result as string
+    Extracts address using rank evaluators and provided dictionaries with known possible addresses,
+    and returns best ranked result as a string
     '''
     dictionaries = list()
 
