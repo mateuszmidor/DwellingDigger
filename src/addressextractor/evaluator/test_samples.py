@@ -26,7 +26,7 @@ class TestSamples(list):
         
         for line in file_reader.read_lines(filename):
             key, value = TestSamples.__get_key_value(line)
-            
+             
             if key == "source":
                 current.sources.append(value)
             elif key == "expected":
@@ -48,7 +48,8 @@ class TestSamples(list):
                 
         # regular key=value case
         if "=" in line:
-            return line.split("=")
+            key, value = line.split("=") 
+            return [key, value.strip(u"\n\r\t ")]
         
         # invalid line
         return ["", ""]

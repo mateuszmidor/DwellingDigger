@@ -13,6 +13,10 @@ class TestSample(object):
     sources = []
     expected_result = u""
     
+    def __init__(self):
+        self.date = None
+        self.sources = []
+        self.expected_result = u""        
 
     def __unicode__(self):
         s = u"\n".join(self.sources)
