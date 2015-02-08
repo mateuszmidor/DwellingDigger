@@ -14,7 +14,7 @@ class RankCapitalLetter(object):
     '''
 
     def rank(self, address_candidates):
-        PATTERN = r"^[A-ZĄĆĘŁŃÓŚŹŻ]"
+        PATTERN = ur"^[A-ZĄĆĘŁŃÓŚŹŻ]"
         
         for candidate in address_candidates:
             if re.search(PATTERN, candidate.address):

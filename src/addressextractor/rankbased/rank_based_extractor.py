@@ -29,7 +29,7 @@ class RankBasedExtractor(object):
             candidates.sort_by_correctness_precision()
             return candidates[0].address
         
-        return "[nothing found]"
+        return u"[nothing found]"
         
     
     def __extract_from_sources(self, sources, dictionary, candidates):
@@ -53,8 +53,8 @@ class RankBasedExtractor(object):
         
         
     def __compose_pattern(self, address):
-        OPTIONAL_NUMBER = r"(?:[ ]{1,5}\d{1,5}\w?)?"
-        return r"\b{0}{1}\b".format(address, OPTIONAL_NUMBER)
+        OPTIONAL_NUMBER = ur"(?:[ ]{1,5}\d{1,5}\w?)?"
+        return ur"\b{0}{1}\b".format(address, OPTIONAL_NUMBER)
     
     
     def __add_address_candidate(self, address, source, candidates):

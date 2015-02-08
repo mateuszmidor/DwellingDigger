@@ -11,12 +11,12 @@ class TestSample(object):
     '''
     date = None
     sources = []
-    expected_result = ""
+    expected_result = u""
     
 
-    def __str__(self):
-        s = "\n".join(self.sources)
-        s += "\nexpected: " + self.expected_result
+    def __unicode__(self):
+        s = u"\n".join(self.sources)
+        s += u"\nexpected: " + self.expected_result
         return s
    
         

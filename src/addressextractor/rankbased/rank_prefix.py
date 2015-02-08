@@ -19,9 +19,9 @@ class RankPrefix(object):
         MED_PRECISION_RANK = 2
         LO_PRECISION_RANK = 0
         
-        HI_PRECISION_PREFIX = ["ulica", "ulicy", "ul ", "ul.", "aleja", "alei", "al ", "al."]
-        MED_PRECISION_PREFIX = ["os ", "os.", "osiedle", "osiedlu"]
-        LO_PRECISION_PREFIX = ["przy", "na", "obok", "w pobliżu"]
+        HI_PRECISION_PREFIX = [u"ulica", u"ulicy", u"ul ", u"ul.", u"aleja", u"alei", u"al ", u"al."]
+        MED_PRECISION_PREFIX = [u"os ", u"os.", u"osiedle", u"osiedlu"]
+        LO_PRECISION_PREFIX = [u"przy", u"na", u"obok", u"w pobliżu"]
         
         self.__rank_by_prefix(address_candidates, HI_PRECISION_PREFIX, HI_PRECISION_RANK)
         self.__rank_by_prefix(address_candidates, MED_PRECISION_PREFIX, MED_PRECISION_RANK)
@@ -44,9 +44,9 @@ class RankPrefix(object):
           
         
     def __escape_special_characters(self, s):
-        return s.replace(".", r"\.")  
+        return s.replace(u".", ur"\.")  
     
     
     def __compose_pattern(self, prefix, addres):
         # word boundary prefix whitespace address
-        return r"\b%s\s{0,3}%s" % (prefix, addres)
+        return ur"\b%s\s{0,3}%s" % (prefix, addres)

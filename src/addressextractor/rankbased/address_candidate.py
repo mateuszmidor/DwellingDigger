@@ -16,8 +16,8 @@ class AddressCandidate(object):
     
     @author m.midor
     '''
-    address = ""    # the address itself
-    source = ""     # string where the address was found
+    address = u""    # the address itself
+    source = u""     # string where the address was found
     correctness_rank = 0    # how sure we are this address is correct?
     precision_rank = 0      # how precise (valuable to us) this address is?
         

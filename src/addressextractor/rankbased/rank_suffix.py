@@ -14,7 +14,7 @@ class RankSuffix(object):
 
     def rank(self, address_candidates):
         #  word space number optional_letter eg. "wielicka 23b"
-        PATTERN = r"\w+\s{0,3}\d{1,3}\w?\b"
+        PATTERN = ur"\w+\s{0,3}\d{1,3}\w?\b"
         
         for candidate in address_candidates:
             if re.search(PATTERN, candidate.address, re.IGNORECASE):
