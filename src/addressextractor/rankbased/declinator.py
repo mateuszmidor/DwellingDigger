@@ -50,7 +50,7 @@ class Declinator(object):
     @staticmethod
     def undeclinate(address):
         for normal, modal in Declinator.NORMAL_MODAL.iteritems():
-            if address.endswith(modal):
+            if modal in address:
                 return address.replace(modal, normal)
             
         # If no undeclination of address possible, return original form

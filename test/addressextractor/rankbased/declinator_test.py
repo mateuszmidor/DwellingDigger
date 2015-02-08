@@ -31,6 +31,10 @@ class DeclinatorTest(unittest.TestCase):
         self.assertEqual(Declinator.undeclinate("slonecznym"), "sloneczne", "Undeclination for 'cznym' failed")
 
 
+    def test_undeclinate_with_number(self):
+        self.assertEqual(Declinator.undeclinate("krakowskiej 12"), "krakowska 12", "Undeclination for 'skiej' failed")
+        self.assertEqual(Declinator.undeclinate("tynieckiej 9"), "tyniecka 9", "Undeclination for 'ckiej' failed")
+        
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
