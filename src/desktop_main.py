@@ -15,6 +15,8 @@ from src.offers.olx.offer_search_query import OfferSearchQuery as OlxOfferSearch
 from src.offers.olx.olx import Olx
 from src.addressextractor.evaluator.evaluator import Evaluator
 from src.addressextractor.address_extractor import AddressExtractor
+import cProfile
+import pstats
 
 '''
 Predefined map points and coordinates
@@ -46,14 +48,13 @@ class DesktopMain:
                     "DwellingDigger/data/cities.txt"
                       ]
         extractor = AddressExtractor.rank_based(dict_files)
-                
-        offers = Gumtree.get_offers(city="Kraków", 
-                                    max_offer_count=50)
+        offers = Gumtree.get_offers(city="Krakow", min_price="1900",  max_offer_count=50)
+
         for i, offer in enumerate(offers, 1):
             address = extractor.extract([offer["address_section"], offer["title"],offer["summary"]])
             print("%i." % i)
             print(offer["title"])
-            print("Address: " + address)
+            print("Address: %s" % address)
             print(offer["date"])
             print(offer["price"])
             print(offer["address_section"])
@@ -67,7 +68,12 @@ class DesktopMain:
                     "DwellingDigger/data/cities.txt"
                       ]
         extractor = AddressExtractor.rank_based(dict_files)
-        Evaluator.evaluate(extractor)
+        cProfile.runctx("Evaluator.evaluate(extractor)", 
+                        {"global_variables" : "none"},
+                        {"extractor" : extractor, "Evaluator" : Evaluator}, 
+                        filename="DesktopMain_profile.txt")
+        p = pstats.Stats("DesktopMain_profile.txt")
+        p.strip_dirs().sort_stats('time').print_stats(20) # sortujemy, i pierwsze 20 do PROFILER_TXT
         
     @staticmethod
     def print_learning_samples():
