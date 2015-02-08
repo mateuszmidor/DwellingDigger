@@ -7,6 +7,10 @@ import re
 
 from src.addressextractor.rankbased.address_candidate import AddressCandidate
 from src.addressextractor.rankbased.address_candidates import AddressCandidates
+from src.addressextractor.rankbased.declinator import Declinator
+from src.addressextractor.rankbased.rank_capital_letter import RankCapitalLetter
+from src.addressextractor.rankbased.rank_prefix import RankPrefix
+from src.addressextractor.rankbased.rank_suffix import RankSuffix
 
 
 class RankBasedExtractor(object):
@@ -17,6 +21,13 @@ class RankBasedExtractor(object):
     dictionaries = list()
 
     def __init__(self, *dictionaries):
+        """
+        Constructor.
+        The order of provided dictionaries in important:
+        the extractor will look up the dictionaries in the same order as provided,
+        so should be from most precise (streets) to most general (cities)
+        """
+                
         self.dictionaries = dictionaries
         
     def extract(self, sources):
@@ -25,9 +36,18 @@ class RankBasedExtractor(object):
         for dictionary in self.dictionaries:
             self.__extract_from_sources(sources, dictionary, candidates)
         
+        prefix = RankPrefix()
+        prefix.rank(candidates)
+        
+        suffix = RankSuffix()
+        suffix.rank(candidates)
+        
+        capital = RankCapitalLetter()
+        capital.rank(candidates)
+        
         if len(candidates) > 0:
             candidates.sort_by_correctness_precision()
-            return candidates[0].address
+            return Declinator.undeclinate(candidates[0].address)
         
         return u"[nothing found]"
         
@@ -46,7 +66,7 @@ class RankBasedExtractor(object):
                 
     def __extract_address_with_number(self, address, source, candidates):
         pattern = self.__compose_pattern(address)
-        f = re.search(pattern, source, re.IGNORECASE)
+        f = re.search(pattern, source, re.IGNORECASE | re.UNICODE)
         if f:
             address = f.group(0)
             self.__add_address_candidate(address, source, candidates)
