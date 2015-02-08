@@ -37,6 +37,12 @@ class Dictionary(object):
         self.__add_address_if_not_empty(address)
         
         
+    def sort_longest_first(self):
+        # longest first - for 'find' to match Krakowska before Krakow
+        longToShort = lambda s1, s2: cmp(len(s2), len(s1))
+        self.__keys.sort(longToShort)
+                
+                
     def __format_address_string(self, s):
         return s.strip("\n\r\t ").lower()
 
