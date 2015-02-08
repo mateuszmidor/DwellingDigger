@@ -46,6 +46,16 @@ class DictionaryTest(unittest.TestCase):
         self.assertTrue("line 3" in d, "'line 3' not found in dictionary")
         self.assertTrue("" not in d, "Empty string should not have gotten into dictionary")
         
+    def test_sort_(self):       
+        """ Test if dictionary can sort items longest to shortest """
+        entries = ["norm.", "longest", "longer"]
+        d = Dictionary(entries)
+        d.sort_longest_first()
+        i = iter(d)
+        self.assertEqual(next(i), "longest", "'longest' entry should be at position 0")
+        self.assertEqual(next(i), "longer", "'longer' entry should be at position 1")
+        self.assertEqual(next(i), "norm.", "'norm.' entry should be at position 2")
+        
         
     def test_from_file(self):
         """ Test if dictionary properly formats strings read from file and discards empty strings """

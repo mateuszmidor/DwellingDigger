@@ -25,6 +25,7 @@ class AddressExtractor(object):
         """
         
         dictionaries = map(Dictionary.from_file, dictionary_filenames)
+        map(lambda d : d.sort_longest_first(), dictionaries)
         map(Asciinator.asciinate_dictionary, dictionaries)
         map(Declinator.declinate_dictionary, dictionaries)
         map(Surnamenator.surnamenate_dictionary, dictionaries)
