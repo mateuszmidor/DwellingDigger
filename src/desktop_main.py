@@ -13,6 +13,8 @@ from offers.gumtree.gumtree import Gumtree
 from src.offers.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
 from src.offers.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
 from src.offers.olx.olx import Olx
+from src.addressextractor.evaluator.evaluator import Evaluator
+from src.addressextractor.address_extractor import AddressExtractor
 
 '''
 Predefined map points and coordinates
@@ -28,9 +30,45 @@ class DesktopMain:
 
     @staticmethod
     def demo_run():
-        DesktopMain.print_learning_samples()
+#         DesktopMain.print_5_gumtree_offer_details()
+#         DesktopMain.print_learning_samples()
         # DesktopMain.print_5_o€lx_offer_details()
-     
+#         DesktopMain.evaluate_address_extractor()
+        DesktopMain.print_5_gumtree_offers_addr()
+       
+       
+    @staticmethod
+    def print_5_gumtree_offers_addr():
+        """Prints out details and addresses of 5 offers found on Gumtree"""
+        
+        dict_files = ["DwellingDigger/data/krakow_streets.txt", 
+                    "DwellingDigger/data/krakow_districts.txt", 
+                    "DwellingDigger/data/cities.txt"
+                      ]
+        extractor = AddressExtractor.rank_based(dict_files)
+                
+        offers = Gumtree.get_offers(city="Kraków", 
+                                    max_offer_count=50)
+        for i, offer in enumerate(offers, 1):
+            address = extractor.extract([offer["address_section"], offer["title"],offer["summary"]])
+            print("%i." % i)
+            print(offer["title"])
+            print("Address: " + address)
+            print(offer["date"])
+            print(offer["price"])
+            print(offer["address_section"])
+            print(offer["summary"])
+            print("")
+             
+    @staticmethod
+    def evaluate_address_extractor():
+        dict_files = ["DwellingDigger/data/krakow_streets.txt", 
+                    "DwellingDigger/data/krakow_districts.txt", 
+                    "DwellingDigger/data/cities.txt"
+                      ]
+        extractor = AddressExtractor.rank_based(dict_files)
+        Evaluator.evaluate(extractor)
+        
     @staticmethod
     def print_learning_samples():
         """ 
