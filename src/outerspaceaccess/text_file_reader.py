@@ -15,6 +15,6 @@ class TextFileReader(object):
         try:
             return codecs.open(filename, "r", "utf-8").readlines()
         except IOError as e:  # @UnusedVariable
-            print e
+            print(e)
             #logger.exception(e)
             return list()
