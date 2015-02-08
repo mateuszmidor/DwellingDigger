@@ -29,7 +29,9 @@ class Surnamenator(object):
     @staticmethod
     def __surnamenate(address):
         if Surnamenator.__contains_surname(address):
-            return Surnamenator.__extract_surname(address)
+            surname = Surnamenator.__extract_surname(address)
+            if len(surname) > 2:
+                return surname 
         
         # Return original address if no surname found
         return address
