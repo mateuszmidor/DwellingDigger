@@ -1,2 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/addressextractor/rankbased/declinator.py=utf-8
+encoding//src/addressextractor/rankbased/rank_capital_letter.py=utf-8
+encoding//src/addressextractor/rankbased/rank_prefix.py=utf-8
+encoding//src/addressextractor/rankbased/surnamenator.py=utf-8
+encoding//src/desktop_main.py=utf-8
+encoding//test/addressextractor/rankbased/declinator_test.py=utf-8
+encoding//test/addressextractor/rankbased/rank_based_extractor_test.py=utf-8
 encoding/<project>=UTF-8
