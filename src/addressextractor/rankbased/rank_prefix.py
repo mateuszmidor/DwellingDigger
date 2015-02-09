@@ -33,17 +33,21 @@ class RankPrefix(object):
             self.__rank_candidate(candidate, prefixes, rank_award)
             
     
+
     def __rank_candidate(self, candidate, prefixes, rank_award):
         address = self.__escape_special_characters(candidate.address)
         pattern = self.__compose_pattern(address)
-        f = pattern.search(candidate.source)
-        if f:
-            lower_found = f.group(1).lower()
-            for prefix in prefixes:
-                if lower_found.startswith(prefix):
-                    candidate.correctness_rank += 1
-                    candidate.precision_rank += rank_award
-                    return                    
+        found = pattern.search(candidate.source)
+        if found:
+            found_prefix_lowercase = found.group(1).lower()
+            self.__rank_if_known_prefix(found_prefix_lowercase, prefixes, rank_award, candidate)
+                                        
+
+    def __rank_if_known_prefix(self, found_prefix, known_prefixes, rank_award, candidate):
+        for prefix in known_prefixes:
+            if found_prefix == prefix:
+                candidate.correctness_rank += 1
+                candidate.precision_rank += rank_award
         
         
     def __escape_special_characters(self, s):
