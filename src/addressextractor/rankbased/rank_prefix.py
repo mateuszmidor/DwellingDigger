@@ -34,13 +34,21 @@ class RankPrefix(object):
             
     
     def __rank_candidate(self, candidate, prefixes, rank_award):
-        for prefix in prefixes:
-            prefix = self.__escape_special_characters(prefix)
-            pattern = self.__compose_pattern(prefix, candidate.address)
-            if re.search(pattern, candidate.source, re.IGNORECASE):
-                candidate.correctness_rank += 1
-                candidate.precision_rank += rank_award
-                return
+        f = re.search(ur"\b(.+)\b"+candidate.address, candidate.source, re.IGNORECASE | re.UNICODE)
+        if f:
+            for prefix in prefixes:
+                if prefix in f.group(1).lower():
+                    candidate.correctness_rank += 1
+                    candidate.precision_rank += rank_award
+                    return                    
+        
+#         for prefix in prefixes:
+#             prefix = self.__escape_special_characters(prefix)
+#             pattern = self.__compose_pattern(prefix, candidate.address)
+#             if re.search(pattern, candidate.source, re.IGNORECASE):
+#                 candidate.correctness_rank += 1
+#                 candidate.precision_rank += rank_award
+#                 return
           
         
     def __escape_special_characters(self, s):
