@@ -32,3 +32,9 @@ class AddressExtractor(object):
         
         return RankBasedExtractor(*dictionaries)
         
+    @staticmethod
+    def for_krakow():
+        dict_files = ["DwellingDigger/data/krakow_streets.txt", 
+                    "DwellingDigger/data/krakow_districts.txt", 
+                    "DwellingDigger/data/cities.txt"]
+        return AddressExtractor.rank_based(dict_files)

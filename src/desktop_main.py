@@ -50,12 +50,8 @@ class DesktopMain:
     @staticmethod
     def print_5_gumtree_offers_addr():
         """Prints out details and addresses of 5 offers found on Gumtree"""
-        
-        dict_files = ["DwellingDigger/data/krakow_streets.txt", 
-                    "DwellingDigger/data/krakow_districts.txt", 
-                    "DwellingDigger/data/cities.txt"
-                      ]
-        extractor = AddressExtractor.rank_based(dict_files)
+                      
+        extractor = AddressExtractor.for_krakow()
         offers = Gumtree.get_offers(city="Krakow", min_price="1900",  max_offer_count=5)
 
         for i, offer in enumerate(offers, 1):
