@@ -47,7 +47,7 @@ class RankBasedExtractor(object):
         
         if len(candidates) > 0:
             candidates.sort_by_correctness_precision()
-            return Declinator.undeclinate(candidates[0].address)
+            return Declinator.undeclinate(candidates[0].address.lower())
         
         return u"[nothing found]"
         
