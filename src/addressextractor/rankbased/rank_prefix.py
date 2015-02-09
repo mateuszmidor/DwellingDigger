@@ -34,27 +34,23 @@ class RankPrefix(object):
             
     
     def __rank_candidate(self, candidate, prefixes, rank_award):
-        f = re.search(ur"\b(\S{2,9})\s{2,3}"+candidate.address, candidate.source, re.IGNORECASE | re.UNICODE)
+        address = self.__escape_special_characters(candidate.address)
+        pattern = self.__compose_pattern(address)
+        f = pattern.search(candidate.source)
         if f:
+            lower_found = f.group(1).lower()
             for prefix in prefixes:
-                if prefix in f.group(1).lower():
+                if lower_found.startswith(prefix):
                     candidate.correctness_rank += 1
                     candidate.precision_rank += rank_award
                     return                    
         
-#         for prefix in prefixes:
-#             prefix = self.__escape_special_characters(prefix)
-#             pattern = self.__compose_pattern(prefix, candidate.address)
-#             if re.search(pattern, candidate.source, re.IGNORECASE):
-#                 candidate.correctness_rank += 1
-#                 candidate.precision_rank += rank_award
-#                 return
-          
         
     def __escape_special_characters(self, s):
         return s.replace(u".", ur"\.")  
     
     
-    def __compose_pattern(self, prefix, addres):
-        # word boundary prefix whitespace address
-        return ur"\b%s\s{0,3}%s" % (prefix, addres)
+    def __compose_pattern(self, addres):
+        # word boundary, prefix, 0-3 spaces, address
+        # [\w\.]{2,} part matches the prefix
+        return re.compile(ur"\b([\w\.]{2,})\s{0,3}%s" % addres, re.IGNORECASE | re.UNICODE)
