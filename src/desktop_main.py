@@ -35,8 +35,8 @@ class DesktopMain:
 #         DesktopMain.print_5_gumtree_offer_details()
 #         DesktopMain.print_learning_samples()
         # DesktopMain.print_5_o€lx_offer_details()
-#         DesktopMain.evaluate_address_extractor()
-        DesktopMain.print_5_gumtree_offers_addr()
+        DesktopMain.evaluate_address_extractor()
+#         DesktopMain.print_5_gumtree_offers_addr()
        
        
     @staticmethod

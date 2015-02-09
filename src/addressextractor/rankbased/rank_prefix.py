@@ -53,6 +53,14 @@ class RankPrefix(object):
         return source_until_address
 
 
+    def __get_source_until_address(self, candidate):
+        address = candidate.address
+        source = candidate.source
+        address_position_in_source = source.find(address)
+        source_until_address = source[:address_position_in_source]
+        return source_until_address
+
+
     def __rank_if_known_prefix(self, found_prefix, known_prefixes, rank_award, candidate):
         for prefix in known_prefixes:
             if found_prefix == prefix:
