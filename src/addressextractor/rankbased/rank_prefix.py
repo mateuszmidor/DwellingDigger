@@ -13,7 +13,11 @@ class RankPrefix(object):
     having meaningful prefix eg. "ulica Wielicka", "os Kurdwanow", "obok Ruczaju"
     '''
 
-
+    # Pattern to look for address prefix when source string ends with that prefix
+    # word boundary, prefix possibly ending with period, 0-3 spaces, end of line
+    # (\w{2,}\.?) part matches the prefix
+    __PATTERN = re.compile(ur"\b(\w{2,}\.?)\s{0,3}$", re.IGNORECASE | re.UNICODE)
+    
     def rank(self, address_candidates):
         HI_PRECISION_RANK = 3
         MED_PRECISION_RANK = 2
@@ -34,26 +38,23 @@ class RankPrefix(object):
     
 
     def __rank_candidate(self, candidate, prefixes, rank_award):
-        address = self.__escape_special_characters(candidate.address)
-        pattern = self.__compose_pattern(address)
-        found = pattern.search(candidate.source)
+        source_until_address = self.__get_source_until_address(candidate)
+        found = RankPrefix.__PATTERN.search(source_until_address)
         if found:
             found_prefix_lowercase = found.group(1).lower()
             self.__rank_if_known_prefix(found_prefix_lowercase, prefixes, rank_award, candidate)
                                         
+
+    def __get_source_until_address(self, candidate):
+        address = candidate.address
+        source = candidate.source
+        address_position_in_source = source.find(address)
+        source_until_address = source[:address_position_in_source]
+        return source_until_address
+
 
     def __rank_if_known_prefix(self, found_prefix, known_prefixes, rank_award, candidate):
         for prefix in known_prefixes:
             if found_prefix == prefix:
                 candidate.correctness_rank += 1
                 candidate.precision_rank += rank_award
-        
-        
-    def __escape_special_characters(self, s):
-        return s.replace(ur".", ur"\.")  
-    
-    
-    def __compose_pattern(self, addres):
-        # word boundary, prefix possibly ending with period, 0-3 spaces, address
-        # (\w{2,}\.?) part matches the prefix
-        return re.compile(ur"\b(\w{2,}\.?)\s{0,3}%s" % addres, re.IGNORECASE | re.UNICODE)
