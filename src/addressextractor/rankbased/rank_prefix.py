@@ -34,7 +34,7 @@ class RankPrefix(object):
             
     
     def __rank_candidate(self, candidate, prefixes, rank_award):
-        f = re.search(ur"\b(.+)\b"+candidate.address, candidate.source, re.IGNORECASE | re.UNICODE)
+        f = re.search(ur"\b(\S{2,9})\s{2,3}"+candidate.address, candidate.source, re.IGNORECASE | re.UNICODE)
         if f:
             for prefix in prefixes:
                 if prefix in f.group(1).lower():
