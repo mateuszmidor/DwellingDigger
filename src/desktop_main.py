@@ -35,8 +35,16 @@ class DesktopMain:
 #         DesktopMain.print_5_gumtree_offer_details()
 #         DesktopMain.print_learning_samples()
         # DesktopMain.print_5_o€lx_offer_details()
-        DesktopMain.evaluate_address_extractor()
+#         DesktopMain.evaluate_address_extractor()
 #         DesktopMain.print_5_gumtree_offers_addr()
+        run_func = DesktopMain.print_5_gumtree_offers_addr
+        cProfile.runctx("run_func()", 
+                        {"global_variables" : "none"},
+                        {"run_func" : run_func}, 
+                        filename="DesktopMain_profile.txt")
+        p = pstats.Stats("DesktopMain_profile.txt")
+        p.strip_dirs().sort_stats('cumulative').print_stats(20) # sortujemy, i pierwsze 20 do PROFILER_TXT
+        
        
        
     @staticmethod
@@ -48,7 +56,7 @@ class DesktopMain:
                     "DwellingDigger/data/cities.txt"
                       ]
         extractor = AddressExtractor.rank_based(dict_files)
-        offers = Gumtree.get_offers(city="Krakow", min_price="1900",  max_offer_count=50)
+        offers = Gumtree.get_offers(city="Krakow", min_price="1900",  max_offer_count=5)
 
         for i, offer in enumerate(offers, 1):
             address = extractor.extract([offer["address_section"], offer["title"],offer["summary"]])
@@ -68,12 +76,7 @@ class DesktopMain:
                     "DwellingDigger/data/cities.txt"
                       ]
         extractor = AddressExtractor.rank_based(dict_files)
-        cProfile.runctx("Evaluator.evaluate(extractor)", 
-                        {"global_variables" : "none"},
-                        {"extractor" : extractor, "Evaluator" : Evaluator}, 
-                        filename="DesktopMain_profile.txt")
-        p = pstats.Stats("DesktopMain_profile.txt")
-        p.strip_dirs().sort_stats('time').print_stats(20) # sortujemy, i pierwsze 20 do PROFILER_TXT
+        Evaluator.evaluate(extractor)
         
     @staticmethod
     def print_learning_samples():
@@ -120,7 +123,7 @@ class DesktopMain:
         
         query = OlxOfferSearchQuery.compose(city="Krakow",  whereabouts="ruczaj")
         print(query)
-        urls = OlxOfferSearcher.search(query, 100, WebDocumentFetcher)
+        urls = OlxOfferSearcher.search(query, 5, WebDocumentFetcher)
         for i, url in enumerate(urls, 1):
             print("{0}. {1}".format(i, url))
              
