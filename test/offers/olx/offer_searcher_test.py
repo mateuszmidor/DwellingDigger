@@ -6,7 +6,7 @@ Created on 24-01-2015
 @author: mateusz
 '''
 import unittest
-from src.offers.olx.offer_searcher import OfferSearcher
+from src.offersource.olx.offer_searcher import OfferSearcher
 
 class WebDocumentFetcherStub():
     """This guy is used in OfferSearcher.search to return predefined html content"""

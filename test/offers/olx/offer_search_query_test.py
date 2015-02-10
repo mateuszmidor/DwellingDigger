@@ -6,7 +6,7 @@ Created on 22-01-2015
 @author: mateusz
 '''
 import unittest
-from src.offers.olx.offer_search_query import OfferSearchQuery
+from src.offersource.olx.offer_search_query import OfferSearchQuery
 
 
 class OfferSearchQueryTest(unittest.TestCase):

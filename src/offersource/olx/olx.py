@@ -1,17 +1,17 @@
 '''
-Created on 20-01-2015
+Created on 25-01-2015
 
 @author: mateusz
-FACADE. All needed functionality from gumtree package you can find here
+FACADE. All needed functionality from olx package you can find here
 '''
-from src.offers.gumtree.offer_search_query import OfferSearchQuery
-from src.offers.gumtree.offer_searcher import OfferSearcher
-from src.offers.gumtree.offer_extractor import OfferExtractor
-from src.offers.web_document_fetcher import WebDocumentFetcher
+from src.offersource.olx.offer_search_query import OfferSearchQuery
+from src.offersource.olx.offer_searcher import OfferSearcher
+from src.offersource.olx.offer_extractor import OfferExtractor
+from src.offersource.web_document_fetcher import WebDocumentFetcher
 
-class Gumtree(object):
+class Olx(object):
     '''
-    This class is facade for gumtree package.
+    This class is facade for olx package.
     '''
 
     @staticmethod
@@ -25,6 +25,12 @@ class Gumtree(object):
         urls = OfferSearcher.search(query, int(max_offer_count), WebDocumentFetcher)
         for url in urls:
             offer_page = WebDocumentFetcher.fetch(url)
-            offer = OfferExtractor.extract(offer_page)
-            offer["url"] = url
-            yield offer
+            try:
+                offer = OfferExtractor.extract(offer_page)
+                offer["url"] = url
+                yield offer
+            except:
+                continue
+            
+
+        

@@ -6,7 +6,7 @@ Created on 24-01-2015
 @author: mateusz
 '''
 import unittest
-from src.offers.olx.offer_extractor import OfferExtractor
+from src.offersource.olx.offer_extractor import OfferExtractor
 
 class OfferExtractorTest(unittest.TestCase):
 

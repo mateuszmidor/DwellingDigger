@@ -6,7 +6,7 @@ Created on 19-01-2015
 @author: mateusz
 '''
 import unittest
-from src.offers.gumtree.offer_searcher import OfferSearcher
+from src.offersource.gumtree.offer_searcher import OfferSearcher
 
 class WebDocumentFetcherStub():
     """This guy is used in OfferSearcher.search to return predefined html content"""
