@@ -65,7 +65,7 @@ class DesktopMain:
             print("%i." % i)
             print(offer["title"])
             print("Address: %s" % address)
-            print("Longitude: %s, Latitude: %s" % [coords[0], coords[1]])
+            print("LonLatt: %s, %s" % (coords[0], coords[1]))
             print(offer["date"])
             print(offer["price"])
             print(offer["address_section"])
