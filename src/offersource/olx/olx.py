@@ -7,7 +7,7 @@ FACADE. All needed functionality from olx package you can find here
 from src.offersource.olx.offer_search_query import OfferSearchQuery
 from src.offersource.olx.offer_searcher import OfferSearcher
 from src.offersource.olx.offer_extractor import OfferExtractor
-from src.offersource.web_document_fetcher import WebDocumentFetcher
+from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
 
 class Olx(object):
     '''

@@ -7,7 +7,7 @@ FACADE. All needed functionality from gumtree package you can find here
 from src.offersource.gumtree.offer_search_query import OfferSearchQuery
 from src.offersource.gumtree.offer_searcher import OfferSearcher
 from src.offersource.gumtree.offer_extractor import OfferExtractor
-from src.offersource.web_document_fetcher import WebDocumentFetcher
+from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
 
 class Gumtree(object):
     '''

@@ -4,17 +4,18 @@ Created on 16-01-2015
 
 @author: mateusz
 '''
-from lightwebframework.light_web_framework import LightWebFramework
-from offers.web_document_fetcher import WebDocumentFetcher
-from offers.gumtree.offer_search_query import OfferSearchQuery as GumtreeOfferSearchQuery
-from offers.gumtree.offer_searcher import OfferSearcher as GumtreeOfferSearcher
-from offers.gumtree.gumtree import Gumtree
+from src.lightwebframework.light_web_framework import LightWebFramework
+from src.offersource.gumtree.offer_search_query import OfferSearchQuery as GumtreeOfferSearchQuery
+from src.offersource.gumtree.offer_searcher import OfferSearcher as GumtreeOfferSearcher
+from src.offersource.gumtree.gumtree import Gumtree
 
-from src.offers.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
-from src.offers.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
-from src.offers.olx.olx import Olx
+from src.offersource.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
+from src.offersource.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
+from src.offersource.olx.olx import Olx
 from src.addressextractor.evaluator.evaluator import Evaluator
 from src.addressextractor.address_extractor import AddressExtractor
+from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
+
 import cProfile
 import pstats
 
@@ -30,6 +31,7 @@ RESULT_HTML_FILENAME = u"DwellingMap.html"
 
 class DesktopMain:
 
+
     @staticmethod
     def demo_run():
 #         DesktopMain.print_5_gumtree_offer_details()
@@ -38,14 +40,15 @@ class DesktopMain:
 #         DesktopMain.evaluate_address_extractor()
 #         DesktopMain.print_5_gumtree_offers_addr()
         run_func = DesktopMain.print_5_gumtree_offers_addr
-        cProfile.runctx("run_func()", 
-                        {"global_variables" : "none"},
-                        {"run_func" : run_func}, 
-                        filename="DesktopMain_profile.txt")
+        DesktopMain.profile_func(run_func)
+        
+       
+    @staticmethod
+    def profile_func( run_func):
+        cProfile.runctx("run_func()", {"global_variables":"none"}, {"run_func":run_func}, filename="DesktopMain_profile.txt")
         p = pstats.Stats("DesktopMain_profile.txt")
         p.strip_dirs().sort_stats('cumulative').print_stats(20) # sortujemy, i pierwsze 20 do PROFILER_TXT
         
-       
        
     @staticmethod
     def print_5_gumtree_offers_addr():
