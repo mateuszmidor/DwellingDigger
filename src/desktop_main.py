@@ -16,7 +16,6 @@ from src.addressextractor.evaluator.evaluator import Evaluator
 from src.addressextractor.address_extractor import AddressExtractor
 
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
-from src.outerspaceaccess.geocoder import Geocoder
 
 import cProfile
 import pstats
@@ -57,11 +56,11 @@ class DesktopMain:
         """Prints out details and addresses of 5 offers found on Gumtree"""
                       
         extractor = AddressExtractor.for_krakow()
-        offers = Gumtree.get_offers(city="Krakow",  max_offer_count=5)
+        offers = Gumtree.get_offers_parallel(city="Krakow",  max_offer_count=25, max_parallel_count=5)
 
         for i, offer in enumerate(offers, 1):
             address = extractor.extract([offer["address_section"], offer["title"], offer["summary"]])
-            coords = Geocoder.geocode("%s, Krakow, Polska" % address)
+            coords = [0, 0]#Geocoder.geocode("%s, Krakow, Polska" % address)
             print("%i." % i)
             print(offer["title"])
             print("Address: %s" % address)
