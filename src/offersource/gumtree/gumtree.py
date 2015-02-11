@@ -8,6 +8,8 @@ from src.offersource.gumtree.offer_search_query import OfferSearchQuery
 from src.offersource.gumtree.offer_searcher import OfferSearcher
 from src.offersource.gumtree.offer_extractor import OfferExtractor
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
+import threading
+import Queue
 
 class Gumtree(object):
     '''
@@ -28,3 +30,42 @@ class Gumtree(object):
             offer = OfferExtractor.extract(offer_page)
             offer["url"] = url
             yield offer
+       
+       
+    @staticmethod 
+    def fetch(in_queue, out_queue):
+        while True:
+            url = in_queue.get()
+            offer_page = WebDocumentFetcher.fetch(url)
+            offer = OfferExtractor.extract(offer_page)  
+            offer["url"] = url 
+            out_queue.put(offer) 
+            in_queue.task_done()
+            
+             
+    @staticmethod
+    def get_offers_parallel(max_offer_count="5", city="", whereabouts="", num_rooms="", min_price="", max_price="", 
+                            min_area="", max_area="", max_parallel_count=5):
+        
+        query = OfferSearchQuery.compose(city=city, whereabouts=whereabouts, num_rooms=num_rooms,
+                                         min_price=min_price, max_price=max_price,
+                                         min_area=min_area, max_area=max_area)
+        
+        urls = OfferSearcher.search(query, int(max_offer_count), WebDocumentFetcher)
+        
+        # prepare working queues
+        in_queue = Queue.Queue()
+        out_queue = Queue.Queue()
+        
+        # prepare working threads
+        for i in xrange(max_parallel_count): # @UnusedVariable
+            t = threading.Thread(target = Gumtree.fetch, name="OfferFetchingThread", args=(in_queue, out_queue))
+            t.setDaemon(True)
+            t.start()
+            
+        # put work into input queue
+        map(in_queue.put, urls)
+
+        # yeald results from output queue
+        for i in xrange(max_offer_count): # @UnusedVariable
+            yield out_queue.get()
