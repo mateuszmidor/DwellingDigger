@@ -15,14 +15,24 @@ class Olx(object):
     '''
 
     @staticmethod
-    def get_offers(max_offer_count="5", city="", whereabouts="", num_rooms="", min_price="", max_price="", 
-                   min_area="", max_area=""):
+    def get_urls(max_offer_count="5", city="", whereabouts="", num_rooms="", min_price="", max_price="", 
+                 min_area="", max_area="", web_document_fetcher=WebDocumentFetcher):
         
         query = OfferSearchQuery.compose(city=city, whereabouts=whereabouts, num_rooms=num_rooms,
                                          min_price=min_price, max_price=max_price,
                                          min_area=min_area, max_area=max_area)
         
-        urls = OfferSearcher.search(query, int(max_offer_count), WebDocumentFetcher)
+        return OfferSearcher.search(query, int(max_offer_count), web_document_fetcher)
+    
+    @staticmethod
+    def get_offers(max_offer_count="5", web_document_fetcher=WebDocumentFetcher,
+                   city="", whereabouts="", num_rooms="", min_price="", max_price="", 
+                   min_area="", max_area=""):
+        
+        urls = Olx.get_urls(max_offer_count=max_offer_count, web_document_fetcher=web_document_fetcher,
+                            city=city, whereabouts=whereabouts, num_rooms=num_rooms,
+                            min_price=min_price, max_price=max_price,
+                            min_area=min_area, max_area=max_area)
         for url in urls:
             offer_page = WebDocumentFetcher.fetch(url)
             try:
