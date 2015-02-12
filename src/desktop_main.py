@@ -5,20 +5,20 @@ Created on 16-01-2015
 @author: mateusz
 '''
 from src.lightwebframework.light_web_framework import LightWebFramework
-from src.offersource.gumtree.offer_search_query import OfferSearchQuery as GumtreeOfferSearchQuery
-from src.offersource.gumtree.offer_searcher import OfferSearcher as GumtreeOfferSearcher
-from src.offersource.gumtree.gumtree import Gumtree
+from src.offers.gumtree.offer_search_query import OfferSearchQuery as GumtreeOfferSearchQuery
+from src.offers.gumtree.offer_searcher import OfferSearcher as GumtreeOfferSearcher
+from src.offers.gumtree.gumtree import Gumtree
 
-from src.offersource.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
-from src.offersource.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
-from src.offersource.olx.olx import Olx
-from src.addressextractor.evaluator.evaluator import Evaluator
-from src.addressextractor.address_extractor import AddressExtractor
+from src.offers.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
+from src.offers.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
+from src.offers.olx.olx import Olx
 
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
 
 import cProfile
 import pstats
+from src.offers.addressextractor.address_extractor import AddressExtractor
+from src.offers.addressextractor.evaluator.evaluator import Evaluator
 
 '''
 Predefined map points and coordinates
@@ -111,13 +111,12 @@ class DesktopMain:
                                     max_offer_count=5)
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
-            print("Title:" , offer["title"])
-            print("Date:", offer["date"])
-            print("Price:", offer["price"])
-            print("Address:", offer["address_section"])
-            print("Summary:", offer["summary"])
-            print("Url:", offer["url"])
-            print()
+            print(offer["title"])
+            print(offer["date"])
+            print(offer["price"])
+            print(offer["address_section"])
+            print(offer["summary"])
+            print("")
               
     @staticmethod
     def print_5_olx_offer_urls():
@@ -145,7 +144,7 @@ class DesktopMain:
             print(offer["price"])
             print(offer["address_section"])
             print(offer["summary"])
-            print()
+            print("")
 
     @staticmethod
     def print_5_gumtree_offer_urls():
