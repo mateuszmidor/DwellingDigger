@@ -42,7 +42,8 @@ class OfferExtractor(object):
     
     def __extract_date(self, offer_html):
         REGEX_PATTERN = r"Dodane\s+o \d\d:\d\d, ([^,]+)"
-        return re.search(REGEX_PATTERN, offer_html).group(1)
+        f = re.search(REGEX_PATTERN, offer_html)
+        return f.group(1) if f else None
     
     def __extract_title(self, offer_html):
         START_TAG = '<meta property="og:title" content="'
