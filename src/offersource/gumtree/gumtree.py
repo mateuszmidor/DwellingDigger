@@ -63,9 +63,14 @@ class Gumtree(object):
             t.setDaemon(True)
             t.start()
             
-        # put work into input queue
-        map(in_queue.put, urls)
+        # put work into input queue,
+        # count urls; the max_offer_count is upper limit, no guarantee you will get that much
+        found_url_count = 0
+        for url in urls:
+            in_queue.put(url)
+            found_url_count += 1
+            
 
         # yeald results from output queue
-        for i in xrange(max_offer_count): # @UnusedVariable
+        for i in xrange(found_url_count): # @UnusedVariable
             yield out_queue.get()
