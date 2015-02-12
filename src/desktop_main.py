@@ -19,6 +19,7 @@ import cProfile
 import pstats
 from src.offers.addressextractor.address_extractor import AddressExtractor
 from src.offers.addressextractor.evaluator.evaluator import Evaluator
+from src.offers.offers import Offers
 
 '''
 Predefined map points and coordinates
@@ -40,7 +41,7 @@ class DesktopMain:
         # DesktopMain.print_5_o€lx_offer_details()
 #         DesktopMain.evaluate_address_extractor()
 #         DesktopMain.print_5_gumtree_offers_addr()
-        run_func = DesktopMain.print_5_gumtree_offers_addr
+        run_func = DesktopMain.print_5_offers_by_addr
         DesktopMain.profile_func(run_func)
         
        
@@ -48,9 +49,27 @@ class DesktopMain:
     def profile_func( run_func):
         cProfile.runctx("run_func()", {"global_variables":"none"}, {"run_func":run_func}, filename="DesktopMain_profile.txt")
         p = pstats.Stats("DesktopMain_profile.txt")
-        p.strip_dirs().sort_stats('cumulative').print_stats(20) # sortujemy, i pierwsze 20 do PROFILER_TXT
+        p.strip_dirs().sort_stats('cumulative').print_stats(10) # sortujemy, i pierwsze 20 do PROFILER_TXT
         
        
+    @staticmethod
+    def print_5_offers_by_addr():
+        """Prints out details and addresses of 5 offers found on Gumtree"""
+                      
+        offers = Offers.get_from_all_sources(city="Krakow",  max_offer_count=10, max_parallel_count=5)
+
+        for i, offer in enumerate(offers, 1):
+            coords = offer["longlatt"]
+            print("%i." % i)
+            print(offer["title"])
+            print("Address: %s" % offer["address"])
+            print("LonLatt: %s, %s" % (coords[0], coords[1]))
+            print(offer["date"])
+            print(offer["price"])
+            print(offer["address_section"])
+            print(offer["summary"])
+            print("")
+                   
     @staticmethod
     def print_5_gumtree_offers_addr():
         """Prints out details and addresses of 5 offers found on Gumtree"""
