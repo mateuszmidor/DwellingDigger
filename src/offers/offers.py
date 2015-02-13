@@ -85,4 +85,10 @@ class Offers(object):
             
         # yield results from output queue
         for i in xrange(url_count): # @UnusedVariable
-            yield out_queue.get()                 
+            yield out_queue.get()   
+            
+            
+    @staticmethod
+    def group_by_address(offers):
+        pass
+                    
