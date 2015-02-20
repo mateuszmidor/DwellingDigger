@@ -56,7 +56,8 @@ class Controller:
     def print_5_offers_by_addr():
         """Prints out details and addresses of 5 offers found on Gumtree"""
                       
-        offers = Offers.get_from_all_sources(city="Krakow",  max_offer_count=10, max_parallel_count=5)
+        
+        offers = Offers().get_from_all_sources(city="Krakow",  max_offer_count=10, max_parallel_count=5)
 
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
