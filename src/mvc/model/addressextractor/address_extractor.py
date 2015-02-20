@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Created on 08-02-2015
 
@@ -37,3 +39,10 @@ class AddressExtractor(object):
         dict_files = ["DwellingDigger/data/krakow_streets.txt", 
                     "DwellingDigger/data/krakow_districts.txt"]
         return AddressExtractor.rank_based(dict_files)
+
+    @staticmethod
+    def for_city(city):
+        if city.lower() in [u"krakow", u"kraków"]:
+            return AddressExtractor.for_krakow()
+        
+        raise NotImplementedError()
