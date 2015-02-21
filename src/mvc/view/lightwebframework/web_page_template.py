@@ -6,6 +6,7 @@ This class allows to load HTML template,
 substitue values for predefined $fields$ and return resulting html.
 '''
 import codecs
+from src.outerspaceaccess.text_file_writer import TextFileWriter
 
 class WebPageTemplate():
     __html = u""
@@ -31,7 +32,7 @@ class WebPageTemplate():
         self.__html = self.__html.replace(unicode(fieldname), value)
         
     def save_to_file(self, filename):
-        codecs.open(filename, mode="wb", encoding="utf-8").write(self.__html)
+        TextFileWriter.write(filename, self.__html)
         
     def get_html_string(self):
         return self.__html
