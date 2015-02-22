@@ -5,15 +5,15 @@ Created on 31-07-2014
 This class allows to load HTML template, 
 substitue values for predefined $fields$ and return resulting html.
 '''
-import codecs
 from src.outerspaceaccess.text_file_writer import TextFileWriter
+from src.outerspaceaccess.text_file_reader import TextFileReader
 
 class WebPageTemplate():
     __html = u""
     
     @staticmethod
     def from_file(filename):
-        html = codecs.open(filename, encoding="utf-8").read()
+        html = TextFileReader.read(filename)
         return WebPageTemplate(html)
         
     @staticmethod
