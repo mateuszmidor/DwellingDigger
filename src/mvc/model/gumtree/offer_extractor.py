@@ -6,6 +6,7 @@ Created on 20-01-2015
 @author: mateusz
 '''
 import re
+from datetime import datetime
 
 class OfferExtractor(object):
     '''
@@ -40,8 +41,9 @@ class OfferExtractor(object):
     
     def __extract_date(self, offer_html):
         START_TAG = '<td class="first_row" >'
-        STOP_TAG = '</td>'
-        return self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+        STOP_TAG = '</td>' 
+        day, month, year = self.__get_string_between(offer_html, START_TAG, STOP_TAG).split("/") # eg. "29/07/2014"
+        return datetime(int(year), int(month), int(day))
     
     def __extract_title(self, offer_html):
         START_TAG = '<title>'

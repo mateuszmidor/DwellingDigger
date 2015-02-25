@@ -7,6 +7,7 @@ Created on 20-01-2015
 '''
 import unittest
 from src.mvc.model.gumtree.offer_extractor import OfferExtractor
+from datetime import datetime
 
 class OfferExtractorTest(unittest.TestCase):
 
@@ -16,7 +17,7 @@ class OfferExtractorTest(unittest.TestCase):
         self.assertEquals(ACTUAL_PRICE, price)
 
     def test_extract_date(self):
-        ACTUAL_DATE = u"29/07/2014"
+        ACTUAL_DATE = datetime(2014, 7, 29) 
         date = OfferExtractor.extract(OFFER_HTML)["date"]
         self.assertEquals(ACTUAL_DATE, date)
         
