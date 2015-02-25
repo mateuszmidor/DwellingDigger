@@ -6,13 +6,14 @@ Created on 23-02-2015
 import unittest
 from src.mvc.view.google_map_points import GoogleMapPoints
 import re
+from datetime import datetime
 
 
 class GoogleMapPointsTest(unittest.TestCase):
     OFFER1 = {"address" :   "Wielicka, Krakow, Polska",
               "address_section" :   "Wielicka",
               "title"   :   "OFFER1",
-              "date"    :   "01/01/2000",
+              "date"    :   datetime(2000, 1, 1),
               "price"   :   "1000 ZL",
               "url"     :   "www.OFFER1.pl",
               "summary" :   "Tanie mieszkanie na wielickiej",
@@ -21,7 +22,7 @@ class GoogleMapPointsTest(unittest.TestCase):
     OFFER2 = {"address" :   "Kurdwanow, Krakow, Polska",
               "address_section" :   "osiedle Kurdwanow",
               "title"   :   "OFFER2",
-              "date"    :   "02/01/2000",
+              "date"    :   datetime(2000, 1, 2),
               "price"   :   "2000 ZL",
               "url"     :   "www.OFFER2.pl",
               "summary" :   "Niezbyt tanie mieszkanie, kurdwanow",
@@ -30,7 +31,7 @@ class GoogleMapPointsTest(unittest.TestCase):
     OFFER3 = {"address" :   "Wielicka, Krakow, Polska",
               "address_section" :   "ul wielicka",
               "title"   :   "OFFER3",
-              "date"    :   "03/01/2000",
+              "date"    :   datetime(2000, 1, 3),
               "price"   :   "3000 ZL",
               "url"     :   "www.OFFER3.pl",
               "summary" :   "Absolutnie nietanie mieszkanie, kurdwanow",
