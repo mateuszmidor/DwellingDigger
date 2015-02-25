@@ -20,6 +20,7 @@ import pstats
 from src.mvc.model.addressextractor.address_extractor import AddressExtractor
 from src.mvc.model.addressextractor.evaluator.evaluator import Evaluator
 from src.mvc.model.offers import Offers
+from src.mvc.view.google_map_points import GoogleMapPoints
 
 '''
 Predefined map points and coordinates
@@ -28,8 +29,8 @@ POINTS = ur"""[[50.095613, 19.927883699999999, '<b>jasna </b></br>KOMPLETNIE UME
 MAP_CENTER_LONG = 50.0646501 
 MAP_CENTER_LATT = 19.9449799
 MAP_ZOOM = 11
-TEMPLATE_HTML_FILENAME = u"data/DesktopView.htm"
-RESULT_HTML_FILENAME = u"DwellingMap.html"
+TEMPLATE_HTML_FILENAME = u"DwellingDigger/data/DesktopView.htm"
+RESULT_HTML_FILENAME = u"DwellingDigger/DwellingMap.html"
 
 class Controller:
 
@@ -41,10 +42,22 @@ class Controller:
         # Controller.print_5_o€lx_offer_details()
 #         Controller.evaluate_address_extractor()
 #         Controller.print_5_gumtree_offers_addr()
-        run_func = Controller.print_5_offers_by_addr
+        run_func = Controller.show_offers_on_map
         Controller.profile_func(run_func)
         
        
+    @staticmethod
+    def show_offers_on_map():
+        offers = Offers().get_from_all_sources(city="Krakow",  max_offer_count=25, max_parallel_count=5)
+        points = GoogleMapPoints.from_offers(offers).as_java_script()
+        FIELDS = {u"$POINTS$": points,
+                  u"$MAP_CENTER_LONG$": MAP_CENTER_LONG,
+                  u"$MAP_CENTER_LATT$": MAP_CENTER_LATT,
+                  u"$MAP_ZOOM$" : MAP_ZOOM}
+                   
+        LightWebFramework.render_page_as_file(TEMPLATE_HTML_FILENAME, RESULT_HTML_FILENAME, FIELDS)
+        print("Demo web page saved as %s" % RESULT_HTML_FILENAME)
+                
     @staticmethod
     def profile_func( run_func):
         cProfile.runctx("run_func()", {"global_variables":"none"}, {"run_func":run_func}, filename="DesktopMain_profile.txt")
@@ -57,7 +70,7 @@ class Controller:
         """Prints out details and addresses of 5 offers found on Gumtree"""
                       
         
-        offers = Offers().get_from_all_sources(city="Krakow",  max_offer_count=10, max_parallel_count=5)
+        offers = Offers().get_from_all_sources(city="Krakow",  max_offer_count=25, max_parallel_count=25)
 
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
