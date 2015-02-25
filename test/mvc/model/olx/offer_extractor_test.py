@@ -7,6 +7,7 @@ Created on 24-01-2015
 '''
 import unittest
 from src.mvc.model.olx.offer_extractor import OfferExtractor
+from datetime import datetime
 
 class OfferExtractorTest(unittest.TestCase):
 
@@ -16,7 +17,7 @@ class OfferExtractorTest(unittest.TestCase):
         self.assertEquals(ACTUAL_PRICE, price)
 
     def test_extract_date(self):
-        ACTUAL_DATE = u"14 Stycznia 2015"
+        ACTUAL_DATE = datetime(2015, 1, 14) #u"14 Stycznia 2015"
         date = OfferExtractor.extract(OFFER_HTML)["date"]
         self.assertEquals(ACTUAL_DATE, date)
         

@@ -6,6 +6,7 @@ Created on 24-01-2015
 @author: mateusz
 '''
 import re
+from datetime import datetime
 
 class OfferExtractor(object):
     '''
@@ -41,9 +42,28 @@ class OfferExtractor(object):
         return price
     
     def __extract_date(self, offer_html):
+        MONTHS = {u"stycznia"   : 1,
+                  u"lutego"     : 2,
+                  u"marca"      : 3,
+                  u"kwietnia"   : 4,
+                  u"maja"       : 5,
+                  u"czerwca"    : 6,
+                  u"lipca"      : 7,
+                  u"sierpnia"   : 8,
+                  u"września"   : 9,
+                  u"października"   : 10,
+                  u"listopada"  : 11,
+                  u"grudnia"    : 12}
+        
         REGEX_PATTERN = r"Dodane\s+o \d\d:\d\d, ([^,]+)"
         f = re.search(REGEX_PATTERN, offer_html)
-        return f.group(1) if f else None
+        
+        if not f.group(1):
+            return None
+        
+        date_str = f.group(1).lower()
+        day, month_str, year = date_str.split(" ")
+        return datetime(int(year), MONTHS[month_str], int(day))
     
     def __extract_title(self, offer_html):
         START_TAG = '<meta property="og:title" content="'
