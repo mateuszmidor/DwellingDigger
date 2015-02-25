@@ -67,14 +67,14 @@ class GoogleMapPoints(object):
 
     @staticmethod
     def __prepare_hint_body(title, date, price, address_section, summary, url):
-        FORMATTER = u'{0} - {1} <b>{2}</b></br><i>{3}</i></br>{4}</br><a href="{5}" target="_blank">Link</a></br>'
-        return FORMATTER.format(title, date, price, address_section, summary, url)
+        DATE_FORMAT = "%d.%m.%Y"
+        FORMATTER = u'{0} - <b>{1}</b>, <b>{2}</b></br><i>{3}</i></br>{4}</br><a href="{5}" target="_blank">Link</a></br></br></hr>'
+        return FORMATTER.format(title, date.strftime(DATE_FORMAT), price, address_section, summary, url)
 
     @staticmethod
-    def __get_icon_for_date(gumtree_date):
+    def __get_icon_for_date(date):
         now = datetime.datetime.now()
-        gumtree_format_now = now.strftime("%d/%m/%Y")
-        if gumtree_date == gumtree_format_now:
+        if (now.year == date.year) and (now.month == date.month) and (now.day == date.day):
             return 'icon_today'
         else:
             return 'icon_older'
