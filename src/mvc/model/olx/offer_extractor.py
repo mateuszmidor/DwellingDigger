@@ -58,9 +58,10 @@ class OfferExtractor(object):
         REGEX_PATTERN = r"Dodane\s+o \d\d:\d\d, ([^,]+)"
         f = re.search(REGEX_PATTERN, offer_html)
         
-        if not f.group(1):
-            return None
-        
+        # If no date found - return invalid but not harmful year 1900 :)
+        if not f:
+            return datetime(1900, 1, 1)
+   
         date_str = f.group(1).lower()
         day, month_str, year = date_str.split(" ")
         return datetime(int(year), MONTHS[month_str], int(day))
