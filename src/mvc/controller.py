@@ -48,7 +48,7 @@ class Controller:
        
     @staticmethod
     def show_offers_on_map():
-        offers = Offers().get_from_all_sources(city="Krakow",  max_offer_count=25, max_parallel_count=5)
+        offers = Offers.get_from_all_sources(city="Krakow",  max_offer_count=25, max_parallel_count=5)
         points = GoogleMapPoints.from_offers(offers).as_java_script()
         FIELDS = {u"$POINTS$": points,
                   u"$MAP_CENTER_LONG$": MAP_CENTER_LONG,
