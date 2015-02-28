@@ -21,6 +21,7 @@ from src.mvc.model.addressextractor.address_extractor import AddressExtractor
 from src.mvc.model.addressextractor.evaluator.evaluator import Evaluator
 from src.mvc.model.offers import Offers
 from src.mvc.view.google_map_points import GoogleMapPoints
+from src.mvc.model.addressextractor.rankbased.dictionary import Dictionary
 
 '''
 Predefined map points and coordinates
@@ -42,7 +43,7 @@ class Controller:
         # Controller.print_5_o€lx_offer_details()
 #         Controller.evaluate_address_extractor()
 #         Controller.print_5_gumtree_offers_addr()
-        run_func = Controller.show_offers_on_map
+        run_func = Controller.evaluate_address_extractor
         Controller.profile_func(run_func)
         
        
@@ -82,6 +83,7 @@ class Controller:
             print(offer["address_section"])
             print(offer["summary"])
             print("")
+                 
                    
     @staticmethod
     def print_5_gumtree_offers_addr():
@@ -105,10 +107,9 @@ class Controller:
              
     @staticmethod
     def evaluate_address_extractor():
-        dict_files = ["DwellingDigger/data/krakow_streets.txt", 
-                    "DwellingDigger/data/krakow_districts.txt", 
-                    "DwellingDigger/data/cities.txt"
-                      ]
+        dict_files = [("DwellingDigger/data/krakow_streets.txt", Dictionary.STREET), 
+                      ("DwellingDigger/data/krakow_districts.txt", Dictionary.DISTRICT), 
+                      ("DwellingDigger/data/cities.txt", Dictionary.CITY)]
         extractor = AddressExtractor.rank_based(dict_files)
         Evaluator.evaluate(extractor)
         

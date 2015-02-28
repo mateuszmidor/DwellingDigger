@@ -5,6 +5,7 @@ Created on 04-02-2015
 
 @author: mateusz
 '''
+from src.mvc.model.addressextractor.rankbased.dictionary_entry import DictionaryEntry
 
 class Declinator(object):
     '''
@@ -23,9 +24,9 @@ class Declinator(object):
         """ Iterate over all addresses in dictionary and generate declinations when possible """
         
         declinations = list()
-        for address in dictionary:
-            declination = Declinator.__declinate(address)
-            Declinator.__append_if_differs(declination, address, declinations)
+        for entry in dictionary:
+            declination = Declinator.__declinate(entry.name)
+            Declinator.__append_if_differs(declination, entry, declinations)
             
         dictionary.extend(declinations)
         
@@ -43,9 +44,10 @@ class Declinator(object):
         
        
     @staticmethod 
-    def __append_if_differs(declination, address, declinations):
-        if declination != address:
-            declinations.append(declination)
+    def __append_if_differs(declination, entry, declinations):
+        if declination != entry.name:
+            new_entry = DictionaryEntry(declination, entry.name, entry.address_type)
+            declinations.append(new_entry)
         
     @staticmethod
     def undeclinate(address):

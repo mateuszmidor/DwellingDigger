@@ -8,8 +8,8 @@ from src.mvc.model.addressextractor.rankbased.address_candidates import AddressC
 from src.mvc.model.addressextractor.rankbased.rank_prefix import RankPrefix
 from src.mvc.model.addressextractor.rankbased.rank_suffix import RankSuffix
 from src.mvc.model.addressextractor.rankbased.rank_capital_letter import RankCapitalLetter
-from src.mvc.model.addressextractor.rankbased.declinator import Declinator
 from src.mvc.model.addressextractor.rankbased.address_candidate import AddressCandidate
+from src.mvc.model.addressextractor.rankbased.dictionary import Dictionary
 
 class RankBasedExtractor(object):
     '''
@@ -18,21 +18,18 @@ class RankBasedExtractor(object):
     '''
     dictionaries = list()
 
-    def __init__(self, *dictionaries):
+    def __init__(self, dictionary):
         """
         Constructor.
-        The order of provided dictionaries in important:
-        the extractor will look up the dictionaries in the same order as provided,
-        so should be from most precise (streets) to most general (cities)
+        As input takes dictionary of known addresses (DictionaryEntry)
         """
                 
-        self.dictionaries = dictionaries
+        self.dictionary = dictionary
         
     def extract(self, sources):
         candidates = AddressCandidates()
         
-        for dictionary in self.dictionaries:
-            self.__extract_from_sources(sources, dictionary, candidates)
+        self.__extract_from_sources(sources, self.dictionary, candidates)
         
         prefix = RankPrefix()
         prefix.rank(candidates)
@@ -45,7 +42,7 @@ class RankBasedExtractor(object):
         
         if len(candidates) > 0:
             candidates.sort_by_correctness_precision()
-            return Declinator.undeclinate(candidates[0].address.lower())
+            return candidates[0].full_form_address
         
         return None
         
@@ -57,17 +54,28 @@ class RankBasedExtractor(object):
         
     def __extract_from_source(self, source, dictionary, candidates):
         lowercase_source = source.lower()
-        for address in dictionary:
-            if address in lowercase_source:
-                self.__extract_address_with_number(address, source, candidates)
+        for entry in dictionary:
+            if entry.name in lowercase_source:
+                lowercase_source, candidate = self.__extract_candidate(entry, source)
+                candidates.append(candidate)
         
                 
-    def __extract_address_with_number(self, address, source, candidates):
-        pattern = self.__compose_pattern(address)
+    def __extract_candidate(self, entry, source):
+        """ Returns (source without the extracted candidate, candidate itself) """
+        
+        pattern = self.__compose_pattern(entry.name)
         f = re.search(pattern, source, re.IGNORECASE | re.UNICODE)
-        if f:
-            address = f.group(0)
-            self.__add_address_candidate(address, source, candidates)
+        number = f.group(1) if f and f.groups() else None
+        
+        source_without_candidate = re.sub(pattern, "", source, re.IGNORECASE | re.UNICODE).lower()
+        
+        c = AddressCandidate()
+        c.address = entry.name 
+        c.full_form_address = self.__compose_full_form_address(entry.original_form, entry.address_type, number)
+        c.source = source 
+        c.precision_rank = self.__precision_rank_from_addrtype(entry.address_type)
+        
+        return source_without_candidate, c
         
         
     def __compose_pattern(self, address):
@@ -75,8 +83,24 @@ class RankBasedExtractor(object):
         return ur"\b{0}{1}\b".format(address, OPTIONAL_NUMBER)
     
     
-    def __add_address_candidate(self, address, source, candidates):
-        c = AddressCandidate()
-        c.address = address
-        c.source = source
-        candidates.append(c)
+    def __compose_full_form_address(self, address, address_type, number):
+        result = u""
+        
+        if number:
+            result = address + " " + number
+        else:
+            result = address
+            
+#         if address_type == Dictionary.STREET:
+#             return u"ul. " + result
+        
+        return result    
+        
+        
+    def __precision_rank_from_addrtype(self, address_type):
+        if address_type == Dictionary.STREET:
+            return 2
+        if address_type == Dictionary.DISTRICT:
+            return 1
+        
+        return 0

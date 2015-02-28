@@ -18,27 +18,27 @@ class AddressExtractor(object):
     '''
 
     @staticmethod
-    def rank_based(dictionary_filenames):
+    def rank_based(dictionary_file_type):
         """
         Builds and returns RankBasedExtractor.
-        The order of entries in dictionary_filenames is important:
-        the extractor will look up the dictionaries in the same order as provided,
-        so should be from most precise (streets) to most general (cities)
         """
         
-        dictionaries = map(Dictionary.from_file, dictionary_filenames)
-        map(lambda d : d.sort_longest_first(), dictionaries)
-        map(Asciinator.asciinate_dictionary, dictionaries)
-        map(Declinator.declinate_dictionary, dictionaries)
-        map(Surnamenator.surnamenate_dictionary, dictionaries)
+        dictionary = Dictionary()
+        for filename, address_type in dictionary_file_type:
+            dictionary.extend(Dictionary.from_file(filename, address_type))
         
-        return RankBasedExtractor(*dictionaries)
+        dictionary.sort_longest_first()
+        Asciinator.asciinate_dictionary(dictionary)
+        Declinator.declinate_dictionary(dictionary)
+        Surnamenator.surnamenate_dictionary(dictionary)
+        
+        return RankBasedExtractor(dictionary)
         
     @staticmethod
     def for_krakow():
-        dict_files = ["DwellingDigger/data/krakow_streets.txt", 
-                    "DwellingDigger/data/krakow_districts.txt"]
-        return AddressExtractor.rank_based(dict_files)
+        dicts = [("DwellingDigger/data/krakow_streets.txt", Dictionary.STREET), 
+                 ("DwellingDigger/data/krakow_districts.txt", Dictionary.DISTRICT)]
+        return AddressExtractor.rank_based(dicts)
 
     @staticmethod
     def for_city(city):

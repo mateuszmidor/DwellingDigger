@@ -6,6 +6,7 @@ Created on 5 lut 2015
 @author: m.midor
 '''
 import re
+from src.mvc.model.addressextractor.rankbased.dictionary_entry import DictionaryEntry
 
 class Surnamenator(object):
     '''
@@ -19,9 +20,9 @@ class Surnamenator(object):
         """ Iterate over dictionary entries and extract surnames if any, then add them to dictinoary """
         
         surnames = list()
-        for address in dictionary:
-            surname = Surnamenator.__surnamenate(address)
-            Surnamenator.__append_if_differs(surname, address, surnames)
+        for entry in dictionary:
+            surname = Surnamenator.__surnamenate(entry.name)
+            Surnamenator.__append_if_differs(surname, entry, surnames)
             
         dictionary.extend(surnames)        
         
@@ -46,6 +47,7 @@ class Surnamenator(object):
     
     
     @staticmethod
-    def __append_if_differs(surname, address, surnames):
-        if surname != address:
-            surnames.append(surname)
+    def __append_if_differs(surname, entry, surnames):
+        if surname != entry.name:
+            new_entry = DictionaryEntry(surname, entry.name, entry.address_type)
+            surnames.append(new_entry)

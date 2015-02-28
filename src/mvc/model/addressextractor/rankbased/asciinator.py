@@ -4,6 +4,7 @@ Created on 5 lut 2015
 @author: m.midor
 '''
 import unicodedata
+from src.mvc.model.addressextractor.rankbased.dictionary_entry import DictionaryEntry
 
 class Asciinator(object):
     '''
@@ -16,9 +17,9 @@ class Asciinator(object):
         """ Iterate over dictionary entries and generate ascii-only counterparts for words containing national characters """
         
         asciinations = list()
-        for address in dictionary:
-            asciination = Asciinator.__asciinate(address)
-            Asciinator.__append_if_differs(asciination, address, asciinations)
+        for entry in dictionary:
+            asciination = Asciinator.__asciinate(entry.name)
+            Asciinator.__append_if_differs(asciination, entry, asciinations)
             
         dictionary.extend(asciinations)
         
@@ -29,9 +30,7 @@ class Asciinator(object):
     
 
     @staticmethod
-    def __append_if_differs(asciination, address, asciisations):
-        if asciination != address:
-            asciisations.append(asciination)
-    
-    
-        
+    def __append_if_differs(asciination, entry, asciisations):
+        if asciination != entry.name:
+            new_entry = DictionaryEntry(asciination, entry.name, entry.address_type)
+            asciisations.append(new_entry)
