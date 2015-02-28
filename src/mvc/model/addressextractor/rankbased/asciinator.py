@@ -32,5 +32,5 @@ class Asciinator(object):
     @staticmethod
     def __append_if_differs(asciination, entry, asciisations):
         if asciination != entry.name:
-            new_entry = DictionaryEntry(asciination, entry.name, entry.address_type)
+            new_entry = DictionaryEntry(asciination, entry.original_form, entry.address_type)
             asciisations.append(new_entry)

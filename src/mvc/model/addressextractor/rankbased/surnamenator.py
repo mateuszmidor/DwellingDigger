@@ -49,5 +49,5 @@ class Surnamenator(object):
     @staticmethod
     def __append_if_differs(surname, entry, surnames):
         if surname != entry.name:
-            new_entry = DictionaryEntry(surname, entry.name, entry.address_type)
+            new_entry = DictionaryEntry(surname, entry.original_form, entry.address_type)
             surnames.append(new_entry)

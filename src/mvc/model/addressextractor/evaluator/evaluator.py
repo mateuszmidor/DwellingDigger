@@ -26,7 +26,7 @@ class Evaluator(object):
             address = address_extractor.extract(sample.sources)
             expected = sample.expected_result
 
-            if Evaluator.__contains_ignore_case(expected, address):
+            if Evaluator.__contains_ignore_case(expected, address.strip(u"ul. ")):
                 num_correctly_extracted += 1
             else:
                 print(unicode(AddressCandidates.last_processed))

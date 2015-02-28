@@ -55,31 +55,41 @@ class RankBasedExtractor(object):
     def __extract_from_source(self, source, dictionary, candidates):
         lowercase_source = source.lower()
         for entry in dictionary:
+            # if name is in source, then possibly the address is found
+            # unless name is only a part of another word
             if entry.name in lowercase_source:
-                lowercase_source, candidate = self.__extract_candidate(entry, source)
-                candidates.append(candidate)
+                lowercase_source = self.__extract_candidate(entry, source, candidates)
         
                 
-    def __extract_candidate(self, entry, source):
-        """ Returns (source without the extracted candidate, candidate itself) """
+    def __extract_candidate(self, entry, source, candidates):
+        """ Returns lowercase source without the extracted candidate """
         
         pattern = self.__compose_pattern(entry.name)
         f = re.search(pattern, source, re.IGNORECASE | re.UNICODE)
-        number = f.group(1) if f and f.groups() else None
         
+        # no address found - return just lowercase source 
+        if not f:
+            return source.lower()
+        
+        # get the number if we are talking about address being a street that has a number provided       
+        number = f.group(1) if entry.address_type == Dictionary.STREET and f.groups() else None
+        
+        # remove the found candidate from the source (remove "nowa huta" so "nowa" street doesnt come up in results)
         source_without_candidate = re.sub(pattern, "", source, re.IGNORECASE | re.UNICODE).lower()
         
         c = AddressCandidate()
-        c.address = entry.name 
+        c.address = f.group(0)
         c.full_form_address = self.__compose_full_form_address(entry.original_form, entry.address_type, number)
         c.source = source 
         c.precision_rank = self.__precision_rank_from_addrtype(entry.address_type)
+        c.correctness_rank = self.__correctness_rank_from_genuinity(entry.name, entry.original_form)
+        candidates.append(c)
         
-        return source_without_candidate, c
+        return source_without_candidate
         
         
     def __compose_pattern(self, address):
-        OPTIONAL_NUMBER = ur"(?:[ ]{1,5}\d{1,5}\w?)?"
+        OPTIONAL_NUMBER = ur"(?:\s{1,5}(\d{1,5})\w?)?"
         return ur"\b{0}{1}\b".format(address, OPTIONAL_NUMBER)
     
     
@@ -91,8 +101,8 @@ class RankBasedExtractor(object):
         else:
             result = address
             
-#         if address_type == Dictionary.STREET:
-#             return u"ul. " + result
+        if address_type == Dictionary.STREET:
+            return u"ul. " + result
         
         return result    
         
@@ -104,3 +114,12 @@ class RankBasedExtractor(object):
             return 1
         
         return 0
+    
+    
+    def __correctness_rank_from_genuinity(self, used_form, original_form):
+        if (used_form.lower() == original_form.lower()):
+            # if genuine address form - its fine to use it
+            return 0
+        else:
+            # if mutated address form - penalty earned
+            return -1;

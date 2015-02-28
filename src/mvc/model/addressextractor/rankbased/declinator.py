@@ -46,7 +46,7 @@ class Declinator(object):
     @staticmethod 
     def __append_if_differs(declination, entry, declinations):
         if declination != entry.name:
-            new_entry = DictionaryEntry(declination, entry.name, entry.address_type)
+            new_entry = DictionaryEntry(declination, entry.original_form, entry.address_type)
             declinations.append(new_entry)
         
     @staticmethod
