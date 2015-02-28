@@ -74,7 +74,7 @@ class GoogleMapPoints(object):
     @staticmethod
     def __get_icon_for_date(date):
         now = datetime.datetime.now()
-        if (now.year == date.year) and (now.month == date.month) and (now.day == date.day):
+        if now.year == date.year and now.month == date.month and now.day == date.day:
             return 'icon_today'
         else:
             return 'icon_older'
