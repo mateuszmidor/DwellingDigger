@@ -81,8 +81,8 @@ class RankBasedExtractor(object):
         c.address = f.group(0)
         c.full_form_address = self.__compose_full_form_address(entry.original_form, entry.address_type, number)
         c.source = source 
-        c.precision_rank = self.__precision_rank_from_addrtype(entry.address_type)
-        c.correctness_rank = self.__correctness_rank_from_genuinity(entry.name, entry.original_form)
+        c.precision_rank = self.__precision_from_addrtype(entry.address_type)
+        c.correctness_rank = self.__correctness_from_genuinity(entry.name, entry.original_form)
         candidates.append(c)
         
         return source_without_candidate
@@ -107,7 +107,7 @@ class RankBasedExtractor(object):
         return result    
         
         
-    def __precision_rank_from_addrtype(self, address_type):
+    def __precision_from_addrtype(self, address_type):
         if address_type == Dictionary.STREET:
             return 2
         if address_type == Dictionary.DISTRICT:
@@ -116,8 +116,8 @@ class RankBasedExtractor(object):
         return 0
     
     
-    def __correctness_rank_from_genuinity(self, used_form, original_form):
-        if (used_form.lower() == original_form.lower()):
+    def __correctness_from_genuinity(self, used_form, original_form):
+        if used_form.lower() == original_form.lower():
             # if genuine address form - its fine to use it
             return 0
         else:
