@@ -8,6 +8,7 @@ Created on 5 lut 2015
 import unittest
 from src.mvc.model.addressextractor.rankbased.dictionary import Dictionary
 from src.mvc.model.addressextractor.rankbased.rank_based_extractor import RankBasedExtractor
+from src.mvc.model.addressextractor.rankbased.dictionary_entry import DictionaryEntry
 
 
 class RankBasedExtractorTest(unittest.TestCase):
@@ -15,11 +16,12 @@ class RankBasedExtractorTest(unittest.TestCase):
 
     def test_extract_street(self):
         """ Test extracts street name along with number """
-        streets = Dictionary([u"Wielicka"])
-        extractor = RankBasedExtractor(streets)
+        wielicka = DictionaryEntry(u"Wielicka", u"Wielicka", Dictionary.STREET)
+        d = Dictionary([wielicka])
+        extractor = RankBasedExtractor(d)
         sources = [u"Kraków, Podgórze, Wielicka 30"]
         result = extractor.extract(sources)
-        expected = u"wielicka 30"
+        expected = u"ul. Wielicka 30"
         
         self.assertEquals(result, expected, u"Address extraction for '{0}' should have returned '{1}' but returned '{2}'".format(sources[0], expected, result))
 
@@ -27,12 +29,12 @@ class RankBasedExtractorTest(unittest.TestCase):
     def test_extract_street_before_district(self):
         """ Test extractors uses the dictionaries in proper order """
         
-        streets = Dictionary([u"Wielicka"])
-        districts = Dictionary([u"Podgórze"])
-        extractor = RankBasedExtractor(streets, districts)
+        d = Dictionary([DictionaryEntry(u"Wielicka", u"Wielicka", Dictionary.STREET), 
+                        DictionaryEntry(u"Podgórze", u"Podgórze", Dictionary.DISTRICT)])
+        extractor = RankBasedExtractor(d)
         sources = [u"Kraków, Podgórze, Wielicka 30"]
         result = extractor.extract(sources)
-        expected = u"wielicka 30"
+        expected = u"ul. Wielicka 30"
         
         self.assertEquals(result, expected, u"Address extraction for '{0}' should have returned '{1}' but returned '{2}'".format(sources[0], expected, result))
         

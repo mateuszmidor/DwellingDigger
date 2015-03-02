@@ -6,6 +6,7 @@ Created on 22-02-2015
 import unittest
 from src.mvc.model.addressextractor.address_extractor import AddressExtractor
 from mock import patch, Mock, call
+from src.mvc.model.addressextractor.rankbased.dictionary import Dictionary
 
 
 class AddressExtractorTest(unittest.TestCase):
@@ -21,12 +22,15 @@ class AddressExtractorTest(unittest.TestCase):
         """
         
         # Prepare mocks
-        # dictionary instances (streets, disctricts)
+        # dictionary instances returned by "from_file" [strets, districts]
         d1 = Mock() 
         d2 = Mock()
         
         # Dictionary class 
         dictionary_mock.from_file = Mock(side_effect = [d1, d2])
+        # dictionary instance returned by constructor "Dictionary()"
+        d3 = Mock()
+        dictionary_mock.return_value = d3
         
         # dictionary mutators
         asciinator_mock.asciinate_dictionary = Mock()
@@ -34,16 +38,21 @@ class AddressExtractorTest(unittest.TestCase):
         surnamenator_mock.surnamenate_dictionary = Mock()
         
         # Run tested method
-        AddressExtractor.rank_based(["streets.dat", "districts.dat"])
+        AddressExtractor.rank_based([("streets.dat", Dictionary.STREET),
+                                     ("districts.dat", Dictionary.DISTRICT)])
         
         # Check the scenario properly played
-        d1.sort_longest_first.assert_called_once_with()
-        d2.sort_longest_first.assert_called_once_with()
-        dictionary_mock.assert_has_calls([call.from_file("streets.dat"), call.from_file("districts.dat")])
-        asciinator_mock.assert_has_calls([call.asciinate_dictionary(d1), call.asciinate_dictionary(d2)])
-        declinator_mock.assert_has_calls([call.declinate_dictionary(d1), call.declinate_dictionary(d2)])
-        surnamenator_mock.assert_has_calls([call.surnamenate_dictionary(d1), call.surnamenate_dictionary(d2)])
-        extractor_mock.assert_called_once_with(d1, d2)
+        d3.assert_has_calls([call.extend(d1), call.extend(d2)])
+        d3.sort_longest_first.assert_called_once_with()
+        
+        # any_order since dictionary_mock has also the constructor and extend() and sort_longest_first called
+        dictionary_mock.assert_has_calls([call.from_file("streets.dat", Dictionary.STREET), 
+                                          call.from_file("districts.dat", Dictionary.DISTRICT)],
+                                          any_order=True)
+        asciinator_mock.asciinate_dictionary.assert_called_once_with(d3)
+        declinator_mock.declinate_dictionary.assert_called_once_with(d3)
+        surnamenator_mock.surnamenate_dictionary.assert_called_once_with(d3)
+        extractor_mock.assert_called_once_with(d3)
         
         
 if __name__ == "__main__":
