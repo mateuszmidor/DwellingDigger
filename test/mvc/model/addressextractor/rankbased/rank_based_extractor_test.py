@@ -38,7 +38,22 @@ class RankBasedExtractorTest(unittest.TestCase):
         
         self.assertEquals(result, expected, u"Address extraction for '{0}' should have returned '{1}' but returned '{2}'".format(sources[0], expected, result))
         
+   
+    def test_nowahuta_case(self):
+        """ Test extractors uses the dictionaries in proper order """
         
+        d = Dictionary([DictionaryEntry(u"Nowa", u"Nowa", Dictionary.STREET), 
+                        DictionaryEntry(u"Nowa Huta", u"Nowa Huta", Dictionary.DISTRICT)])
+        d.sort_longest_first()
+        
+        extractor = RankBasedExtractor(d)
+        sources = [u"Kraków, Podgórze, Nowa Huta"]
+        result = extractor.extract(sources)
+        expected = u"Nowa Huta"
+        
+        self.assertEquals(result, expected, u"Address extraction for '{0}' should have returned '{1}' but returned '{2}'".format(sources[0], expected, result))
+        
+             
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

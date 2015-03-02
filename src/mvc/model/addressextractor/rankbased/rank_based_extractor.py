@@ -33,10 +33,10 @@ class RankBasedExtractor(object):
         
         prefix = RankPrefix()
         prefix.rank(candidates)
-        
+         
         suffix = RankSuffix()
         suffix.rank(candidates)
-        
+         
         capital = RankCapitalLetter()
         capital.rank(candidates)
         
@@ -58,10 +58,10 @@ class RankBasedExtractor(object):
             # if name is in source, then possibly the address is found
             # unless name is only a part of another word
             if entry.name in lowercase_source:
-                lowercase_source = self.__extract_candidate(entry, source, candidates)
+                lowercase_source = self.__extract_candidate(entry, source, lowercase_source, candidates)
         
                 
-    def __extract_candidate(self, entry, source, candidates):
+    def __extract_candidate(self, entry, source, lower_source, candidates):
         """ Returns lowercase source without the extracted candidate """
         
         pattern = self.__compose_pattern(entry.name)
@@ -69,16 +69,16 @@ class RankBasedExtractor(object):
         
         # no address found - return just lowercase source 
         if not f:
-            return source.lower()
+            return lower_source
         
         # get the number if we are talking about address being a street that has a number provided       
         number = f.group(1) if entry.address_type == Dictionary.STREET and f.groups() else None
-        
+        address = f.group(0)
         # remove the found candidate from the source (remove "nowa huta" so "nowa" street doesnt come up in results)
-        source_without_candidate = re.sub(pattern, "", source, re.IGNORECASE | re.UNICODE).lower()
+        source_without_candidate = lower_source.replace(address.lower(), u"")
         
         c = AddressCandidate()
-        c.address = f.group(0)
+        c.address = address
         c.full_form_address = self.__compose_full_form_address(entry.original_form, entry.address_type, number)
         c.source = source 
         c.precision_rank = self.__precision_from_addrtype(entry.address_type)

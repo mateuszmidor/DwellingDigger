@@ -237,7 +237,7 @@ expected=CHMIELENIEC
 source=7, 31-808 Kraków, Polska
 source=Mieszkanie 2 pokojowe, Kraków, os.Strusia Dom, Mieszkanie do Wynajęcia - Gumtree Małopolskie
 source=2 pokojowe mieszkanie na osiedlu Strusia, ~38 m2. Umeblowane, wyposażone w pralkę, lodówkę. Osiedle bardzo spokojne, monitorowane. Blisko supermarkety: biedronka, lidl, kaufland. Do przystanku autobusowego 5min, pospieszne połączenia: 501, 502,572. P
-expected=os.Strusia
+expected=Osiedle Strusia
 # 
 source=Kraków
 source=Wynajmę przytulne - Rakowicka wyposażone tanie w utrzymaniu Dom, Mieszkanie do Wynajęcia - Gumtree Małopolskie
