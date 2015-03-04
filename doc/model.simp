@@ -175,7 +175,7 @@
       </counter>
       <counter>
         <item-type stereotype="" type="AbstractElementGroup" />
-        <value>320</value>
+        <value>341</value>
       </counter>
       <counter>
         <item-type stereotype="" type="UmlClass" />
@@ -626,7 +626,7 @@
       <style class="default" />
       <interface />
     </item>
-    <item id="di384321384759317348" cid="ELEM018" type="uml-required-interface-end" name="run(offer_filters)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:16:58">
+    <item id="di384321384759317348" cid="ELEM018" type="uml-required-interface-end" name="run(offer_filters, view)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:16:58">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
@@ -973,6 +973,41 @@ precision_rank - the higher, the better the precision eg. street is higher than 
       <associated-diagrams />
       <owned-items />
       <style class="default" />
+    </item>
+    <item id="di842493966564520635" cid="IFC006" type="uml-interface" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:33:29">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <interface />
+    </item>
+    <item id="di501246248521014578" cid="IFC007" type="uml-interface" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:34:19">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <interface required-interface-ref="di581402582758535267" />
+    </item>
+    <item id="di581402582758535267" cid="ELEM021" type="uml-required-interface-end" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:34:57">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <required-interface interface-ref="di501246248521014578" />
+    </item>
+    <item id="di956357456335852019" cid="IFC008" type="uml-interface" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:35:25">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <interface required-interface-ref="di146246520145862247" />
+    </item>
+    <item id="di146246520145862247" cid="ELEM023" type="uml-required-interface-end" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:36:00">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <required-interface interface-ref="di956357456335852019" />
     </item>
   </items>
   <models>
@@ -1730,7 +1765,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
         </layer>
       </diagram>
     </model>
-    <model id="p227798370106712148" name="LowLevelDesktop" type="model" namespace="" order-index="2">
+    <model id="p227798370106712148" name="LowLevel" type="model" namespace="" order-index="2">
       <meta>
         <authors>
           <author> </author>
@@ -1772,7 +1807,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di979390617846395025" cid="CPT003" type="component" name="DesktopMain" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:32:25">
+          <item id="di979390617846395025" cid="CPT003" type="component" name="Main" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:32:25">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -1790,7 +1825,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di234410180269805210" cid="CPT005" type="component" name="__main__.py" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:16:32">
+          <item id="di234410180269805210" cid="CPT005" type="component" name="__main__.py / index.py" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:16:32">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -1802,7 +1837,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di873966793526233735" cid="CPT004" type="component" name="DesktopMainView" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:55:00">
+          <item id="di873966793526233735" cid="CPT004" type="component" name="MainView" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:55:00">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -1863,9 +1898,9 @@ precision_rank - the higher, the better the precision eg. street is higher than 
               </alternate-styles>
             </style>
             <comment>Co my tutaj robimy?
-1. Dostajemy polecenie "run" z filtrami do ofert
+1. Dostajemy polecenie "run" z filtrami do ofert i widokiem który wyrenderować ma wyniki
 2. Pobieramy liste dostępnych ofert z Offers.get_offers(filters)
-3. Wyświetlamy oferty na mapie DesktopView.show_offers(offers) - lokalny plik "Dwellings.html"</comment>
+3. Wyświetlamy oferty na mapie z użyciem dostarczonego view.show_offers(offers)</comment>
           </item>
         </abstract-items>
         <layer name="Default" visible="true" enabled="true" locked="false">
@@ -3945,21 +3980,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
           </item>
         </layer>
       </diagram>
-    </model>
-    <model id="p417255072581760138" name="LowLevelOnline" type="model" namespace="" order-index="3">
-      <meta>
-        <authors>
-          <author> </author>
-        </authors>
-        <description />
-        <creation-date>01/18/2015 19:32:26</creation-date>
-        <change-date>01/01/0001 00:00:00</change-date>
-        <revision-count>0</revision-count>
-        <version />
-      </meta>
-      <abstract-items />
-      <sub-models />
-      <diagram type="uml-component" id="p600393420812245870" name="General Structure" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="true" show-relationship-texts="true" auto-routed-paths="false">
+      <diagram type="uml-component" id="p628852765972121292" name="WebMainView" order-index="2" overview-order-index="0" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="true" show-relationship-texts="true" auto-routed-paths="false">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -3970,67 +3991,97 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <author> </author>
           </authors>
           <description />
-          <creation-date>01/18/2015 19:32:49</creation-date>
-          <change-date>01/18/2015 19:33:01</change-date>
+          <creation-date>02/26/2015 17:29:08</creation-date>
+          <change-date>02/26/2015 17:36:00</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
         <abstract-items>
-          <item id="di276518945644525446" cid="CPT001" type="component" name="AddressResolver" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:31:21">
+          <item id="di483639594702401770" cid="CMT011" type="comment" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:18:37">
+            <stereotypes />
+            <documentation>
+              <text>
+                <styles>
+                  <style name="S1" font-name="Verdana" font-size="12" font-bold="false" font-italic="false" font-underline="false" font-strikeout="false">
+                    <text>
+                      <solid-brush color="#FF000000" />
+                    </text>
+                  </style>
+                </styles>
+                <content>
+                  <paragraph>
+                    <p s="S1">
+                      <t />
+                    </p>
+                  </paragraph>
+                </content>
+              </text>
+            </documentation>
+            <cooperation>
+              <participants />
+              <comments />
+            </cooperation>
+            <associated-diagrams />
+            <owned-items />
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
+              <background type="vertical-linear" color="#FFD5D500" color2="#FFFFFFFF" />
+              <border color="#FF000000" width="1" dash-style="Solid" />
+              <alternate-styles>
+                <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="1,1" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
+                  <background type="vertical-linear" color="#FF1E90FF" color2="#FF87CEFA" />
+                  <border color="#FF00008B" width="1" dash-style="Solid" />
+                </alternate-style>
+              </alternate-styles>
+            </style>
+            <comment>Co my tutaj robimy?
+1. Dostajemy polecenie "show_offers" z ofertami
+2. Wczytujem szablon strony html z osadzoną mapą google
+3. Przetwarzamy listę ofert na listę punktów do wyświetlenia na mapie (pogrupowane po adresie)
+4. Wstrzykujemy punkty w dokument html z mapą i renderujemy jako http response</comment>
+          </item>
+          <item id="di109392949921459837" cid="CPT006" type="component" name="WebMainView" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:33:18">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di519873262940457314" cid="CPT002" type="component" name="Offers" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:32:02">
+          <item id="di248927077952980532" cid="ELEM019" type="uml-provided-interface-connector" name="show_offers(offers)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:33:29">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di546710261909769416" cid="CPT003" type="component" name="OnlineMain (called from index.py)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:32:25">
+          <item id="di307184665713309645" cid="CPT007" type="component" name="GoogleMapPoints" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:34:03">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di897310018858743979" cid="ELEM011" type="uml-provided-interface-connector" name="resolve(city, text1 possibly carrying address, text2 possibly carrying address, ...)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:50:22">
+          <item id="di421343652107542044" cid="ELEM020" type="uml-provided-interface-connector" name="offers_to_map_points(offers)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:34:19">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di626053752493404099" cid="ELEM012" type="uml-required-interface-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:51:05">
+          <item id="di556555826288232628" cid="ELEM021" type="uml-required-interface-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:34:57">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di139933931606933473" cid="CPT004" type="component" name="LightWebFramework" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:55:00">
+          <item id="di650255871526383681" cid="CPT008" type="component" name="WebPageTemplate" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:35:09">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di466431780587437657" cid="ELEM003" type="uml-provided-interface-connector" name="getOffers(offer param filters)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:49:37">
+          <item id="di814413563161653680" cid="ELEM022" type="uml-provided-interface-connector" name="render_as_http_response(template_filename, inject_fields_dict)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:35:25">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di524877471909652548" cid="ELEM009" type="uml-required-interface-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 16:50:14">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di324749314588620941" cid="ELEM015" type="uml-provided-interface-connector" name="renderWebPageAsHttpResponse(template_filename, field_name1 : field_value1, field_name2 : field_value2 ...)" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 17:13:17">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di622079730176459738" cid="ELEM016" type="uml-required-interface-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="01/18/2015 17:14:04">
+          <item id="di571216130681864751" cid="ELEM023" type="uml-required-interface-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/26/2015 17:36:00">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -4038,131 +4089,112 @@ precision_rank - the higher, the better the precision eg. street is higher than 
           </item>
         </abstract-items>
         <layer name="Default" visible="true" enabled="true" locked="false">
-          <item id="di276518945644525446" iid="36e60ff6bf2b46149b2889ce5ed64822" creation-date="01/18/2015 16:31:21" order-index="0" type="entity">
-            <layout ax="330" ay="400" awidth="190" aheight="50" x="330" y="400" width="190" height="50" angle="0" />
+          <item id="di483639594702401770" iid="0cb286f70e0d4cc5a183369b770a725f" creation-date="02/26/2015 17:18:37" order-index="21" type="entity">
+            <layout ax="30" ay="-100" awidth="710" aheight="90" x="30" y="-100" width="710" height="90" angle="0" />
           </item>
-          <item id="di519873262940457314" iid="04afc8f2096d4ef1b99a07713e93e135" creation-date="01/18/2015 16:32:02" order-index="1" type="entity">
-            <layout ax="80" ay="340" awidth="170" aheight="50" x="80" y="340" width="170" height="50" angle="0" />
+          <item id="di109392949921459837" iid="b46eaf8fa29d400ca2667ccc0b5b4a6f" creation-date="02/26/2015 17:33:18" order-index="22" type="entity">
+            <layout ax="280" ay="130" awidth="210" aheight="90" x="280" y="130" width="210" height="90" angle="0" />
           </item>
-          <item id="di546710261909769416" iid="5d6719e718fa40d4b1fd56e6742abe02" creation-date="01/18/2015 16:32:25" order-index="2" type="entity">
-            <layout ax="220" ay="40" awidth="360" aheight="100" x="220" y="40" width="360" height="100" angle="0" />
-          </item>
-          <item id="di897310018858743979" iid="22d848e191db4a22b980eff313dbc00b" creation-date="01/18/2015 16:50:22" order-index="7" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="50,-80" auto-path="" x1="392" y1="400" x2="392" y2="331" start-border-pos="0.08125" end-border-pos="0.632352941176471" name-width="380">
+          <item id="di248927077952980532" iid="4da1c328b9cc47aabdc5c4b7cdc7fc73" creation-date="02/26/2015 17:33:29" order-index="23" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="90,-20" auto-path="" x1="386" y1="130" x2="387" y2="76" start-border-pos="0.126190476190476" end-border-pos="0.626791076660156" name-width="190">
               <points>
-                <point x="392" y="400" />
-                <point x="392" y="331" />
+                <point x="386" y="130" />
+                <point x="387" y="76" />
               </points>
             </layout>
             <attached-parts>
-              <attached-part ref="4245c2a92a41475d9affb533e597c239" />
+              <attached-part ref="4f01b07e961f432e910c39ba94748252" />
             </attached-parts>
-            <relation from="di276518945644525446" from-iid="36e60ff6bf2b46149b2889ce5ed64822" to="di919298793950966089" to-iid="4245c2a92a41475d9affb533e597c239" />
+            <relation from="di109392949921459837" from-iid="b46eaf8fa29d400ca2667ccc0b5b4a6f" to="di842493966564520635" to-iid="4f01b07e961f432e910c39ba94748252" />
           </item>
-          <item id="di626053752493404099" iid="920f3ea440354d86a3161d454c762bb8" creation-date="01/18/2015 16:51:05" order-index="9" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="413" y1="140" x2="393" y2="310" start-border-pos="0.616071428571429" end-border-pos="0.133846130371094">
+          <item id="di842493966564520635" iid="4f01b07e961f432e910c39ba94748252" creation-date="02/26/2015 17:33:29" order-index="24" type="entity">
+            <layout ax="374.5" ay="50.5" awidth="25" aheight="25" x="374.5" y="50.5" width="25" height="25" angle="0" name-position="30,-10" />
+            <attached-parts>
+              <attached-part ref="4da1c328b9cc47aabdc5c4b7cdc7fc73" />
+            </attached-parts>
+            <interface />
+          </item>
+          <item id="di307184665713309645" iid="6426766bb13947fb9c35b3ea7a68fd26" creation-date="02/26/2015 17:34:03" order-index="25" type="entity">
+            <layout ax="90" ay="370" awidth="190" aheight="60" x="90" y="370" width="190" height="60" angle="0" />
+          </item>
+          <item id="di421343652107542044" iid="f6d0334b1347471ead9a712004d8d5f0" creation-date="02/26/2015 17:34:19" order-index="26" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="-50,-10" auto-path="" x1="206" y1="370" x2="254" y2="306" start-border-pos="0.152631578947368" end-border-pos="0.712821062873392" name-width="210">
               <points>
-                <point x="413" y="140" />
-                <point x="393" y="310" />
+                <point x="206" y="370" />
+                <point x="254" y="306" />
               </points>
             </layout>
             <attached-parts>
-              <attached-part ref="ed3fecda9d4a4667b9fc12e177b9e0c8" />
+              <attached-part ref="12deca4f688e4f9e83f4810857486e34" />
             </attached-parts>
-            <relation from="di546710261909769416" from-iid="5d6719e718fa40d4b1fd56e6742abe02" to="di640709364677992122" to-iid="ed3fecda9d4a4667b9fc12e177b9e0c8" />
+            <relation from="di307184665713309645" from-iid="6426766bb13947fb9c35b3ea7a68fd26" to="di501246248521014578" to-iid="12deca4f688e4f9e83f4810857486e34" />
           </item>
-          <item id="di919298793950966089" iid="4245c2a92a41475d9affb533e597c239" creation-date="01/18/2015 16:50:22" order-index="8" type="entity">
-            <layout ax="384" ay="314" awidth="17" aheight="17" x="384" y="314" width="17" height="17" angle="0" name-position="30,-10" />
+          <item id="di501246248521014578" iid="12deca4f688e4f9e83f4810857486e34" creation-date="02/26/2015 17:34:19" order-index="27" type="entity">
+            <layout ax="250.5" ay="290.5" awidth="17" aheight="17" x="250.5" y="290.5" width="17" height="17" angle="0" name-position="30,-10" />
             <attached-parts>
-              <attached-part ref="22d848e191db4a22b980eff313dbc00b" />
+              <attached-part ref="f6d0334b1347471ead9a712004d8d5f0" />
             </attached-parts>
-            <interface required-interface-ref="ed3fecda9d4a4667b9fc12e177b9e0c8" />
+            <interface required-interface-ref="6e23c35a5e564700850ae6a5448447a3" />
           </item>
-          <item id="di139933931606933473" iid="390c518d38a84930be21eea39ca99315" creation-date="01/18/2015 16:55:00" order-index="11" type="entity">
-            <layout ax="570" ay="340" awidth="190" aheight="49" x="570" y="340" width="190" height="49" angle="0" />
-          </item>
-          <item id="di640709364677992122" iid="ed3fecda9d4a4667b9fc12e177b9e0c8" creation-date="01/18/2015 16:51:05" order-index="10" type="entity">
-            <layout ax="380" ay="310" awidth="25" aheight="25" x="380" y="310" width="25" height="25" angle="0" name-position="30,-10" />
-            <attached-parts>
-              <attached-part ref="920f3ea440354d86a3161d454c762bb8" />
-            </attached-parts>
-            <required-interface interface-ref="4245c2a92a41475d9affb533e597c239" />
-          </item>
-          <item id="di466431780587437657" iid="86e9abd630aa4f648a9c9392c054bffe" creation-date="01/18/2015 16:49:37" order-index="3" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="-70,-80" auto-path="" x1="210" y1="340" x2="242" y2="247" start-border-pos="0.191666666666667" end-border-pos="0.663604661725363" name-width="250">
+          <item id="di556555826288232628" iid="20e42c8902f1427eacc36c52e0c1afc9" creation-date="02/26/2015 17:34:57" order-index="28" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="339" y1="220" x2="268" y2="291" start-border-pos="0.679761904761905" end-border-pos="0.256499938964844">
               <points>
-                <point x="210" y="340" />
-                <point x="242" y="247" />
+                <point x="339" y="220" />
+                <point x="268" y="291" />
               </points>
             </layout>
             <attached-parts>
-              <attached-part ref="a928c7be938f4079b61b8a8321d21cfa" />
+              <attached-part ref="6e23c35a5e564700850ae6a5448447a3" />
             </attached-parts>
-            <relation from="di519873262940457314" from-iid="04afc8f2096d4ef1b99a07713e93e135" to="di310283956680054566" to-iid="a928c7be938f4079b61b8a8321d21cfa" />
+            <relation from="di109392949921459837" from-iid="b46eaf8fa29d400ca2667ccc0b5b4a6f" to="di581402582758535267" to-iid="6e23c35a5e564700850ae6a5448447a3" />
           </item>
-          <item id="di524877471909652548" iid="5eb7831a918b4d9a8beb02478e7524e2" creation-date="01/18/2015 16:50:14" order-index="5" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="347" y1="140" x2="258" y2="226" start-border-pos="0.661624802483453" end-border-pos="0.264029110376961">
+          <item id="di581402582758535267" iid="6e23c35a5e564700850ae6a5448447a3" creation-date="02/26/2015 17:34:57" order-index="29" type="entity">
+            <layout ax="246.5" ay="286.5" awidth="25" aheight="25" x="246.5" y="286.5" width="25" height="25" angle="0" name-position="30,-10" />
+            <attached-parts>
+              <attached-part ref="20e42c8902f1427eacc36c52e0c1afc9" />
+            </attached-parts>
+            <required-interface interface-ref="12deca4f688e4f9e83f4810857486e34" />
+          </item>
+          <item id="di650255871526383681" iid="d1872ec7cd2e42d1baa8e2792871a72a" creation-date="02/26/2015 17:35:09" order-index="30" type="entity">
+            <layout ax="461" ay="370" awidth="190" aheight="60" x="461" y="370" width="190" height="60" angle="0" />
+          </item>
+          <item id="di814413563161653680" iid="cc7a06068aea496eb7b8d0b9f1107a29" creation-date="02/26/2015 17:35:25" order-index="31" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="60,-10" auto-path="" x1="544" y1="370" x2="488" y2="299" start-border-pos="0.109210526315789" end-border-pos="0.52714942483341" name-width="310">
               <points>
-                <point x="347" y="140" />
-                <point x="258" y="226" />
+                <point x="544" y="370" />
+                <point x="488" y="299" />
               </points>
             </layout>
             <attached-parts>
-              <attached-part ref="7dd62df74438444dae3c61e0df9499d0" />
+              <attached-part ref="e2cc4999cbd74f1eb20f6dab9049f616" />
             </attached-parts>
-            <relation from="di546710261909769416" from-iid="5d6719e718fa40d4b1fd56e6742abe02" to="di774895097331108511" to-iid="7dd62df74438444dae3c61e0df9499d0" />
+            <relation from="di650255871526383681" from-iid="d1872ec7cd2e42d1baa8e2792871a72a" to="di956357456335852019" to-iid="e2cc4999cbd74f1eb20f6dab9049f616" />
           </item>
-          <item id="di310283956680054566" iid="a928c7be938f4079b61b8a8321d21cfa" creation-date="01/18/2015 16:49:37" order-index="4" type="entity">
-            <layout ax="234" ay="224" awidth="23.70587" aheight="23.70587" x="234" y="224" width="23.70587" height="23.70587" angle="0" name-position="30,-10" />
+          <item id="di956357456335852019" iid="e2cc4999cbd74f1eb20f6dab9049f616" creation-date="02/26/2015 17:35:25" order-index="32" type="entity">
+            <layout ax="474" ay="284" awidth="17" aheight="17" x="474" y="284" width="17" height="17" angle="0" name-position="30,-10" />
             <attached-parts>
-              <attached-part ref="86e9abd630aa4f648a9c9392c054bffe" />
+              <attached-part ref="cc7a06068aea496eb7b8d0b9f1107a29" />
             </attached-parts>
-            <interface required-interface-ref="7dd62df74438444dae3c61e0df9499d0" />
+            <interface required-interface-ref="c6ec34c279e14876aafcc74cd02573b9" />
           </item>
-          <item id="di324749314588620941" iid="3f23e009c8e446b9be466844253e2ad4" creation-date="01/18/2015 17:13:17" order-index="12" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="80,-100" auto-path="" x1="657" y1="340" x2="626" y2="236" start-border-pos="0.114473684210526" end-border-pos="0.590336519129136" name-width="310">
+          <item id="di571216130681864751" iid="b670a9d66c1441e28f369a5b2011591a" creation-date="02/26/2015 17:36:00" order-index="33" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="415" y1="220" x2="474" y2="283" start-border-pos="0.589285714285714" end-border-pos="0.00833343505859375">
               <points>
-                <point x="657" y="340" />
-                <point x="626" y="236" />
+                <point x="415" y="220" />
+                <point x="474" y="283" />
               </points>
             </layout>
             <attached-parts>
-              <attached-part ref="fb4c53a8aa4e4dc882a44c46aa38e1ea" />
+              <attached-part ref="c6ec34c279e14876aafcc74cd02573b9" />
             </attached-parts>
-            <relation from="di139933931606933473" from-iid="390c518d38a84930be21eea39ca99315" to="di884759281153699059" to-iid="fb4c53a8aa4e4dc882a44c46aa38e1ea" />
+            <relation from="di109392949921459837" from-iid="b46eaf8fa29d400ca2667ccc0b5b4a6f" to="di146246520145862247" to-iid="c6ec34c279e14876aafcc74cd02573b9" />
           </item>
-          <item id="di774895097331108511" iid="7dd62df74438444dae3c61e0df9499d0" creation-date="01/18/2015 16:50:14" order-index="6" type="entity">
-            <layout ax="230" ay="220" awidth="31.70587" aheight="31.70587" x="230" y="220" width="31.70587" height="31.70587" angle="0" name-position="30,-10" />
+          <item id="di146246520145862247" iid="c6ec34c279e14876aafcc74cd02573b9" creation-date="02/26/2015 17:36:00" order-index="34" type="entity">
+            <layout ax="470" ay="280" awidth="25" aheight="25" x="470" y="280" width="25" height="25" angle="0" name-position="30,-10" />
             <attached-parts>
-              <attached-part ref="5eb7831a918b4d9a8beb02478e7524e2" />
+              <attached-part ref="b670a9d66c1441e28f369a5b2011591a" />
             </attached-parts>
-            <required-interface interface-ref="a928c7be938f4079b61b8a8321d21cfa" />
-          </item>
-          <item id="di884759281153699059" iid="fb4c53a8aa4e4dc882a44c46aa38e1ea" creation-date="01/18/2015 17:13:17" order-index="13" type="entity">
-            <layout ax="615.5" ay="219.5" awidth="17" aheight="17" x="615.5" y="219.5" width="17" height="17" angle="0" name-position="30,-10" />
-            <attached-parts>
-              <attached-part ref="3f23e009c8e446b9be466844253e2ad4" />
-            </attached-parts>
-            <interface required-interface-ref="696c8f67a49041a69fa71e4402de8441" />
-          </item>
-          <item id="di622079730176459738" iid="06548d2add9b479e8a07b5525d7c8452" creation-date="01/18/2015 17:14:04" order-index="14" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="481" y1="140" x2="614" y2="221" start-border-pos="0.56875" end-border-pos="0.955">
-              <points>
-                <point x="481" y="140" />
-                <point x="614" y="221" />
-              </points>
-            </layout>
-            <attached-parts>
-              <attached-part ref="696c8f67a49041a69fa71e4402de8441" />
-            </attached-parts>
-            <relation from="di546710261909769416" from-iid="5d6719e718fa40d4b1fd56e6742abe02" to="di100164983462714705" to-iid="696c8f67a49041a69fa71e4402de8441" />
-          </item>
-          <item id="di100164983462714705" iid="696c8f67a49041a69fa71e4402de8441" creation-date="01/18/2015 17:14:04" order-index="15" type="entity">
-            <layout ax="611.5" ay="215.5" awidth="25" aheight="25" x="611.5" y="215.5" width="25" height="25" angle="0" name-position="30,-10" />
-            <attached-parts>
-              <attached-part ref="06548d2add9b479e8a07b5525d7c8452" />
-            </attached-parts>
-            <required-interface interface-ref="fb4c53a8aa4e4dc882a44c46aa38e1ea" />
+            <required-interface interface-ref="e2cc4999cbd74f1eb20f6dab9049f616" />
           </item>
         </layer>
       </diagram>
