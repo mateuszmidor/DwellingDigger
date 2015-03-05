@@ -18,22 +18,42 @@ class OfferSearchQuery(object):
     'http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-kurdwan%C3%B3w/?search%5Bfilter_float_price%3Afrom%5D=800&search%5Bfilter_float_price%3Ato%5D=1600&search%5Bfilter_enum_rooms%5D%5B0%5D=two&search%5Bfilter_float_m%3Afrom%5D=40&search%5Bfilter_float_m%3Ato%5D=70'
     __OLX_QUERY_BASE_URL = 'http://olx.pl/nieruchomosci/mieszkania/wynajem'
 
+
     @classmethod
-    def compose(cls, city="", whereabouts="", num_rooms="", min_price="", max_price="", min_area="", max_area=""):
+    def from_key_values(cls, city="", whereabouts="", num_rooms="", min_price="", max_price="", min_area="", max_area=""):
+        """ Use this method to build OfferSearchQuery from key-value pairs """
         return cls(city, whereabouts, num_rooms, min_price, max_price, min_area, max_area)
     
-    def __init__(self, city, whereabouts, num_rooms, min_price, max_price, min_area, max_area):
-        # city is obligatory
-        if not city:
-            raise ValueError("City is obligatory to compose a valid offer search query")
+    
+    @classmethod
+    def from_offer_params(cls, params):
+        """ Use this method to build OfferSearchQuery from OfferParams """
+        def str_or_empty(v):
+            return str(v) if v else ""
         
-        self.city = city
-        self.whereabouts = whereabouts # eg. "Kazimierz"
-        self.num_rooms = num_rooms
-        self.min_price = min_price
-        self.max_price = max_price
-        self.min_area = min_area # square meters
-        self.max_area = max_area
+        city = params.get_city()
+        whereabouts = str_or_empty(params.get_whereabouts())
+        num_rooms = str_or_empty(params.get_num_rooms())
+        min_price = str_or_empty(params.get_min_price())
+        max_price = str_or_empty(params.get_max_price())
+        min_area = str_or_empty(params.get_min_area())
+        max_area = str_or_empty(params.get_max_area())
+    
+        return cls(city, whereabouts, num_rooms, min_price, max_price, min_area, max_area)
+    
+        
+    def __init__(self, city, whereabouts, num_rooms, min_price, max_price, min_area, max_area):
+        # __city is obligatory
+        if not city:
+            raise ValueError("City is obligatory to from_key_values a valid offer search query")
+        
+        self.__city = city
+        self.__whereabouts = whereabouts # eg. "Kazimierz"
+        self.__num_rooms = num_rooms
+        self.__min_price = min_price
+        self.__max_price = max_price
+        self.__min_area = min_area # square meters
+        self.__max_area = max_area
         
     def __str__(self):
         return self.as_url_string()
@@ -53,7 +73,7 @@ class OfferSearchQuery(object):
         """
         
         if whereabouts == "": 
-            return url # whereabouts is not a must
+            return url # __whereabouts is not a must
         
         whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
         return url + "/q-" + whereabouts 
@@ -102,16 +122,16 @@ class OfferSearchQuery(object):
         
         # Build the base url
         url = OfferSearchQuery.__OLX_QUERY_BASE_URL
-        url = self.__add_city(url, self.city)
-        url = self.__add_whereabouts(url, self.whereabouts)
+        url = self.__add_city(url, self.__city)
+        url = self.__add_whereabouts(url, self.__whereabouts)
             
         # Build the argument list
         args = ""
-        args = self.__add_min_price(args, self.min_price)
-        args = self.__add_max_price(args, self.max_price)
-        args = self.__add_num_rooms(args, self.num_rooms)
-        args = self.__add_min_area(args, self.min_area)
-        args = self.__add_max_area(args, self.max_area)
+        args = self.__add_min_price(args, self.__min_price)
+        args = self.__add_max_price(args, self.__max_price)
+        args = self.__add_num_rooms(args, self.__num_rooms)
+        args = self.__add_min_area(args, self.__min_area)
+        args = self.__add_max_area(args, self.__max_area)
         
         # Build the full url from base url and argument list
         full_url = url + "?" + args

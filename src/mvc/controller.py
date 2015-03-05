@@ -22,6 +22,7 @@ from src.mvc.model.addressextractor.evaluator.evaluator import Evaluator
 from src.mvc.model.offers import Offers
 from src.mvc.view.google_map_points import GoogleMapPoints
 from src.mvc.model.addressextractor.rankbased.dictionary import Dictionary
+from src.mvc.model.offer_params import OfferParams
 
 '''
 Predefined map points and coordinates
@@ -46,10 +47,18 @@ class Controller:
         run_func = Controller.evaluate_address_extractor
         Controller.profile_func(run_func)
         
-       
+                
+    @staticmethod
+    def profile_func(run_func):
+        cProfile.runctx("run_func()", {"global_variables":"none"}, {"run_func":run_func}, filename="DesktopMain_profile.txt")
+        p = pstats.Stats("DesktopMain_profile.txt")
+        p.strip_dirs().sort_stats('cumulative').print_stats(20) # sortujemy, i pierwsze 20 do PROFILER_TXT
+        
+        
     @staticmethod
     def show_offers_on_map():
-        offers = Offers.get_from_all_sources(city="Krakow",  max_offer_count=25, max_parallel_count=5)
+        params = OfferParams.from_key_values(city="Krakow")
+        offers = Offers.get_from_all_sources(params, max_offer_count=50, max_parallel_count=25)
         points = GoogleMapPoints.from_offers(offers).as_java_script()
         FIELDS = {u"$POINTS$": points,
                   u"$MAP_CENTER_LONG$": MAP_CENTER_LONG,
@@ -58,20 +67,14 @@ class Controller:
                    
         LightWebFramework.render_page_as_file(TEMPLATE_HTML_FILENAME, RESULT_HTML_FILENAME, FIELDS)
         print("Demo web page saved as %s" % RESULT_HTML_FILENAME)
-                
-    @staticmethod
-    def profile_func( run_func):
-        cProfile.runctx("run_func()", {"global_variables":"none"}, {"run_func":run_func}, filename="DesktopMain_profile.txt")
-        p = pstats.Stats("DesktopMain_profile.txt")
-        p.strip_dirs().sort_stats('cumulative').print_stats(10) # sortujemy, i pierwsze 20 do PROFILER_TXT
-        
+       
        
     @staticmethod
     def print_5_offers_by_addr():
         """Prints out details and addresses of 5 offers found on Gumtree"""
                       
-        
-        offers = Offers().get_from_all_sources(city="Krakow",  max_offer_count=25, max_parallel_count=25)
+        params = OfferParams.from_key_values(city="Krakow")
+        offers = Offers.get_from_all_sources(params, max_offer_count=25, max_parallel_count=25)
 
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
@@ -90,7 +93,8 @@ class Controller:
         """Prints out details and addresses of 5 offers found on Gumtree"""
                       
         extractor = AddressExtractor.for_krakow()
-        offers = Gumtree.get_offers_parallel(city="Krakow",  max_offer_count=25, max_parallel_count=5)
+        params = OfferParams.from_key_values(city="Kraków")
+        offers = Gumtree.get_offers(offer_params=params, max_offer_count=25, max_parallel_count=5)
 
         for i, offer in enumerate(offers, 1):
             address = extractor.extract([offer["address_section"], offer["title"], offer["summary"]])
@@ -104,6 +108,7 @@ class Controller:
             print(offer["address_section"])
             print(offer["summary"])
             print("")
+       
              
     @staticmethod
     def evaluate_address_extractor():
@@ -112,6 +117,7 @@ class Controller:
                       ("DwellingDigger/data/cities.txt", Dictionary.CITY)]
         extractor = AddressExtractor.rank_based(dict_files)
         Evaluator.evaluate(extractor)
+       
         
     @staticmethod
     def print_learning_samples():
@@ -125,23 +131,25 @@ class Controller:
         ... repeat
         """   
 
-        offers = Olx.get_offers(city="Krakow", 
-                                    max_offer_count=100)
+        params = OfferParams.from_key_values(city="Kraków")
+        offers = Olx.get_offers(offer_params=params, max_offer_count=100)
         for i, offer in enumerate(offers, 1):
             print("# %i." % i)
             print("source=%s" % offer["address_section"])
             print("source=%s" % offer["title"].replace("\n", "").replace("\r", ""))
             print("source=%s" % offer["summary"].replace("\n", "").replace("\r", ""))
             print("expected= ")
+       
                      
     @staticmethod
     def print_5_olx_offer_details():
         """Prints out details of 5 offers found on OLX"""
-        
-        offers = Olx.get_offers(city="Krakow", 
-                                    num_rooms="1", 
-                                    max_price="1200",
-                                    max_offer_count=5)
+       
+        params = OfferParams.from_key_values(city="Kraków", 
+                                             num_rooms="1", 
+                                             max_price="1200",
+                                             max_offer_count=5)        
+        offers = Olx.get_offers(offer_params=params, max_offer_count=5)
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
             print(offer["title"])
@@ -150,26 +158,29 @@ class Controller:
             print(offer["address_section"])
             print(offer["summary"])
             print("")
+       
               
     @staticmethod
     def print_5_olx_offer_urls():
         """Prints out 5 urls to offers found on OLX"""
         
-        query = OlxOfferSearchQuery.compose(city="Krakow",  whereabouts="ruczaj")
+        query = OlxOfferSearchQuery.from_key_values(city="Krakow",  whereabouts="ruczaj")
         print(query)
         urls = OlxOfferSearcher.search(query, 5, WebDocumentFetcher)
         for i, url in enumerate(urls, 1):
             print("{0}. {1}".format(i, url))
+       
              
     @staticmethod
     def print_5_gumtree_offer_details():
         """Prints out details of 5 offers found on Gumtree"""
         
-        offers = Gumtree.get_offers(city="Kraków", 
-                                    whereabouts="Prądnik",
-                                    num_rooms="1", 
-                                    max_price="1200",
-                                    max_offer_count=5)
+        params = OfferParams.from_key_values(city="Kraków", 
+                                             whereabouts="Prądnik",
+                                             num_rooms="1", 
+                                             max_price="1200")
+        
+        offers = Gumtree.get_offers(offer_params=params, max_offer_count=5)
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
             print(offer["title"])
@@ -179,13 +190,15 @@ class Controller:
             print(offer["summary"])
             print("")
 
+
     @staticmethod
     def print_5_gumtree_offer_urls():
         """Prints out 5 urls to offers found on Gumtree"""
         
-        query = GumtreeOfferSearchQuery.compose(city="Krakow")
+        query = GumtreeOfferSearchQuery.from_key_values(city="Krakow")
         for url in GumtreeOfferSearcher.search(query, 5, WebDocumentFetcher):
             print(url)
+
             
     @staticmethod
     def generate_html_with_points():

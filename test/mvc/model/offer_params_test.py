@@ -19,11 +19,10 @@ class CgiFieldstorageStub:
                   "min_area"    : 45, 
                   "max_area"    : 75}
         
-        return FIELDS[name]
+        return FIELDS[name] if name in FIELDS else defvalue
     
     
 class OfferParamsTest(unittest.TestCase):
-
 
     def test_raises_on_empty_city1(self):
         """ Tests empty city as empty string """
@@ -119,6 +118,8 @@ class OfferParamsTest(unittest.TestCase):
                
         self.assertEqual(params.get_max_area(), 75, 
                          "max_area should be 75 but is %d" % params.get_max_area())                    
+
+
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

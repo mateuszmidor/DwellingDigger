@@ -56,9 +56,12 @@ class OffersTest(unittest.TestCase):
                                                            "summary" : "some description",
                                                            "address_section" : "address"}) 
            
-           
-        # 2. Run the function          
-        offers = Offers.get_from_all_sources(city="Krakow")
+         
+        params = Mock()
+        params.get_city = Mock(return_value = "Krakow")  
+        # 2. Run the function    
+              
+        offers = Offers.get_from_all_sources(offer_params = params)
         
         
         # 3. Verify the returned offers

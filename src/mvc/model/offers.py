@@ -23,7 +23,7 @@ class Offers(object):
 
     @staticmethod
     def __format_full_address(street_district, city, country):
-        """ Compose address string from street, city and country. street is optional """
+        """ Compose address string from street, __city and country. street is optional """
         
         if street_district:
             return u"{0}, {1}, {2}".format(street_district, city, country)
@@ -52,7 +52,7 @@ class Offers(object):
                                                             offer["summary"]]) 
              
             full_address = Offers.__format_full_address(street_or_district, 
-                                                      address_extractor.city, 
+                                                      address_extractor.__city, 
                                                       address_extractor.country)
             offer["address"] = full_address
             
@@ -66,25 +66,22 @@ class Offers(object):
             
             
     @staticmethod
-    def get_from_all_sources(max_offer_count="5", max_parallel_count=5,
-                            city="", whereabouts="", num_rooms="", min_price="", max_price="", 
-                            min_area="", max_area=""):
+    def get_from_all_sources(offer_params, max_offer_count=5, max_parallel_count=5):
         """ 
         Gets offers from Olx and Gumtree filtered with provided criteria.
         Returned offers contain already extracted and geocoded address 
         in "address" and "longlatt" fields, respectively. 
         
         """
-        # prepare address extractor for given city
+        # prepare address extractor for given __city
+        city = offer_params.get_city()
         address_extractor = AddressExtractor.for_city(city) 
-        address_extractor.city = city
+        address_extractor.__city = city
         address_extractor.country = "Polska"
         
         # get offer url generators
-        gumtree_urls = Gumtree.get_urls(max_offer_count, city, whereabouts, num_rooms, min_price, max_price, min_area, max_area, 
-                                             WebDocumentFetcher)
-        olx_urls = Olx.get_urls(max_offer_count, city, whereabouts, num_rooms, min_price, max_price, min_area, max_area, 
-                                     WebDocumentFetcher)
+        gumtree_urls = Gumtree.get_urls(offer_params, max_offer_count)
+        olx_urls = Olx.get_urls(offer_params, max_offer_count)
 
         # prepare task and result queue
         in_queue = Queue.Queue()
