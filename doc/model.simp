@@ -175,7 +175,7 @@
       </counter>
       <counter>
         <item-type stereotype="" type="AbstractElementGroup" />
-        <value>341</value>
+        <value>360</value>
       </counter>
       <counter>
         <item-type stereotype="" type="UmlClass" />
@@ -870,7 +870,7 @@ Any relevant prefix gives + to candidate correctness</comment>
       <associated-diagrams />
       <owned-items />
       <style class="default" />
-      <comment>address - the address in form it was found in source string, eg. "kościuszki"
+      <comment>address - the address in form it was found in source string, without number, eg. "kościuszki"
 full_form_address - address in full form with number, eg. "Tadeusza Kościuszki 12"
 source - the original source string where address was found
 correctness_rank - the higher, the better possibilitythe address is valid, based on the context where the address candidate was found
@@ -1323,7 +1323,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di148292805298639626" cid="ST001" type="state" name="GumtreeMap" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="09/15/2014 20:38:13">
+          <item id="di148292805298639626" cid="ST001" type="state" name="DwellingDigger" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="09/15/2014 20:38:13">
             <stereotypes />
             <documentation>
               <text>
@@ -1427,7 +1427,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <state-invariant />
             <actions />
           </item>
-          <item id="di897650837973900819" cid="ST003" type="state" name="Gumtree.pl" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="09/15/2014 20:38:48">
+          <item id="di897650837973900819" cid="ST003" type="state" name="Gumtree.pl, Olx.pl" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="09/15/2014 20:38:48">
             <stereotypes>
               <stereotype name="źródło ofert" />
             </stereotypes>
@@ -1589,7 +1589,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
           <item id="di805082282303029760" iid="d28052f102e4412e939d89e325818b24" creation-date="09/15/2014 20:38:33" order-index="4" type="entity">
             <layout ax="555" ay="221.5" awidth="164" aheight="72" x="555" y="221.5" width="164" height="72" angle="0" />
           </item>
-          <item id="di148292805298639626" iid="5407706a9dda427c9b3926bea31ab82c" creation-date="09/15/2014 20:38:13" order-index="3" type="entity">
+          <item id="di148292805298639626" iid="5407706a9dda427c9b3926bea31ab82c" container="di450318531548209992" container-iid="076c0096710e44f08bc249e6b4fdbcde" creation-date="09/15/2014 20:38:13" order-index="3" type="entity">
             <layout ax="253" ay="195" awidth="180" aheight="125" x="253" y="195" width="180" height="125" angle="0" />
           </item>
           <item id="di897650837973900819" iid="3f9c602bc59848168bd91f5ec0a71381" creation-date="09/15/2014 20:38:48" order-index="5" type="entity">
@@ -1898,7 +1898,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
               </alternate-styles>
             </style>
             <comment>Co my tutaj robimy?
-1. Dostajemy polecenie "run" z filtrami do ofert i widokiem który wyrenderować ma wyniki
+1. Dostajemy polecenie "run" z filtrami do ofert i widokiem który ma wyrenderować wyniki
 2. Pobieramy liste dostępnych ofert z Offers.get_offers(filters)
 3. Wyświetlamy oferty na mapie z użyciem dostarczonego view.show_offers(offers)</comment>
           </item>
@@ -3726,17 +3726,17 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <class />
           </item>
           <item id="di709394894416983091" iid="9c990cc9d394447bbc0fa5fef8c3b476" creation-date="03/02/2015 23:09:13" order-index="1" type="entity">
-            <layout ax="60" ay="350" awidth="580" aheight="100" x="60" y="350" width="580" height="100" angle="0" />
+            <layout ax="60" ay="350" awidth="600" aheight="100" x="60" y="350" width="600" height="100" angle="0" />
           </item>
           <item id="di898335666592073745" iid="823c1695594b4fa29fd528ffd1597fd3" creation-date="03/02/2015 23:13:25" order-index="3" type="entity">
             <layout ax="110" ay="50" awidth="300" aheight="70" x="110" y="50" width="300" height="70" angle="0" />
             <class />
           </item>
           <item id="di612540514106333876" iid="f3eb6f21e6f74a3383df1d1a417f1aa8" creation-date="03/02/2015 23:09:13" order-index="2" type="comment-connector">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="298" y1="350" x2="267" y2="320" start-border-pos="0.102678575186894" end-border-pos="0.562857147216797">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="305" y1="350" x2="271" y2="320" start-border-pos="0.101934521993001" end-border-pos="0.558571441650391">
               <points>
-                <point x="298" y="350" />
-                <point x="267" y="320" />
+                <point x="305" y="350" />
+                <point x="271" y="320" />
               </points>
             </layout>
             <relation from="di709394894416983091" from-iid="9c990cc9d394447bbc0fa5fef8c3b476" to="di277909378511909842" to-iid="9580d96afb9a46c3bda3b097154621fd" />
@@ -3850,7 +3850,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
         </abstract-items>
         <layer name="Default" visible="true" enabled="true" locked="false">
           <item id="di166837085465515397" iid="537a27a82c13403c9de65916bf39b335" creation-date="03/02/2015 23:24:09" order-index="0" type="entity">
-            <layout ax="180" ay="-110" awidth="170" aheight="80" x="180" y="-110" width="170" height="80" angle="0" />
+            <layout ax="120" ay="-130" awidth="290" aheight="100" x="120" y="-130" width="290" height="100" angle="0" />
           </item>
           <item id="di728610173778772943" iid="cc1967b49c084ae180aa8c89abc8d7cd" creation-date="03/02/2015 23:24:16" order-index="1" type="entity">
             <layout ax="250" ay="-170" awidth="25" aheight="25" x="250" y="-170" width="25" height="25" angle="0" name-position="30,-20" />
@@ -3860,9 +3860,9 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <interface />
           </item>
           <item id="di841150742503649535" iid="95ac9f5288cd4679a2c4fcfd9a5de21c" creation-date="03/02/2015 23:24:16" order-index="2" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="264" y1="-110" x2="262" y2="-145" start-border-pos="0.122994636086857" end-border-pos="0.625568237304687">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="263" y1="-130" x2="262" y2="-145" start-border-pos="0.123342185184873" end-border-pos="0.625">
               <points>
-                <point x="264" y="-110" />
+                <point x="263" y="-130" />
                 <point x="262" y="-145" />
               </points>
             </layout>
@@ -3872,10 +3872,10 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <relation from="di166837085465515397" from-iid="537a27a82c13403c9de65916bf39b335" to="di728610173778772943" to-iid="cc1967b49c084ae180aa8c89abc8d7cd" />
           </item>
           <item id="di693928282903112143" iid="dcf6fa6bf66c4e74826e4e0a8c2a9145" creation-date="03/02/2015 23:24:53" order-index="4" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="220" y1="-30" x2="171" y2="14" start-border-pos="0.69085677651798" end-border-pos="0.253883495330811">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="215" y1="-30" x2="171" y2="13" start-border-pos="0.668526024653994" end-border-pos="0.241176452636719">
               <points>
-                <point x="220" y="-30" />
-                <point x="171" y="14" />
+                <point x="215" y="-30" />
+                <point x="171" y="13" />
               </points>
             </layout>
             <attached-parts>
@@ -3894,9 +3894,9 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <layout ax="10" ay="-330" awidth="730" aheight="90" x="10" y="-330" width="730" height="90" angle="0" />
           </item>
           <item id="di370328068775285629" iid="928ef5d3dc524d8ba2260ba2e7276b51" creation-date="03/02/2015 23:25:19" order-index="6" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="311" y1="-30" x2="373" y2="24" start-border-pos="0.557525948917165" end-border-pos="0.984615383148193">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="317" y1="-30" x2="373" y2="24" start-border-pos="0.579972286882072" end-border-pos="0.994871788024902">
               <points>
-                <point x="311" y="-30" />
+                <point x="317" y="-30" />
                 <point x="373" y="24" />
               </points>
             </layout>
@@ -3909,7 +3909,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <layout ax="540" ay="-80" awidth="150" aheight="70" x="540" y="-80" width="150" height="70" angle="0" />
           </item>
           <item id="di629318532440685998" iid="b27ef5d9ae8f4e60b226741aba1cac47" creation-date="03/02/2015 23:25:48" order-index="7" type="entity">
-            <layout ax="0" ay="80" awidth="210" aheight="80" x="0" y="80" width="210" height="80" angle="0" />
+            <layout ax="20" ay="80" awidth="210" aheight="60" x="20" y="80" width="210" height="60" angle="0" />
           </item>
           <item id="di333640376701923115" iid="e84b00f75e88458ca94aaa65b00f6046" creation-date="03/02/2015 23:30:09" order-index="23" type="entity">
             <layout ax="600" ay="-130" awidth="25" aheight="25" x="600" y="-130" width="25" height="25" angle="0" name-position="30,-20" />
@@ -3945,10 +3945,10 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <required-interface interface-ref="f7fbd0ed08ca403dbe0144e071a8b814" />
           </item>
           <item id="di844735971164403803" iid="e8741629d27e48c39766d1ecfb67e137" creation-date="03/02/2015 23:26:04" order-index="9" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="128" y1="80" x2="158" y2="30" start-border-pos="0.152696791149321" end-border-pos="0.70933375639074">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="138" y1="80" x2="159" y2="30" start-border-pos="0.140016228812081" end-border-pos="0.688001296099494">
               <points>
-                <point x="128" y="80" />
-                <point x="158" y="30" />
+                <point x="138" y="80" />
+                <point x="159" y="30" />
               </points>
             </layout>
             <attached-parts>
@@ -3957,7 +3957,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <relation from="di629318532440685998" from-iid="b27ef5d9ae8f4e60b226741aba1cac47" to="di198966575704325941" to-iid="f7fbd0ed08ca403dbe0144e071a8b814" />
           </item>
           <item id="di621932446150868575" iid="9647557e77e34a4580a195358a078007" creation-date="03/02/2015 23:26:27" order-index="10" type="entity">
-            <layout ax="300" ay="80" awidth="200" aheight="80" x="300" y="80" width="200" height="80" angle="0" />
+            <layout ax="300" ay="80" awidth="200" aheight="60" x="300" y="80" width="200" height="60" angle="0" />
           </item>
           <item id="di690614787847369499" iid="6c65a5b4aa4b4635b5889afb49d442b0" creation-date="03/02/2015 23:26:39" order-index="11" type="entity">
             <layout ax="374" ay="24" awidth="17" aheight="17" x="374" y="24" width="17" height="17" angle="0" name-position="40,-20" />
@@ -3967,9 +3967,9 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <interface required-interface-ref="ef0265a392bf4b288e4eb8d1559aef6f" />
           </item>
           <item id="di294232630526632798" iid="1d630c7674df4352a03722917941b240" creation-date="03/02/2015 23:26:39" order-index="12" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="392" y1="80" x2="384" y2="41" start-border-pos="0.114772720336914" end-border-pos="0.6052807078642">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="393" y1="80" x2="384" y2="41" start-border-pos="0.116346168518066" end-border-pos="0.601809782140395">
               <points>
-                <point x="392" y="80" />
+                <point x="393" y="80" />
                 <point x="384" y="41" />
               </points>
             </layout>
