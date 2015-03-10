@@ -12,7 +12,7 @@ class OffersTest(unittest.TestCase):
     
     
     @patch('src.mvc.model.offers.AddressExtractor')
-    @patch('src.mvc.model.offers.Geocoder')
+    @patch('src.mvc.model.offers.CachingGeocoder')
     @patch('src.mvc.model.offers.WebDocumentFetcher')
     @patch('src.mvc.model.offers.Gumtree')
     @patch('src.mvc.model.offers.GumtreeOfferExtractor')
@@ -20,12 +20,12 @@ class OffersTest(unittest.TestCase):
     @patch('src.mvc.model.offers.OlxOfferExtractor')
     def test_get_from_all_sources(self, olx_offer_extractor, olx,
                                   gumtree_offer_extractor, gumtree,
-                                  web_doc_fetcher, geocoder, address_extractor):
+                                  web_doc_fetcher, geocoder_class, address_extractor):
         """
         Needed stubs:
             extractor - on extract() returns "Wielicka"
             address_extractor - on for_city() returns extractor
-            geocoder - on geocode() returns [1.1, 2.2]
+            geocoder_class - on geocode() returns [1.1, 2.2]
             web_doc_fetcher - on fetch() returns u"WebDocHtmlContent"
             gumtree - on get_urls() returns ["gumtree1url", "gumtree2url"]
             olx - on get_urls() return ["olx1url", "olx2url"]
@@ -40,7 +40,9 @@ class OffersTest(unittest.TestCase):
         # this is extractor factory
         address_extractor.for_city = Mock(return_value = extractor)
         
-        geocoder.geocode = Mock(return_value = [1.1, 2.2])
+        geocoder_instance = Mock()
+        geocoder_instance.geocode = Mock(return_value = [1.1, 2.2])
+        geocoder_class.return_value = geocoder_instance
         
         web_doc_fetcher.fetch = Mock(return_value = u"WebDocHtmlContent")
         

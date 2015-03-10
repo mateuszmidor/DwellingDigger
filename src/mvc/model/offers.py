@@ -13,7 +13,7 @@ from src.mvc.model.gumtree.offer_extractor import OfferExtractor as GumtreeOffer
 from src.mvc.model.olx.offer_extractor import OfferExtractor as OlxOfferExtractor
 from src.mvc.model.olx.olx import Olx
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
-from src.outerspaceaccess.geocoder import Geocoder
+from src.outerspaceaccess.cachinggeocoder import CachingGeocoder
 
 
 class Offers(object):
@@ -23,7 +23,7 @@ class Offers(object):
 
     @staticmethod
     def __format_full_address(street_district, city, country):
-        """ Compose address string from street, __city and country. street is optional """
+        """ Compose address string from street, city and country. street is optional """
         
         if street_district:
             return u"{0}, {1}, {2}".format(street_district, city, country)
@@ -32,7 +32,7 @@ class Offers(object):
         
        
     @staticmethod 
-    def __fetch(in_queue, out_queue, address_extractor):
+    def __fetch(in_queue, out_queue, address_extractor, geocoder):
         """
         This method takes offer url and offer extractor from in_queue,
         downloads offer page from url and extracts offer details, then
@@ -52,11 +52,11 @@ class Offers(object):
                                                             offer["summary"]]) 
              
             full_address = Offers.__format_full_address(street_or_district, 
-                                                      address_extractor.__city, 
+                                                      address_extractor.city, 
                                                       address_extractor.country)
             offer["address"] = full_address
             
-            longlatt = Geocoder.geocode(full_address)
+            longlatt = geocoder.geocode(full_address)
             offer["longlatt"] = longlatt
             
             offer["url"] = url 
@@ -73,10 +73,14 @@ class Offers(object):
         in "address" and "longlatt" fields, respectively. 
         
         """
-        # prepare address extractor for given __city
+        
+        # prepare geocoder
+        geocoder = CachingGeocoder("DwellingDigger/data/geocodingscache.txt")
+        
+        # prepare address extractor for given city
         city = offer_params.get_city()
         address_extractor = AddressExtractor.for_city(city) 
-        address_extractor.__city = city
+        address_extractor.city = city
         address_extractor.country = "Polska"
         
         # get offer url generators
@@ -91,10 +95,9 @@ class Offers(object):
         for i in xrange(max_parallel_count): # @UnusedVariable
             t = threading.Thread(target=Offers.__fetch, 
                                  name="OfferFetchingThread", 
-                                 args=(in_queue, out_queue, address_extractor))
+                                 args=(in_queue, out_queue, address_extractor, geocoder))
             t.setDaemon(True)
             t.start()
-        
         # put urls into input queue,
         # count urls; the max_offer_count is desired upper limit, no guarantee you will get that much
         url_count = 0
@@ -108,4 +111,7 @@ class Offers(object):
             
         # yield offers from output queue
         for i in xrange(url_count): # @UnusedVariable
-            yield out_queue.get()        
+            yield out_queue.get()  
+            
+        # dump new geocodings into cache file
+        geocoder.sync()      
