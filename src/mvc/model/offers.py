@@ -43,26 +43,31 @@ class Offers(object):
         """
         
         while True:
-            url, offer_extrator = in_queue.get()
-            offer_page = WebDocumentFetcher.fetch(url)
-            offer = offer_extrator.extract(offer_page)
-            
-            street_or_district = address_extractor.extract([offer["address_section"], 
-                                                            offer["title"], 
-                                                            offer["summary"]]) 
-             
-            full_address = Offers.__format_full_address(street_or_district, 
-                                                      address_extractor.city, 
-                                                      address_extractor.country)
-            offer["address"] = full_address
-            
-            longlatt = geocoder.geocode(full_address)
-            offer["longlatt"] = longlatt
-            
-            offer["url"] = url 
-            
-            out_queue.put(offer) 
-            in_queue.task_done()
+            try:
+                url, offer_extrator = in_queue.get()
+                offer_page = WebDocumentFetcher.fetch(url)
+                offer = offer_extrator.extract(offer_page)
+                
+                street_or_district = address_extractor.extract([offer["address_section"], 
+                                                                offer["title"], 
+                                                                offer["summary"]]) 
+                 
+                full_address = Offers.__format_full_address(street_or_district, 
+                                                          address_extractor.city, 
+                                                          address_extractor.country)
+                offer["address"] = full_address
+                
+                longlatt = geocoder.geocode(full_address)
+                offer["longlatt"] = longlatt
+                
+                offer["url"] = url 
+                
+                out_queue.put(offer) 
+            except:
+                print ("Offer fetch exception")
+                out_queue.put(None)
+            finally:
+                in_queue.task_done()
             
             
     @staticmethod
@@ -111,7 +116,10 @@ class Offers(object):
             
         # yield offers from output queue
         for i in xrange(url_count): # @UnusedVariable
-            yield out_queue.get()  
+            print("waiting for offer number: %d" % (i+1))
+            offer = out_queue.get()
+            if offer:
+                yield offer  
             
         # dump new geocodings into cache file
         geocoder.sync()      
