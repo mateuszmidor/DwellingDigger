@@ -43,4 +43,11 @@ class Geocoder(object):
             print("Successfully geocoded %s" % address)
             return coords
         except GeocoderError:
-            return None       
+            print("Geocoder Exception - GeocoderError")
+            return None 
+        except IOError:
+            print("Geocoder Exception - IOError")
+            return None      
+        except Exception:
+            print("Geocoder Exception")
+            return None      
