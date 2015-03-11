@@ -25,7 +25,7 @@ class CachingGeocoder(object):
         self.__extending_cache = dict()        
         
 
-    def sync(self):
+    def __del__(self):
         """ Update the cache file with new geocodings """
         self.try_update_cache_file(self.__cache_filename)
         

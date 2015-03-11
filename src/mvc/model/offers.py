@@ -20,7 +20,8 @@ class Offers(object):
     '''
     This class is facade for model package.
     '''
-
+    FINISH = object()
+    
     @staticmethod
     def __format_full_address(street_district, city, country):
         """ Compose address string from street, city and country. street is optional """
@@ -37,34 +38,54 @@ class Offers(object):
         This method takes offer url and offer extractor from in_queue,
         downloads offer page from url and extracts offer details, then
         extracts address from offer details, finds address geolocation,
-        and puts offer details along with address and geolocation into out_queue
-        offer_extractor individual for each url, since there can be urls
-        to different www services on in_queue.
+        and puts offer details along with address and geolocation into out_queue.
+        offer_extractor is individual for each url, since there can be urls
+        to different www services using different formats on in_queue.
         """
         
         while True:
             try:
-                url, offer_extrator = in_queue.get()
+                work_data = in_queue.get()
+                
+                if work_data == Offers.FINISH:
+                    in_queue.put(Offers.FINISH)
+                    print ("Finishing fetcher thread")
+                    break
+                
+                # unpack the work data
+                url, offer_extrator = work_data
+                
+                # fetch the offer web page
                 offer_page = WebDocumentFetcher.fetch(url)
+                
+                # parse the page and extract offer details
                 offer = offer_extrator.extract(offer_page)
                 
+                # find address in the offer
                 street_or_district = address_extractor.extract([offer["address_section"], 
                                                                 offer["title"], 
                                                                 offer["summary"]]) 
                  
+                # form nice full address string containing street, city and country
                 full_address = Offers.__format_full_address(street_or_district, 
                                                           address_extractor.city, 
                                                           address_extractor.country)
+                
+                # add the nice address to offer details
                 offer["address"] = full_address
                 
+                # geocode the address and add it to offer details
                 longlatt = geocoder.geocode(full_address)
                 offer["longlatt"] = longlatt
                 
+                # add the offer page url to offer details
                 offer["url"] = url 
                 
+                # output the offer
                 out_queue.put(offer) 
             except:
                 print ("Offer fetch exception")
+                # on exception still output to indicate this work item has been processed
                 out_queue.put(None)
             finally:
                 in_queue.task_done()
@@ -88,10 +109,6 @@ class Offers(object):
         address_extractor.city = city
         address_extractor.country = "Polska"
         
-        # get offer url generators
-        gumtree_urls = Gumtree.get_urls(offer_params, max_offer_count)
-        olx_urls = Olx.get_urls(offer_params, max_offer_count)
-
         # prepare task and result queue
         in_queue = Queue.Queue()
         out_queue = Queue.Queue()
@@ -101,19 +118,24 @@ class Offers(object):
             t = threading.Thread(target=Offers.__fetch, 
                                  name="OfferFetchingThread", 
                                  args=(in_queue, out_queue, address_extractor, geocoder))
-            t.setDaemon(True)
             t.start()
+            
         # put urls into input queue,
-        # count urls; the max_offer_count is desired upper limit, no guarantee you will get that much
+        # count urls so we know how many results to expect;
+        # the max_offer_count is desired upper limit, no guarantee you will get that much
         url_count = 0
-        for url in gumtree_urls:
+        for url in Gumtree.get_urls(offer_params, max_offer_count):
             in_queue.put((url, GumtreeOfferExtractor))
             url_count += 1
             
-        for url in olx_urls:
+        for url in Olx.get_urls(offer_params, max_offer_count):
             in_queue.put((url, OlxOfferExtractor))
             url_count += 1       
             
+            
+        # put the finish sentinel in the input queue so the working threads know when to exit
+        in_queue.put(Offers.FINISH)
+        
         # yield offers from output queue
         for i in xrange(url_count): # @UnusedVariable
             print("waiting for offer number: %d" % (i+1))
@@ -121,5 +143,3 @@ class Offers(object):
             if offer:
                 yield offer  
             
-        # dump new geocodings into cache file
-        geocoder.sync()      
