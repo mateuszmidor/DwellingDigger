@@ -56,7 +56,7 @@ class CachingGeocoder(object):
         
         if address in self.__extending_cache:
             print("returnig geocoding from extending cache")
-            return self.__extending_cache
+            return self.__extending_cache[address]
         
         print("new geocoding started")
         coords = Geocoder.geocode(address)
