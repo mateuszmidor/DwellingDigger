@@ -4,9 +4,9 @@ Created on 12 mar 2015
 @author: m.midor
 '''
 from src.thirdparty.portalocker import portalocker
+from src.thirdparty.portalocker.utils import Lock
 import json
 import os
-from portalocker.utils import Lock
 
 class ExclusiveCacheFile(object):
     '''
