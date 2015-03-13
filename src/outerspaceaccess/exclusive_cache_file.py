@@ -71,7 +71,7 @@ class ExclusiveCacheFile(object):
         """
 
         # try lock and update
-        with Lock(filename, mode='r+', truncate=None, fail_when_locked=False, timeout=timeout_seconds) as f:
+        with Lock(filename, mode='r+', truncate=None, check_interval=0.1, fail_when_locked=False, timeout=timeout_seconds) as f:
             # read original cache contents
             cache = json.load(f)
             
