@@ -5,6 +5,7 @@ Created on 14-02-2015
 '''
 from src.outerspaceaccess.geocoder import Geocoder
 from src.outerspaceaccess.exclusive_cache_file import ExclusiveCacheFile
+from src.thirdparty.portalocker.portalocker import LockException
 
 class CachingGeocoder(object):
     '''
@@ -46,8 +47,11 @@ class CachingGeocoder(object):
         # try for 3 seconds to exclusive lock the cache file
         FILE_LOCK_TIMEOUT = 3
         print ("Num new addresses: %d" % len(update_dict))
-        ExclusiveCacheFile.new_or_update(filename, update_dict, FILE_LOCK_TIMEOUT)
         
+        try:
+            ExclusiveCacheFile.new_or_update(filename, update_dict, FILE_LOCK_TIMEOUT)
+        except LockException:
+            print ("couldnt wait long enough to lock and update the cache file")
 
     def geocode(self, address):
         if address in self.__cache:
