@@ -268,11 +268,11 @@ class ExclusiveCacheFileTest(unittest.TestCase):
             time.sleep(seconds)
             my_file.close() # automatically unlock my_file
             
-        file_locked = Event()    
-        threading.Thread(target=lock_file, args=(seconds, file_locked)).start()
+        is_file_locked = Event()    
+        threading.Thread(target=lock_file, args=(seconds, is_file_locked)).start()
         
         # wait til the file is locked before returning control
-        file_locked.wait()
+        is_file_locked.wait()
         
                 
 if __name__ == "__main__":
