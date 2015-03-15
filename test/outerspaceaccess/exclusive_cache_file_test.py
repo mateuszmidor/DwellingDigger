@@ -3,13 +3,15 @@ Created on 13-03-2015
 
 @author: mateusz
 '''
-import unittest
-from src.outerspaceaccess.exclusive_cache_file import ExclusiveCacheFile
 import os
-from src.thirdparty.portalocker import portalocker
-import time
 import threading
+import time
+import unittest
+
+from src.outerspaceaccess.exclusive_cache_file import ExclusiveCacheFile
+from src.thirdparty.portalocker import portalocker
 from src.thirdparty.portalocker.portalocker import LockException
+from multiprocessing.synchronize import Event
 
 
 class ExclusiveCacheFileTest(unittest.TestCase):
@@ -189,7 +191,7 @@ class ExclusiveCacheFileTest(unittest.TestCase):
                          'File should be updated to contain %s, not %s' % (expected, actual))
              
          
-    def _test_update_exclusivelylocked(self):
+    def test_update_exclusivelylocked(self):
         """ Test case 8. """
           
         LOCK_CHECK_INTERVAL = 0.1 # this value since: Lock(check_interval=0.1) in ExclusiveCacheFile.new_or_update 
@@ -223,12 +225,12 @@ class ExclusiveCacheFileTest(unittest.TestCase):
         self.assertEqual(expected, actual, 
                          'File should be updated to contain %s, not %s' % (expected, actual))
              
-       
+             
     def test_update_ex_locked_timeout(self):
         """ Test case 9. """
          
         LOCK_CHECK_INTERVAL = 0.1 # this value since: Lock(check_interval=0.1) in ExclusiveCacheFile.new_or_update 
-        LOCK_SECS = 2*LOCK_CHECK_INTERVAL # lock for 2 intervals
+        LOCK_SECS = 3*LOCK_CHECK_INTERVAL # lock for 3 intervals
         WAIT_SECS = LOCK_CHECK_INTERVAL # wait only 1 intervals to make ExclusiveCacheFile.new_or_update timeout
          
         # exclusively lock the file
@@ -259,13 +261,18 @@ class ExclusiveCacheFileTest(unittest.TestCase):
     def lock_file_for_delay(filename, seconds, locktype):
         " locktype <portalocker.LOCK_SH|portalocker.LOCK_EX>"
         
-        def lock_file(seconds):
+        def lock_file(seconds, file_locked_event):
             my_file = open(filename, "r")
             portalocker.lock(my_file, locktype)
+            file_locked_event.set()
             time.sleep(seconds)
             my_file.close() # automatically unlock my_file
-                
-        threading.Thread(target=lock_file, args=([seconds])).start()
+            
+        file_locked = Event()    
+        threading.Thread(target=lock_file, args=(seconds, file_locked)).start()
+        
+        # wait til the file is locked before returning control
+        file_locked.wait()
         
                 
 if __name__ == "__main__":
