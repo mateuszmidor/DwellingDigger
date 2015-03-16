@@ -8,44 +8,6 @@ class OfferParams(object):
     '''
     This class represents params criteria provided by user to look for offers
     '''
-
-
-    def __init__(self,
-                 city,
-                 whereabouts, 
-                 num_rooms, 
-                 min_price, 
-                 max_price, 
-                 min_area, 
-                 max_area):
-        
-        if not city:
-            raise ValueError("City is obligatory")
-        
-        if self.invalid_range(min_price, max_price):
-            raise ValueError("__max_price < __min_price")
-
-        if self.invalid_range(min_area, max_area):
-            raise ValueError("__max_area < __min_area")
-        
-        self.__city = city
-        self.__whereabouts = whereabouts
-        self.__num_rooms = num_rooms
-        self.__min_price = min_price
-        self.__max_price = max_price
-        self.__min_area = min_area
-        self.__max_area = max_area
-        
-    
-    def invalid_range(self, minimum, maximum):
-        if not minimum:
-            return False
-        
-        if not maximum:
-            return False
-        
-        if maximum < minimum:
-            return True
         
         
     @staticmethod
@@ -73,6 +35,44 @@ class OfferParams(object):
                            s.getvalue("max_price", None),
                            s.getvalue("min_area", None),
                            s.getvalue("max_area", None))
+
+
+    def __init__(self,
+                 city,
+                 whereabouts, 
+                 num_rooms, 
+                 min_price, 
+                 max_price, 
+                 min_area, 
+                 max_area):
+        
+        if not city:
+            raise ValueError("City is obligatory")
+        
+        if self.__invalid_range(min_price, max_price):
+            raise ValueError("max_price < min_price")
+
+        if self.__invalid_range(min_area, max_area):
+            raise ValueError("max_area < min_area")
+        
+        self.__city = city
+        self.__whereabouts = whereabouts
+        self.__num_rooms = num_rooms
+        self.__min_price = min_price
+        self.__max_price = max_price
+        self.__min_area = min_area
+        self.__max_area = max_area
+        
+    
+    def __invalid_range(self, minimum, maximum):
+        if not minimum:
+            return False
+        
+        if not maximum:
+            return False
+        
+        if maximum < minimum:
+            return True
         
         
     def get_city(self):
