@@ -39,6 +39,7 @@ class TeamWork(object):
             t = Thread(target=self.__worker_thread_func,
                        name="TeamWork worker thread",
                        args=(work_to_do, self.__in_queue, self.__out_queue))
+            t.setDaemon(False)
             t.start()
         
         
@@ -53,8 +54,10 @@ class TeamWork(object):
                 result = work_to_do(work_item)
                 out_queue.put(result)
             except Exception as e:
-                TeamWork.logger.exception(e)
-                out_queue.put(TeamWork.PROCESSING_FAILURE)
+                try:
+                    TeamWork.logger.exception(e)
+                finally:
+                    out_queue.put(TeamWork.PROCESSING_FAILURE)
             finally:
                 in_queue.task_done()
                 
