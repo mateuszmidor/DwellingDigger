@@ -51,7 +51,7 @@ class DependencyInjector():
 
     @staticmethod
     def __register_if_not_registered(name):
-        if (name not in DependencyInjector.dependencies):
+        if name not in DependencyInjector.dependencies:
             DependencyInjector.dependencies[name] = DependencyProxy(NotRegisteredDependency)      
           
              
@@ -76,12 +76,12 @@ class DependencyInjector():
     @staticmethod
     def __throw_if_no_such_field(name, target_object):
         ERROR_STR = 'Cant inject dependency. No field "%s" in object of class "%s"'
-        if (name not in target_object.__dict__):
+        if name not in target_object.__dict__:
             raise DependencyInjectionException(ERROR_STR % (name, target_object.__name__))
         
         
     @staticmethod
     def __throw_if_not_applicable(name, target_object):
         ERROR_STR = 'Field "%s.%s" not designated for injection. Should be initially set to "Inject" instead of "%s"'
-        if (target_object.__dict__[name] != Inject): 
+        if target_object.__dict__[name] != Inject: 
             raise DependencyInjectionException(ERROR_STR % (target_object.__name__, name, target_object.__dict__[name]))
