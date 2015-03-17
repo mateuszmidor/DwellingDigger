@@ -5,7 +5,9 @@ Created on 13-03-2015
 '''
 from Queue import Queue
 from threading import Thread
+from src.ioc.dependency_injector import DependencyInjector, Inject
 
+@DependencyInjector("logger")
 class TeamWork(object):
     '''
     This class allows to process workload in parallel:
@@ -13,7 +15,9 @@ class TeamWork(object):
     2. tw.ad_work(work_item) # many times
     3. results = tw.end_work()
     '''
-                
+         
+    logger = Inject    
+       
     # means that no more work will be supplied and worker threads should terminate
     FINISH_WORK = object()
     
@@ -48,8 +52,8 @@ class TeamWork(object):
             try:
                 result = work_to_do(work_item)
                 out_queue.put(result)
-            except:
-                print("Error executing work_to_do")
+            except Exception as e:
+                TeamWork.logger.exception(e)
                 out_queue.put(TeamWork.PROCESSING_FAILURE)
             finally:
                 in_queue.task_done()
@@ -68,7 +72,7 @@ class TeamWork(object):
     def end_work(self):
         # inform the threads to terminate
         self.__in_queue.put(TeamWork.FINISH_WORK)
-        
+
         # yield all the valid results
         for i in xrange(self.__num_work_items):  # @UnusedVariable
             result = self.__out_queue.get()
