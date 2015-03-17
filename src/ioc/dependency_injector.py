@@ -3,11 +3,24 @@ Created on 17 mar 2015
 
 @author: m.midor
 '''
-from src.ioc.inject import Inject
 from src.ioc.dependency_proxy import DependencyProxy
 from src.ioc.not_registered_dependency import NotRegisteredDependency
 from src.ioc.dependency_injection_exception import DependencyInjectionException
 
+
+class Inject():
+    """
+    Dependency Injection marker.
+    Assign it to fields that are supposed to be subject of dependency injection, eg.
+    
+    @DependencyInjector('dependency') 
+    class Example():
+        dependency = Inject
+    """
+    def str(self):
+        return "[This field should be substituted with actual value by @DependencyInjector decorator]"
+    
+        
         
 class DependencyInjector():
     """"
