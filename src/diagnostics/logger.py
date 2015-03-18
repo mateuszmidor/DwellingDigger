@@ -7,6 +7,11 @@ import logging
 from multiprocessing import Lock
 
 
+class NullHandler(logging.Handler):
+    def emit(self, record):
+        pass
+
+
 class Logger(object):
     '''
     This class allows for simple logging to file or to terminal.
@@ -34,6 +39,12 @@ class Logger(object):
         return Logger(handler)
               
           
+    @staticmethod
+    def to_dev_null():
+        handler = NullHandler()
+        return Logger(handler)
+    
+    
     def __init__(self, handler):
         self.__lock = Lock()
         formatter = logging.Formatter('[%(asctime)s]  %(levelname)s:  %(message)s')
