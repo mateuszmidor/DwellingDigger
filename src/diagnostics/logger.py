@@ -13,7 +13,7 @@ class Logger(object):
     '''
     
     DEBUG   = logging.DEBUG
-    INFO    = logging.info
+    INFO    = logging.INFO
     WARN    = logging.WARN
     ERROR   = logging.ERROR 
     FATAL   = logging.FATAL
