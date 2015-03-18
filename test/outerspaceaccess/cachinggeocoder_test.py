@@ -6,11 +6,17 @@ Created on 12-03-2015
 import unittest
 from mock import patch, Mock
 from src.outerspaceaccess.cachinggeocoder import CachingGeocoder
+from src.ioc.dependency_injector import DependencyInjector
 
 
 class CachingGeocoderTest(unittest.TestCase):
 
-
+    def __init__(self, *args, **kwargs):
+        super(CachingGeocoderTest, self).__init__(*args, **kwargs)
+        logger_mock = Mock()
+        DependencyInjector.manual_inject("logger", logger_mock, CachingGeocoder)
+        
+        
     @patch('src.outerspaceaccess.cachinggeocoder.Geocoder')
     @patch('src.outerspaceaccess.cachinggeocoder.ExclusiveCacheFile')
     def test_geocode_cached_addr(self, cache_file, geocoder):
