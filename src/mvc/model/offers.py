@@ -11,17 +11,19 @@ from src.mvc.model.gumtree.offer_extractor import OfferExtractor as GumtreeOffer
 from src.mvc.model.olx.offer_extractor import OfferExtractor as OlxOfferExtractor
 from src.mvc.model.olx.olx import Olx
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
-from src.outerspaceaccess.cachinggeocoder import CachingGeocoder
 from src.multitasking.teamwork import TeamWork
+from src.ioc.dependency_injector import DependencyInjector, Inject
+from src.outerspaceaccess.cachinggeocoder import CachingGeocoder
 
 
+@DependencyInjector("config")
 class Offers(object):
     '''
     This class is facade for retrieving offers.
     Use it when you want to get actual offers matching provided OfferParams. 
     '''
-    FINISH = object()
     
+    config = Inject
     
     @staticmethod
     def __format_full_address(street_district, city, country):
@@ -84,7 +86,8 @@ class Offers(object):
         """
         
         # prepare geocoder
-        geocoder = CachingGeocoder("DwellingDigger/data/geocodingscache.txt")
+        cachefile = Offers.config.get("PATHS", "geocodingsCache")
+        geocoder = CachingGeocoder(cachefile)
         
         # prepare address extractor for given city
         city = offer_params.get_city()

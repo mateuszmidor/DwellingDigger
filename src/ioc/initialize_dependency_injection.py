@@ -15,12 +15,14 @@ before they are first time used.
 The configuration can be later reimplemented using some sort of config file.
 """
 
+
+# Set the config
+config = ConfigParser()
+config.read([r"config/config.ini"])
+DependencyInjector.set_dependency("config", config)
+
+
 # Set the logger
 # logger = Logger.to_file("DwellingDigger/diagnostics/logger.txt", Logger.DEBUG)
 logger = Logger.to_terminal(Logger.INFO)
 DependencyInjector.set_dependency("logger", logger)
-
-# Set the config
-config = ConfigParser()
-config.read([r"DwellingDigger/config/config.ini"])
-DependencyInjector.set_dependency("config", config)
