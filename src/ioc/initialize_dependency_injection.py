@@ -4,8 +4,8 @@ Created on 17 mar 2015
 @author: m.midor
 '''
 from src.ioc.dependency_injector import DependencyInjector
-from src.diagnostics.logger import Logger
 from ConfigParser import ConfigParser
+from src.diagnostics.logger_factory import LoggerFactory
 
 """
 This module must be imported before all others;
@@ -16,13 +16,12 @@ The configuration can be later reimplemented using some sort of config file.
 """
 
 
-# Set the config
+# Set the config first so other modules can use it
 config = ConfigParser()
 config.read([r"config/config.ini"])
 DependencyInjector.set_dependency("config", config)
 
 
 # Set the logger
-# logger = Logger.to_file("DwellingDigger/diagnostics/logger.txt", Logger.DEBUG)
-logger = Logger.to_terminal(Logger.INFO)
+logger = LoggerFactory.from_config()
 DependencyInjector.set_dependency("logger", logger)
