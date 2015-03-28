@@ -15,4 +15,5 @@ from src.mvc.model.offer_params import OfferParams
 
 storage = cgi.FieldStorage()
 params = OfferParams.from_cgi_fieldstorage(storage)
-Main.run(params, WebMainView())
+view = WebMainView(params.get_city())
+Main.run(params, view)

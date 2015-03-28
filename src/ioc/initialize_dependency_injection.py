@@ -4,7 +4,8 @@ Created on 17 mar 2015
 @author: m.midor
 '''
 from src.ioc.dependency_injector import DependencyInjector
-from src.diagnostics.terminal_logger import TerminalLogger
+from ConfigParser import ConfigParser
+from src.diagnostics.logger_factory import LoggerFactory
 
 """
 This module must be imported before all others;
@@ -14,5 +15,13 @@ before they are first time used.
 The configuration can be later reimplemented using some sort of config file.
 """
 
-# DependencyInjector.set_dependency("logger", FileLogger("DwellingDigger/diagnostics/logger.txt", FileLogger.WARN))
-DependencyInjector.set_dependency("logger", TerminalLogger(TerminalLogger.WARN))
+
+# Set the config first so other modules can use it
+config = ConfigParser()
+config.read([r"config/config.ini"])
+DependencyInjector.set_dependency("config", config)
+
+
+# Set the logger
+logger = LoggerFactory.from_config()
+DependencyInjector.set_dependency("logger", logger)

@@ -6,12 +6,16 @@ Created on 14-02-2015
 from src.outerspaceaccess.geocoder import Geocoder
 from src.outerspaceaccess.exclusive_cache_file import ExclusiveCacheFile
 from src.thirdparty.portalocker.portalocker import LockException
+from src.ioc.dependency_injector import DependencyInjector, Inject
 
+@DependencyInjector("logger")
 class CachingGeocoder(object):
     '''
     This class geocodes addresses and stores results in cache file
     to speed up geocoding next time the same address appears.
     '''
+    
+    logger = Inject
     
     def __init__(self, cache_filename):
         self.__cache_filename = cache_filename
@@ -35,7 +39,7 @@ class CachingGeocoder(object):
         """
          
         d = ExclusiveCacheFile.read_or_empty(filename)
-        print ("Num addresses read from cache file: %d" % len(d))
+        self.logger.info("Num geocodings read from cache file: %d" % len(d))
         return d
         
          
@@ -46,23 +50,22 @@ class CachingGeocoder(object):
         """
         # try for 3 seconds to exclusive lock the cache file
         FILE_LOCK_TIMEOUT = 3
-        print ("Num new addresses: %d" % len(update_dict))
+        self.logger.info("Num new geocodings: %d" % len(update_dict))
         
         try:
             ExclusiveCacheFile.new_or_update(filename, update_dict, FILE_LOCK_TIMEOUT)
         except LockException:
-            print ("couldnt wait long enough to lock and update the cache file")
+            self.logger.warn("Couldnt wait long enough to exclusively lock and update the cache file")
+
 
     def geocode(self, address):
         if address in self.__cache:
-            print("returnig geocoding from cache")
             return self.__cache[address]
         
         if address in self.__extending_cache:
-            print("returnig geocoding from extending cache")
             return self.__extending_cache[address]
         
-        print("new geocoding started")
         coords = Geocoder.geocode(address)
-        self.__extending_cache[address] = coords            
+        self.__extending_cache[address] = coords    
+                
         return coords

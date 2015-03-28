@@ -6,9 +6,15 @@ Created on 13 lut 2015
 import unittest
 from mock import Mock, patch
 from src.mvc.model.offers import Offers
+from src.ioc.dependency_injector import DependencyInjector
 
     
 class OffersTest(unittest.TestCase):
+    
+    def __init__(self, *args, **kwargs):
+        super(OffersTest, self).__init__(*args, **kwargs)
+        config_mock = Mock()
+        DependencyInjector.manual_inject("config", config_mock, Offers)
     
     
     @patch('src.mvc.model.offers.AddressExtractor')
