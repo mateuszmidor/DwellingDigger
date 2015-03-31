@@ -5,6 +5,7 @@ Created on 18-01-2015
 FACADE. All needed functionality from lightwebframework you can find here
 '''
 from web_page_template import WebPageTemplate
+from src.mvc.view.lightwebframework.http_response import HttpResponse
 
 class LightWebFramework(object):
     '''
@@ -24,5 +25,7 @@ class LightWebFramework(object):
         page.save_to_file(output_page_filename)
         
     @staticmethod
-    def render_page_as_http_response(html_template_filename, template_name_value_pairs):
-        raise NotImplementedError()
+    def render_page_as_http_response(input_template_filename, template_name_value_pairs):
+        page = LightWebFramework.__load_and_fill_template_page(input_template_filename, template_name_value_pairs) 
+        html = page.get_html_string()
+        HttpResponse.renderPage(html)
