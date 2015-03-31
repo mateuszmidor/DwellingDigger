@@ -24,11 +24,11 @@ class OfferParams(object):
     
     
     @staticmethod
-    def from_cgi_fieldstorage(cgi_field_storage):
+    def from_cgi_fieldstorage(cgi_field_storage, default_city=""):
         """ Use this method to build OfferParams from cgi.FieldStorage """
         
         s = cgi_field_storage
-        return OfferParams(s.getvalue("city", None),
+        return OfferParams(s.getvalue("city", default_city),
                            s.getvalue("whereabouts", None),
                            s.getvalue("num_rooms", None),
                            s.getvalue("min_price", None),

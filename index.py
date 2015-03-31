@@ -24,7 +24,7 @@ class Runner(object):
     def doGet():
         try:
             storage = cgi.FieldStorage()
-            params = OfferParams.from_cgi_fieldstorage(storage)
+            params = OfferParams.from_cgi_fieldstorage(storage, default_city="Krakow")
             view = WebMainView()
             Main.run(params, view)
         except Exception as e:
