@@ -39,7 +39,7 @@ class TeamWork(object):
             t = Thread(target=self.__worker_thread_func,
                        name="TeamWork worker thread",
                        args=(work_to_do, self.__in_queue, self.__out_queue))
-            t.setDaemon(False)
+            t.setDaemon(True)
             t.start()
         
         
