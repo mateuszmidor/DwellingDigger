@@ -21,5 +21,5 @@ class Main(object):
         offers = Offers.get_from_all_sources(offer_params=params, 
                                              max_offer_count=num_offers, 
                                              max_parallel_count=num_threads)
-        view.show_offers(offers)
+        view.show_offers_and_params(offers, params)
         

@@ -17,5 +17,5 @@ DESKTOP RUN
 if __name__ == '__main__':
     city = "Krakow"
     params = OfferParams.from_key_values(city=city)
-    view = DesktopMainView(city)
+    view = DesktopMainView()
     Main.run(params, view)

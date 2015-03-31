@@ -15,16 +15,10 @@ MAP_ZOOM = 11
 class DesktopMainView(object):
 
     config = Inject
-    
-    
-    def __init__(self, city):
-        "city - city in Poland to center the map on"
-        self.__city = city
-        
-        
-    def show_offers(self, offers):
+       
+    def show_offers_and_params(self, offers, params):
         points = GoogleMapPoints.from_offers(offers).as_java_script()
-        longitude, lattitude = Geocoder.geocode("%s, Polska" % self.__city)
+        longitude, lattitude = Geocoder.geocode("%s, Polska" % params.get_city())
         
         FIELDS = {u"$POINTS$": points,
                   u"$MAP_CENTER_LONG$": longitude,
