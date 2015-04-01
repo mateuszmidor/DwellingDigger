@@ -34,19 +34,33 @@ class LightWebFrameworkTest(unittest.TestCase):
         page.save_to_file.assert_called_once_with("output.html")
 
 
-    def test_render_page_as_http_response(self):
+    @patch('src.mvc.view.lightwebframework.light_web_framework.WebPageTemplate')
+    @patch('src.mvc.view.lightwebframework.light_web_framework.HttpResponse')
+    def test_render_page_as_http_response(self, httpresponse_mock, wpt_mock):
+        """ 
+        Check if the facade first gets a page using WebPageTemplate.from_file,
+        then sets the template field using set_field,
+        and then retrieves the page contents using page.get_html_string,
+        and then render the contents using HttpResponse.renderPag
         """
-        This test fails when render_page_as_http_response gets finally implemented,
-        so we dont forget writing a test for it :) 
-        """
-        try:
-            LightWebFramework.render_page_as_http_response("input.html", {"key" : "value"})
-            self.fail("LightWebFramework.render_page_as_http_response doesnt throw NotImplementedError anymore?" +
-                      "Update this test, then!")
-        except NotImplementedError:
-            pass
-            
-                
+        # Prepare mocks
+        httpresponse_mock.renderPage = Mock()
+        
+        page = Mock()
+        page.set_field = Mock()
+        page.get_html_string = Mock(return_value = "html_string")
+        wpt_mock.from_file = Mock(return_value = page)
+        
+        # Run the method
+        LightWebFramework.render_page_as_http_response("input.html", {"key" : "value"})
+
+        # Assert the proper scenario has been executed (load-setfield-render)
+        wpt_mock.from_file.assert_called_once_with("input.html")
+        page.set_field.assert_called_once_with("key", "value")
+        page.get_html_string.assert_called_once_with()
+        httpresponse_mock.renderPage.assert_called_once_with("html_string")        
+        
+        
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.test_render_page_as_file']
     unittest.main()
