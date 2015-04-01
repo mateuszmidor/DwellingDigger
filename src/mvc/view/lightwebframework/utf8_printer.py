@@ -10,13 +10,13 @@ import codecs
 class Utf8Printer():
     
     @staticmethod
-    def setupUtf8Printing():
+    def setup_utf8_printing():
         reload(sys)
         sys.setdefaultencoding('utf-8')
         sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
         
         
     @staticmethod
-    def printText(utf8Text):
-        Utf8Printer.setupUtf8Printing()
-        print utf8Text
+    def print_text(utf8_text):
+        Utf8Printer.setup_utf8_printing()
+        print(utf8_text)

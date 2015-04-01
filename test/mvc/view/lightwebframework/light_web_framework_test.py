@@ -58,7 +58,7 @@ class LightWebFrameworkTest(unittest.TestCase):
         wpt_mock.from_file.assert_called_once_with("input.html")
         page.set_field.assert_called_once_with("key", "value")
         page.get_html_string.assert_called_once_with()
-        httpresponse_mock.renderPage.assert_called_once_with("html_string")        
+        httpresponse_mock.render_page.assert_called_once_with("html_string")        
         
         
 if __name__ == "__main__":

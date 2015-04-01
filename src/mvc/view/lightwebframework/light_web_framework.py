@@ -28,4 +28,4 @@ class LightWebFramework(object):
     def render_page_as_http_response(input_template_filename, template_name_value_pairs):
         page = LightWebFramework.__load_and_fill_template_page(input_template_filename, template_name_value_pairs) 
         html = page.get_html_string()
-        HttpResponse.renderPage(html)
+        HttpResponse.render_page(html)

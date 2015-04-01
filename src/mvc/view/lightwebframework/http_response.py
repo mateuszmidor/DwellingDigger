@@ -8,15 +8,15 @@ from src.mvc.view.lightwebframework.utf8_printer import Utf8Printer
 class HttpResponse():
     
     @staticmethod
-    def renderPage(html):
-        HttpResponse.printHttpContentTypeHeader() 
-        HttpResponse.printText(html)  
+    def render_page(html):
+        HttpResponse.print_http_header() 
+        HttpResponse.print_text(html)  
              
     @staticmethod
-    def printHttpContentTypeHeader():
-        Utf8Printer.printText(u"Content-type: text/html;charset=utf-8\n\n")
+    def print_http_header():
+        Utf8Printer.print_text(u"Content-type: text/html;charset=utf-8\n\n")
 
     @staticmethod
-    def printText(html):
-        Utf8Printer.printText(html)
+    def print_text(html):
+        Utf8Printer.print_text(html)
         
