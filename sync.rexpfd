@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rexpfd>
+    <destination path="mateusz_lap.ftp.mateuszmidor.com:/public_html/cgi-bin"/>
+    <options createDirectoryStructure="true" createSelectedOnly="false" descriptionFilePath="/DwellingDigger/sync.rexpfd" overWriteExistingFiles="false" reviewSynchronize="false" saveSettings="true"/>
+    <selectedElements>
+        <file path="/DwellingDigger/index.py"/>
+        <folder path="/DwellingDigger/config"/>
+        <folder path="/DwellingDigger/data"/>
+        <folder path="/DwellingDigger/diagnostics"/>
+        <folder path="/DwellingDigger/src"/>
+    </selectedElements>
+</rexpfd>
