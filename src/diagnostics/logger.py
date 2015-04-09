@@ -5,6 +5,7 @@ Created on 17 mar 2015
 '''
 import logging
 from multiprocessing import Lock
+from logging import StreamHandler, FileHandler
 
 
 class NullHandler(logging.Handler):
@@ -27,14 +28,14 @@ class Logger(object):
     
     @staticmethod
     def to_terminal(log_level = WARN):  
-        handler = logging.StreamHandler()
+        handler = StreamHandler()
         handler.setLevel(log_level)
         return Logger(handler)
         
  
     @staticmethod
     def to_file(filename, log_level = WARN):  
-        handler = logging.FileHandler(filename)
+        handler = FileHandler(filename)
         handler.setLevel(log_level)
         return Logger(handler)
               
