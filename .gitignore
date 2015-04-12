@@ -58,3 +58,12 @@ doc/*.simp.bak
 
 # Desktop mode output map
 DwellingMap.html
+
+# diagnostics
+diagnostics/
+
+# Profiler file
+DesktopMain_profile.txt
+
+# Cached geocodings
+data/geocodingscache.txt
