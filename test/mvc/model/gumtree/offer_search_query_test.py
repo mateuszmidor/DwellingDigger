@@ -59,6 +59,12 @@ class OfferSearchQuerryTest(unittest.TestCase):
         query = OfferSearchQuery.from_offer_params(params)
         self.assertEquals(EXPECTED_QUERY_STRING, query.as_url_string())
         
+        
+    def test_returns_str(self):
+        query = OfferSearchQuery.from_key_values(city="Krakow")
+        result = query.as_url_string()
+        self.assertTrue(isinstance(result, str), 
+                        "'as_url_string' should return 'str' object, not '%s'" % type(result).__name__)
                 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.testName']

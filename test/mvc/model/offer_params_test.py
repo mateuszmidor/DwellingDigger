@@ -65,18 +65,24 @@ class OfferParamsTest(unittest.TestCase):
         
         
     def test_from_key_values(self):
-        params = OfferParams.from_key_values(city="Krakow",
-                                             whereabouts="Krowodrza", 
+        params = OfferParams.from_key_values(city=u"Krakow",
+                                             whereabouts=u"Krowodrza", 
                                              num_rooms=4, 
                                              min_price=950, 
                                              max_price=1450, 
                                              min_area=45, 
                                              max_area=75)
         
-        self.assertEqual(params.get_city(), "Krakow", 
+        self.assertTrue(isinstance(params.get_city(), unicode), 
+                        "'city' should be stored as unicode")
+        
+        self.assertEqual(params.get_city(), u"Krakow", 
                          "city should be Krakow but is %s" % params.get_city())
                             
-        self.assertEqual(params.get_whereabouts(), "Krowodrza", 
+        self.assertTrue(isinstance(params.get_whereabouts(), unicode), 
+                        "'whereabouts' should be stored as unicode")
+                            
+        self.assertEqual(params.get_whereabouts(), u"Krowodrza", 
                          "whereabouts should be Krowodrza but is %s" % params.get_whereabouts())
         
         self.assertEqual(params.get_num_rooms(), 4, 
@@ -98,10 +104,16 @@ class OfferParamsTest(unittest.TestCase):
     def test_from_cgi_fieldstorage(self):
         params = OfferParams.from_cgi_fieldstorage(CgiFieldstorageStub)
         
-        self.assertEqual(params.get_city(), "Krakow", 
+        self.assertTrue(isinstance(params.get_city(), unicode), 
+                        "'city' should be stored as unicode")
+        
+        self.assertEqual(params.get_city(), u"Krakow", 
                          "city should be Krakow but is %s" % params.get_city())
                             
-        self.assertEqual(params.get_whereabouts(), "Krowodrza", 
+        self.assertTrue(isinstance(params.get_whereabouts(), unicode), 
+                        "'whereabouts' should be stored as unicode")
+                                    
+        self.assertEqual(params.get_whereabouts(), u"Krowodrza", 
                          "whereabouts should be Krowodrza but is %s" % params.get_whereabouts())
         
         self.assertEqual(params.get_num_rooms(), 4, 

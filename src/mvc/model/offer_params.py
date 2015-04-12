@@ -6,7 +6,7 @@ Created on 05-03-2015
 
 class OfferParams(object):
     '''
-    This class represents params criteria provided by user to look for offers
+    This class represents params criteria provided by user to look for offers.
     '''
         
         
@@ -18,14 +18,20 @@ class OfferParams(object):
                         max_price=None, 
                         min_area=None, 
                         max_area=None):
-        """ Use this method to build OfferParams from key-value pairs """
+        """ 
+        Use this method to build OfferParams from key-value pairs.
+        city and whereabouts should be either byte string or unicode 
+        """
         
         return OfferParams(city, whereabouts, num_rooms, min_price, max_price, min_area, max_area)
     
     
     @staticmethod
-    def from_cgi_fieldstorage(cgi_field_storage, default_city=""):
-        """ Use this method to build OfferParams from cgi.FieldStorage """
+    def from_cgi_fieldstorage(cgi_field_storage, default_city=u""):
+        """ 
+        Use this method to build OfferParams from cgi.FieldStorage.
+        Use default_city to cover the case user submits form with empty city field
+        """
         
         s = cgi_field_storage
         return OfferParams(s.getvalue("city", default_city),
@@ -55,8 +61,12 @@ class OfferParams(object):
         if self.__invalid_range(min_area, max_area):
             raise ValueError("max_area < min_area")
         
-        self.__city = city
-        self.__whereabouts = whereabouts
+        def unicode_if_needed(s):
+            return s if isinstance(s, unicode) else unicode(s, 'UTF8')
+         
+        # Strings are internally represented using unicode (best practice)
+        self.__city = unicode_if_needed(city)
+        self.__whereabouts = unicode_if_needed(whereabouts) if whereabouts else None
         self.__num_rooms = num_rooms
         self.__min_price = min_price
         self.__max_price = max_price
