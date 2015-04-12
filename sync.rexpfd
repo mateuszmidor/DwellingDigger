@@ -4,9 +4,21 @@
     <options createDirectoryStructure="true" createSelectedOnly="false" descriptionFilePath="/DwellingDigger/sync.rexpfd" overWriteExistingFiles="false" reviewSynchronize="false" saveSettings="true"/>
     <selectedElements>
         <file path="/DwellingDigger/index.py"/>
-        <folder path="/DwellingDigger/config"/>
-        <folder path="/DwellingDigger/data"/>
-        <folder path="/DwellingDigger/diagnostics"/>
-        <folder path="/DwellingDigger/src"/>
+        <file path="/DwellingDigger/config/config.ini"/>
+        <file path="/DwellingDigger/data/WebView.htm"/>
+        <file path="/DwellingDigger/data/krakow_districts.txt"/>
+        <file path="/DwellingDigger/data/krakow_streets.txt"/>
+        <file path="/DwellingDigger/diagnostics/log.txt"/>
+        <file path="/DwellingDigger/diagnostics/dummy.txt"/>
+        <file path="/DwellingDigger/src/__init__.py"/>
+        <file path="/DwellingDigger/src/diagnostics/dummy.txt"/>
+        <folder path="/DwellingDigger/src/ioc"/>
+        <folder path="/DwellingDigger/src/multitasking"/>
+        <file path="/DwellingDigger/src/mvc/__init__.py"/>
+        <file path="/DwellingDigger/src/mvc/main.py"/>
+        <folder path="/DwellingDigger/src/mvc/model"/>
+        <folder path="/DwellingDigger/src/mvc/view"/>
+        <folder path="/DwellingDigger/src/outerspaceaccess"/>
+        <folder path="/DwellingDigger/src/thirdparty"/>
     </selectedElements>
 </rexpfd>
