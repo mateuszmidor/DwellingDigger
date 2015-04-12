@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 '''
 Created on 16-01-2015
 This is the index file, main entry point for the web application.
@@ -24,7 +25,7 @@ class Runner(object):
     def doGet():
         try:
             storage = cgi.FieldStorage()
-            params = OfferParams.from_cgi_fieldstorage(storage, default_city="Krakow")
+            params = OfferParams.from_cgi_fieldstorage(storage, default_city=u"Krakow")
             view = WebMainView()
             Main.run(params, view)
         except Exception as e:
