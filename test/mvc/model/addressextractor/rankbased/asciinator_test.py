@@ -27,7 +27,9 @@ class AsciinatorTest(unittest.TestCase):
         entries = [DictionaryEntry(u"górska", u"górska", STREET), 
                    DictionaryEntry(u"czyżyny", u"czyżyny", STREET), 
                    DictionaryEntry(u"nowosądecka", u"nowosądecka", STREET), 
-                   DictionaryEntry(u"prądnik", u"prądnik", STREET)]
+                   DictionaryEntry(u"prądnik", u"prądnik", STREET),
+                   DictionaryEntry(u"ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", u"ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", STREET)]
+        
         d = Dictionary(entries)
         Asciinator.asciinate_dictionary(d)
         
@@ -43,7 +45,11 @@ class AsciinatorTest(unittest.TestCase):
         self.assertTrue(self.__dictionary_has_entry(d, u"pradnik", u"prądnik", STREET),
                         "Asciination for 'prądnik' failed")
 
-
+        # Notice: DictionaryEntry lowercases the 'name' field, so - lowercase version is expected
+        self.assertTrue(self.__dictionary_has_entry(d, u"acelnoszzacelnoszz", u"ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", STREET),
+                        "Asciination for all-nadional-char string'ąćęłńóśźżĄĆĘŁŃÓŚŹŻ' failed")
+        
+        
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 '''
 Created on 5 lut 2015
 
@@ -26,7 +28,11 @@ class Asciinator(object):
         
     @staticmethod
     def __asciinate(address):
-        return "".join(c for c in unicodedata.normalize('NFD', address) if unicodedata.category(c) != 'Mn')
+        almost_ascii = u"".join(c for c in unicodedata.normalize('NFD', address) if unicodedata.category(c) != 'Mn')
+        # ł, Ł need special handling
+        almost_ascii = almost_ascii.replace(u"ł", u"l")
+        ascii = almost_ascii.replace(u"Ł", u"L")
+        return ascii
     
 
     @staticmethod
