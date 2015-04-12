@@ -12,7 +12,6 @@ class Utf8Printer():
     @staticmethod
     def setup_utf8_printing():
         reload(sys)
-        sys.setdefaultencoding('utf-8')
         sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
         
         
