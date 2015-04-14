@@ -5,6 +5,7 @@ Created on 4 lut 2015
 '''
 from src.outerspaceaccess.text_file_reader import TextFileReader
 from src.mvc.model.addressextractor.rankbased.dictionary_entry import DictionaryEntry
+from src.outerspaceaccess.text_file_writer import TextFileWriter
 
 class Dictionary(object):
     '''
@@ -18,8 +19,8 @@ class Dictionary(object):
     
     # Storage for dictionary contents (DictionaryEntry list)
     __entries = None
-
-
+    
+        
     @staticmethod
     def from_file(filename, address_type, filereader = TextFileReader):
         dictionary = Dictionary()
@@ -49,7 +50,15 @@ class Dictionary(object):
         longToShort = lambda s1, s2: cmp(len(s2.name), len(s1.name))
         self.__entries.sort(longToShort)
                 
+       
+    def to_file(self, filename):
+        content = ""
+        for e in self:
+            content = content + e.name + "\n"
+            
+        TextFileWriter.write(filename, content)
         
+                
     def __iter__(self):
         ''' Provide iterator interface '''
         
