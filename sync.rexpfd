@@ -8,10 +8,9 @@
         <file path="/DwellingDigger/data/WebView.htm"/>
         <file path="/DwellingDigger/data/krakow_districts.txt"/>
         <file path="/DwellingDigger/data/krakow_streets.txt"/>
-        <file path="/DwellingDigger/diagnostics/log.txt"/>
         <file path="/DwellingDigger/diagnostics/dummy.txt"/>
         <file path="/DwellingDigger/src/__init__.py"/>
-        <file path="/DwellingDigger/src/diagnostics/dummy.txt"/>
+        <folder path="/DwellingDigger/src/diagnostics"/>
         <folder path="/DwellingDigger/src/ioc"/>
         <folder path="/DwellingDigger/src/multitasking"/>
         <file path="/DwellingDigger/src/mvc/__init__.py"/>
