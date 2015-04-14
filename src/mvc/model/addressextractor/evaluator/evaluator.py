@@ -19,7 +19,7 @@ class Evaluator(object):
         
     @staticmethod
     def evaluate(address_extractor):
-        samples = TestSamples.from_file("DwellingDigger/data/test_samples_krakow.txt")
+        samples = TestSamples.from_file("data/test_samples_krakow.txt")
         num_correctly_extracted = 0
         
         for sample in samples:
