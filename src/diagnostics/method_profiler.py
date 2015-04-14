@@ -22,14 +22,14 @@ def MethodProfiler(target_method):
     """
     
     
-    @wraps(target_method)
+    @wraps(target_method) 
     def time_it(*args, **kwargs):
         start = time.time()
         result = target_method(*args, **kwargs)
         end = time.time()
         delta =  end-start
         
-        LoggerAccess.logger.info("%s called with args=%s and kwargs=%s took %f[sec]" % (target_method.__name__, str(args), str(kwargs), delta))
+        LoggerAccess.logger.info("%f[sec] consumed for %s called with args=%s and kwargs=%s" % (delta, target_method.__name__, str(args), str(kwargs)))
         return result
     
     return time_it    
