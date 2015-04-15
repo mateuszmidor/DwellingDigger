@@ -33,10 +33,10 @@ class AddressExtractor(object):
         for filename, address_type in dictionary_file_type:
             dictionary.extend(Dictionary.from_file(filename, address_type))
         
-        dictionary.sort_longest_first()
         Asciinator.asciinate_dictionary(dictionary)
         Declinator.declinate_dictionary(dictionary)
         Surnamenator.surnamenate_dictionary(dictionary)
+        dictionary.sort_longest_first()
         
         return RankBasedExtractor(dictionary)
         

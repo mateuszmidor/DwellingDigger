@@ -54,7 +54,7 @@ class Dictionary(object):
     def to_file(self, filename):
         content = ""
         for e in self:
-            content = content + e.name + "\n"
+            content = content + e.name + "\t" * 8 + e.original_form + "\n"
             
         TextFileWriter.write(filename, content)
         
