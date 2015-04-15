@@ -100,9 +100,10 @@ class RankBasedExtractor(object):
             result = address + " " + number
         else:
             result = address
-            
-        if address_type == Dictionary.STREET:
-            return u"ul. " + result
+        
+        # this needs some further work before enabling:
+#         if address_type == Dictionary.STREET:
+#             return u"ul. " + result
         
         return result    
         

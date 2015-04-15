@@ -21,7 +21,7 @@ class RankBasedExtractorTest(unittest.TestCase):
         extractor = RankBasedExtractor(d)
         sources = [u"Kraków, Podgórze, Wielicka 30"]
         result = extractor.extract(sources)
-        expected = u"ul. Wielicka 30"
+        expected = u"Wielicka 30"
         
         self.assertEquals(result, expected, u"Address extraction for '{0}' should have returned '{1}' but returned '{2}'".format(sources[0], expected, result))
 
@@ -34,7 +34,7 @@ class RankBasedExtractorTest(unittest.TestCase):
         extractor = RankBasedExtractor(d)
         sources = [u"Kraków, Podgórze, Wielicka 30"]
         result = extractor.extract(sources)
-        expected = u"ul. Wielicka 30"
+        expected = u"Wielicka 30"
         
         self.assertEquals(result, expected, u"Address extraction for '{0}' should have returned '{1}' but returned '{2}'".format(sources[0], expected, result))
         
