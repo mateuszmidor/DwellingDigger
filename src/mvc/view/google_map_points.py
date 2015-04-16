@@ -39,7 +39,7 @@ class GoogleMapPoints(object):
                 
             hint = hint.replace(u"'", u"&apos;")
             longitude, lattitude = offer["longlatt"]
-            icon_name = GoogleMapPoints.__get_icon_for_date(date)
+            icon_name = GoogleMapPoints.__get_icon(date, len(offers))
             point = [longitude, lattitude, hint, icon_name]
             points.append(point)
         
@@ -72,12 +72,19 @@ class GoogleMapPoints(object):
         return FORMATTER.format(title, date.strftime(DATE_FORMAT), price, address_section, summary, url)
 
     @staticmethod
-    def __get_icon_for_date(date):
+    def __get_icon(date, num_offers):
+        '''
+        Returns icon name adequate for given date and number of offers aggregated.
+        The icon name returned corresponds to icon name defined in *View.html template file.
+        '''
+        
         now = datetime.datetime.now()
         if now.year == date.year and now.month == date.month and now.day == date.day:
-            return 'icon_today'
+            # todays offers - bloody red
+            return 'red_markers[%d]' % num_offers
         else:
-            return 'icon_older'
+            # older offers - light red
+            return 'lightred_markers[%d]' % num_offers
         
         
     def __remove_new_lines(self, s):
