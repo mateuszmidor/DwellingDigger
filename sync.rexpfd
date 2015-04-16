@@ -8,7 +8,6 @@
         <file path="/DwellingDigger/data/WebView.htm"/>
         <file path="/DwellingDigger/data/krakow_districts.txt"/>
         <file path="/DwellingDigger/data/krakow_streets.txt"/>
-        <file path="/DwellingDigger/diagnostics/log.txt"/>
         <file path="/DwellingDigger/diagnostics/dummy.txt"/>
         <file path="/DwellingDigger/src/__init__.py"/>
         <file path="/DwellingDigger/src/diagnostics/dummy.txt"/>
