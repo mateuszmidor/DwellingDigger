@@ -66,6 +66,13 @@
             var mapProperties = {
                     center:new google.maps.LatLng(latitude, longitude),
                     zoom:zoom,
+                    panControl:false,
+                    zoomControl:true,
+                    mapTypeControl:false,
+                    scaleControl:false,
+                    streetViewControl:false,
+                    overviewMapControl:false,
+                    rotateControl:false,                    
                     mapTypeId:google.maps.MapTypeId.ROADMAP
             };
             
@@ -182,7 +189,7 @@
                     </div>              
                
                     <div class="form-group">
-                        <label class="sr-only" for="maxprice">Cena maksymalna:</label>
+                        <label class="sr-only" for="maxprice">Cena maksymalna:</label> 
                         <input type="text" class="form-control" placeholder="Cena maksymalna" id="maxprice" name="max_price" value="$MAX_PRICE$">
                     </div>
             
