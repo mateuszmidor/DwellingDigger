@@ -140,7 +140,7 @@
     
         <div class="container-fluid">
             <div id="map"></div>
-            <form class="form-inline" role="form" method="get" action="index.py">
+            <form class="form-inline hidden-sm" id="forma" role="form" method="get" action="index.py">
                     <div class="form-group">
                         <label class="sr-only" for="numrooms">Liczba pokojów:</label>
                         <input type="text" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
@@ -168,10 +168,13 @@
                         <button type="submit"  class="btn btn-danger">
                             <span class="glyphicon glyphicon-search"></span>
                             Szukaj!
-                        </button>
+                        </button>                      
                     </div>
                 </div>
             </form>
+                        <button type="button" href="#forma" class="btn btn-default btn-xs visible-sm" data-toggle="collapse">
+                            toggle<span class="glyphicon glyphicon-remove"></span>
+                        </button>              
         
         </div>
   </body>
