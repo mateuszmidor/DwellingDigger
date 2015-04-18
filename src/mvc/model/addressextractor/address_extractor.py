@@ -36,7 +36,6 @@ class AddressExtractor(object):
         Asciinator.asciinate_dictionary(dictionary)
         Declinator.declinate_dictionary(dictionary)
         Surnamenator.surnamenate_dictionary(dictionary)
-        dictionary.sort_longest_first()
         
         return RankBasedExtractor(dictionary)
         

@@ -9,7 +9,7 @@ import re
 
 class RankPrefix(object):
     '''
-    This class ranks up address candidate precission and correctness based on
+    This class ranks up address correctness based on
     having meaningful prefix eg. "ulica Wielicka", "os Kurdwanow", "obok Ruczaju"
     '''
 
@@ -57,5 +57,6 @@ class RankPrefix(object):
         for prefix in known_prefixes:
             if found_prefix == prefix:
                 candidate.correctness_rank += 1
-                candidate.precision_rank += rank_award
+                # precision is ranked in rank_based_extractor as we know very well
+                # if given address is street, district or sth else
                 return

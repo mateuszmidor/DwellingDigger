@@ -23,13 +23,33 @@ class Dictionary(object):
         
     @staticmethod
     def from_file(filename, address_type, filereader = TextFileReader):
+        ''' 
+        Input file in format:
+        ul. Adama Mickiewicza
+        al. Jerozolimskie
+        os. Wawelskie
+        Notice the prefixes, not necessary, but improve precision
+        '''
         dictionary = Dictionary()
         for address in filereader.read_lines(filename):
-            entry = DictionaryEntry(address, address, address_type)
+            no_prefix_address = Dictionary.__strip_from_prefix(address)
+            entry = DictionaryEntry(no_prefix_address, address, address_type)
             dictionary.append(entry)
             
         return dictionary
 
+
+    @staticmethod
+    def __strip_from_prefix(address):
+        PREFIXES = [u"ul.", u"al.", u"os."]
+        for prefix in PREFIXES:
+            if prefix in address:
+                # remove the prefix and trim from remaining whitespaces
+                return address.strip(prefix).lstrip()
+            
+        # no prefix found
+        return address
+    
 
     def __init__(self, entries = []):
         self.__entries = list()

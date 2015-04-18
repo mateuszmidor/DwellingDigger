@@ -14,7 +14,8 @@ class RankSuffixTest(unittest.TestCase):
 
     def test_rank_suffix(self):
         candidate = AddressCandidate()
-        candidate.address = "Wielicka 24B"
+        candidate.address = "Wielicka"
+        candidate.full_form_address = "ul. Wielicka 24B"
         candidates = AddressCandidates()
         candidates.append(candidate)
         
@@ -27,6 +28,7 @@ class RankSuffixTest(unittest.TestCase):
     def test_rank_nosuffix(self):
         candidate = AddressCandidate()
         candidate.address = "Wielicka"
+        candidate.full_form_address = "ul. Wielicka"
         candidates = AddressCandidates()
         candidates.append(candidate)
         

@@ -17,6 +17,6 @@ class RankSuffix(object):
         PATTERN = ur"\w+\s{0,3}\d{1,3}\w?\b"
         
         for candidate in address_candidates:
-            if re.search(PATTERN, candidate.address, re.IGNORECASE):
+            if re.search(PATTERN, candidate.full_form_address, re.IGNORECASE):
                 candidate.correctness_rank += 1
                 candidate.precision_rank += 1

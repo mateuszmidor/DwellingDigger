@@ -22,7 +22,6 @@ class RankPrefixTest(unittest.TestCase):
         r = RankPrefix()
         r.rank(candidates)
         self.assertEqual(candidate.correctness_rank, 1, "Based on having meaningful prefix, 'ul. Wielicka' should be ranked 1 for correctness but was ranked {0}".format(candidate.correctness_rank))
-        self.assertEqual(candidate.precision_rank, 3, "Based on having meaningful prefix, 'ul. Wielicka' should be ranked 3 for precision but was ranked {0}".format(candidate.precision_rank))
        
     
     def test_rank_district(self):
@@ -35,7 +34,6 @@ class RankPrefixTest(unittest.TestCase):
         r = RankPrefix()
         r.rank(candidates)
         self.assertEqual(candidate.correctness_rank, 1, "Based on having meaningful prefix, 'os. Na Stoku' should be ranked 1 for correctness but was ranked {0}".format(candidate.correctness_rank))
-        self.assertEqual(candidate.precision_rank, 2, "Based on having meaningful prefix, 'os. Na Stoku' should be ranked 2 for precision but was ranked {0}".format(candidate.precision_rank))
        
     
     def test_rank_whereabouts(self):

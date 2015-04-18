@@ -43,7 +43,7 @@ class AddressExtractorTest(unittest.TestCase):
         
         # Check the scenario properly played
         d3.assert_has_calls([call.extend(d1), call.extend(d2)])
-        d3.sort_longest_first.assert_called_once_with()
+        
         
         # any_order since dictionary_mock has also the constructor and extend() and sort_longest_first called
         dictionary_mock.assert_has_calls([call.from_file("streets.dat", Dictionary.STREET), 

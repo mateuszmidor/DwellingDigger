@@ -16,9 +16,11 @@ class AddressCandidate(object):
     
     @author m.midor
     '''
-    address = u""    # the address itself, eg "Wyslouchow"
-    full_form_address = u"" # the full form of the address, eg "ul. Marii i Boleslawa Wyslouchow"
-    source = u""     # string where the address was found
-    correctness_rank = 0    # how sure we are this address is correct?
-    precision_rank = 0      # how precise (valuable to us) this address is?
+    
+    def __init__(self):
+        self.address = u""    # the address itself, eg "Wyslouchow"
+        self.full_form_address = u"" # the full form of the address, eg "ul. Marii i Boleslawa Wyslouchow"
+        self.source = u""     # string where the address was found
+        self.correctness_rank = 0    # how sure we are this address is correct?
+        self.precision_rank = 0      # how precise (valuable to us) this address is?
         

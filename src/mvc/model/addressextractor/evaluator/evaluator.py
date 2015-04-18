@@ -19,21 +19,23 @@ class Evaluator(object):
         
     @staticmethod
     def evaluate(address_extractor):
+#         print address_extractor.extract([u"kuchnia, ul.Wielicka dwa, stare misto"])
         samples = TestSamples.from_file("data/test_samples_krakow.txt")
         num_correctly_extracted = 0
-        
+         
         for sample in samples:
             address = address_extractor.extract(sample.sources)
             expected = sample.expected_result
-
-            if Evaluator.__contains_ignore_case(expected, address.strip(u"ul. ")):
+ 
+            # check if found address is in expected result set
+            if Evaluator.__contains_ignore_case(expected, address.strip(u"ul. ").strip(u"al. ").strip(u"os. ")):
                 num_correctly_extracted += 1
             else:
                 print(unicode(AddressCandidates.last_processed))
                 print(unicode(sample))
                 print(u"Found address: %s" % address)
                 print(u"")
-
+ 
         print(u"Num samples: %s" % len(samples))
         print(u"Num found: %s" % num_correctly_extracted)
         print(u"Effectiveness: %i%%" % (100 * num_correctly_extracted / len(samples))) 
