@@ -112,9 +112,9 @@ class Controller:
              
     @staticmethod
     def evaluate_address_extractor():
-        dict_files = [("DwellingDigger/data/krakow_streets.txt", Dictionary.STREET), 
-                      ("DwellingDigger/data/krakow_districts.txt", Dictionary.DISTRICT), 
-                      ("DwellingDigger/data/cities.txt", Dictionary.CITY)]
+        dict_files = [("data/krakow_streets.txt", Dictionary.STREET), 
+                      ("data/krakow_districts.txt", Dictionary.DISTRICT), 
+                      ("data/cities.txt", Dictionary.CITY)]
         extractor = AddressExtractor.rank_based(dict_files)
         Evaluator.evaluate(extractor)
        
