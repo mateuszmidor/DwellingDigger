@@ -71,15 +71,16 @@ class RankBasedExtractor(object):
         if not f:
             return lower_source
         
-        # get the number if we are talking about address being a street that has a number provided       
-        number = f.group(1) if entry.address_type == Dictionary.STREET and f.groups() else None
-        address = f.group(0)
+        # get the number if we are talking about address being a street that has a number provided   
+        prefix = self.__normalize_prefix_or_none(f.group(1), entry.address_type)
+        address =  f.group(2) 
+        number = f.group(3) if entry.address_type == Dictionary.STREET and f.groups() else None
         # remove the found candidate from the source (remove "nowa huta" so "nowa" street doesnt come up in results)
         source_without_candidate = lower_source.replace(address.lower(), u"")
         
         c = AddressCandidate()
         c.address = address
-        c.full_form_address = self.__compose_full_form_address(entry.original_form, entry.address_type, number)
+        c.full_form_address = self.__compose_full_form_address(entry.original_form, prefix, number)
         c.source = source 
         c.precision_rank = self.__precision_from_addrtype(entry.address_type)
         c.correctness_rank = self.__correctness_from_genuinity(entry.name, entry.original_form)
@@ -89,23 +90,43 @@ class RankBasedExtractor(object):
         
         
     def __compose_pattern(self, address):
+        # ?: means "non-capturing group" ie. doesnt show up in matchobj.group()
+        # at least 2 letters, optional period, 0-3 spaces
+        OPTIONAL_PREFIX = ur"(?:(\w{2,}\.?)\s{0,3})?"
+        # 1-5 spaces, 1-5 digits, optional letter, eg. " 15a"
         OPTIONAL_NUMBER = ur"(?:\s{1,5}(\d{1,5})\w?)?"
-        return ur"\b{0}{1}\b".format(address, OPTIONAL_NUMBER)
+        return ur"\b{0}({1}){2}\b".format(OPTIONAL_PREFIX, address, OPTIONAL_NUMBER)
     
     
-    def __compose_full_form_address(self, address, address_type, number):
+    def __compose_full_form_address(self, address, prefix, number):
         result = u""
         
-        if number:
-            result = address + " " + number
-        else:
-            result = address
-         
-        # this needs some further work to be reliable   
-        #if address_type == Dictionary.STREET:
-        #    return u"ul. " + result
+        # add prefix eg "ul. " if exists
+        if prefix:
+            result += prefix + u" "
+            
+        # add address itself, eg "Wielicka"
+        result += address     
         
+        # add number if exists
+        if number:
+            result += u" " + number
         return result    
+        
+        
+    def __normalize_prefix_or_none(self, supposed_prefix, address_type):
+        STREET = [u"ulica", u"ulicy", u"ul ", u"ul."]
+        ALLEY = [u"aleja", u"alei", u"al ", u"al."]
+        SETTLEMENT = [u"os ", u"os.", u"osiedle", u"osiedlu"]
+        MAPPINGS = {u"ul." : STREET,
+                    u"al." : ALLEY,
+                    u"os." : SETTLEMENT}
+
+        for prefix, mutations in MAPPINGS.items():
+            if supposed_prefix in mutations:
+                return prefix
+                          
+        return None
         
         
     def __precision_from_addrtype(self, address_type):
