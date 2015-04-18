@@ -1,4 +1,4 @@
-﻿STARE MIASTO
+﻿DZIELNICA I - STARE MIASTO:
 Kazimierz
 Kleparz
 Nowe Miasto
@@ -9,15 +9,15 @@ Stradom
 Warszawskie
 Wawel
 
-GRZEGÓRZKI
+DZIELNICA II - GRZEGÓRZKI:
 Dąbie
 Grzegórzki
 Kazimierz
 Olsza
-Oficerskie
+os. Oficerskie
 Wesoła
 
-PRĄDNIK CZERWONY
+DZIELNICA III - PRĄDNIK CZERWONY:
 Olsza
 Olsza II
 Prądnik Czerwony
@@ -25,22 +25,22 @@ Rakowice
 Śliczna
 Ugorek
 Wieczysta
-Osiedle Gotyk
+os. Gotyk
 
-PRĄDNIK BIAŁY
+DZIELNICA IV - PRĄDNIK BIAŁY
 Azory
 Bronowice Wielkie
 Górka Narodowa
 Górka Narodowa Wschód
 Górka Narodowa Zachód
-Krowodrza Górka
-Witkowice Nowe
+os. Krowodrza Górka
+os. Witkowice Nowe
 Prądnik Biały
 Tonie
 Witkowice
 Żabiniec
 
-KROWODRZA
+DZIELNICA V - KROWODRZA:
 Cichy Kącik
 Czarna Wieś
 Krowodrza
@@ -48,14 +48,14 @@ Krowodrza
 Miasteczko Studenckie AGH
 Nowa Wieś
 
-BRONOWICE
+DZIELNICA VI - BRONOWICE:
 Bronowice
 Bronowice Małe
 Mydlniki
-Bronowice Nowe
-Widok Zarzecze
+os. Bronowice Nowe
+os. Widok Zarzecze
 
-ZWIERZYNIEC
+DZIELNICA VII - ZWIERZYNIEC:
 Bielany
 Chełm
 Olszanica
@@ -66,7 +66,7 @@ Zwierzyniec
 Salwator
 Zakamycze
 
-DĘBNIKI
+DZIELNICA VIII - DĘBNIKI:
 Bodzów
 Dębniki
 Kobierzyn
@@ -82,23 +82,23 @@ Zakrzówek
 Kapelanka
 Kliny Zacisze
 Mochnaniec
-Osiedle Europejskie
-Osiedle Interbud
-Osiedle Kolejowe
-Osiedle Panorama
-Osiedle Podwawelskie
-Osiedle Proins
-Osiedle Ruczaj
-Osiedle Ruczaj-Zaborze
+os. Europejskie
+os. Interbud
+os. Kolejowe
+os. Panorama
+os. Podwawelskie
+os. Proins
+os. Ruczaj
+os. Ruczaj-Zaborze
 
-ŁAGIEWNIKI - BOREK FAŁĘCKI
+DZIELNICA IX - ŁAGIEWNIKI - BOREK FAŁĘCKI:
 Borek Fałęcki
 Łagiewniki
-Osiedle Cegielniana
-Zaułek Jugowicki
+os. Cegielniana
+os. Zaułek Jugowicki
 
-SWOSZOWICE
-Uzdrowisko Swoszowice
+DZIELNICA X - SWOSZOWICE:
+os. Uzdrowisko Swoszowice
 Bania
 Barycz
 Jugowice
@@ -113,33 +113,33 @@ Soboniowice
 Wróblowice
 Zbydniowice
 
-PODGÓRZE DUCHACKIE
+DZIELNICA XI - PODGÓRZE DUCHACKIE:
 Kurdwanów
 Kurdwanów Nowy
-Piaski Nowe
-Podlesie
+os. Piaski Nowe
+os. Podlesie
 Piaski Wielkie
 Wola Duchacka
 Wola Duchacka Wschód
 Wola Duchacka Zachód
 
-BIEŻANÓW - PROKOCIM
+DZIELNICA XII - BIEŻANÓW - PROKOCIM:
 Bieżanów
 Bieżanów Kolonia
 Kaim
 Łazy
-Bieżanów Nowy
-Osiedle Kolejowe
-Osiedle Medyków
-Na Kozłówce
-Osiedle Nad Potokiem
-Osiedle Parkowe
-Nowy Prokocim
-Osiedle Złocień
+os. Bieżanów Nowy
+os. Kolejowe
+os. Medyków
+os. Na Kozłówce
+os. Nad Potokiem
+os. Parkowe
+os. Nowy Prokocim
+os. Złocień
 Prokocim
 Rżąka
 
-PODGÓRZE
+DZIELNICA XIII - PODGÓRZE:
 Łutnia
 Mateczny
 Płaszów
@@ -148,61 +148,61 @@ Przewóz
 Rybitwy
 Zabłocie
 
-CZYŻYNY
+DZIELNICA XIV - CZYŻYNY:
 Czyżyny
 Łęg
-2 Pułku Lotniczego
-Akademickie
-Dywizjonu 303
+os. 2 Pułku Lotniczego
+os. Akademickie
+os. Dywizjonu 303
 
-MISTRZEJOWICE
+DZIELNICA XV - MISTRZEJOWICE:
 Batowice
 Dziekanowice
 Mistrzejowice
-Osiedle Bohaterów Września
-Osiedle Kombatantów
-Mistrzejowice Nowe
-Osiedle Oświecenia
-Osiedle Piastów
-Osiedle Srebrnych Orłów
-Osiedle Tysiąclecia
-Osiedle Złotego Wieku
+os. Bohaterów Września
+os. Kombatantów
+os. Mistrzejowice Nowe
+os. Oświecenia
+os. Piastów
+os. Srebrnych Orłów
+os. Tysiąclecia
+os. Złotego Wieku
 
-BIEŃCZYCE
+DZIELNICA XVI - BIEŃCZYCE:
 Bieńczyce
-Osiedle Albertyńskie
-Osiedle Jagiellońskie
-Osiedle Kalinowe
-Osiedle Kazimierzowskie
-Osiedle Kościuszkowskie
-Osiedle Na Lotnisku
-Osiedle Niepodległości
-Osiedle Przy Arce
-Osiedle Strusia
-Osiedle Wysokie
-Osiedle Złotej Jesieni
+os. Albertyńskie
+os. Jagiellońskie
+os. Kalinowe
+os. Kazimierzowskie
+os. Kościuszkowskie
+os. Na Lotnisku
+os. Niepodległości
+os. Przy Arce
+os. Strusia
+os. Wysokie
+os. Złotej Jesieni
 
-WZGÓRZA KRZESŁAWICKIE
+DZIELNICA XVII - WZGÓRZA KRZESŁAWICKIE:
 Grębałów
 Kantorowice
 Krzesławice
 Lubocza
 Łuczanowice
-Dłubnia 
-Na Stoku
-Na Wzgórzach
+Dłubnia (Kraków)
+os. Na Stoku
+os. Na Wzgórzach
 Wadów
 Węgrzynowice
 Zesławice
 
-NOWA HUTA
+DZIELNICA XVIII - NOWA HUTA:
 Błonie
 Branice
-Centrum A
-Centrum B
-Centrum C
-Centrum D
-Centrum E
+os. Centrum A
+os. Centrum B
+os. Centrum C
+os. Centrum D
+os. Centrum E
 Chałupki
 Chałupki Górne
 Cło
@@ -214,27 +214,27 @@ Kujawy
 Mogiła
 Nowa Huta
 Nowa Wieś
-Osiedle Górali
-Osiedle Handlowe
-Osiedle Hutnicze
-Osiedle Kolorowe
-Osiedle Krakowiaków
-Osiedle Lesisko
-Osiedle Młodości
-Osiedle Na Skarpie
-Osiedle Ogrodowe
-Osiedle Słoneczne
-Osiedle Sportowe
-Osiedle Spółdzielcze
-Osiedle Stalowe
-Osiedle Szklane Domy
-Osiedle Szkolne
-Osiedle Teatralne
-Osiedle Urocze
-Osiedle Wandy
-Osiedle Willowe
-Osiedle Zgody
-Osiedle Zielone
+os. Górali
+os. Handlowe
+os. Hutnicze
+os. Kolorowe
+os. Krakowiaków
+os. Lesisko
+os. Młodości
+os. Na Skarpie
+os. Ogrodowe
+os. Słoneczne
+os. Sportowe
+os. Spółdzielcze
+os. Stalowe
+os. Szklane Domy
+os. Szkolne
+os. Teatralne
+os. Urocze
+os. Wandy
+os. Willowe
+os. Zgody
+os. Zielone
 Piekiełko
 Pleszów
 Przylasek Rusiecki
@@ -244,4 +244,4 @@ Stryjów
 Wola Rusiecka
 Wolica
 Wróżenice
-Wyciąże 
+Wyciąże
