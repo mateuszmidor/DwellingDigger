@@ -202,10 +202,6 @@
         <value>3</value>
       </counter>
       <counter>
-        <item-type stereotype="" type="AbstractElementGroup" />
-        <value>494</value>
-      </counter>
-      <counter>
         <item-type stereotype="" type="UmlCallBehaviorAction" />
         <value>12</value>
       </counter>
@@ -236,6 +232,10 @@
       <counter>
         <item-type stereotype="" type="UmlObjectFlow" />
         <value>77</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="AbstractElementGroup" />
+        <value>102</value>
       </counter>
     </entity-ids>
     <diagrams>
@@ -851,8 +851,7 @@ type: STREET</comment>
       <associated-diagrams />
       <owned-items />
       <style class="default" />
-      <comment>In addition, rank candidate precision based on if it is a street, district or city name.
-Rank candidate correctness as -1 when address name is a mutation of the original_form (see: Dictionary)</comment>
+      <comment>In addition, rank candidate precision 1 if it is a street or 2 if district.</comment>
     </item>
     <item id="di502421337636932956" cid="CN017" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/02/2015 22:52:10">
       <stereotypes />
@@ -865,8 +864,7 @@ Rank candidate correctness as -1 when address name is a mutation of the original
       <associated-diagrams />
       <owned-items />
       <style class="default" />
-      <comment>street gives +++ and district gives ++ to candidate precission. 
-Any relevant prefix gives + to candidate correctness</comment>
+      <comment>Any relevant prefix gives + to candidate correctness</comment>
     </item>
     <item id="di194579937943096838" cid="CN018" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/02/2015 22:54:08">
       <stereotypes />
@@ -1057,159 +1055,159 @@ precision_rank - the higher, the better the precision eg. street is higher than 
       <style class="default" />
       <required-interface interface-ref="di956357456335852019" />
     </item>
-    <item id="di175110506259236235" cid="CN024" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
+    <item id="di175110506259236235" cid="CN024" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di186468337186265231" cid="CMT025" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
+    <item id="di186468337186265231" cid="CMT025" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>address in cache?</comment>
     </item>
-    <item id="di970614162182603412" cid="ELEM071" type="activity-region" name="for" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:05">
+    <item id="di970614162182603412" cid="ELEM071" type="activity-region" name="for" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:05">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di858614321330491520" cid="ELEM072" type="activity-region" name="while" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:05">
+    <item id="di858614321330491520" cid="ELEM072" type="activity-region" name="while" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:05">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di784599499270093487" cid="CN029" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:11:01">
+    <item id="di784599499270093487" cid="CN029" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:11:01">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di537732581432083995" cid="CMT030" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:11:01">
+    <item id="di537732581432083995" cid="CMT030" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:11:01">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>FINISH process</comment>
     </item>
-    <item id="di959081474616167286" cid="ELEM344" type="group" name="Group" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:21">
+    <item id="di959081474616167286" cid="ELEM344" type="group" name="Group" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:21">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di219445353741032355" cid="ELEM339" type="group" name="Group" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:14">
+    <item id="di219445353741032355" cid="ELEM339" type="group" name="Group" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:14">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di860856894794424900" cid="CN027" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:02:50">
+    <item id="di860856894794424900" cid="CN027" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:02:50">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di542945140960741762" cid="ELEM075" type="expansion-region" name="Cache file locked throught process lifetime; lock time ~3 sec - single LONG lock" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:29:16">
+    <item id="di542945140960741762" cid="ELEM075" type="expansion-region" name="Cache file locked throught process lifetime; lock time ~3 sec - single LONG lock" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:29:16">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <region mode="Undefined" />
     </item>
-    <item id="di157537179740485543" cid="IN004" type="initial-node" name="InitialNode4" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:11:53">
+    <item id="di157537179740485543" cid="IN004" type="initial-node" name="InitialNode4" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:11:53">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di885947383603165221" cid="A014" type="activity" name="Lock Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:01">
+    <item id="di885947383603165221" cid="A014" type="activity" name="Lock Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:01">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di120570478917931527" cid="A015" type="activity" name="Read Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:21">
+    <item id="di120570478917931527" cid="A015" type="activity" name="Read Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:21">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di500696069129803470" cid="ELEM067" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:16">
-      <stereotypes />
-      <associated-diagrams />
-      <owned-items />
-      <style class="default" />
-      <control-flow guard="" />
-    </item>
-    <item id="di515461921861723438" cid="ELEM068" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:20">
+    <item id="di500696069129803470" cid="ELEM067" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:16">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <control-flow guard="" />
     </item>
-    <item id="di933211838981903637" cid="ACT003" type="action" name="Unlock cache file" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:34">
-      <stereotypes />
-      <associated-diagrams />
-      <owned-items />
-      <style class="default" />
-    </item>
-    <item id="di642856509248013220" cid="AFN004" type="activity-final-node" name="ActivityFinalNode4" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:52">
-      <stereotypes />
-      <associated-diagrams />
-      <owned-items />
-      <style class="default" />
-    </item>
-    <item id="di334929489351899496" cid="ELEM073" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:57">
+    <item id="di515461921861723438" cid="ELEM068" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:20">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <control-flow guard="" />
     </item>
-    <item id="di503078428364788930" cid="CN028" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:08:37">
+    <item id="di933211838981903637" cid="ACT003" type="action" name="Unlock cache file" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:34">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di809781445780951938" cid="CMT025" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
+    <item id="di642856509248013220" cid="AFN004" type="activity-final-node" name="ActivityFinalNode4" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:52">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di334929489351899496" cid="ELEM073" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:57">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <control-flow guard="" />
+    </item>
+    <item id="di503078428364788930" cid="CN028" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:08:37">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di809781445780951938" cid="CMT025" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>address in cache?</comment>
     </item>
-    <item id="di223881735927207412" cid="CN024" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
+    <item id="di223881735927207412" cid="CN024" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:13:57">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di994757816307188127" cid="A018" type="activity" name="Return coordinates" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:48">
+    <item id="di994757816307188127" cid="A018" type="activity" name="Return coordinates" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:48">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di804210468841891926" cid="A017" type="activity" name="Geocode address" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:16">
+    <item id="di804210468841891926" cid="A017" type="activity" name="Geocode address" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:16">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di468759686575392769" cid="ELEM075" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:21:00">
+    <item id="di468759686575392769" cid="ELEM075" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:21:00">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <control-flow guard="" />
     </item>
-    <item id="di472329949592294022" cid="ACT001" type="action" name="Update Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:49">
+    <item id="di472329949592294022" cid="ACT001" type="action" name="Update Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:49">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
@@ -1219,7 +1217,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
       <stereotypes />
       <associated-diagrams />
       <owned-items />
-      <style style-name="Default" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
         <background type="vertical-linear" color="#FFD3D3D3" color2="#FFFFFFFF" />
         <border color="#FF000000" width="1" dash-style="Solid" />
         <alternate-styles>
@@ -1230,27 +1228,27 @@ precision_rank - the higher, the better the precision eg. street is higher than 
         </alternate-styles>
       </style>
     </item>
-    <item id="di885743397996825987" cid="A016" type="activity" name="Get geocoding from cache" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:32">
+    <item id="di885743397996825987" cid="A016" type="activity" name="Get geocoding from cache" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:32">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di251300793277714118" cid="ELEM064" type="control-flow" name="No" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:51">
-      <stereotypes />
-      <associated-diagrams />
-      <owned-items />
-      <style class="default" />
-      <control-flow guard="" />
-    </item>
-    <item id="di855714256468925364" cid="ELEM065" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:59">
+    <item id="di251300793277714118" cid="ELEM064" type="control-flow" name="No" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:51">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <control-flow guard="" />
     </item>
-    <item id="di440505726868493004" cid="ELEM066" type="control-flow" name="Yes" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:03">
+    <item id="di855714256468925364" cid="ELEM065" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:59">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <control-flow guard="" />
+    </item>
+    <item id="di440505726868493004" cid="ELEM066" type="control-flow" name="Yes" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:03">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
@@ -1279,7 +1277,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
       </documentation>
       <associated-diagrams />
       <owned-items />
-      <style style-name="Default" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
+      <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
         <background type="vertical-linear" color="#FFD3D3D3" color2="#FFFFFFFF" />
         <border color="#FF000000" width="1" dash-style="Solid" />
         <alternate-styles>
@@ -1290,73 +1288,73 @@ precision_rank - the higher, the better the precision eg. street is higher than 
         </alternate-styles>
       </style>
     </item>
-    <item id="di532146197168210453" cid="ELEM011" type="merge" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:34">
+    <item id="di532146197168210453" cid="ELEM011" type="merge" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:34">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di144508963533251163" cid="ELEM069" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:38">
-      <stereotypes />
-      <associated-diagrams />
-      <owned-items />
-      <style class="default" />
-      <control-flow guard="" />
-    </item>
-    <item id="di879054399752390034" cid="ELEM070" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:42">
+    <item id="di144508963533251163" cid="ELEM069" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:38">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <control-flow guard="" />
     </item>
-    <item id="di525634726190492455" cid="CMT026" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:30:54">
+    <item id="di879054399752390034" cid="ELEM070" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:42">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <control-flow guard="" />
+    </item>
+    <item id="di525634726190492455" cid="CMT026" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:30:54">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>START process</comment>
     </item>
-    <item id="di327742706123450504" cid="CN025" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:30:54">
+    <item id="di327742706123450504" cid="CN025" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:30:54">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di630504259761993201" cid="CMT027" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:31:12">
+    <item id="di630504259761993201" cid="CMT027" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:31:12">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>FINISH process</comment>
     </item>
-    <item id="di836860027230329766" cid="CN026" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:31:12">
+    <item id="di836860027230329766" cid="CN026" type="comment-connector" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:31:12">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di939335979872497919" cid="CMT029" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:08:37">
+    <item id="di939335979872497919" cid="CMT029" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:08:37">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>START process</comment>
     </item>
-    <item id="di243553838359776302" cid="CMT028" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:02:50">
+    <item id="di243553838359776302" cid="CMT028" type="comment" name="Comment" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:02:50">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
       <comment>address in cache or extending_cache?</comment>
     </item>
-    <item id="di923037345801549686" cid="ELEM488" type="group" name="Group" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:18:48">
+    <item id="di923037345801549686" cid="ELEM488" type="group" name="Group" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:18:48">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
       <style class="default" />
     </item>
-    <item id="di756729915760580255" cid="ELEM492" type="group" name="Group" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:18:54">
+    <item id="di756729915760580255" cid="ELEM492" type="group" name="Group" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:18:54">
       <stereotypes />
       <associated-diagrams />
       <owned-items />
@@ -3566,7 +3564,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di953531195275228076" cid="A012" type="activity" name="Extract address candidates from provided sources using dictionary of known addresses" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/28/2015 11:50:04">
+          <item id="di953531195275228076" cid="A012" type="activity" name="Extract address candidates from provided sources using dictionary of known streets and districts" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="02/28/2015 11:50:04">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -3747,13 +3745,13 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <relation from="di438860231826526231" from-iid="0f5f306184e94c028861004a88bb4d1d" to="di861403371582584741" to-iid="87a4e14bfbf0454fbb5aa7db71627bcc" />
           </item>
           <item id="di784083221508381970" iid="a45cf9644dd94ad2ab6b60f1eeb62dde" creation-date="03/02/2015 22:52:10" order-index="11" type="entity">
-            <layout ax="540" ay="20" awidth="180" aheight="140" x="540" y="20" width="180" height="140" angle="0" />
+            <layout ax="540" ay="20" awidth="180" aheight="70" x="540" y="20" width="180" height="70" angle="0" />
           </item>
           <item id="di502421337636932956" iid="6627d80846f1443e8d680bb2ab4bf162" creation-date="03/02/2015 22:52:10" order-index="12" type="comment-connector">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="540" y1="111" x2="520" y2="116" start-border-pos="0.837624590737479" end-border-pos="0.313953495025635">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="541" y1="90" x2="520" y2="98" start-border-pos="0.747957526312934" end-border-pos="0.271220932006836">
               <points>
-                <point x="540" y="111" />
-                <point x="520" y="116" />
+                <point x="541" y="90" />
+                <point x="520" y="98" />
               </points>
             </layout>
             <relation from="di784083221508381970" from-iid="a45cf9644dd94ad2ab6b60f1eeb62dde" to="di953531195275228076" to-iid="afc1455cdbfa4f1cb2ff3cc0ce6afcf8" />
@@ -4564,14 +4562,14 @@ precision_rank - the higher, the better the precision eg. street is higher than 
           <version />
         </meta>
         <abstract-items>
-          <item id="di685084429647199386" cid="ELEM069" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:38">
+          <item id="di685084429647199386" cid="ELEM069" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:38">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di963432318551644769" cid="ELEM011" type="merge" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:34">
+          <item id="di963432318551644769" cid="ELEM011" type="merge" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:34">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -4599,7 +4597,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             </documentation>
             <associated-diagrams />
             <owned-items />
-            <style style-name="Default" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
               <background type="vertical-linear" color="#FFD3D3D3" color2="#FFFFFFFF" />
               <border color="#FF000000" width="1" dash-style="Solid" />
               <alternate-styles>
@@ -4610,93 +4608,93 @@ precision_rank - the higher, the better the precision eg. street is higher than 
               </alternate-styles>
             </style>
           </item>
-          <item id="di410961188991055096" cid="A017" type="activity" name="Geocode address" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:16">
+          <item id="di410961188991055096" cid="A017" type="activity" name="Geocode address" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:16">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di940183801550549540" cid="ACT001" type="action" name="Update Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:49">
+          <item id="di940183801550549540" cid="ACT001" type="action" name="Update Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:49">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di223465729832703237" cid="ELEM080" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:59">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <control-flow guard="" />
-          </item>
-          <item id="di118309938877554956" cid="A018" type="activity" name="Return coordinates" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:48">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di492230764971833242" cid="ELEM077" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:01">
+          <item id="di223465729832703237" cid="ELEM080" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:59">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di279929467485694671" cid="ELEM081" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:36:05">
+          <item id="di118309938877554956" cid="A018" type="activity" name="Return coordinates" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:20:48">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di492230764971833242" cid="ELEM077" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:01">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di436346815631880420" cid="AFN004" type="activity-final-node" name="ActivityFinalNode4" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:52">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di800759664641329056" cid="ELEM066" type="control-flow" name="Yes" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:03">
+          <item id="di279929467485694671" cid="ELEM081" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:36:05">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di987869523838663752" cid="ELEM065" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:59">
+          <item id="di436346815631880420" cid="AFN004" type="activity-final-node" name="ActivityFinalNode4" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:52">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di800759664641329056" cid="ELEM066" type="control-flow" name="Yes" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:03">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di269927376280958300" cid="ACT003" type="action" name="Unlock cache file" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:34">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di654036146102917207" cid="ELEM068" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:20">
+          <item id="di987869523838663752" cid="ELEM065" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:59">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di212220849692326717" cid="ELEM078" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:08">
+          <item id="di269927376280958300" cid="ACT003" type="action" name="Unlock cache file" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:16:34">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di654036146102917207" cid="ELEM068" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:20">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di960680034144940669" cid="ELEM064" type="control-flow" name="No" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:51">
+          <item id="di212220849692326717" cid="ELEM078" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:08">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di949124431624032714" cid="A016" type="activity" name="Get geocoding from cache" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:32">
+          <item id="di960680034144940669" cid="ELEM064" type="control-flow" name="No" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:51">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di949124431624032714" cid="A016" type="activity" name="Get geocoding from cache" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:14:32">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -4706,7 +4704,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             <stereotypes />
             <associated-diagrams />
             <owned-items />
-            <style style-name="Default" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#3C000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" glow-color="#FFFFFFFF" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
               <background type="vertical-linear" color="#FFD3D3D3" color2="#FFFFFFFF" />
               <border color="#FF000000" width="1" dash-style="Solid" />
               <alternate-styles>
@@ -4717,242 +4715,242 @@ precision_rank - the higher, the better the precision eg. street is higher than 
               </alternate-styles>
             </style>
           </item>
-          <item id="di854333806728337068" cid="A015" type="activity" name="Read Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:21">
+          <item id="di854333806728337068" cid="A015" type="activity" name="Read Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:21">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di128226038129702669" cid="A014" type="activity" name="Lock Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:01">
+          <item id="di128226038129702669" cid="A014" type="activity" name="Lock Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:12:01">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di555494211948057855" cid="IN004" type="initial-node" name="InitialNode4" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:11:53">
+          <item id="di555494211948057855" cid="IN004" type="initial-node" name="InitialNode4" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:11:53">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di447374981413934592" cid="ELEM075" type="expansion-region" name="Cache file locked/unlocked on every geocoding request; num locks/process ~25 - MANY short locks" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:29:16">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <region mode="Undefined" />
-          </item>
-          <item id="di143670262769053648" cid="ELEM070" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:42">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <control-flow guard="" />
-          </item>
-          <item id="di145618741342813760" cid="ELEM076" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:33:40">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <control-flow guard="" />
-          </item>
-          <item id="di430378992533943594" cid="ELEM079" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:23">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <control-flow guard="" />
-          </item>
-          <item id="di779075774328508341" cid="ELEM083" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:36:34">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <control-flow guard="" />
-          </item>
-          <item id="di156595587118177270" cid="ELEM082" type="expansion-region" name="Cache file shortly locked one time for reading on process start, and then second time for batch updating on process finish" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:12:16">
+          <item id="di447374981413934592" cid="ELEM075" type="expansion-region" name="Cache file locked/unlocked on every geocoding request; num locks/process ~25 - MANY short locks" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:29:16">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <region mode="Undefined" />
           </item>
-          <item id="di862093467356477666" cid="ELEM086" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:01:04">
+          <item id="di143670262769053648" cid="ELEM070" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:15:42">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di850404131856249128" cid="A021" type="activity" name="Unlock Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:54:04">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di268921388235514552" cid="A020" type="activity" name="Read Cache File, update with extending_cache " style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:53:24">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di765163021991610200" cid="ELEM085" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:00:59">
+          <item id="di145618741342813760" cid="ELEM076" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:33:40">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di838851123529929921" cid="A019" type="activity" name="Exclusive Lock Cache File " style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:49">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di941196720318137807" cid="ELEM096" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:07:40">
+          <item id="di430378992533943594" cid="ELEM079" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:35:23">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di557755476837337735" cid="ELEM097" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:09:47">
+          <item id="di779075774328508341" cid="ELEM083" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:36:34">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di867462371666596733" cid="AFN005" type="activity-final-node" name="ActivityFinalNode5" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:09:30">
+          <item id="di156595587118177270" cid="ELEM082" type="expansion-region" name="Cache file shortly locked one time for reading on process start, and then second time for batch updating on process finish" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:12:16">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
+            <region mode="Undefined" />
           </item>
-          <item id="di154455698835421442" cid="ELEM095" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:07:33">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-            <control-flow guard="" />
-          </item>
-          <item id="di795136203402327494" cid="ELEM093" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:07:20">
+          <item id="di862093467356477666" cid="ELEM086" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:01:04">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di497958634997109422" cid="ELEM092" type="control-flow" name="No" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:06:48">
+          <item id="di850404131856249128" cid="A021" type="activity" name="Unlock Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:54:04">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di268921388235514552" cid="A020" type="activity" name="Read Cache File, update with extending_cache " style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:53:24">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di765163021991610200" cid="ELEM085" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:00:59">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di725786336264667734" cid="ELEM091" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:06:38">
+          <item id="di838851123529929921" cid="A019" type="activity" name="Exclusive Lock Cache File " style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:49">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di941196720318137807" cid="ELEM096" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:07:40">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di247442459578219328" cid="ELEM088" type="control-flow" name="Yes" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:06:12">
+          <item id="di557755476837337735" cid="ELEM097" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:09:47">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di653021185897702334" cid="A024" type="activity" name="Return geocoding" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:05:52">
+          <item id="di867462371666596733" cid="AFN005" type="activity-final-node" name="ActivityFinalNode5" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:09:30">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di584226835791248720" cid="ELEM074" type="merge" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:05:39">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di866984509858902048" cid="A023" type="activity" name="Add address:geocoding to extending_cache" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:38">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di747669972115561362" cid="A023" type="activity" name="Geocode address" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:38">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di974055139809406610" cid="A023" type="activity" name="Get geocoding from cache or extending_cache" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:38">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di932338271186723392" cid="ELEM087" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:10">
+          <item id="di154455698835421442" cid="ELEM095" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:07:33">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di506151305862896568" cid="ELEM086" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:01:04">
+          <item id="di795136203402327494" cid="ELEM093" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:07:20">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di828632320866871203" cid="ELEM085" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:00:59">
+          <item id="di497958634997109422" cid="ELEM092" type="control-flow" name="No" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:06:48">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di438051531922459986" cid="A021" type="activity" name="Unlock Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:54:04">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di634739718266552763" cid="A020" type="activity" name="Read Cache File" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:53:24">
-            <stereotypes />
-            <associated-diagrams />
-            <owned-items />
-            <style class="default" />
-          </item>
-          <item id="di366477847584444074" cid="ELEM084" type="control-flow" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:00:49">
+          <item id="di725786336264667734" cid="ELEM091" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:06:38">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
             <control-flow guard="" />
           </item>
-          <item id="di326541287440863550" cid="A019" type="activity" name="Shared Lock Cache File " style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:49">
+          <item id="di247442459578219328" cid="ELEM088" type="control-flow" name="Yes" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:06:12">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di653021185897702334" cid="A024" type="activity" name="Return geocoding" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:05:52">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di323236264545979035" cid="DC002" type="decision" name="address in cache?" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:02:30">
+          <item id="di584226835791248720" cid="ELEM074" type="merge" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:05:39">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di603444893796064305" cid="A022" type="activity" name="Geocode address" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:01:28">
+          <item id="di866984509858902048" cid="A023" type="activity" name="Add address:geocoding to extending_cache" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:38">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di916278873580398406" cid="IN005" type="initial-node" name="InitialNode5" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:37">
+          <item id="di747669972115561362" cid="A023" type="activity" name="Geocode address" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:38">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di974055139809406610" cid="A023" type="activity" name="Get geocoding from cache or extending_cache" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:38">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di932338271186723392" cid="ELEM087" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:03:10">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di506151305862896568" cid="ELEM086" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:01:04">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di828632320866871203" cid="ELEM085" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:00:59">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di438051531922459986" cid="A021" type="activity" name="Unlock Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:54:04">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di634739718266552763" cid="A020" type="activity" name="Read Cache File" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:53:24">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di366477847584444074" cid="ELEM084" type="control-flow" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:00:49">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di326541287440863550" cid="A019" type="activity" name="Shared Lock Cache File " style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:49">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di323236264545979035" cid="DC002" type="decision" name="address in cache?" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:02:30">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di603444893796064305" cid="A022" type="activity" name="Geocode address" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 18:01:28">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di916278873580398406" cid="IN005" type="initial-node" name="InitialNode5" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="03/09/2015 17:52:37">
             <stereotypes />
             <associated-diagrams />
             <owned-items />
@@ -4976,7 +4974,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="-80.42253" ay="160" awidth="96.90141" aheight="35" x="-80.42253" y="160" width="96.90141" height="35" angle="0" />
               </item>
               <item id="di500696069129803470" iid="add92db435304ab4b1f788f2511060c7" creation-date="03/09/2015 17:15:16" order-index="12" type="relation">
-                <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-34" y1="62" x2="-33" y2="90" start-border-pos="0.621399788679055" end-border-pos="0.1231412084392">
+                <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-34" y1="62" x2="-33" y2="90" start-border-pos="0.621399738053256" end-border-pos="0.123141198743853">
                   <points>
                     <point x="-34" y="62" />
                     <point x="-33" y="90" />
@@ -5000,7 +4998,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="-40" ay="760" awidth="18.16901" aheight="18.16901" x="-40" y="760" width="18.16901" height="18.16901" angle="0" name-position="30,-10" />
               </item>
               <item id="di334929489351899496" iid="a8b94a98ae0743e8971ab8545689be5a" creation-date="03/09/2015 17:16:57" order-index="19" type="relation">
-                <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-28" y1="740" x2="-30" y2="760" start-border-pos="0.625" end-border-pos="0.136648007850686">
+                <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-28" y1="740" x2="-30" y2="760" start-border-pos="0.625" end-border-pos="0.136647979160582">
                   <points>
                     <point x="-28" y="740" />
                     <point x="-30" y="760" />
@@ -5012,7 +5010,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="-1.69014" ay="300" awidth="84.78873" aheight="30" x="-1.69014" y="300" width="84.78873" height="30" angle="0" />
               </item>
               <item id="di223881735927207412" iid="aa754d7ee24448c0a3aba9352fea0841" creation-date="03/09/2015 17:13:57" order-index="6" type="comment-connector">
-                <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="19" y1="330" x2="-21" y2="340" start-border-pos="0.688700169632613" end-border-pos="0.286937386648996">
+                <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="19" y1="330" x2="-21" y2="340" start-border-pos="0.6887001634138" end-border-pos="0.286937386648996">
                   <points>
                     <point x="19" y="330" />
                     <point x="-21" y="340" />
@@ -5027,7 +5025,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="-80" ay="250" awidth="96.9014" aheight="35" x="-80" y="250" width="96.9014" height="35" angle="0" />
               </item>
               <item id="di468759686575392769" iid="0365e3112bc5434eb6f0a39355b0f345" creation-date="03/09/2015 17:21:00" order-index="23" type="relation">
-                <layout line-style="straight" lock-start-point="false" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-27" y1="589" x2="-30" y2="620" start-border-pos="0.632699750236096" end-border-pos="0.125">
+                <layout line-style="straight" lock-start-point="false" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-27" y1="589" x2="-30" y2="620" start-border-pos="0.632699775672314" end-border-pos="0.125">
                   <points>
                     <point x="-27" y="589" />
                     <point x="-30" y="620" />
@@ -5045,7 +5043,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="20" ay="427.5" awidth="100" aheight="52.5" x="20" y="427.5" width="100" height="52.5" angle="0" />
               </item>
               <item id="di251300793277714118" iid="00467ef2f3ba4beca1f102e214efa713" creation-date="03/09/2015 17:14:51" order-index="9" type="relation">
-                <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-63" y1="370" x2="-121" y2="410" start-border-pos="0.857142857142857" end-border-pos="0.192365405535805">
+                <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-63" y1="370" x2="-121" y2="410" start-border-pos="0.857142857142857" end-border-pos="0.19236550849055">
                   <points>
                     <point x="-63" y="370" />
                     <point x="-121" y="410" />
@@ -5054,7 +5052,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <relation from="di974234149760423076" from-iid="bf30db22a38f46ef88adfe2f31d97350" to="di486467286939683833" to-iid="2df6878364654a4c87c608f8217e6ed4" />
               </item>
               <item id="di855714256468925364" iid="8bf0498b9ece479185c644b2770df217" creation-date="03/09/2015 17:14:59" order-index="10" type="relation">
-                <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-153" y1="445" x2="-149" y2="480" start-border-pos="0.640625" end-border-pos="0.11985175884125">
+                <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-153" y1="445" x2="-149" y2="480" start-border-pos="0.640625" end-border-pos="0.119851867505253">
                   <points>
                     <point x="-153" y="445" />
                     <point x="-149" y="480" />
@@ -5099,7 +5097,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="20" ay="70" awidth="100" aheight="20" x="20" y="70" width="100" height="20" angle="0" />
               </item>
               <item id="di327742706123450504" iid="15bb04389d284aaba96cfe6c8c26b1ce" creation-date="03/09/2015 17:30:54" order-index="25" type="comment-connector">
-                <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="27" y1="70" x2="-28" y2="58" start-border-pos="0.0166666650772095" end-border-pos="0.407177983569875">
+                <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="27" y1="70" x2="-28" y2="58" start-border-pos="0.0166666650772095" end-border-pos="0.407178045445831">
                   <points>
                     <point x="27" y="70" />
                     <point x="-28" y="58" />
@@ -5111,7 +5109,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <layout ax="20" ay="750" awidth="100" aheight="21.83099" x="20" y="750" width="100" height="21.83099" angle="0" />
               </item>
               <item id="di836860027230329766" iid="aa0a8928e7cc4a59a1cc6724baccc354" creation-date="03/09/2015 17:31:12" order-index="27" type="comment-connector">
-                <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="20" y1="765" x2="-22" y2="768" start-border-pos="0.828679486355084" end-border-pos="0.362938850648849">
+                <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="20" y1="765" x2="-22" y2="768" start-border-pos="0.828679456418929" end-border-pos="0.362938826936631">
                   <points>
                     <point x="20" y="765" />
                     <point x="-22" y="768" />
@@ -5120,7 +5118,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                 <relation from="di630504259761993201" from-iid="e2785386eecb4fef9617cfa031fc1ba6" to="di642856509248013220" to-iid="7fe8fc5230124d829348aac758c41e3a" />
               </item>
               <item id="di145618741342813760" iid="dee95c5b68114a9d9ed7509f5fd5687b" creation-date="03/09/2015 17:33:40" order-index="28" type="relation">
-                <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-32" y1="285" x2="-32" y2="330" start-border-pos="0.626162776965072" end-border-pos="0.124903105210315">
+                <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="-32" y1="285" x2="-32" y2="330" start-border-pos="0.626162776965072" end-border-pos="0.124903092098225">
                   <points>
                     <point x="-32" y="285" />
                     <point x="-32" y="330" />
@@ -5131,7 +5129,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
             </group-items>
           </item>
           <item id="di756729915760580255" iid="86655c25bb8c46759a4fcc36798d805b" creation-date="03/09/2015 18:18:54" order-index="65" type="group">
-            <layout ax="230" ay="0" awidth="430" aheight="790" x="0" y="0" width="0" height="0" angle="0" />
+            <layout ax="230" ay="0" awidth="430" aheight="790" x="50" y="50" width="140" height="160" angle="0" />
             <group-items>
               <item id="di959081474616167286" iid="ea97cdbe34924a2dbb30807c978b8aa8" creation-date="03/09/2015 17:52:21" order-index="36" type="group">
                 <layout ax="230" ay="0" awidth="430" aheight="790" x="230" y="0" width="430" height="790" angle="0" />
@@ -5167,7 +5165,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                     <layout ax="478.3099" ay="300" awidth="84.78873" aheight="30" x="478.3099" y="300" width="84.78873" height="30" angle="0" />
                   </item>
                   <item id="di175110506259236235" iid="b757c155010643a5bd2bb627dafa9150" creation-date="03/09/2015 17:13:57" order-index="6" type="comment-connector">
-                    <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="499" y1="330" x2="458" y2="340" start-border-pos="0.688700197751747" end-border-pos="0.286937386648996">
+                    <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="499" y1="330" x2="458" y2="340" start-border-pos="0.688700282217152" end-border-pos="0.286937386648996">
                       <points>
                         <point x="499" y="330" />
                         <point x="458" y="340" />
@@ -5191,7 +5189,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                     <layout ax="500" ay="427.5" awidth="100" aheight="52.5" x="500" y="427.5" width="100" height="52.5" angle="0" />
                   </item>
                   <item id="di960680034144940669" iid="bb124fab972b4c38bafcb3f439606f00" creation-date="03/09/2015 17:14:51" order-index="9" type="relation">
-                    <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="416" y1="370" x2="359" y2="410" start-border-pos="0.857142857142857" end-border-pos="0.191564704712465">
+                    <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="416" y1="370" x2="359" y2="410" start-border-pos="0.857142857142857" end-border-pos="0.191564847097038">
                       <points>
                         <point x="416" y="370" />
                         <point x="359" y="410" />
@@ -5200,7 +5198,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                     <relation from="di993787772105441482" from-iid="e3ee14a71dfa4300898a14d32c2287d8" to="di665587223805267862" to-iid="851c05ff8bed465d91dce5c4ac1086f2" />
                   </item>
                   <item id="di987869523838663752" iid="b95327cc56ea4682a457934efa3fb28b" creation-date="03/09/2015 17:14:59" order-index="10" type="relation">
-                    <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="327" y1="445" x2="331" y2="480" start-border-pos="0.640625" end-border-pos="0.11985171947446">
+                    <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="327" y1="445" x2="331" y2="480" start-border-pos="0.640625" end-border-pos="0.119851867505253">
                       <points>
                         <point x="327" y="445" />
                         <point x="331" y="480" />
@@ -5260,7 +5258,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                     <relation from="di410961188991055096" from-iid="b80152ace0b14206831fb4a45f23f720" to="di128226038129702669" to-iid="c2259e174f594802b7b29b3a25995ccd" />
                   </item>
                   <item id="di430378992533943594" iid="0bf3d7fe3ccf4caeb34e27e557990b89" creation-date="03/09/2015 17:35:23" order-index="31" type="relation">
-                    <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="448" y1="265" x2="448" y2="330" start-border-pos="0.626162737964465" end-border-pos="0.124903157699367">
+                    <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="448" y1="265" x2="448" y2="330" start-border-pos="0.626162737964465" end-border-pos="0.124903249565364">
                       <points>
                         <point x="448" y="265" />
                         <point x="448" y="330" />
@@ -5269,7 +5267,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                     <relation from="di854333806728337068" from-iid="e8ece13df2644fa6be775d62185ca778" to="di993787772105441482" to-iid="e3ee14a71dfa4300898a14d32c2287d8" />
                   </item>
                   <item id="di223465729832703237" iid="468b48b66d9d41c099aa424a2163f260" creation-date="03/09/2015 17:35:59" order-index="32" type="relation">
-                    <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="454" y1="590" x2="452" y2="620" start-border-pos="0.62812346600746" end-border-pos="0.125224683068201">
+                    <layout line-style="straight" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="454" y1="590" x2="452" y2="620" start-border-pos="0.628123583779919" end-border-pos="0.125224683068201">
                       <points>
                         <point x="454" y="590" />
                         <point x="452" y="620" />
@@ -5287,7 +5285,7 @@ precision_rank - the higher, the better the precision eg. street is higher than 
                     <relation from="di269927376280958300" from-iid="6293bbb6cdbc4182bf2adf319ddbd49b" to="di118309938877554956" to-iid="08d71344c68340388a2e880170a73fdf" />
                   </item>
                   <item id="di779075774328508341" iid="0667b3d04d1443c9949d927bd40cb21d" creation-date="03/09/2015 17:36:34" order-index="34" type="relation">
-                    <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="450" y1="730" x2="449" y2="760" start-border-pos="0.625" end-border-pos="0.127012641048639">
+                    <layout line-style="straight" lock-start-point="true" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="450" y1="730" x2="449" y2="760" start-border-pos="0.625" end-border-pos="0.127012614381541">
                       <points>
                         <point x="450" y="730" />
                         <point x="449" y="760" />
