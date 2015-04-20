@@ -1,7 +1,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="pl" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"> 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -152,12 +152,12 @@
             <form class="form-inline hidden-xs" id="formbig" role="form" method="get" action="index.py">
                     <div class="form-group">
                         <label class="sr-only" for="numrooms">Liczba pokojów:</label>
-                        <input type="text" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
+                        <input type="number" min="1" step="1" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
                     </div>              
                
                     <div class="form-group">
                         <label class="sr-only" for="maxprice">Cena maksymalna:</label>
-                        <input type="text" class="form-control" placeholder="Cena maksymalna" id="maxprice" name="max_price" value="$MAX_PRICE$">
+                        <input type="number" min="1" class="form-control" placeholder="Cena maksymalna" id="maxprice" name="max_price" value="$MAX_PRICE$">
                     </div>
             
                     <div class="form-group">
@@ -185,12 +185,12 @@
             <form class="form-inline hidden-sm hidden-md hidden-lg collapse" id="formsmall" role="form" method="get" action="index.py">
                     <div class="form-group">
                         <label class="sr-only" for="numrooms">Liczba pokojów:</label>
-                        <input type="text" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
+                        <input type="number" min="1" step="1" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
                     </div>              
                
                     <div class="form-group">
-                        <label class="sr-only" for="maxprice">Cena maksymalna:</label> 
-                        <input type="text" class="form-control" placeholder="Cena maksymalna" id="maxprice" name="max_price" value="$MAX_PRICE$">
+                        <label class="sr-only" for="maxprice">Cena maksymalna:</label>
+                        <input type="number" min="1" class="form-control" placeholder="Cena maksymalna" id="maxprice" name="max_price" value="$MAX_PRICE$">
                     </div>
             
                     <div class="form-group">
