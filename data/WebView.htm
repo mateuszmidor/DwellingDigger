@@ -149,7 +149,7 @@
             <div id="map"></div>
             
             <!-- THIS FORM IS FOR NON-MOBILE SIZE DEVICES -->
-            <form class="form-inline hidden-xs" id="formbig" role="form" method="get" action="index.py">
+            <form class="form-inline" id="formbig" role="form" method="get" action="index.py">
                     <div class="form-group">
                         <label class="sr-only" for="numrooms">Liczba pokojów:</label>
                         <input type="number" min="1" step="1" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
@@ -179,44 +179,6 @@
                         </button>                      
                     </div>
                
-            </form>
-           
-            <!-- THIS FORM VERSION IS FOR MOBILE DEVICES -->
-            <form class="form-inline hidden-sm hidden-md hidden-lg collapse" id="formsmall" role="form" method="get" action="index.py">
-                    <div class="form-group">
-                        <label class="sr-only" for="numrooms">Liczba pokojów:</label>
-                        <input type="number" min="1" step="1" class="form-control" placeholder="Liczba pokojów" id="numrooms" name="num_rooms" value="$NUM_ROOMS$">
-                    </div>              
-               
-                    <div class="form-group">
-                        <label class="sr-only" for="maxprice">Cena maksymalna:</label>
-                        <input type="number" min="1" class="form-control" placeholder="Cena maksymalna" id="maxprice" name="max_price" value="$MAX_PRICE$">
-                    </div>
-            
-                    <div class="form-group">
-                        <label class="sr-only" for="whereabouts">Dzielnica:</label>
-                        <input type="text" class="form-control" placeholder="Dzielnica" id="whereabouts" name="whereabouts" value="$WHEREABOUTS$">
-                    </div>
-               
-                    <div class="form-group">
-                        <label class="sr-only" for="city">Miasto:</label>    
-                        <select class="form-control" id="city" name="city">
-                            <option>Krakow</option>
-                            <!-- <option>Wroclaw</option> -->
-                        </select>
-                    </div>
-             
-                    <div class="form-group">
-                        <button type="submit"  class="btn btn-danger">
-                            <span class="glyphicon glyphicon-search"></span>
-                            Szukaj! 
-                        </button>                      
-                    </div>                          
-            </form>     
-            <form class="form-inline visible-xs" role="form"> 
-                <button type="button" href="#formsmall" class="btn btn-info" data-toggle="collapse">
-                    <span class="glyphicon glyphicon-align-justify"></span>
-                </button>                
             </form>
         </div>
   </body>
