@@ -5,6 +5,7 @@ Created on 28 kwi 2015
 '''
 import unittest
 from datetime import datetime
+from src.mvc.model.offers_grouped_by_address import OffersGroupedByAddress
 
 
 class OffersGroupedByAddressTest(unittest.TestCase):
@@ -14,6 +15,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "date"    :   datetime(2000, 1, 1),
               "price"   :   "1000 ZL",
               "url"     :   "www.OFFER1.pl",
+              "img_url" :   "www.OFFER1_img.pl",
               "summary" :   "Tanie mieszkanie na wielickiej",
               "longlatt":   [1, 1]}
     
@@ -23,6 +25,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "date"    :   datetime(2000, 1, 2),
               "price"   :   "2000 ZL",
               "url"     :   "www.OFFER2.pl",
+              "img_url" :   "www.OFFER2_img.pl",
               "summary" :   "Niezbyt tanie mieszkanie, kurdwanow",
               "longlatt":   [2, 2]}        
 
@@ -32,6 +35,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "date"    :   datetime(2000, 1, 3),
               "price"   :   "3000 ZL",
               "url"     :   "www.OFFER3.pl",
+              "img_url" :   "www.OFFER3_img.pl",
               "summary" :   "Absolutnie nietanie mieszkanie, kurdwanow",
               "longlatt":   [1, 1]}  
 
@@ -95,6 +99,10 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         self.assertTrue(offer1 != None, 
                         "offer 'www.OFFER1.pl' should be present in 'Wielicka, Krakow, Polska' group")
         
+        # check image url
+        self.assertEqual("www.OFFER1_img.pl", offer1["img_url"], 
+                         "img_url should be 'www.OFFER1_img.pl' for 'www.OFFER1.pl' offer but was '%s'" % offer1["img_url"])
+                
         # check address section string (the address that was found on the offer web page in designated field)
         self.assertEqual("Wielicka", offer1["address_section"], 
                          "address_section should be 'Wielicka' for 'www.OFFER1.pl' offer")
@@ -125,6 +133,10 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         self.assertTrue(offer3 != None, 
                         "offer 'www.OFFER3.pl' should be present in 'Wielicka, Krakow, Polska' group")
         
+        # check image url
+        self.assertEqual("www.OFFER3_img.pl", offer3["img_url"], 
+                         "img_url should be 'www.OFFER3_img.pl' for 'www.OFFER3.pl' offer but was '%s'" % offer3["img_url"])
+                
         # check address section string (the address that was found on the offer web page in designated field)
         self.assertEqual("ul wielicka", offer3["address_section"], 
                          "address_section should be 'ul wielicka' for 'www.OFFER3.pl' offer")    
@@ -142,7 +154,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
                          "price should be '3000 ZL' for 'www.OFFER3.pl' offer")     
         
         # check the offer summary
-        self.assertEqual("Tanie mieszkanie na wielickiej", offer3["summary"], 
+        self.assertEqual("Absolutnie nietanie mieszkanie, kurdwanow", offer3["summary"], 
                          "summary should be 'Absolutnie nietanie mieszkanie, kurdwanow' for 'www.OFFER3.pl' offer")                             
                       
                       
@@ -180,6 +192,10 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         self.assertTrue(offer2 != None, 
                         "offer 'www.OFFER2.pl' should be present in 'Kurdwanow, Krakow, Polsk' group")
         
+        # check image url
+        self.assertEqual("www.OFFER2_img.pl", offer2["img_url"], 
+                         "img_url should be 'www.OFFER2_img.pl' for 'www.OFFER2.pl' offer but was '%s'" % offer2["img_url"])
+                
         # check address section string (the address that was found on the offer web page in designated field)
         self.assertEqual("osiedle Kurdwanow", offer2["address_section"], 
                          "address_section should be 'osiedle Kurdwanow' for 'www.OFFER2.pl' offer")    
@@ -204,7 +220,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
     def test_get_json_string(self):
         ''' 
         Only roughly check that returned string contains expected offers; 
-        we are not up to check JSon implementatoin for python here.
+        we are not up to check json implementation for python here.
         '''
         json = OffersGroupedByAddress.from_offers([OffersGroupedByAddressTest.OFFER1, 
                                                    OffersGroupedByAddressTest.OFFER2, 
@@ -217,6 +233,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         
         self.assertTrue("www.OFFER3.pl" in json, 
                         "'www.OFFER3.pl' should be in json string: '%s'" % json) 
+                        
                         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
