@@ -54,7 +54,7 @@ class OffersGroupedByAddress(object):
                      "date":    in_offer["date"], 
                      "price":   in_offer["price"], 
                      "url":     in_offer["url"], 
-                     "img_url": in_offer["img_url"], 
+                     "image_url": in_offer["image_url"], 
                      "summary": in_offer["summary"],
                      "address_section": in_offer["address_section"]}
         return out_offer
