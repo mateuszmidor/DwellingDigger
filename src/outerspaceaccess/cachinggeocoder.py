@@ -65,7 +65,7 @@ class CachingGeocoder(object):
         if address in self.__extending_cache:
             return self.__extending_cache[address]
         
-        coords = Geocoder.geocode(address)
-        self.__extending_cache[address] = coords    
+        latlong = Geocoder.geocode(address)
+        self.__extending_cache[address] = latlong    
                 
-        return coords
+        return latlong

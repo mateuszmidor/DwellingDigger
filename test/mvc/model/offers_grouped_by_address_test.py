@@ -17,7 +17,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "url"     :   "www.OFFER1.pl",
               "image_url" :   "www.OFFER1_img.pl",
               "summary" :   "Tanie mieszkanie na wielickiej",
-              "longlatt":   [1, 1]}
+              "latlong":   [1, 1]}
     
     OFFER2 = {"address" :   "Kurdwanow, Krakow, Polska",
               "address_section" :   "osiedle Kurdwanow",
@@ -27,7 +27,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "url"     :   "www.OFFER2.pl",
               "image_url" :   "www.OFFER2_img.pl",
               "summary" :   "Niezbyt tanie mieszkanie, kurdwanow",
-              "longlatt":   [2, 2]}        
+              "latlong":   [2, 2]}        
 
     OFFER3 = {"address" :   "Wielicka, Krakow, Polska",
               "address_section" :   "ul wielicka",
@@ -37,7 +37,7 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "url"     :   "www.OFFER3.pl",
               "image_url" :   "www.OFFER3_img.pl",
               "summary" :   "Absolutnie nietanie mieszkanie, kurdwanow",
-              "longlatt":   [1, 1]}  
+              "latlong":   [1, 1]}  
 
     
 

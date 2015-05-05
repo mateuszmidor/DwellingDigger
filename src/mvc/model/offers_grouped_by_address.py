@@ -42,7 +42,7 @@ class OffersGroupedByAddress(object):
             group["offers"].append(out_offer)
         
         group["address"] = address
-        group["longitude"], group["latitude"] = in_offer["longlatt"]
+        group["latitude"], group["longitude"] = in_offer["latlong"]
         return group
     
     

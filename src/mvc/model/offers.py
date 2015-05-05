@@ -67,8 +67,8 @@ class Offers(object):
         offer["address"] = full_address
         
         # geocode the address and add it to offer details
-        longlatt = geocoder.geocode(full_address)
-        offer["longlatt"] = longlatt
+        latlong = geocoder.geocode(full_address)
+        offer["latlong"] = latlong
         
         # add the offer page url to offer details
         offer["url"] = url 

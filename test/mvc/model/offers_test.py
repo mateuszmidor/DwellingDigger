@@ -86,8 +86,8 @@ class OffersTest(unittest.TestCase):
                               "Wielicka, Krakow, Polska", 
                               "Offer address should be Wielicka, Krakow, Polska: %s" % str(offer))
             
-            self.assertTrue("longlatt" in offer)
-            self.assertEquals(offer["longlatt"], [1.1, 2.2], "longlatt of offer should be [1.1, 2.2]: %s" % str(offer))
+            self.assertTrue("latlong" in offer)
+            self.assertEquals(offer["latlong"], [1.1, 2.2], "latlong of offer should be [1.1, 2.2]: %s" % str(offer))
             
  
 

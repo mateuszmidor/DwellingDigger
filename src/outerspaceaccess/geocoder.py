@@ -23,15 +23,15 @@ class Geocoder(object):
     
     @staticmethod
     def geocode(address):
-        """ Turn address into [longiture, latitude]. Max 5 geocodings/second due to google api limitation """
+        """ Turn address into [latitude, longitude]. Max 5 geocodings/second due to google api limitation """
         
         MAX_ATTEMPTS = 10
         DELAY = 0.2
         
         for i in xrange(MAX_ATTEMPTS):
-            result = Geocoder.__try_geocode(address)
-            if result:
-                return result
+            latlong = Geocoder.__try_geocode(address)
+            if latlong:
+                return latlong
             
             Geocoder.logger.debug("Geocoding '%s' attempt %d failed. Trying again in %f seconds" % (address, i + 1, DELAY))
             time.sleep(DELAY) 
@@ -42,8 +42,8 @@ class Geocoder(object):
     @staticmethod
     def __try_geocode(address):
         try:
-            coords = Geocoder.geocoder.geocode(address)[0].coordinates
-            return coords
+            latlong = Geocoder.geocoder.geocode(address)[0].coordinates
+            return latlong
         except GeocoderError as e:
             Geocoder.logger.debug(str(e))
             return None 
