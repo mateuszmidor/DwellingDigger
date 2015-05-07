@@ -6,6 +6,7 @@ Created on 29 kwi 2015
 from _collections import defaultdict
 import json
 import datetime
+from src.mvc.view.lightwebframework.html_escape import HtmlEscape
 
 class OffersGroupedByAddress(object):
     '''
@@ -50,13 +51,14 @@ class OffersGroupedByAddress(object):
     def __compose_grouped_offer(in_offer):
         ''' Create offer as a dictionary containing selected parameters unique to an offer and not shared by whole group '''
         
-        out_offer = {"title":   in_offer["title"], 
+        esc = HtmlEscape.escape
+        out_offer = {"title":   esc(in_offer["title"]), 
                      "date":    in_offer["date"], 
                      "price":   in_offer["price"], 
                      "url":     in_offer["url"], 
-                     "image_url": in_offer["image_url"], 
-                     "summary": in_offer["summary"],
-                     "address_section": in_offer["address_section"]}
+                     "image_url":       in_offer["image_url"], 
+                     "summary":         esc(in_offer["summary"]),
+                     "address_section": esc(in_offer["address_section"])}
         return out_offer
 
     
@@ -82,12 +84,14 @@ class OffersGroupedByAddress(object):
     
     
     def get_json_string(self):
-        return json.dumps(self.__groups, default=OffersGroupedByAddress.serialize_datetime)
+        json_string = json.dumps(self.__groups, default=OffersGroupedByAddress.serialize_datetime) 
+        return json_string
+
     
     @staticmethod
     def serialize_datetime(obj):
         ''' JSON serializer for datetime objects '''
-
+                
         if isinstance(obj, datetime.datetime):
             serial = obj.strftime("%d-%m-%Y")
             return serial        
