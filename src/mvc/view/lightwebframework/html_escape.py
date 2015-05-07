@@ -12,7 +12,6 @@ class HtmlEscape(object):
 
     @staticmethod
     def escape(text):
-        print "escaping", text
         html_escape_table = {
                                u"&": u"&amp;",
                                u'"': u"&quot;",
