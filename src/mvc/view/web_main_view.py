@@ -41,7 +41,7 @@ class WebMainView(object):
         
     def get_fields(self, offers, params, zoom): 
         points = GoogleMapPoints.from_offers(offers).as_java_script()
-        longitude, lattitude = Geocoder.geocode("%s, Polska" % params.get_city())
+        lattitude, longitude = Geocoder.geocode("%s, Polska" % params.get_city())
         num_rooms = params.get_num_rooms() or u""
         max_price = params.get_max_price() or u""
         whereabouts = params.get_whereabouts() or u""

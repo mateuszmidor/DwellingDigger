@@ -18,10 +18,10 @@ class DesktopMainView(object):
     MAP_ZOOM = 11
        
     def show_offers_and_params(self, offers, params):
-        points = OffersGroupedByAddress.from_offers(offers).get_json_string()
-        longitude, lattitude = Geocoder.geocode("%s, Polska" % params.get_city())
+        groups = OffersGroupedByAddress.from_offers(offers).get_json_string()
+        lattitude, longitude = Geocoder.geocode("%s, Polska" % params.get_city())
         
-        FIELDS = {u"$POINTS$": points,
+        FIELDS = {u"$JSON_OFFER_GROUPS$": groups,
                   u"$MAP_CENTER_LONG$": longitude,
                   u"$MAP_CENTER_LATT$": lattitude,
                   u"$MAP_ZOOM$" : DesktopMainView.MAP_ZOOM}
