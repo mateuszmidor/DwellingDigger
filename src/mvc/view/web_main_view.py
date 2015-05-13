@@ -3,11 +3,11 @@ Created on 04-03-2015
 
 @author: mateusz
 '''
-from src.mvc.view.google_map_points import GoogleMapPoints
 from src.mvc.view.lightwebframework.light_web_framework import LightWebFramework
 from src.ioc.dependency_injector import DependencyInjector, Inject
 from src.outerspaceaccess.geocoder import Geocoder
 from src.mvc.view.lightwebframework.user_agent import UserAgent
+from src.mvc.model.offers_grouped_by_address import OffersGroupedByAddress
 
 
 @DependencyInjector("config")
@@ -40,13 +40,13 @@ class WebMainView(object):
         
         
     def get_fields(self, offers, params, zoom): 
-        points = GoogleMapPoints.from_offers(offers).as_java_script()
+        groups = OffersGroupedByAddress.from_offers(offers).get_json_string()
         lattitude, longitude = Geocoder.geocode("%s, Polska" % params.get_city())
         num_rooms = params.get_num_rooms() or u""
         max_price = params.get_max_price() or u""
         whereabouts = params.get_whereabouts() or u""
                  
-        FIELDS = {u"$POINTS$": points,
+        FIELDS = {u"$JSON_OFFER_GROUPS$": groups,
                   u"$MAP_CENTER_LONG$": longitude,
                   u"$MAP_CENTER_LATT$": lattitude,
                   u"$MAP_ZOOM$" : zoom,
