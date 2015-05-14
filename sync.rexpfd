@@ -6,6 +6,7 @@
         <file path="/DwellingDigger/index.py"/>
         <file path="/DwellingDigger/config/config.ini"/>
         <file path="/DwellingDigger/data/WebView.htm"/>
+        <file path="/DwellingDigger/data/MobileWebView.htm"/>
         <file path="/DwellingDigger/data/krakow_districts.txt"/>
         <file path="/DwellingDigger/data/krakow_streets.txt"/>
         <file path="/DwellingDigger/diagnostics/dummy.txt"/>
