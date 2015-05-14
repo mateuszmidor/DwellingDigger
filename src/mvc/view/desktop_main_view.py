@@ -23,7 +23,7 @@ class DesktopMainView(object):
         
         FIELDS = {u"$JSON_OFFER_GROUPS$": groups,
                   u"$MAP_CENTER_LONG$": longitude,
-                  u"$MAP_CENTER_LATT$": lattitude,
+                  u"$MAP_CENTER_LAT$": lattitude,
                   u"$MAP_ZOOM$" : DesktopMainView.MAP_ZOOM}
                    
         desktop_template = DesktopMainView.config.get("PATHS", "desktopMainView")

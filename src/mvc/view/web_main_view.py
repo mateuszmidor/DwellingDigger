@@ -48,7 +48,7 @@ class WebMainView(object):
                  
         FIELDS = {u"$JSON_OFFER_GROUPS$": groups,
                   u"$MAP_CENTER_LONG$": longitude,
-                  u"$MAP_CENTER_LATT$": lattitude,
+                  u"$MAP_CENTER_LAT$": lattitude,
                   u"$MAP_ZOOM$" : zoom,
                   u"$NUM_ROOMS$" : num_rooms,
                   u"$MAX_PRICE$" : max_price,
