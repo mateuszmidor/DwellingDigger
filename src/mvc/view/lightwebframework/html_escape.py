@@ -13,6 +13,7 @@ class HtmlEscape(object):
     @staticmethod
     def escape(text):
         html_escape_table = {
+                               u"\u00a0"    : u"&nbsp;",
                                u"&": u"&amp;",
                                u'"': u"&quot;",
                                u"'": u"&apos;",

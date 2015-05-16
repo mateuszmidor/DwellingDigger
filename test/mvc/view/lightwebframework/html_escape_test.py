@@ -65,7 +65,14 @@ class HtmlEscapeTest(unittest.TestCase):
         self.assertEqual(result, EXPECTED, 
                          "Escaped string should be '%s' but was '%s'" % (EXPECTED, result))   
         
-                          
+    
+    def test_escape_nbsp(self):
+        STRING = u"line\u00a0line"
+        EXPECTED = u"line&nbsp;line"
+        result = HtmlEscape.escape(STRING)
+        self.assertEqual(result, EXPECTED, 
+                         "Escaped string should be '%s' but was '%s'" % (EXPECTED, result)) 
+                                  
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
