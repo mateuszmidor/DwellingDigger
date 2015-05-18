@@ -111,15 +111,35 @@ class OfferExtractor(object):
     def __extract_num_rooms(self, offer_html):
         START_TAG = 'Liczba pokoi:'
         STOP_TAG = '</strong>' 
-        # split 2 pokoje into [2, pokoje]
-        return self.__strip_from_html_tags(self.__get_string_between(offer_html, START_TAG, STOP_TAG) ).strip().split()[0]
+        
+        # extract entire section from html table
+        num_rooms_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG);
+        
+        # extract number and label, eg. "2 pokoje"
+        number_label = self.__strip_from_html_tags(num_rooms_section).strip()
+        
+        # get the number 
+        num_rooms_str = number_label.split()[0] 
+        
+        # return numeric
+        return int(num_rooms_str)
     
    
     def __extract_area(self, offer_html):
         START_TAG = 'Powierzchnia:'
         STOP_TAG = '</strong>' 
-        # split 51 m into [51, m]
-        return self.__strip_from_html_tags(self.__get_string_between(offer_html, START_TAG, STOP_TAG) ).strip().split()[0]
+        
+        # extract entire section from html table
+        area_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+        
+        # extract area and unit, eg. "55 m"
+        area_label = self.__strip_from_html_tags(area_section).strip()
+        
+        # get the number
+        area_str = area_label.split()[0]
+        
+        # return numeric
+        return int(area_str)
         
     
     def __strip_from_html_tags(self, text):

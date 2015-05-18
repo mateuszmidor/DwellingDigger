@@ -69,14 +69,14 @@ LOKALIZACJA: Budynek położony jest przy ulicy Chmieleniec, w zacisznej częśc
 
 
     def test_extract_numrooms(self):
-        ACTUAL_NUMROOMS = u"2"
+        ACTUAL_NUMROOMS = 2
         num_rooms = OfferExtractor.extract(OFFER_HTML)["num_rooms"]
         self.assertEquals(ACTUAL_NUMROOMS, num_rooms,
                           "Number of rooms should be %s but the extracted value is %s" % (ACTUAL_NUMROOMS, num_rooms))
             
             
     def test_extract_area(self):
-        ACTUAL_AREA = u"51"
+        ACTUAL_AREA = 51
         area = OfferExtractor.extract(OFFER_HTML)["area"]
         self.assertEquals(ACTUAL_AREA, area,
                           "The flat area should be %s m2  but the extracted value is %s m2" % (ACTUAL_AREA, area))
