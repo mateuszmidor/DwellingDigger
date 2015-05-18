@@ -24,15 +24,19 @@ class OfferExtractor(object):
         description = oe.__extract_description(html)
         summary = oe.__extract_summary(html)
         image_url = oe.__extract_image_url(html)
-        
-        offer = {"title" : title,
-                 "date" : date,
-                 "price" : price,
+        num_rooms = oe.__extract_num_rooms(html)
+        area = oe.__extract_area(html)
+        offer = {"title"    : title,
+                 "date"     : date,
+                 "price"    : price,
                  "address_section" : address_section,
-                 "description" : description,
-                 "summary" : summary,
-                 "image_url" : image_url}
+                 "description"  : description,
+                 "summary"      : summary,
+                 "image_url"    : image_url,
+                 "num_rooms"    : num_rooms,
+                 "area" :   area }
         return offer    
+
 
     def __extract_price(self, offer_html):
         START_TAG = 'property="og:description" content="'
@@ -40,6 +44,7 @@ class OfferExtractor(object):
         price_and_summary = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
         price = price_and_summary[:price_and_summary.index(":")] # extract the price, eg. "1 400zł: " beginning 
         return price
+    
     
     def __extract_date(self, offer_html):
         MONTHS = {u"stycznia"   : 1,
@@ -68,10 +73,12 @@ class OfferExtractor(object):
         day = day_dot[0:-1]
         return datetime(int(year), MONTHS[month_str], int(day))
     
+    
     def __extract_title(self, offer_html):
         START_TAG = '<meta property="og:title" content="'
         STOP_TAG = '"/>'
         return self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+    
     
     def __extract_address(self, offer_html):
         START_TAG = u'<strong class="c2b small">'
@@ -79,11 +86,13 @@ class OfferExtractor(object):
         address = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
         return self.__strip_from_html_tags(address).strip()
     
+    
     def __extract_description(self, offer_html):
         START_TAG = '<p class="pding10 lheight20 large">'
         STOP_TAG = '</p>'
         desciption = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
         return self.__strip_from_html_tags(desciption)
+
 
     def __extract_summary(self, offer_html):
         START_TAG = 'property="og:description" content="'
@@ -92,13 +101,53 @@ class OfferExtractor(object):
         summary = price_and_summary[price_and_summary.index(":") + 2:] # cut out the price, eg. "1 400zł: " beginning 
         return self.__strip_from_html_tags(summary)
 
+
     def __extract_image_url(self, offer_html):
         START_TAG = '<meta property="og:image" content="'
         STOP_TAG = '"/>'
         return self.__get_string_between(offer_html, START_TAG, STOP_TAG)   
 
+
+    def __extract_num_rooms(self, offer_html):
+        START_TAG = 'Liczba pokoi:'
+        STOP_TAG = '</strong>' 
+        
+        # extract entire section from html table
+        num_rooms_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG);
+        
+        # extract number and label, eg. "2 pokoje"
+        number_label = self.__strip_from_html_tags(num_rooms_section).strip()
+        
+        # get the number 
+        num_rooms_str = number_label.split()[0] 
+        
+        if u"Kawalerka" in num_rooms_str:
+            return 1
+        
+        # return numeric
+        return int(num_rooms_str)
+    
+   
+    def __extract_area(self, offer_html):
+        START_TAG = 'Powierzchnia:'
+        STOP_TAG = '</strong>' 
+        
+        # extract entire section from html table
+        area_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+        
+        # extract area and unit, eg. "55 m"
+        area_label = self.__strip_from_html_tags(area_section).strip()
+        
+        # get the number
+        area_str = area_label.split()[0]
+        
+        # return numeric
+        return int(area_str)
+        
+    
     def __strip_from_html_tags(self, text):
         return re.sub('<[^<]+>', '', text)
+    
     
     def __get_string_between(self, source, start, stop):
         i_start = source.find(start) + len(start)

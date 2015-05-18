@@ -15,9 +15,11 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "date"    :   datetime(2000, 1, 1),
               "price"   :   "1000 ZL",
               "url"     :   "www.OFFER1.pl",
-              "image_url" :   "www.OFFER1_img.pl",
+              "image_url"   :   "www.OFFER1_img.pl",
               "summary" :   "Tanie mieszkanie na wielickiej",
-              "latlong":   [1, 1]}
+              "latlong" :   [1, 1],
+              "area"    :   30,
+              "num_rooms"   : 2}
     
     OFFER2 = {"address" :   "Kurdwanow, Krakow, Polska",
               "address_section" :   "osiedle Kurdwanow",
@@ -27,7 +29,9 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "url"     :   "www.OFFER2.pl",
               "image_url" :   "www.OFFER2_img.pl",
               "summary" :   "Niezbyt tanie mieszkanie, kurdwanow",
-              "latlong":   [2, 2]}        
+              "latlong" :   [2, 2],
+              "area"    :   50,
+              "num_rooms"   : 3}        
 
     OFFER3 = {"address" :   "Wielicka, Krakow, Polska",
               "address_section" :   "ul wielicka",
@@ -37,7 +41,9 @@ class OffersGroupedByAddressTest(unittest.TestCase):
               "url"     :   "www.OFFER3.pl",
               "image_url" :   "www.OFFER3_img.pl",
               "summary" :   "Absolutnie nietanie mieszkanie, kurdwanow",
-              "latlong":   [1, 1]}  
+              "latlong":   [1, 1],
+              "area"    : 70,
+              "num_rooms"   : 4}  
 
     
 
@@ -123,7 +129,13 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         self.assertEqual("Tanie mieszkanie na wielickiej", offer1["summary"], 
                          "summary should be 'Tanie mieszkanie na wielickiej' for 'www.OFFER1.pl' offer") 
            
-           
+        # check num rooms
+        self.assertEqual(2, offer1["num_rooms"], 
+                         "num_rooms should be 2 for 'www.OFFER1.pl' offer")    
+                   
+        # check square meters
+        self.assertEqual(30, offer1["area"], 
+                         "area should be 30 for 'www.OFFER1.pl' offer")                    
         ################################################## 
         #                                                                 
         # investigate OFFER3 within the group
@@ -157,7 +169,13 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         self.assertEqual("Absolutnie nietanie mieszkanie, kurdwanow", offer3["summary"], 
                          "summary should be 'Absolutnie nietanie mieszkanie, kurdwanow' for 'www.OFFER3.pl' offer")                             
                       
-                      
+        # check num rooms
+        self.assertEqual(4, offer3["num_rooms"], 
+                         "num_rooms should be 4 for 'www.OFFER3.pl' offer")    
+                   
+        # check square meters
+        self.assertEqual(70, offer3["area"], 
+                         "area should be 70 for 'www.OFFER3.pl' offer")                        
            
         ################################################## 
         #                                                                 
@@ -216,7 +234,15 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         self.assertEqual("Niezbyt tanie mieszkanie, kurdwanow", offer2["summary"], 
                          "summary should be 'Niezbyt tanie mieszkanie, kurdwanow' for 'www.OFFER2.pl' offer")  
                        
-                       
+        # check num rooms
+        self.assertEqual(3, offer2["num_rooms"], 
+                         "num_rooms should be 3 for 'www.OFFER2.pl' offer")    
+                   
+        # check square meters
+        self.assertEqual(50, offer2["area"], 
+                         "area should be 50 for 'www.OFFER2.pl' offer")   
+        
+                               
     def test_get_json_string(self):
         ''' 
         Only roughly check that returned string contains expected offers; 
