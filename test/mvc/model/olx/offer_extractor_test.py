@@ -16,20 +16,24 @@ class OfferExtractorTest(unittest.TestCase):
         price = OfferExtractor.extract(OFFER_HTML)["price"]
         self.assertEquals(ACTUAL_PRICE, price)
 
+
     def test_extract_date(self):
         ACTUAL_DATE = datetime(2015, 1, 14) #u"14 Stycznia 2015"
         date = OfferExtractor.extract(OFFER_HTML)["date"]
         self.assertEquals(ACTUAL_DATE, date)
+        
         
     def test_extract_title(self):
         ACTUAL_TITLE = u"OKAZJA!!! 2 pokojowe mieszkanie 51m2. Chmieleniec, Ruczaj, Ericpol"
         title = OfferExtractor.extract(OFFER_HTML)["title"]
         self.assertEquals(ACTUAL_TITLE, title)
         
+        
     def test_extract_address(self):
         ACTUAL_ADDRESS = u"Kraków, Podgórze"
         address = OfferExtractor.extract(OFFER_HTML)["address_section"]
         self.assertEquals(ACTUAL_ADDRESS, address)
+        
         
     def test_extract_description(self):
         ACTUAL_DESCRIPTION = u"""Do wynajęcia od zaraz 2-pokojowe w pełni wyposażone mieszkanie o powierzchni 51 m2.
@@ -49,6 +53,7 @@ WIRTUALNA WIZYTA:"""
         description = OfferExtractor.extract(OFFER_HTML)["description"]
         self.assertEquals(ACTUAL_DESCRIPTION, description)
         
+        
     def test_extract_summary(self):
         ACTUAL_SUMMARY = u"""Do wynajęcia od zaraz 2-pokojowe w pełni wyposażone mieszkanie o powierzchni 51 m2.
 
@@ -56,12 +61,27 @@ LOKALIZACJA: Budynek położony jest przy ulicy Chmieleniec, w zacisznej częśc
         summary = OfferExtractor.extract(OFFER_HTML)["summary"]
         self.assertEquals(ACTUAL_SUMMARY, summary)
 
+
     def test_extract_image_url(self):
         ACTUAL_URL = u"http://img20.olx.pl/images_tablicapl/214959355_1_644x461_okazja-2-pokojowe-mieszkanie-51m2-chmieleniec-ruczaj-ericpol-krakow.jpg"
         url = OfferExtractor.extract(OFFER_HTML)["image_url"]
         self.assertEquals(ACTUAL_URL, url)
 
 
+    def test_extract_numrooms(self):
+        ACTUAL_NUMROOMS = u"2"
+        num_rooms = OfferExtractor.extract(OFFER_HTML)["num_rooms"]
+        self.assertEquals(ACTUAL_NUMROOMS, num_rooms,
+                          "Number of rooms should be %s but the extracted value is %s" % (ACTUAL_NUMROOMS, num_rooms))
+            
+            
+    def test_extract_area(self):
+        ACTUAL_AREA = u"51"
+        area = OfferExtractor.extract(OFFER_HTML)["area"]
+        self.assertEquals(ACTUAL_AREA, area,
+                          "The flat area should be %s m2  but the extracted value is %s m2" % (ACTUAL_AREA, area))
+                    
+                    
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
