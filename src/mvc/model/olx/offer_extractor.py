@@ -121,6 +121,9 @@ class OfferExtractor(object):
         # get the number 
         num_rooms_str = number_label.split()[0] 
         
+        if u"Kawalerka" in num_rooms_str:
+            return 1
+        
         # return numeric
         return int(num_rooms_str)
     

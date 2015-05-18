@@ -87,16 +87,22 @@ class OfferExtractor(object):
 
 
     def __extract_numrooms(self, offer_html):
-        START_TAG = u'Liczba pokoi\n</td>\n<td >'
+        START_TAG = u'Liczba pokoi'
         STOP_TAG = u'pok' # pokój/pokoje
-        num_rooms_str = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+        num_rooms_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+        num_rooms_label = self.__strip_from_html_tags(num_rooms_section).strip()
+        num_rooms_str = num_rooms_label.split()[0]
+        if u"Kawalerka" in num_rooms_str:
+            return 1
         return int(num_rooms_str)
     
   
     def __extract_area(self, offer_html):
-        START_TAG = u'Wielkość (m2)\n</td>\n<td >'
-        STOP_TAG = u'</td>'
-        area_str = self.__get_string_between(offer_html, START_TAG, STOP_TAG)  
+        START_TAG = u'Wielkość (m2)'
+        STOP_TAG = u'</tr>'
+        area_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG) 
+        area_label = self.__strip_from_html_tags(area_section).strip()
+        area_str = area_label.split()[0]
         return int(area_str)   
 
     
