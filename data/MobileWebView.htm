@@ -47,7 +47,7 @@
                 var offer = offers[i];
                 var numRooms = offer.num_rooms == 1 ? "1 pokój" : "" + offer.num_rooms + " pokoje";
                 html += "<br />";
-                html += "<b>" + offer.price + "</b>" + ", " + offer.date + ", " + numRooms + ", " + offer.area + "m2 " + '<a href="' + offer.url + '" target="_blank">Link</a><br/>';
+                html += "<b>" + offer.price + "</b>, " + numRooms + ", " + offer.area + "m2 " + "<br />" + offer.date + ", " + '<a href="' + offer.url + '" target="_blank">Link</a><br/>';
             }
             return html;
         }    
