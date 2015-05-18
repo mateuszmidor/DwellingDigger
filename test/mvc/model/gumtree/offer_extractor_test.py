@@ -46,6 +46,13 @@ class OfferExtractorTest(unittest.TestCase):
         url = OfferExtractor.extract(OFFER_HTML)["image_url"]
         self.assertEquals(ACTUAL_URL, url)
 
+    def test_extract_numrooms(self):
+        ACTUAL_NUMROOMS = u"2"
+        num_rooms = OfferExtractor.extract(OFFER_HTML)["num_rooms"]
+        self.assertEquals(ACTUAL_NUMROOMS, num_rooms, 
+                          "There should be %s rooms in the offer but extracted count is %s" % (ACTUAL_NUMROOMS, num_rooms))
+        
+        
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
