@@ -25,15 +25,17 @@ class OfferExtractor(object):
         summary = oe.__extract_summary(html)
         image_url = oe.__extract_image_url(html)
         num_rooms = oe.__extract_numrooms(html)
+        area = oe.__extract_area(html)
         
-        offer = {"title" : title,
-                 "date" : date,
-                 "price" : price,
+        offer = {"title"    : title,
+                 "date"     : date,
+                 "price"    : price,
                  "address_section" : address_section,
-                 "description" : description,
-                 "summary" : summary,
-                 "image_url" : image_url,
-                 "num_rooms" : num_rooms}
+                 "description"  : description,
+                 "summary"      : summary,
+                 "image_url"    : image_url,
+                 "num_rooms"    : num_rooms,
+                 "area"     : area}
         return offer    
 
 
@@ -89,6 +91,12 @@ class OfferExtractor(object):
         STOP_TAG = u'pok' # pokój/pokoje
         return self.__get_string_between(offer_html, START_TAG, STOP_TAG)
     
+  
+    def __extract_area(self, offer_html):
+        START_TAG = u'Wielkość (m2)\n</td>\n<td >'
+        STOP_TAG = u'</td>' 
+        return self.__get_string_between(offer_html, START_TAG, STOP_TAG)    
+
     
     def __strip_from_html_tags(self, text):
         return re.sub('<[^<]+>', '', text)

@@ -52,7 +52,12 @@ class OfferExtractorTest(unittest.TestCase):
         self.assertEquals(ACTUAL_NUMROOMS, num_rooms, 
                           "There should be %s rooms in the offer but extracted count is %s" % (ACTUAL_NUMROOMS, num_rooms))
         
-        
+    def test_extract_area(self):
+        ACTUAL_AREA = u"36"
+        area = OfferExtractor.extract(OFFER_HTML)["area"]
+        self.assertEquals(ACTUAL_AREA, area, 
+                          "Room area should be %s but extracted area is %s" % (ACTUAL_AREA, area))
+                
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
