@@ -44,9 +44,10 @@
             var offers = offerGroup.offers;
             var html = "<b>" + offerGroup.address + "</b> <br/>";
             for (var i in offers) {
-                var offer = offers[i];
+                var offer = offers[i];`
+                var numRooms = offer.num_rooms == 1 ? "1 pokój" : "" + offer.num_rooms + " pokoje";
                 html += "<br />";
-                html += "<b>" + offer.price + "</b>" + ", " + offer.date + "<br/>";
+                html += "<b>" + offer.price + "</b>, " + numRooms + ", " + offer.area + "m2, " + offer.date + "<br/>";
                 html += offer.title + "<br/>";
                 html += offer.address_section + "<br/>";
                 html += offer.summary + "<br/>";
