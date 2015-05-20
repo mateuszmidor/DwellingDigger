@@ -14,6 +14,7 @@ from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
 from src.multitasking.teamwork import TeamWork
 from src.ioc.dependency_injector import DependencyInjector, Inject
 from src.outerspaceaccess.cachinggeocoder import CachingGeocoder
+from src.mvc.model.offer_processing_exception import OfferProcessingException
 
 
 @DependencyInjector("config")
@@ -44,36 +45,40 @@ class Offers(object):
         and returns offer details along with url, address and geolocation.
         """
         
-        # unpack the work data
-        url, offer_extrator, address_extractor, geocoder = work_data
-        
-        # fetch the offer web page
-        offer_page = WebDocumentFetcher.fetch(url)
-        
-        # parse the page and extract offer details
-        offer = offer_extrator.extract(offer_page)
-        
-        # find address in the offer
-        street_or_district = address_extractor.extract([offer["address_section"], 
-                                                        offer["title"], 
-                                                        offer["summary"]]) 
+        try:
+            # unpack the work data
+            url, offer_extrator, address_extractor, geocoder = work_data
+            
+            # fetch the offer web page
+            offer_page = WebDocumentFetcher.fetch(url)
+            
+            # parse the page and extract offer details
+            offer = offer_extrator.extract(offer_page)
+            
+            # find address in the offer
+            street_or_district = address_extractor.extract([offer["address_section"], 
+                                                            offer["title"], 
+                                                            offer["summary"]]) 
+             
+            # form nice full address string containing street, city and country
+            full_address = Offers.__format_full_address(street_or_district, 
+                                                        address_extractor.city, 
+                                                        address_extractor.country)
+            
+            # add the nice address to offer details
+            offer["address"] = full_address
+            
+            # geocode the address and add it to offer details
+            latlong = geocoder.geocode(full_address)
+            offer["latlong"] = latlong
+            
+            # add the offer page url to offer details
+            offer["url"] = url 
          
-        # form nice full address string containing street, city and country
-        full_address = Offers.__format_full_address(street_or_district, 
-                                                    address_extractor.city, 
-                                                    address_extractor.country)
+            return offer
         
-        # add the nice address to offer details
-        offer["address"] = full_address
-        
-        # geocode the address and add it to offer details
-        latlong = geocoder.geocode(full_address)
-        offer["latlong"] = latlong
-        
-        # add the offer page url to offer details
-        offer["url"] = url 
-        
-        return offer
+        except Exception as e:
+            raise OfferProcessingException(url, e)
             
             
     @staticmethod
