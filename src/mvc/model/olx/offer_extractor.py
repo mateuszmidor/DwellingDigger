@@ -15,39 +15,50 @@ class OfferExtractor(object):
     
     @staticmethod
     def extract(html):
-        oe = OfferExtractor()  
+        """
+        Takes offer page html source and returns offer details as a dictionary
+        @param html:    offer page source html
+        """
         
-        title = oe.__extract_title(html)
-        date = oe.__extract_date(html)
-        price = oe.__extract_price(html)
-        address_section = oe.__extract_address(html)
-        description = oe.__extract_description(html)
-        summary = oe.__extract_summary(html)
-        image_url = oe.__extract_image_url(html)
-        num_rooms = oe.__extract_num_rooms(html)
-        area = oe.__extract_area(html)
-        offer = {"title"    : title,
-                 "date"     : date,
-                 "price"    : price,
-                 "address_section" : address_section,
-                 "description"  : description,
-                 "summary"      : summary,
-                 "image_url"    : image_url,
-                 "num_rooms"    : num_rooms,
-                 "area" :   area }
+        # alias for short
+        ofe = OfferExtractor
+        
+        title           = ofe.extract_title(html)
+        date            = ofe.extract_date(html)
+        price           = ofe.extract_price(html)
+        address_section = ofe.extract_address(html)
+        description     = ofe.extract_description(html)
+        summary         = ofe.extract_summary(html)
+        image_url       = ofe.extract_image_url(html)
+        num_rooms       = ofe.extract_num_rooms(html)
+        area            = ofe.extract_area(html)
+        
+        offer = {"title"            : title,
+                 "date"             : date,
+                 "price"            : price,
+                 "address_section"  : address_section,
+                 "description"      : description,
+                 "summary"          : summary,
+                 "image_url"        : image_url,
+                 "num_rooms"        : num_rooms,
+                 "area"             : area }
+        
         return offer    
 
 
-    def __extract_price(self, offer_html):
-        START_TAG = 'property="og:description" content="'
-        STOP_TAG = '"/>'
-        price_and_summary = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
-        price = price_and_summary[:price_and_summary.index(":")] # extract the price, eg. "1 400zł: " beginning 
+    @staticmethod
+    def extract_price(offer_html):
+        start_tag = 'property="og:description" content="'
+        stop_tag = '"/>'
+        price_and_summary = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+        
+        # extract the price, eg. "1 400zł: " beginning
+        price = price_and_summary[:price_and_summary.index(":")]  
         return price
     
-    
-    def __extract_date(self, offer_html):
-        MONTHS = {u"stycznia"   : 1,
+    @staticmethod
+    def extract_date(offer_html):
+        months = {u"stycznia"   : 1,
                   u"lutego"     : 2,
                   u"marca"      : 3,
                   u"kwietnia"   : 4,
@@ -60,63 +71,71 @@ class OfferExtractor(object):
                   u"listopada"  : 11,
                   u"grudnia"    : 12}
         
-        REGEX_PATTERN = r"Dodane\s+o \d\d:\d\d, ([^,]+)"
-        f = re.search(REGEX_PATTERN, offer_html)
+        regex_pattern = r"Dodane\s+o \d\d:\d\d, ([^,]+)"
+        found = re.search(regex_pattern, offer_html)
         
         # If no date found - return invalid but not harmful year 1900 :)
-        if not f:
+        if not found:
             return datetime(1900, 1, 1)
    
-        date_str = f.group(1).lower()
+        date_str = found.group(1).lower()
         day_dot, month_str, year = date_str.split(" ")
         # remove trailing dot like in 8.
         day = day_dot[0:-1]
-        return datetime(int(year), MONTHS[month_str], int(day))
+        return datetime(int(year), months[month_str], int(day))
     
     
-    def __extract_title(self, offer_html):
-        START_TAG = '<meta property="og:title" content="'
-        STOP_TAG = '"/>'
-        return self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+    @staticmethod
+    def extract_title(offer_html):
+        start_tag = '<meta property="og:title" content="'
+        stop_tag = '"/>'
+        return OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
     
     
-    def __extract_address(self, offer_html):
-        START_TAG = u'<strong class="c2b small">'
-        STOP_TAG = u'</strong>'
-        address = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
-        return self.__strip_from_html_tags(address).strip()
+    @staticmethod
+    def extract_address(offer_html):
+        start_tag = u'<strong class="c2b small">'
+        stop_tag = u'</strong>'
+        address = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+        return OfferExtractor.strip_from_html_tags(address).strip()
     
     
-    def __extract_description(self, offer_html):
-        START_TAG = '<p class="pding10 lheight20 large">'
-        STOP_TAG = '</p>'
-        desciption = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
-        return self.__strip_from_html_tags(desciption)
+    @staticmethod
+    def extract_description(offer_html):
+        start_tag = '<p class="pding10 lheight20 large">'
+        stop_tag = '</p>'
+        desciption = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+        return OfferExtractor.strip_from_html_tags(desciption)
 
 
-    def __extract_summary(self, offer_html):
-        START_TAG = 'property="og:description" content="'
-        STOP_TAG = '"/>'
-        price_and_summary = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
-        summary = price_and_summary[price_and_summary.index(":") + 2:] # cut out the price, eg. "1 400zł: " beginning 
-        return self.__strip_from_html_tags(summary)
+    @staticmethod
+    def extract_summary(offer_html):
+        start_tag = 'property="og:description" content="'
+        stop_tag = '"/>'
+        price_and_summary = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+        
+        # cut out the price, eg. "1 400zł: " beginning
+        summary = price_and_summary[price_and_summary.index(":") + 2:] 
+        return OfferExtractor.strip_from_html_tags(summary)
 
 
-    def __extract_image_url(self, offer_html):
-        START_TAG = '<meta property="og:image" content="'
-        STOP_TAG = '"/>'
-        return self.__get_string_between(offer_html, START_TAG, STOP_TAG)   
+    @staticmethod
+    def extract_image_url(offer_html):
+        start_tag = '<meta property="og:image" content="'
+        stop_tag = '"/>'
+        return OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)   
 
 
-    def __extract_num_rooms(self, offer_html):
-        START_TAG = 'Liczba pokoi:'
-        STOP_TAG = '</strong>' 
+    @staticmethod
+    def extract_num_rooms(offer_html):
+        start_tag = 'Liczba pokoi:'
+        stop_tag = '</strong>' 
         
         # extract entire section from html table
-        num_rooms_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG);
+        num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
         
         # extract number and label, eg. "2 pokoje"
-        number_label = self.__strip_from_html_tags(num_rooms_section).strip()
+        number_label = OfferExtractor.strip_from_html_tags(num_rooms_section).strip()
         
         # get the number 
         num_rooms_str = number_label.split()[0] 
@@ -128,15 +147,16 @@ class OfferExtractor(object):
         return int(num_rooms_str)
     
    
-    def __extract_area(self, offer_html):
-        START_TAG = 'Powierzchnia:'
-        STOP_TAG = '</strong>' 
+    @staticmethod
+    def extract_area(offer_html):
+        start_tag = 'Powierzchnia:'
+        stop_tag = '</strong>' 
         
         # extract entire section from html table
-        area_section = self.__get_string_between(offer_html, START_TAG, STOP_TAG)
+        area_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
         
         # extract area and unit, eg. "55 m"
-        area_label = self.__strip_from_html_tags(area_section).strip()
+        area_label = OfferExtractor.strip_from_html_tags(area_section).strip()
         
         # get the number
         area_str = area_label.split()[0]
@@ -145,11 +165,13 @@ class OfferExtractor(object):
         return int(area_str)
         
     
-    def __strip_from_html_tags(self, text):
+    @staticmethod
+    def strip_from_html_tags(text):
         return re.sub('<[^<]+>', '', text)
     
     
-    def __get_string_between(self, source, start, stop):
+    @staticmethod
+    def get_string_between(source, start, stop):
         i_start = source.find(start) + len(start)
         i_stop = source.find(stop, i_start)
         return source[i_start:i_stop].strip()
