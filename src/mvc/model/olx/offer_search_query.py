@@ -15,13 +15,27 @@ class OfferSearchQuery(object):
     Can be turned into url and used to query OLX for offers matching the criteria.
     """
     
-    "OLX offer query url example:"
-    'http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-kurdwan%C3%B3w/?search%5Bfilter_float_price%3Afrom%5D=800&search%5Bfilter_float_price%3Ato%5D=1600&search%5Bfilter_enum_rooms%5D%5B0%5D=two&search%5Bfilter_float_m%3Afrom%5D=40&search%5Bfilter_float_m%3Ato%5D=70'
+ 
+#     OLX offer query url example:
+#     http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-kurdwan%C3%B3w/?
+#     search%5Bfilter_float_price%3Afrom%5D=800&
+#     search%5Bfilter_float_price%3Ato%5D=1600&
+#     search%5Bfilter_enum_rooms%5D%5B0%5D=two&
+#     search%5Bfilter_float_m%3Afrom%5D=40&
+#     search%5Bfilter_float_m%3Ato%5D=70
+  
     __OLX_QUERY_BASE_URL = u'http://olx.pl/nieruchomosci/mieszkania/wynajem'
 
 
     @classmethod
-    def from_key_values(cls, city=u"", whereabouts=u"", num_rooms=u"", min_price=u"", max_price=u"", min_area=u"", max_area=u""):
+    def from_key_values(cls, 
+                        city=u"", 
+                        whereabouts=u"", 
+                        num_rooms=u"", 
+                        min_price=u"",
+                        max_price=u"", 
+                        min_area=u"",
+                        max_area=u""):
         """ Use this method to build OfferSearchQuery from key-value pairs """
         return cls(city, whereabouts, num_rooms, min_price, max_price, min_area, max_area)
     
@@ -30,9 +44,9 @@ class OfferSearchQuery(object):
     def from_offer_params(cls, params):
         """ Use this method to build OfferSearchQuery from OfferParams """
         
-        def unicode_or_empty(v):
+        def unicode_or_empty(string):
             """ Convert object to unicode string or empty string if None """
-            return unicode(v) if v else u""
+            return unicode(string) if string else u""
         
         city = unicode_or_empty(params.get_city())
         whereabouts = unicode_or_empty(params.get_whereabouts())
@@ -52,11 +66,17 @@ class OfferSearchQuery(object):
         
         # Make sure city and whereabouts dont contain national characters as OLX doesnt support them
         self.__city = self.__asciinate(city)
-        self.__whereabouts = self.__asciinate(whereabouts) # eg. "Kazimierz"
+        
+        # wherebouts is eg. "Kazimierz"
+        self.__whereabouts = self.__asciinate(whereabouts) 
         self.__num_rooms = num_rooms
+        
+        # price is string 
         self.__min_price = min_price
         self.__max_price = max_price
-        self.__min_area = min_area # square meters
+        
+        # area unit is square meters
+        self.__min_area = min_area
         self.__max_area = max_area
         
     
@@ -73,29 +93,35 @@ class OfferSearchQuery(object):
         return self.as_url_string()
     
     
-    def __add_city(self, url, city):
+    @staticmethod
+    def __add_city(url, city):
         """
         Adds CITY section to base url:
         http://olx.pl/nieruchomosci/mieszkania/wynajem/CITY
         """
         
-        return url + u"/" + urllib.quote(city) # escape special characters like spaces etc.
+        # escape special characters in city name, like spaces etc.
+        return url + u"/" + urllib.quote(city) 
     
     
-    def __add_whereabouts(self, url, whereabouts):
+    @staticmethod
+    def __add_whereabouts(url, whereabouts):
         """
         Adds optional WHEREABOUTS section to url:
         http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-WHEREABOUTS/
         """
         
+        # whereabouts is not a must
         if whereabouts == u"": 
-            return url # __whereabouts is not a must
+            return url 
         
-        whereabouts = urllib.quote(whereabouts)  # escape special characters like spaces etc
+        # escape special characters in wherebouts, like spaces etc
+        whereabouts = urllib.quote(whereabouts)  
         return url + u"/q-" + whereabouts 
         
         
-    def __add_arg(self, args, template, new_arg):
+    @staticmethod
+    def __add_arg(args, template, new_arg):
         """ Method for building http request argument list """
         
         # Nothing to add
@@ -111,34 +137,34 @@ class OfferSearchQuery(object):
     
     
     def __add_num_rooms(self, args, num_rooms):
-        TEMPLATE = u"search%5Bfilter_enum_rooms%5D%5B0%5D={0}"
-        ROOM_NUMBERS = {u""  : u"",
+        template = u"search%5Bfilter_enum_rooms%5D%5B0%5D={0}"
+        room_numbers = {u""  : u"",
                         u"1" : u"one",
                         u"2" : u"two",
                         u"3" : u"three",
                         u"4" : u"four"}
-        num_rooms_str = ROOM_NUMBERS[num_rooms]
-        return self.__add_arg(args, TEMPLATE, num_rooms_str)
+        num_rooms_str = room_numbers[num_rooms]
+        return self.__add_arg(args, template, num_rooms_str)
     
     
     def __add_min_price(self, args, min_price):
-        TEMPLATE = u"search%5Bfilter_float_price%3Afrom%5D={0}"
-        return self.__add_arg(args, TEMPLATE, min_price)
+        template = u"search%5Bfilter_float_price%3Afrom%5D={0}"
+        return self.__add_arg(args, template, min_price)
     
     
     def __add_max_price(self, args, max_price):
-        TEMPLATE = u"search%5Bfilter_float_price%3Ato%5D={0}"
-        return self.__add_arg(args, TEMPLATE, max_price)
+        template = u"search%5Bfilter_float_price%3Ato%5D={0}"
+        return self.__add_arg(args, template, max_price)
     
     
     def __add_min_area(self, args, min_area):
-        TEMPLATE = u"search%5Bfilter_float_m%3Afrom%5D={0}"
-        return self.__add_arg(args, TEMPLATE, min_area)    
+        template = u"search%5Bfilter_float_m%3Afrom%5D={0}"
+        return self.__add_arg(args, template, min_area)    
     
     
     def __add_max_area(self, args, max_area):
-        TEMPLATE = u"search%5Bfilter_float_m%3Ato%5D={0}"
-        return self.__add_arg(args, TEMPLATE, max_area)    
+        template = u"search%5Bfilter_float_m%3Ato%5D={0}"
+        return self.__add_arg(args, template, max_area)    
     
     
     def as_url_string(self):

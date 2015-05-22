@@ -20,20 +20,36 @@ class OfferSearcher(object):
         # url generator
         while True:
             try:
-                yield urls.__next_url()
+                yield urls.next_url()
             except StopIteration:
                 return
   
+  
     def __init__(self, search_query, max_url_count, web_document_fetcher):
-        self.search_query = search_query # olx search_query 
-        self.max_url_count = max_url_count # max number of urls to return
-        self.web_document_fetcher = web_document_fetcher # used to fetch html page from url address
-        self.curr_url_number = 0 # current url no
-        self.urls = [] # url list to return
-        self.curr_page = 1 # current search result page no, we start from page 1
-        self.has_next_page = True # is there a next search result page? Start True; there is at least empty page
+        
+        # olx search_query 
+        self.search_query = search_query 
+        
+        # max number of urls to return
+        self.max_url_count = max_url_count 
+        
+        # used to fetch html page from url address
+        self.web_document_fetcher = web_document_fetcher 
+        
+        # current url no
+        self.curr_url_number = 0 
+        
+        # url list to return
+        self.urls = [] 
+        
+        # current search result page no, we start from page 1
+        self.curr_page = 1 
+        
+        # is there a next search result page? Start True; there is at least empty page
+        self.has_next_page = True 
 
-    def __next_url(self):
+
+    def next_url(self):
         # max_url_count hit - stop iteration
         if self.curr_url_number == self.max_url_count:
             raise StopIteration()
@@ -52,6 +68,7 @@ class OfferSearcher(object):
         # and return url
         return self.urls.pop()
     
+    
     def __fetch_urls(self):
         # if no more pages to fetch urls from - stop iteration
         if not self.has_next_page:
@@ -62,34 +79,40 @@ class OfferSearcher(object):
         
         # fetch html with offers listed
         html = self.web_document_fetcher.fetch(search_result_page_url)
-        self.has_next_page = self.__get_has_next_page(html)
+        self.has_next_page = OfferSearcher.get_has_next_page(html)
         self.curr_page += 1
         
-        return self.__extract_offer_urls(html)
+        return OfferSearcher.extract_offer_urls(html)
     
-    def __get_has_next_page(self, html):
-        NEXT_PAGE_TAG = u'<span>następna &raquo;</span>'
-        return NEXT_PAGE_TAG in html
     
-    def __extract_url_from_href(self, html):
+    @staticmethod
+    def get_has_next_page(html):
+        next_page_tag = u'<span>następna &raquo;</span>'
+        return next_page_tag in html
+    
+    
+    @staticmethod
+    def extract_url_from_href(html):
         pattern = u'a href="([^"]*)'
         return re.search(pattern, html).group(1)
     
-    def __extract_offer_urls(self, html):
-        START_TAG = '<h3 class="large lheight20 margintop10">'
-        STOP_TAG = ' class="marginright5 link linkWithHash detailsLink">'
+    
+    @staticmethod
+    def extract_offer_urls(html):
+        start_tag = '<h3 class="large lheight20 margintop10">'
+        stop_tag = ' class="marginright5 link linkWithHash detailsLink">'
         urls = []
         
-        i_start = html.find(START_TAG)
+        i_start = html.find(start_tag)
         while i_start != -1:
-            i_stop = html.find(STOP_TAG, i_start)
+            i_stop = html.find(stop_tag, i_start)
     
             # a href=http://...
-            href = html[i_start + len(START_TAG):i_stop]
+            href = html[i_start + len(start_tag):i_stop]
     
             # http://...
-            url = self.__extract_url_from_href(href)
+            url = OfferSearcher.extract_url_from_href(href)
             urls.append(url)
-            i_start = html.find(START_TAG, i_stop)
+            i_start = html.find(start_tag, i_stop)
     
         return urls
