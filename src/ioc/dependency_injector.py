@@ -8,18 +8,28 @@ from src.ioc.not_registered_dependency import NotRegisteredDependency
 from src.ioc.dependency_injection_exception import DependencyInjectionException
 
 
-class Inject():
-    """
-    Dependency Injection marker.
-    Assign it to fields that are supposed to be subject of dependency injection, eg.
+class InjectionMarker(object):
+    """ Dependency Injection marker class """
     
-    @DependencyInjector('dependency') 
-    class Example():
-        dependency = Inject
-    """
+    def __getattr__(self, name):
+        """ This method prevents PyLint from emitting 'has no member' error """
+        raise AttributeError(name)
+    
+    
     def str(self):
         return "[This field should be substituted with actual value by @DependencyInjector decorator]"
-    
+ 
+ 
+""" 
+Dependency Injection marker intance to be used.
+Assign it to fields that are supposed to be subject of dependency injection, eg.
+
+@DependencyInjector('dependency') 
+class Example():
+    dependency = Inject
+"""
+Inject = InjectionMarker()        
+        
         
         
 class DependencyInjector():
