@@ -28,7 +28,7 @@ class Evaluator(object):
             expected = sample.expected_result
  
             # check if found address is in expected result set
-            if Evaluator.__contains_ignore_case(expected, address.strip(u"ul. ").strip(u"al. ").strip(u"os. ")):
+            if address and Evaluator.__contains_ignore_case(expected, address.strip(u"ul. ").strip(u"al. ").strip(u"os. ")):
                 num_correctly_extracted += 1
             else:
                 print(unicode(AddressCandidates.last_processed))
