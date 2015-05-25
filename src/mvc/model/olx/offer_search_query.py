@@ -7,6 +7,7 @@ Created on 22-01-2015
 '''
 import urllib
 import unicodedata
+from _collections import defaultdict
 
 class OfferSearchQuery(object):
     """
@@ -138,12 +139,16 @@ class OfferSearchQuery(object):
     
     def __add_num_rooms(self, args, num_rooms):
         template = u"search%5Bfilter_enum_rooms%5D%5B0%5D={0}"
-        room_numbers = {u""  : u"",
-                        u"1" : u"one",
-                        u"2" : u"two",
-                        u"3" : u"three",
-                        u"4" : u"four"}
+        
+        # "four" in OLX exactly means "four or more" , so lets fall back to "four" if no other number matches
+        room_numbers = defaultdict(lambda s : u"four")
+        room_numbers[u""]   = u""
+        room_numbers[u"1"]  = u"one"
+        room_numbers[u"2"]  = u"two"
+        room_numbers[u"3"]  = u"three"
+        
         num_rooms_str = room_numbers[num_rooms]
+            
         return self.__add_arg(args, template, num_rooms_str)
     
     
