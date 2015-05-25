@@ -16,7 +16,8 @@ class Geocoder(object):
     This class allows you to turn address string like "Wielicka 32, Kraków, Polska" to longitude, lattitude tuple
     '''
 
-    API_KEY = "AIzaSyAnelYhxyAsoYVLUouQ4pt7q9tlt4NunI0" # for 3demaniac account
+    # google API KEY for 3demaniac account
+    API_KEY = "AIzaSyAnelYhxyAsoYVLUouQ4pt7q9tlt4NunI0" 
     geocoder = pygeocoder.Geocoder(API_KEY)
     logger = Inject
     
@@ -25,18 +26,19 @@ class Geocoder(object):
     def geocode(address):
         """ Turn address into [latitude, longitude]. Max 5 geocodings/second due to google api limitation """
         
-        MAX_ATTEMPTS = 10
-        DELAY = 0.2
+        max_attempt_count = 10
+        delay_between_attempts = 0.2
         
-        for i in xrange(MAX_ATTEMPTS):
+        for i in xrange(max_attempt_count):
             latlong = Geocoder.__try_geocode(address)
             if latlong:
                 return latlong
             
-            Geocoder.logger.debug("Geocoding '%s' attempt %d failed. Trying again in %f seconds" % (address, i + 1, DELAY))
-            time.sleep(DELAY) 
+            Geocoder.logger.debug("Geocoding '%s' attempt %d failed. Trying again in %f seconds" % 
+                                  (address, i + 1, delay_between_attempts))
+            time.sleep(delay_between_attempts) 
                 
-        raise RuntimeError("Giving up geocoding after %d attempts" % MAX_ATTEMPTS)
+        raise RuntimeError("Giving up geocoding after %d attempts" % max_attempt_count)
     
     
     @staticmethod
@@ -44,12 +46,13 @@ class Geocoder(object):
         try:
             latlong = Geocoder.geocoder.geocode(address)[0].coordinates
             return latlong
-        except GeocoderError as e:
-            Geocoder.logger.debug(str(e))
+        except GeocoderError as error:
+            Geocoder.logger.debug(str(error))
             return None 
-        except IOError as e:
-            Geocoder.logger.debug(str(e))
+        except IOError as error:
+            Geocoder.logger.debug(str(error))
             return None      
-        except Exception as e:
-            Geocoder.logger.debug(str(e))
+        except Exception as error:
+            Geocoder.logger.debug(str(error))
             return None      
+        
