@@ -10,8 +10,11 @@ from src.mvc.view.lightwebframework.html_escape import HtmlEscape
 
 class OffersGroupedByAddress(object):
     '''
-    This class groups offers by their address.
-    Also allows to encode the result as json string. 
+    This class groups offers by their address, creating list of offer groups.
+    Single offer group is a dictionary containing the following keys:
+        ("address", "longitude", "latitude", "offers []") .
+    The class allows to retrieve the created offer groups.
+    It also allows to encode the offer groups as json string. 
     '''
 
 
@@ -23,32 +26,49 @@ class OffersGroupedByAddress(object):
     def from_offers(cls, offers):
         ''' Factory method, constructs the instance from list of individual offers '''
         
-        address_to_offers_dict = OffersGroupedByAddress.__group_offers_by_address(offers)
-        groups = []
-        for address, offers in address_to_offers_dict.items():
-            group = OffersGroupedByAddress.__compose_offer_group(address, offers)
-            groups.append(group)
+        grouped_offers = OffersGroupedByAddress.__group_offers_by_address(offers)
+        address_offers_groups = []
+        for offers in grouped_offers:
+            group = OffersGroupedByAddress.__compose_offer_group(offers)
+            address_offers_groups.append(group)
             
-        return cls(groups)
+        return cls(address_offers_groups)
 
+    
+    @staticmethod
+    def __group_offers_by_address(offers):
+        ''' Group offers by addres '''
+        
+        groups = defaultdict(list)
+        for offer in offers:
+            address = offer["address"]
+            groups[address].append(offer)
+            
+        # we only need the grouped offers, not the addresses             
+        return groups.itervalues()
+    
 
     @staticmethod
-    def __compose_offer_group(address, offers):
-        ''' Create group as a dictionary containing address, longitude, latitude and offer list '''
+    def __compose_offer_group(same_address_offers):
+        ''' Create offer group as a dictionary containing address, longitude, latitude and offer list '''
         
         group = {"offers":[]}
-        in_offer = None
-        for in_offer in offers:
-            out_offer = OffersGroupedByAddress.__compose_grouped_offer(in_offer)
-            group["offers"].append(out_offer)
         
-        group["address"] = address
-        group["latitude"], group["longitude"] = in_offer["latlong"]
+        # original offer containing location details, ie. address and latlong (latitude, longitude tuple)
+        offer_with_loc_details = None
+        for offer_with_loc_details in same_address_offers:
+            # repack the offer not to contain location details
+            offer_without_loc_details = OffersGroupedByAddress.__compact_offer(offer_with_loc_details)
+            group["offers"].append(offer_without_loc_details)
+        
+        # assign the location details as an entry of the entire group of offers
+        group["address"] = offer_with_loc_details["address"]
+        group["latitude"], group["longitude"] = offer_with_loc_details["latlong"]
         return group
     
     
     @staticmethod
-    def __compose_grouped_offer(in_offer):
+    def __compact_offer(in_offer):
         ''' Create offer as a dictionary containing selected parameters unique to an offer and not shared by whole group '''
         
         esc = HtmlEscape.escape
@@ -61,23 +81,7 @@ class OffersGroupedByAddress(object):
                      "address_section": esc(in_offer["address_section"]),
                      "num_rooms"    : in_offer["num_rooms"],
                      "area" : in_offer["area"]}
-        return out_offer
-
-    
-    @staticmethod
-    def __group_offers_by_address(offers):
-        '''
-        Turns list of offer into dictionary of offers grouped by address:
-        offers_by_address['Wielicka 9'] = [offer1, offer2, ...]
-        offers_by_address['Dworcowa 12'] = [offer1, offer2, offer3, ...]
-        '''
-        
-        offers_by_address = defaultdict(list)
-        for offer in offers:
-            address = offer["address"]
-            offers_by_address[address].append(offer)
-            
-        return offers_by_address        
+        return out_offer       
     
     
     def get_groups(self):
