@@ -40,7 +40,7 @@ class WebMainView(object):
         
         
     def get_fields(self, offers, params, zoom): 
-        groups = OffersGroupedByAddress.from_offers(offers).get_json_string()
+        groups = OffersGroupedByAddress.as_json(offers)
         lattitude, longitude = Geocoder.geocode("%s, Polska" % params.get_city())
         num_rooms = params.get_num_rooms() or u""
         max_price = params.get_max_price() or u""

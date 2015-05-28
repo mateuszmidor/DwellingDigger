@@ -66,9 +66,9 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         '''
         
         # get the offer groups
-        groups = OffersGroupedByAddress.from_offers([OffersGroupedByAddressTest.OFFER1, 
-                                                     OffersGroupedByAddressTest.OFFER2, 
-                                                     OffersGroupedByAddressTest.OFFER3]).get_groups()
+        groups = OffersGroupedByAddress.as_list([OffersGroupedByAddressTest.OFFER1, 
+                                                 OffersGroupedByAddressTest.OFFER2, 
+                                                 OffersGroupedByAddressTest.OFFER3])
                                                      
         # we have 3 offers, 2 share same address so - 2 groups should be returned
         self.assertEqual(2, len(groups), 
@@ -248,9 +248,9 @@ class OffersGroupedByAddressTest(unittest.TestCase):
         Only roughly check that returned string contains expected offers; 
         we are not up to check json implementation for python here.
         '''
-        json = OffersGroupedByAddress.from_offers([OffersGroupedByAddressTest.OFFER1, 
+        json = OffersGroupedByAddress.as_json([OffersGroupedByAddressTest.OFFER1, 
                                                    OffersGroupedByAddressTest.OFFER2, 
-                                                   OffersGroupedByAddressTest.OFFER3]).get_json_string()
+                                                   OffersGroupedByAddressTest.OFFER3])
         self.assertTrue("www.OFFER1.pl" in json, 
                         "'www.OFFER1.pl' should be in json string: '%s'" % json)                                           
         
