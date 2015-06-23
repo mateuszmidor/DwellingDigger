@@ -29,6 +29,10 @@ class CachingGeocoder(object):
 
     def __del__(self):
         """ Update the cache file with new geocodings """
+        
+        if self.__extending_cache:
+            self.logger.info("Updating geocodingscache with '%s'" % str(self.__extending_cache))
+            
         self.try_update_cache_file(self.__cache_filename, self.__extending_cache)
         
         

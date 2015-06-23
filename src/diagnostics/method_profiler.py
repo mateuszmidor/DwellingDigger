@@ -29,7 +29,7 @@ def MethodProfiler(target_method):
         end = time.time()
         delta =  end-start
         
-        LoggerAccess.logger.info("%f[sec] consumed for %s called with args=%s and kwargs=%s" % (delta, target_method.__name__, str(args), str(kwargs)))
+        LoggerAccess.logger.debug("%f[sec] consumed for %s called with args=%s and kwargs=%s" % (delta, target_method.__name__, str(args), str(kwargs)))
         return result
     
     return time_it    
