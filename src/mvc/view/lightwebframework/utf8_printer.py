@@ -7,7 +7,7 @@ Created on 29-03-2015
 import sys
 import codecs
 
-class Utf8Printer():
+class Utf8Printer(object):
     
     @staticmethod
     def setup_utf8_printing():
