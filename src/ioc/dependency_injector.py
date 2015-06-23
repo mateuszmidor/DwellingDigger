@@ -15,24 +15,24 @@ class InjectionMarker(object):
         """ This method prevents PyLint from emitting 'has no member' error """
         raise AttributeError(name)
     
-    
-    def str(self):
+    @staticmethod
+    def str():
         return "[This field should be substituted with actual value by @DependencyInjector decorator]"
  
  
-""" 
-Dependency Injection marker intance to be used.
-Assign it to fields that are supposed to be subject of dependency injection, eg.
 
-@DependencyInjector('dependency') 
-class Example():
-    dependency = Inject
-"""
+# Dependency Injection marker intance to be used.
+# Assign it to fields that are supposed to be subject of dependency injection, eg.
+# 
+# @DependencyInjector('dependency') 
+# class Example():
+#     dependency = Inject
+
 Inject = InjectionMarker()        
         
         
         
-class DependencyInjector():
+class DependencyInjector(object):
     """"
     Dependency injection decorator for classes.
     There is only one DependencyInjector in system.
@@ -85,13 +85,13 @@ class DependencyInjector():
             
     @staticmethod
     def __throw_if_no_such_field(name, target_object):
-        ERROR_STR = 'Cant inject dependency. No field "%s" in object of class "%s"'
+        error_str = 'Cant inject dependency. No field "%s" in object of class "%s"'
         if name not in target_object.__dict__:
-            raise DependencyInjectionException(ERROR_STR % (name, target_object.__name__))
+            raise DependencyInjectionException(error_str % (name, target_object.__name__))
         
         
     @staticmethod
     def __throw_if_not_applicable(name, target_object):
-        ERROR_STR = 'Field "%s.%s" not designated for injection. Should be initially set to "Inject" instead of "%s"'
+        error_str = 'Field "%s.%s" not designated for injection. Should be initially set to "Inject" instead of "%s"'
         if target_object.__dict__[name] != Inject: 
-            raise DependencyInjectionException(ERROR_STR % (target_object.__name__, name, target_object.__dict__[name]))
+            raise DependencyInjectionException(error_str % (target_object.__name__, name, target_object.__dict__[name]))
