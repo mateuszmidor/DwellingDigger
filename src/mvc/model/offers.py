@@ -20,20 +20,47 @@ from src.mvc.model.offer_processing_exception import OfferProcessingException
 @DependencyInjector("config")
 class Offers(object):
     '''
-    This class is facade for retrieving offers.
-    Use it when you want to get actual offers matching provided OfferParams. 
+    This class is a facade for retrieving offers.
+    Use it when you want to get actual offers matching criteria described by OfferParams. 
     '''
     
     config = Inject
-    
+             
+            
     @staticmethod
-    def __format_full_address(street_district, city, country):
-        """ Compose address string from street, city and country. street is optional """
+    def get_from_all_sources(offer_params, max_offer_count=5, max_parallel_count=5):
+        """ Gets offers from Olx and Gumtree filtered with criteria described by OfferParams. """
         
-        if street_district:
-            return u"{0}, {1}, {2}".format(street_district, city, country)
-        else:
-            return u"{0}, {1}".format(city, country)
+        geocoder = Offers.__get_geocoder()
+        address_extractor = Offers.__get_address_extractor(offer_params.get_city())
+        team_work = TeamWork.start_work(Offers.__fetch_and_compose_offer, max_parallel_count)
+        
+        for url in Gumtree.get_urls(offer_params, max_offer_count / 2):
+            team_work.add_work((url, GumtreeOfferExtractor, address_extractor, geocoder))
+             
+        for url in Olx.get_urls(offer_params, max_offer_count / 2):
+            team_work.add_work((url, OlxOfferExtractor, address_extractor, geocoder))
+        
+        for offer in team_work.end_work():
+            yield offer
+            
+            
+    @staticmethod
+    def __get_geocoder():
+        """ Create a new caching geocoder """
+        
+        cachefile = Offers.config.get("PATHS", "geocodingsCache")
+        return CachingGeocoder(cachefile)
+
+
+    @staticmethod
+    def __get_address_extractor(city):
+        """ Create a new address extractor specialized for extracting addresses in given city """
+        
+        address_extractor = AddressExtractor.for_city(city)
+        address_extractor.city = city
+        address_extractor.country = "Polska"
+        return address_extractor
         
        
     @staticmethod 
@@ -78,35 +105,14 @@ class Offers(object):
             return offer
         
         except Exception as e:
-            raise OfferProcessingException(url, e)
-            
-            
+            raise OfferProcessingException(url, e)     
+        
+
     @staticmethod
-    def get_from_all_sources(offer_params, max_offer_count=5, max_parallel_count=5):
-        """ 
-        Gets offers from Olx and Gumtree filtered with provided criteria.
-        Returned offers contain already extracted and geocoded address 
-        in "address" and "longlatt" fields, respectively. 
+    def __format_full_address(street_district, city, country):
+        """ Compose address string from street, city and country. street is optional """
         
-        """
-        
-        # prepare geocoder
-        cachefile = Offers.config.get("PATHS", "geocodingsCache")
-        geocoder = CachingGeocoder(cachefile)
-        
-        # prepare address extractor for given city
-        city = offer_params.get_city()
-        address_extractor = AddressExtractor.for_city(city) 
-        address_extractor.city = city
-        address_extractor.country = "Polska"
-        
-        team_work = TeamWork.start_work(Offers.__fetch_and_compose_offer, max_parallel_count)
-        
-        for url in Gumtree.get_urls(offer_params, max_offer_count / 2):
-            team_work.add_work((url, GumtreeOfferExtractor, address_extractor, geocoder))
-             
-        for url in Olx.get_urls(offer_params, max_offer_count / 2):
-            team_work.add_work((url, OlxOfferExtractor, address_extractor, geocoder))
-        
-        for offer in team_work.end_work():
-            yield offer
+        if street_district:
+            return u"{0}, {1}, {2}".format(street_district, city, country)
+        else:
+            return u"{0}, {1}".format(city, country)
