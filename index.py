@@ -22,14 +22,14 @@ class Runner(object):
     logger = Inject
 
     @staticmethod
-    def doGet():
+    def do_get():
         try:
             storage = cgi.FieldStorage()
             params = OfferParams.from_cgi_fieldstorage(storage, default_city=u"Krakow")
             view = WebMainView()
             Main.run(params, view)
-        except Exception as e:
-            Runner.logger.exception(e)
+        except Exception as err:
+            Runner.logger.exception(err)
 
 
-Runner.doGet()
+Runner.do_get()

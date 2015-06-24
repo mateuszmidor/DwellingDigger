@@ -11,9 +11,8 @@ from src.mvc.model.offer_params import OfferParams
 from src.mvc.main import Main
 from src.mvc.view.desktop_main_view import DesktopMainView
 
-'''
-DESKTOP RUN
-'''
+# DESKTOP RUN
+
 if __name__ == '__main__':
     city = "Krakow"
     params = OfferParams.from_key_values(city=city)
