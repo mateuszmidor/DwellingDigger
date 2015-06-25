@@ -17,14 +17,16 @@ class DesktopMainView(object):
     # this zoom should be correct for most of polish major cities like Krakow and Wroclaw
     MAP_ZOOM = 11
        
-    def show_offers_and_params(self, offers, params):
+    @staticmethod
+    def show_offers_and_params(offers, params):
         groups = OffersGroupedByAddress.as_json(offers)
         lattitude, longitude = Geocoder.geocode("%s, Polska" % params.get_city())
         
-        FIELDS = {u"$JSON_OFFER_GROUPS$": groups,
+        fields = {u"$JSON_OFFER_GROUPS$": groups,
                   u"$MAP_CENTER_LONG$": longitude,
                   u"$MAP_CENTER_LAT$": lattitude,
                   u"$MAP_ZOOM$" : DesktopMainView.MAP_ZOOM}
                    
         desktop_template = DesktopMainView.config.get("PATHS", "desktopMainView")
-        LightWebFramework.render_page_as_file(desktop_template, "DwellingMap.html", FIELDS)  
+        LightWebFramework.render_page_as_file(desktop_template, "DwellingMap.html", fields)  
+        

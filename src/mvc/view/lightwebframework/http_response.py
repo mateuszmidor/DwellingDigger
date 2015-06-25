@@ -5,7 +5,7 @@ Created on 29-03-2015
 '''
 from src.mvc.view.lightwebframework.utf8_printer import Utf8Printer
 
-class HttpResponse():
+class HttpResponse(object):
     
     @staticmethod
     def render_page(html):
