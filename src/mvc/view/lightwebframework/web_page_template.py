@@ -6,7 +6,7 @@ Created on 31-07-2014
 from src.outerspaceaccess.text_file_writer import TextFileWriter
 from src.outerspaceaccess.text_file_reader import TextFileReader
 
-class WebPageTemplate():
+class WebPageTemplate(object):
     """ 
     This class allows you to load HTML template, 
     substitue predefined $fields$ and return resulting html/save it to file.

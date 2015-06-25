@@ -9,7 +9,7 @@ from src.ioc.dependency_injector import Inject, DependencyInjector
 
 
 @DependencyInjector("logger")
-class LoggerAccess:
+class LoggerAccess(object):
     logger = Inject
     
     
@@ -29,8 +29,8 @@ def MethodProfiler(target_method):
         end = time.time()
         delta =  end-start
         
-        LoggerAccess.logger.debug("%f[sec] consumed for %s called with args=%s and kwargs=%s" % (delta, target_method.__name__, str(args), str(kwargs)))
+        log_string = "%f[sec] consumed for %s called with args=%s and kwargs=%s"
+        LoggerAccess.logger.debug(log_string % (delta, target_method.__name__, str(args), str(kwargs)))
         return result
     
     return time_it    
-    
