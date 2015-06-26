@@ -128,8 +128,8 @@ class OfferExtractor(object):
 
     @staticmethod
     def extract_num_rooms(offer_html):
-        start_tag = 'Liczba pokoi:'
-        stop_tag = '</strong>' 
+        start_tag = u'Liczba pokoi'
+        stop_tag = u'</strong>' 
         
         # extract entire section from html table
         num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
@@ -149,7 +149,7 @@ class OfferExtractor(object):
    
     @staticmethod
     def extract_area(offer_html):
-        start_tag = 'Powierzchnia:'
+        start_tag = 'Powierzchnia'
         stop_tag = '</strong>' 
         
         # extract entire section from html table

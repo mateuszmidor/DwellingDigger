@@ -93,14 +93,14 @@ class OfferSearcher(object):
     
     @staticmethod
     def extract_url_from_href(html):
-        pattern = u'a href="([^"]*)'
+        pattern = u'href="([^"]*)'
         return re.search(pattern, html).group(1)
     
     
     @staticmethod
     def extract_offer_urls(html):
-        start_tag = '<h3 class="large lheight20 margintop10">'
-        stop_tag = ' class="marginright5 link linkWithHash detailsLink">'
+        start_tag = u'class="thumb vtop inlblk rel tdnone linkWithHash'
+        stop_tag = u'<img class="fleft" src='
         urls = []
         
         i_start = html.find(start_tag)
