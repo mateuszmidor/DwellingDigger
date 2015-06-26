@@ -412,7 +412,7 @@ LOKALIZACJA: Budynek położony jest przy ulicy Chmieleniec, w zacisznej częśc
         <tr class="brbottdashc8">
                     <td class="" width="203">
             <div class="pding5_10">
-                Liczba pokoi:
+                Liczba pokoi
                 <strong class="block">
                                                         <a href="http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/?search%5Bfilter_enum_rooms%5D%5B0%5D=two" title="2 pokoje - Kraków">
                                         2 pokoje                                        </a>
@@ -421,7 +421,7 @@ LOKALIZACJA: Budynek położony jest przy ulicy Chmieleniec, w zacisznej częśc
         </td>
                             <td class="" width="203">
             <div class="pding5_10">
-                Powierzchnia:
+                Powierzchnia
                 <strong class="block">
                                                         51 m<sup>2</sup>                                                    </strong>
             </div>
@@ -2021,7 +2021,7 @@ OFFER2_HTML = u"""
         <tr class="brbottdashc8">
                     <td class="" width="203">
             <div class="pding5_10">
-                Liczba pokoi:
+                Liczba pokoi
                 <strong class="block">
                                                         <a href="http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/?search%5Bfilter_enum_rooms%5D%5B0%5D=one" title="Kawalerka - Kraków">
                                         Kawalerka                                        </a>
@@ -2030,7 +2030,7 @@ OFFER2_HTML = u"""
         </td>
                             <td class="" width="203">
             <div class="pding5_10">
-                Powierzchnia:
+                Powierzchnia
                 <strong class="block">
                                                         23 m<sup>2</sup>                                                    </strong>
             </div>
