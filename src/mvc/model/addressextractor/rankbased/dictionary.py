@@ -41,8 +41,8 @@ class Dictionary(object):
 
     @staticmethod
     def __strip_from_prefix(address):
-        PREFIXES = [u"ul.", u"al.", u"os."]
-        for prefix in PREFIXES:
+        prefixes = [u"ul.", u"al.", u"os."]
+        for prefix in prefixes:
             if prefix in address:
                 # remove the prefix and trim from remaining whitespaces
                 return address.strip(prefix).lstrip()
@@ -51,13 +51,13 @@ class Dictionary(object):
         return address
     
 
-    def __init__(self, entries = []):
+    def __init__(self, entries=[]):
         self.__entries = list()
-        map(self.append, entries)
+        self.extend(entries)
 
 
     def extend(self, entries):
-        map(self.append, entries)
+        [self.append(entry) for entry in entries]
              
 
     def append(self, entry):
@@ -67,14 +67,14 @@ class Dictionary(object):
         
     def sort_longest_first(self):
         # longest first - for 'find' to match Krakowska before Krakow
-        longToShort = lambda s1, s2: cmp(len(s2.name), len(s1.name))
-        self.__entries.sort(longToShort)
+        long_to_short = lambda s1, s2: cmp(len(s2.name), len(s1.name))
+        self.__entries.sort(long_to_short)
                 
        
     def to_file(self, filename):
         content = ""
-        for e in self:
-            content = content + e.name + "\t" * 8 + e.original_form + "\n"
+        for entry in self:
+            content = content + entry.name + "\t" * 8 + entry.original_form + "\n"
             
         TextFileWriter.write(filename, content)
         
