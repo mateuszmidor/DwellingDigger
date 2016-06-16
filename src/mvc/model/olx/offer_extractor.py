@@ -79,9 +79,7 @@ class OfferExtractor(object):
             return datetime(1900, 1, 1)
    
         date_str = found.group(1).lower()
-        day_dot, month_str, year = date_str.split(" ")
-        # remove trailing dot like in 8.
-        day = day_dot[0:-1]
+        day, month_str, year = date_str.split(" ")
         return datetime(int(year), months[month_str], int(day))
     
     
