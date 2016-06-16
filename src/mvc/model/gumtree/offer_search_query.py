@@ -13,20 +13,26 @@ class OfferSearchQuery(object):
     """
 
 #     Request url template for querying Gumtree for offers
-    __TEMPLATE = u'http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/\
-{_city}/{_whereabouts}c9008l3200208?\
-A_AreaInMeters_max={_max_area}&\
-A_AreaInMeters_min={_min_area}&\
-A_ForRentBy=ownr&\
-A_NumberRooms={_num_rooms}&\
-AdType=2&\
-isSearchForm=true&\
-maxPrice={_max_price}&\
-maxPriceBackend=200000&\
-minPrice={_min_price}&\
-minPriceBackend=100000'
-    
-    
+    __TEMPLATE = u'http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/\
+{_city}/{_whereabouts}\
+v1c9008l3200208{_has_whereabouts_mark}p{_page}?\
+nr={_num_rooms}&\
+pr={_min_price},{_max_price}'
+    '''
+        __TEMPLATE = u'http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/\
+    {_city}/{_whereabouts}c9008l3200208?\
+    A_AreaInMeters_max={_max_area}&\
+    A_AreaInMeters_min={_min_area}&\
+    A_ForRentBy=ownr&\
+    A_NumberRooms={_num_rooms}&\
+    AdType=2&\
+    isSearchForm=true&\
+    maxPrice={_max_price}&\
+    maxPriceBackend=200000&\
+    minPrice={_min_price}&\
+    minPriceBackend=100000'
+    '''
+
     @classmethod
     def from_key_values(cls, city=u"", 
                         whereabouts=u"", 
@@ -81,6 +87,9 @@ minPriceBackend=100000'
     
     def as_url_string(self):
         whereabouts = self.__whereabouts
+        
+        # no whereabouts by default
+        whereabouts_mark = u""
         if whereabouts:
             # urllib.quote doesnt accept unicode so - encode
             whereabouts = whereabouts.encode('UTF8') 
@@ -90,6 +99,9 @@ minPriceBackend=100000'
             
             # __whereabouts is http request address section; so must be followed by "/"
             whereabouts += u"/"  
+            
+            # set has whereabouts
+            whereabouts_mark = u"q0"
             
         # escape special characters like spaces etc
         city = urllib.quote(self.__city) 
@@ -105,7 +117,9 @@ minPriceBackend=100000'
                                                    _min_price=self.__min_price, 
                                                    _max_price=self.__max_price, 
                                                    _min_area=self.__min_area,
-                                                   _max_area=self.__max_area)
+                                                   _max_area=self.__max_area,
+                                                   _has_whereabouts_mark=whereabouts_mark,
+                                                   _page=u"{_page}") # dont touch _page placeholder
         
         return query.encode('UTF8')
     

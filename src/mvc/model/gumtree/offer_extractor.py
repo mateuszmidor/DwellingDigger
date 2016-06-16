@@ -48,18 +48,20 @@ class OfferExtractor(object):
 
     @staticmethod
     def extract_price(offer_html):
-        start_tag = u"<td style='font-weight:bold'>"
-        stop_tag = u"</td>"
+        start_tag = u'<span class="amount">'
+        stop_tag = u"</span>"
         return OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
     
     
     @staticmethod
     def extract_date(offer_html):
-        start_tag = u'<td class="first_row" >'
-        stop_tag = u'</td>' 
+        start_tag = u'<span class="name">Data dodania</span>'
+        stop_tag = u'</span>' 
+        date = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+        date = date.replace(u'<span class="value">', u'')
         
         # address format with slash separator, eg. "29/07/2014"
-        day, month, year = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag).split("/") 
+        day, month, year = date.split("/") 
         return datetime(int(year), int(month), int(day))
     
     
@@ -72,17 +74,18 @@ class OfferExtractor(object):
     
     @staticmethod
     def extract_address(offer_html):
-        start_tag = u'<td itemscope itemtype="http://schema.org/Place">'
-        stop_tag = u'</td>'
+        start_tag = u'<div class="location" >'
+        stop_tag = u'</div>'
         address = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
-        address = address.replace(u"Pokaż mapę", "")
+        address = address.replace(u'\n', u'')
+        address = re.sub('[ ]+', ' ', address)
         return OfferExtractor.strip_from_html_tags(address).strip()
     
     
     @staticmethod
     def extract_description(offer_html):
-        start_tag = u'<span id="preview-local-desc">'
-        stop_tag = u'</span>'
+        start_tag = u'<div class="description" >'
+        stop_tag = u'</div>'
         desciption = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
         return OfferExtractor.strip_from_html_tags(desciption)
 
@@ -97,20 +100,21 @@ class OfferExtractor(object):
 
     @staticmethod
     def extract_image_url(offer_html):
-        start_tag = u'<meta property="og:image" content="'
-        stop_tag = u'"/>'
+        start_tag = u'<meta property="og:image" content=\''
+        stop_tag = u"'/>"
         return OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)   
 
 
     @staticmethod
     def extract_num_rooms(offer_html):
-        start_tag = u'Liczba pokoi'
-        stop_tag = u'pok' 
+        start_tag = u'<span class="name">Liczba pokoi</span>'
+        stop_tag = u'</div>' 
         
-        # extract entire section from html table
+        # extract entire section eg "<span class="value">5 pokoi</span>", or
+        # <span class="value">Kawalerka lub garsoniera</span>
         num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
         
-        # extract number and label, eg. "2 pokoje"
+        # extract number and label, eg. "2 pokoje", or "Kawalerka lub garsoniera"
         num_rooms_label = OfferExtractor.strip_from_html_tags(num_rooms_section).strip()
         
         # get the number 
@@ -124,20 +128,18 @@ class OfferExtractor(object):
   
     @staticmethod
     def extract_area(offer_html):
-        start_tag = u'Wielkość (m2)'
-        stop_tag = u'</tr>'
+        start_tag = u'<span class="name">Wielkość (m2)</span>'
+        stop_tag = u'</div>' 
         
-        # extract entire section from html table
+        # extract entire section eg <span class="value">40</span>
         area_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag) 
         
-        # extract area and unit, eg. "55 m"
+        # extract area , eg. "55"
         area_label = OfferExtractor.strip_from_html_tags(area_section).strip()
-        
-        # get the number
-        area_str = area_label.split()[0]
+    
         
         # return numeric
-        return int(area_str)   
+        return int(area_label)   
 
     
     @staticmethod

@@ -74,7 +74,8 @@ class OfferSearcher(object):
             raise StopIteration()
 
         # add page number to offers search_query
-        search_result_page_url = "{0}&Page={1}".format(self.search_query, self.curr_page)
+#         search_result_page_url = "{0}&Page={1}".format(self.search_query, self.curr_page)
+        search_result_page_url = self.search_query.as_url_string().format(_page=self.curr_page)
         
         # fetch html with offers listed
         html = self.web_document_fetcher.fetch(search_result_page_url)
@@ -86,13 +87,13 @@ class OfferSearcher(object):
         
     @staticmethod
     def __get_has_next_page(html):
-        next_page_tag = u'class="prevNextLink">Następne'
+        next_page_tag = u'<a class="next follows" href'
         return next_page_tag in html
     
     
     @staticmethod
     def __extract_offer_urls(html):
-        start_tag = '<div class="ar-title">'
+        start_tag = '<div class="title">'
         stop_tag = '</div>'
         urls = []
         
@@ -105,7 +106,8 @@ class OfferSearcher(object):
     
             # http://...
             url = OfferSearcher.__extract_url_from_href(href)
-            urls.append(url)
+            full_url = u"http://www.gumtree.pl" + url
+            urls.append(full_url)
             i_start = html.find(start_tag, i_stop)
     
         return urls
@@ -113,6 +115,6 @@ class OfferSearcher(object):
         
     @staticmethod        
     def __extract_url_from_href(html):
-        pattern = u'a href="([^"]*)'
+        pattern = u'<a class="href-link" href="([^"]*)'
         return re.search(pattern, html).group(1)
     
