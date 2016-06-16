@@ -12,3 +12,7 @@ Test run:
 -maybe fix OpenSSL: sudo pip uninstall pyopenssl && sudo pip install mozdownload
 -inside ../DwellingDigger/ run: 
 	py.test . 
+
+Server install:
+-copy the dirtree on FTP
+-recursively change persmissions of *.py files to executable
