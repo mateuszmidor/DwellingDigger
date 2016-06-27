@@ -6,7 +6,7 @@ Made to work with Python 2.6
 Developed using eclipse + PyDev plugin
 
 Test run:
--install pip: sudo apt-get instal pip
+-install pip: sudo apt-get install python-pip python-dev
 -install py.test: sudo pip install -U pytest
 -install mock: sudo pip install -U mock
 -maybe fix OpenSSL: sudo pip uninstall pyopenssl && sudo pip install mozdownload
