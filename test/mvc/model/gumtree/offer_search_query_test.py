@@ -42,7 +42,7 @@ class OfferSearchQuerryTest(unittest.TestCase):
            
             
     def test_from_key_values(self):
-        EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/c9008l3200208?A_AreaInMeters_max=70&A_AreaInMeters_min=30&A_ForRentBy=ownr&A_NumberRooms=10&AdType=2&isSearchForm=true&maxPrice=1000&maxPriceBackend=200000&minPrice=500&minPriceBackend=100000'
+        EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/v1c9008l3200208q0p{_page}?nr=10&pr=500,1000'
         query = OfferSearchQuery.from_key_values(city="Krakow",
                                                  whereabouts="Nowa Huta",
                                                  num_rooms="1",
@@ -54,7 +54,7 @@ class OfferSearchQuerryTest(unittest.TestCase):
         
         
     def test_from_offer_params(self):
-        EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/c9008l3200208?A_AreaInMeters_max=70&A_AreaInMeters_min=30&A_ForRentBy=ownr&A_NumberRooms=10&AdType=2&isSearchForm=true&maxPrice=1000&maxPriceBackend=200000&minPrice=500&minPriceBackend=100000'
+        EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/v1c9008l3200208q0p{_page}?nr=10&pr=500,1000'
         params = OfferParamsStub()
         query = OfferSearchQuery.from_offer_params(params)
         self.assertEquals(EXPECTED_QUERY_STRING, query.as_url_string())

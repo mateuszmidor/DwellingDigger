@@ -75,7 +75,7 @@ class OfferSearcher(object):
 
         # add page number to offers search_query
 #         search_result_page_url = "{0}&Page={1}".format(self.search_query, self.curr_page)
-        search_result_page_url = self.search_query.as_url_string().format(_page=self.curr_page)
+        search_result_page_url = str(self.search_query).format(_page=self.curr_page)
         
         # fetch html with offers listed
         html = self.web_document_fetcher.fetch(search_result_page_url)

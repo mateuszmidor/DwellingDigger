@@ -12,37 +12,37 @@ from datetime import datetime
 class OfferExtractorTest(unittest.TestCase):
 
     def test_extract_price(self):
-        ACTUAL_PRICE = u"Zł  950,00"
+        ACTUAL_PRICE = u"1 200 zł"
         price = OfferExtractor.extract(OFFER_HTML)["price"]
         self.assertEquals(ACTUAL_PRICE, price)
 
     def test_extract_date(self):
-        ACTUAL_DATE = datetime(2014, 7, 29) 
+        ACTUAL_DATE = datetime(2016, 6, 27) 
         date = OfferExtractor.extract(OFFER_HTML)["date"]
         self.assertEquals(ACTUAL_DATE, date)
         
     def test_extract_title(self):
-        ACTUAL_TITLE = u"Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego"
+        ACTUAL_TITLE = u"2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ – Kraków – 169136399 | Gumtree"
         title = OfferExtractor.extract(OFFER_HTML)["title"]
         self.assertEquals(ACTUAL_TITLE, title)
         
     def test_extract_address(self):
-        ACTUAL_ADDRESS = u"Doktora Józefa Babińskiego 23, 30-393 Kraków, Polska"
+        ACTUAL_ADDRESS = u"Kraków, Małopolskie"
         address = OfferExtractor.extract(OFFER_HTML)["address_section"]
         self.assertEquals(ACTUAL_ADDRESS, address)
         
     def test_extract_description(self):
-        ACTUAL_DESCRIPTION = u"""Do wynajęcia od zaraz 2-pokojowe mieszkanie przy ul. Babińskiego 23b ( I piętro). Mieszkanie ma 2 pokoje ( w tym 1 przechodni), kuchnie, łazienkę, przedpokój i balkon z widokiem. Okolica bardzo spokojna. Przystanek autobusowy "Babińskiego" 2 min. od bloku, przystanek "Zachodnia" 7 min. Dojazd do centrum zajmuje ok. 30 min. Do miasta można również dojeżdżać busikami jeżdżącymi ze Skawiny, jest się wówczas w okolicach centrum( busiki jeżdżą pod Dworzec lub pod Pocztę Główną) w ok. 20 min.Przed blokiem jest miejsce do parkowania. Z balkonu ładny widok, żadnych bloków na horyzoncie:) Mieszkanie przytulne, remontowane kilka lat temu. Mieszkanie w pełni wyposażone (pralka, lodówka, kuchenka, piekarnik). Nowe okna, ogrzewanie miejskie. Opłaty miesięczne to ok. 450 zł przy 2 osobach (czynsz administracyjny + prąd)."""
+        ACTUAL_DESCRIPTION = u"""Nr oferty 2650. Kraków. Płaszów, ul. Płaszowska blisko Krakowskiej Akademii. Mieszkanie o powierzchni ok. 48 m2 składa się z dwóch oddzielnych pokoi, kuchni, łazienki i garderoby."""
         description = OfferExtractor.extract(OFFER_HTML)["description"]
         self.assertEquals(ACTUAL_DESCRIPTION, description)
         
     def test_extract_summary(self):
-        ACTUAL_SUMMARY = u"""Do wynajęcia od zaraz 2-pokojowe mieszkanie przy ul. Babińskiego 23b ( I piętro). Mieszkanie ma 2 pokoje ( w tym 1 przechodni), kuchnie, łazienkę, przedpokój i balkon z widokiem. Okolica bardzo spokojna. Przystanek autobusowy &quot;Babińskiego&quot; 2 min. od"""
+        ACTUAL_SUMMARY = u"""Nr oferty 2650. Kraków. Płaszów, ul. Płaszowska blisko Krakowskiej Akademii. Mieszkanie o powierzchni ok. 48 m2 składa się z dwóch oddzielny...169136399"""
         summary = OfferExtractor.extract(OFFER_HTML)["summary"]
         self.assertEquals(ACTUAL_SUMMARY, summary)
 
     def test_extract_image_url(self):
-        ACTUAL_URL = u"http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/bvsAAOSwVFlT1949/$_35.JPG"
+        ACTUAL_URL = u"http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/7JAAAOSw3YNXcYcz/$_20.JPG?set_id=8800005007"
         url = OfferExtractor.extract(OFFER_HTML)["image_url"]
         self.assertEquals(ACTUAL_URL, url)
 
@@ -60,7 +60,7 @@ class OfferExtractorTest(unittest.TestCase):
                 
         
     def test_extract_area(self):
-        ACTUAL_AREA = 36
+        ACTUAL_AREA = 47
         area = OfferExtractor.extract(OFFER_HTML)["area"]
         self.assertEquals(ACTUAL_AREA, area, 
                           "Room area should be %s but extracted area is %s" % (ACTUAL_AREA, area))
@@ -71,2064 +71,8722 @@ if __name__ == "__main__":
     
    
 OFFER_HTML = u"""
-<!DOCTYPE html PUBLIC "-//W3C//DTD OFFER_HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:fb="http://www.facebook.com/2008/fbml"> 
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7]>
+<html data-locale="pl_PL" lang="pl_PL" class="iem7 oldie VIP"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]>
+<html data-locale="pl_PL" lang="pl_PL" class="ie7 lt-ie8 lt-ie9 lt-ie10 oldie VIP"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]>
+<html data-locale="pl_PL" lang="pl_PL" class="ie8 lt-ie9 lt-ie10 oldie VIP"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]>
+<html data-locale="pl_PL" lang="pl_PL" class="ie9 lt-ie10 VIP"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
+<html data-locale="pl_PL" lang="pl_PL" xmlns="http://www.w3.org/1999/html" class="VIP"><!--<![endif]-->
 <head>
-<title>Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego</title>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<meta name="description" content="Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego, mieszkania i domy do wynajęcia, ogłoszenia drobne na Gumtree"/>
-<meta name="uniq_GUMTREE_POLAND_page_token_name" content="ViewAd"/>
-<meta property="og:image" content="http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/bvsAAOSwVFlT1949/$_35.JPG"/>
-<meta property="og:title" content="Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego"/>
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/przytulne-2-pokojowe-35m-ruczaj-babinskiego-607878925"/>
-<meta property="og:description" content="Do wynajęcia od zaraz 2-pokojowe mieszkanie przy ul. Babińskiego 23b ( I piętro). Mieszkanie ma 2 pokoje ( w tym 1 przechodni), kuchnie, łazienkę, przedpokój i balkon z widokiem. Okolica bardzo spokojna. Przystanek autobusowy &quot;Babińskiego&quot; 2 min. od "/>
-<meta property="og:locality" content="Kraków"/>
-<meta property="og:site_name" content="Gumtree Polska"/>
-<meta property="og:country-name" content="Poland"/>
-<link rel="canonical" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/przytulne-2-pokojowe-35m-ruczaj-babinskiego-607878925"/>
-<link rel="SHORTCUT ICON" href="http://pic.classistatic.com/image/pics/classifieds/gumtreeFavicon.ico">
-<link href="http://include.classistatic.com/include/e884/c3css/pages/ViewAdShared-min.css" rel="stylesheet" type="text/css">
-<link href="http://include.classistatic.com/include/e884/c3css/brands/gumtree/PL/all-pl.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-//<!--
-var picsPath = "http://pic.classistatic.com/image/pics/classifieds/";
-var staticPath = "http://include.classistatic.com/include/e884/c3js/classifieds/rel1/";
-var debugNonProdStaticPathPrefix = "s_isProduction => true, s_localStaticPath => null, m_isSecure => false, s_localSecureStaticPath => null, nonProdStaticPathPrefix => ";
-//-->
-</script>
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e884/c3js/classifieds/rel1/shared_pages/flashChecker.js"></script>
-<script src="http://www.google.com/jsapi"></script>
-<noscript>
-<style type="text/css">
-.jsonly {display:none;}
-.collapseWithJS {display:block;}
-.collapseWithJS_inline {display:inline;}
-</style>
-</noscript>
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['siteTracker._setAccount', 'UA-9157637-1']);
-_gaq.push(['siteTracker._setDomainName', '.gumtree.pl']);
-_gaq.push(['siteTracker._setSessionCookieTimeout', 1800000]);
-_gaq.push(['siteTracker._setCampaignCookieTimeout', 15768000000]);
-_gaq.push(['siteTracker._setVisitorCookieTimeout', 63072000000]);
-_gaq.push(['siteTracker._trackPageview', '/ViewAd/properties/flat+%2f+house+for+rent/attribute']);
-</script>
-<script type="text/javascript">
-(function() {
-var ga = document.createElement("script");
-ga.type = "text/javascript"; ga.async = true;
-ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-<script type="text/javascript">
-var mpx_custom = {
-new_mpcl: 'p;krakow;9008;Nieruchomo%C5%9Bci;l3;1;820;p;;n;607878925;http%3A%2F%2Fwww.gumtree.pl%2Fcp-mieszkania-i-domy-do-wynajecia%2Fkrakow%2Fprzytulne-2-pokojowe-35m-ruczaj-babinskiego-607878925%3FfeaturedAd%3Dtrue',
-new_mpvl: document.referrer
-}
-</script>
+    <title>2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ – Kraków – 169136399 | Gumtree</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta name="description" content="Nr oferty 2650. Kraków. Płaszów, ul. Płaszowska blisko Krakowskiej Akademii. Mieszkanie o powierzchni ok. 48 m2 składa się z dwóch oddzielny...169136399"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    
+    
+    
+
+    
+    
+
+    
+        <meta property="og:title" content="2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ – Kraków – 169136399 | Gumtree"/>
+        <meta property="og:type" content="product"/>
+        <meta property="og:image" content='http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/7JAAAOSw3YNXcYcz/$_20.JPG?set_id=8800005007'/>
+        <meta property="og:url" content="http://www.gumtree.pl/a-mieszkania-i-domy-do-wynajecia/krakow/2-pok-47-m2-na-plaszowskiej-dla-3-osob-blisko-rm-grzegorzeckiego-lini-tramwajowej/1001691363990910474413109"/>
+        <meta property="og:site_name" content="Gumtree"/>
+        <meta property="og:country-name" content="Poland"/>
+        <meta property="og:description" content="Nr oferty 2650. Kraków. Płaszów, ul. Płaszowska blisko Krakowskiej Akademii. Mieszkanie o powierzchni ok. 48 m2 składa się z dwóch oddzielny...169136399"/>
+        <meta property="og:locale" content="pl_PL"/>
+    
+    
+    
+    
+    
+        <link rel="stylesheet" type="text/css" href='http://inc.t9.classistatic.com/1.1.288/css/all/Gumtree/PL/pl_PL/Main.min.css'/>
+
+    
+        <link rel="stylesheet" type="text/css" href='http://inc.t9.classistatic.com/1.1.288/css/all/Gumtree/PL/pl_PL/SeoViewPage.min.css'/>
+
+    
+    <link rel="publisher" href="" />
+    <link rel="shortcut icon" type="image/png" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/shortcut.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/shortcut.png"/>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/shortcut.png"/>
+    <link rel="apple-touch-icon" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-iphone.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-ipad.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-iphone-retina.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-ipad-retina.png"/>
+
+
+
+    
+        <link rel="canonical" href="http://www.gumtree.pl/a-mieszkania-i-domy-do-wynajecia/krakow/2-pok-47-m2-na-plaszowskiej-dla-3-osob-blisko-rm-grzegorzeckiego-lini-tramwajowej/1001691363990910474413109"/>
+    
+    
+    
+      
+      
+    
+    <script>!function(e,t,n){function a(a){var m=o.document.createElement("link"),A=o.document.getElementsByTagName("script")[0],d=a&&r;m.rel="stylesheet",m.href=d?e:a?t:n,A.parentNode.insertBefore(m,A),d||(document.documentElement.className+=" no-svg")}if(3===arguments.length){var o=window,r=!(!o.document.createElementNS||!o.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),m=new o.Image;m.onerror=function(){a(!1)},m.onload=function(){a(1===m.width&&1===m.height)},m.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}}
+    ("http://inc.t9.classistatic.com/1.1.288/css/icons.data.svg_pl_PL.css","http://inc.t9.classistatic.com/1.1.288/css/icons.data.png_pl_PL.css","http://inc.t9.classistatic.com/1.1.288/css/icons.fallback_pl_PL.css");</script>
+
+    <noscript>
+       <link href="http://inc.t9.classistatic.com/1.1.288/css/icons.fallback_pl_PL.css" rel="stylesheet">
+       <style type="text/css">
+            .jsOnly {display:none !important;}
+            .nonJsOnlyInlineBlock{display:inline-block !important;}
+            .nonJsOnlyBlock {display:block !important;}
+            .nonJsOnlyInline {display:inline !important;}
+       </style>
+    </noscript>
+
+    
+    
+      
+
+            <script>
+            var dataLayer = dataLayer || [];
+            dataLayer.push({});(function(l) {
+                var dl=l[0];
+                dl["p"]={};
+                     dl["p"]["t"] = "VIP";
+                     dl["p"]["pl"] = "BOLT-RUI";
+                     dl["p"]["v"] = "1.1.288";
+                     dl["p"]["lng"] ="pl_PL";
+                     
+                dl["u"]={};
+                dl["u"]["tg"]={};
+                     
+                     
+                     
+                     
+                      
+                     
+                     
+                     
+                    
+                dl["c"]={};
+                dl["c"]["c"]={};
+                      dl["c"]["c"]["id"] = "9008";
+                     dl["c"]["l0"]={};dl["c"]["l0"]["id"]="0";
+                     dl["c"]["l1"]={};dl["c"]["l1"]["id"]="2";
+                     dl["c"]["l2"]={};dl["c"]["l2"]["id"]="9008";
+                     
+                     
+                dl["l"]={};
+                dl["l"]["c"]={};
+                      dl["l"]["c"]["id"] = "3200208";
+                     dl["l"]["l0"]={};dl["l"]["l0"]["id"]="202";
+                     dl["l"]["l1"]={};dl["l"]["l1"]["id"]="3200003";
+                     dl["l"]["l2"]={};dl["l"]["l2"]["id"]="3200208";
+                     
+                     
+
+             
+      dl["a"]={};
+        dl["a"]["id"] ="169136399";  
+        dl["a"]["cdt"] ="1467057981"; 
+        dl["a"]["lpdt"] =""; 
+
+
+            })(dataLayer);
+
+                    //gtm script
+                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+                             {'gtm.start': new Date().getTime(),event:'gtm.js'}
+                     );var f=d.getElementsByTagName(s)[0],
+                             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                             '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                     })(window,document,'script','dataLayer','GTM-KSFR4N');
+       </script>
+      
+    
+    <script>
+        var Bolt = Bolt || {};
+        Bolt.BASEJSURL = "http://inc.t9.classistatic.com/1.1.288/js/";
+        Bolt.BASECSSURL = "http://inc.t9.classistatic.com/1.1.288/css/";
+        Bolt.BASEIMAGEURL = "http://inc.t9.classistatic.com/1.1.288/images/";
+        Bolt.BRANDNAME = "Gumtree";
+        Bolt.COUNTRY = "PL";
+        Bolt.DECIMAL = ",";
+        Bolt.PLACEHOLDER = ".";
+        Bolt.LOCALE = "pl_PL";
+        Bolt.LOCALIZEAPIROOTURL = "/rui-api/localize/rui/pl_PL";
+    </script>
+    
+        <input id='ga-account' type='hidden' value='' />
+        <input id='ga-domain' type='hidden' value='' />
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+        
+            
+                _gaq.push(['siteTracker._setAccount', 'UA-9157637-1']);
+                _gaq.push(['siteTracker._setAllowAnchor', true]);
+                _gaq.push(['siteTracker._setDomainName', '.gumtree.pl']);
+                
+                    _gaq.push(['siteTracker._addIgnoredRef', 'gumtree.pl']);
+                
+                _gaq.push(['siteTracker._setSessionCookieTimeout', 1800000]);
+                _gaq.push(['siteTracker._setCampaignCookieTimeout', 15768000000]);
+                _gaq.push(['siteTracker._setVisitorCookieTimeout', 63072000000]);
+                _gaq.push(['siteTracker._trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                    //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+
+
+            
+        
+        </script>
+    
+
+    
+
+    
+
 </head>
 <body>
-<div id="main">
-<div id="top">
-<a name="#top"></a>
-<div id="mediaplex_tracking"></div>
-<script type="text/javascript">
-(function() {
-var mpxtag = document.createElement('script'); mpxtag.type = 'text/javascript'; mpxtag.async = true;
-mpxtag.src = ('https:' == document.location.protocol
-? 'https://secure.img-cdn.mediaplex.com/0/9860/56583/Kijiji-Poland_mp_pvt_brand_landing_ns_2013-04-30.js'
-: 'http://img-cdn.mediaplex.com/0/9860/56583/Kijiji-Poland_mp_pvt_brand_landing_ns_2013-04-30.js');
-var smpx = document.getElementsByTagName('script')[0]; smpx.parentNode.insertBefore(mpxtag, smpx);
-})();
-</script>
-<!-- Start of HtmlPageHeader_03. This ftl is used for national site for Team 9 team -->
-<script> var IsNC2_On = true; </script>
-<script> var IsAdIdsSite_On = false; </script>
-<table class="tbleColpse newHeader nationalSite">
-<tr>
-<td class="national-logo-area">
-<div>
-<a href="http://www.gumtree.pl" >
-<img src="http://pic.classistatic.com/image/pics/classifieds/pl-PL/logo-gumtree.png" width="68" height="76" border="0" alt="Polska ">
-</a>
-</div> </td>
-<td class="header-curve">
-<div class="header-curve-top">&nbsp;</div>
-<div class="header-curve-bottom">&nbsp;</div>
-</td>
-<td class="header-curve-space">
-<div class="header-top-bg">&nbsp;</div>
-<div class="header-bottom-bg">&nbsp;</div>
-</td>
-<td class="v-top">
-<table width="100%" class="tbleColpse">
-<tr>
-<td class="navTabs-new h-top">
-<div class="mainTabs">
-<a href="http://www.gumtree.pl/c-SelectCategory" class="tabLink" >
-<div id="SelectCategoryTab" class="tab"><div class="tab-right"><div class="tab-mid"> <div> + Dodaj ogłoszenie</div>
-</div></div></div>
-</a>
-<a href="http://www.gumtree.pl" class="tabLink" >
-<div id="SiteHomeTab" class="tab"><div class="tab-right"><div class="tab-mid"> <div id="SiteHomeText">Kategorie</div>
-</div></div></div>
-</a>
-<a href="http://www.gumtree.pl/c-DealerDirectory" class="tabLink" >
-<div id="DealerDirectoryTab" class="tab"><div class="tab-right"><div class="tab-mid"> <div>Katalog sprzedawców</div>
-</div></div></div>
-</a>
+    
+<div id="cookieWarning">
+    <div class="messageContainer">
+        Aby zapewnić najwyższą jakość usług i wygodne korzystanie z serwisu, używamy informacji zapisanych w przeglądarce za pomocą plików cookies (pol.: ciasteczek). Korzystając z serwisu wyrażasz zgodę na stosowanie plików <a href="http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies" target="_blank">cookies</a>. W każdej chwili możesz je zablokować korzystając z ustawień swojej przeglądarki internetowej.
+        <a class="accept icon-gl-message-close" style="width:15px;height:15px;margin-top:12px"></a>
+    </div>
 </div>
-</td>
-<td class="lang h-top">
-<div class="menuTop">
-<ul>
-<div id="withoutGreetings">
-<li>
-<!--<a href="https://secure.gumtree.pl/s-SignIn?rup=ViewAd&ruq=AdId%3D607878925" id="log_out" >here:Zaloguj się</a>-->
-<span onclick="clickEncoded('aHR0cHM6Ly9zZWN1cmUuZ3VtdHJlZS5wbC9zLVNpZ25Jbj9ydXA9Vmlld0FkJnJ1cT1BZElkJTNENjA3ODc4OTI1')" class="sd-link">Zaloguj się</span>
-<span class="bar">&nbsp;|&nbsp;</span>
-</li>
-<li>
-<!--<a href="https://secure.gumtree.pl/s-StartRegistration?rup=ViewAd&ruq=AdId%3D607878925" id="log_out" >here:Zarejestruj się</a>-->
-<span onclick="clickEncoded('aHR0cHM6Ly9zZWN1cmUuZ3VtdHJlZS5wbC9zLVN0YXJ0UmVnaXN0cmF0aW9uP3J1cD1WaWV3QWQmcnVxPUFkSWQlM0Q2MDc4Nzg5MjU=')" class="sd-link">Zarejestruj się</span>
-<span class="bar">&nbsp;|&nbsp;</span>
-</li>
-<li>
-<!--<a href="http://www.gumtree.pl/c-ManageMyAds" id="log_out" >here:Moje Gumtree</a>-->
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtTWFuYWdlTXlBZHM=')" class="sd-link">Moje Gumtree</span>
-</li>
+
+    
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KSFR4N"
+              height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+    
+     
+
+    <noscript>
+        <div class="js-message-error">
+            <div>
+                <span class="icon-warning-sign"></span>
+                <div class="no-js pl_PL message"></div>
+            </div>
+        </div>
+    </noscript>
+
+
+    <div class="viewport" id="div-gpt-oop">
+
+    <div class="header">
+    <!-- mobile:false -->
+    <header>
+        <div class="wrap">
+            <div class="elements">
+                <div class="left">
+
+                    
+                    
+
+<div class="logo">
+    <a href="http://www.gumtree.pl/">
+        
+            
+                <img class="logo" src="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/logo.png" alt='Darmowe Ogłoszenia' />
+            
+        
+    </a>
 </div>
+
+
+                </div>
+                <div class="right ">
+
+
+                    
+
+
+                    
+                    
+    <div class="post">
+        <a class="sudo-link sudo-link post-btn postcommercial" data-gtm="pc|PostAdBegin" href="/post.html">
+            <span>
+                
+                    Dodaj ogłoszenie
+                
+            </span>
+        </a>
+    </div>
+
+                    
+
+                    
+                    
+
+
+                    
+                    
+<div class="nav">
+    <nav>
+
+
+
+
+        
+        
+
+
+
+
+<div class="profile" aria-haspopup="true">
+    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zl/nqf.ugzy">
+        <span class="icon  "
+              style="
+               ">
+            <span class="icon-header-profile-out"></span>
+            <span class="icon-header-profile-over"></span>
+        </span>
+        <span class="label">Moje Gumtree</span>
+    </span>
+</div>
+<div class="clear"></div>
+
+        
+
+
+
+
+        <ul>
+            
+            
+                
+                    <li>
+                        <span class="sudo-link sudo-link-toConvert" data-o-uri="/ybtva.ugzy">Zaloguj się</span>
+                    </li>
+                
+            
+
+            
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zljngpuyvfg.ugzy">Zachowane ogłoszenia</span>
+            </li>
+
+            
+            
+            
+            
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zl/nyregf.ugzy">Moje powiadomienia</span>
+            </li>
+
+            
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zl/nqf.ugzy">Moje ogłoszenia</span>
+            </li>
+
+            
+            
+                <li>
+                    <span class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  data-o-uri="/zl/cebzbgr.ugzy">Wypromuj ogłoszenia</span>
+                </li>
+            
+
+            
+
+            
+            
+
+            
+            
+
+            
+                <li>
+                    <span class="sudo-link sudo-link-toConvert" data-o-uri="/ertvfgre.ugzy">Zarejestruj się</span>
+                </li>
+            
+
+        </ul>
+    </nav>
+</div>
+                    
+                    
+                    
+    
+        
+            <div class="signin">
+                <span class="sudo-link sudo-link-toConvert" data-o-uri="/ybtva.ugzy">Zaloguj się</span>
+            </div>
+        
+    
+
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+
+<div class="postSection headerPost">
+    <div class="header diff">
+        <div class="right">
+            <div class="post post-btn-wrap">
+                <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
+                    <span class="long">Dodaj ogłoszenie</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+    
+    <div class="searchbar">
+        <section role="search">
+            <div class="wrap">
+
+
+                <form action='/search.html?page=1' class="has-location-true"
+                        data-instant-search="false"
+                        data-clear-searches-message='Wyczyść'
+                        data-saved-search="true"
+                        data-auto-complete="true"
+                        data-auto-complete-api="http://cache.gumtree.pl/rui-api/autocomplete/model/pl_PL/{catId}/{locId}/{value}">
+                    <fieldset>
+
+
+                        
+                        <div class="keyword">
+    <input tabindex="1" type="text" name="q" value="" placeholder='Czego szukasz?' autocomplete="off" />
+</div>
+                        
+
+
+                        
+                        <div class="category">
+    <span class="icon main-icon">
+        <span class='icon-header-categories'></span>
+    </span>
+    <input tabindex="2" type="text" data-all='Wszystkie kategorie' placeholder='Kategoria' value="" autocomplete="off" disabled="disabled" readonly="readonly" />
+    <input type="hidden" name="catId" value="" />
+    <!--[if (IE 8)&!(IEMobile)]>
+        <span class="icon-caret-down"></span>
+    <![endif]-->
+    
+        <script type="text/plain">{"children":[{"children":[{"children":[],"localizedName":"pokoje do wynajęcia","id":9000},{"children":[],"localizedName":"mieszkania i domy do wynajęcia","id":9008},{"children":[],"localizedName":"mieszkania i domy - sprzedam","id":9073},{"children":[],"localizedName":"działki","id":9194},{"children":[],"localizedName":"krótki termin i domki letniskowe","id":9074},{"children":[],"localizedName":"lokal i biuro","id":9072},{"children":[],"localizedName":"parking i garaż","id":9071},{"children":[],"localizedName":"kupię mieszkanie, dom, lokal, działkę","id":9772},{"children":[],"localizedName":"szukam mieszkania do wynajęcia","id":9773},{"children":[],"localizedName":"szukam pokoju do wynajęcia","id":9774}],"localizedName":"Nieruchomości","id":2},{"children":[{"children":[],"localizedName":"samochody osobowe","id":9026},{"children":[],"localizedName":"części i akcesoria samochodowe","id":9636},{"children":[],"localizedName":"samochody dostawcze","id":9027},{"children":[],"localizedName":"motocykle i skutery","id":9028},{"children":[],"localizedName":"części i akcesoria do motocykli","id":9634},{"children":[],"localizedName":"ciągniki i maszyny rolnicze","id":9154},{"children":[],"localizedName":"ciężki sprzęt","id":9622},{"children":[],"localizedName":"przyczepy i naczepy","id":9155},{"children":[],"localizedName":"quady, atv i inne","id":9621},{"children":[],"localizedName":"części i akcesoria do innych pojazdów","id":9635},{"children":[],"localizedName":"kupię samochód","id":9763},{"children":[],"localizedName":"kupię motocykl, skuter, pojazd","id":9764},{"children":[],"localizedName":"kupię części, akcesoria samochodowe","id":9765},{"children":[],"localizedName":"kupię części, akcesoria do innych pojazdów","id":9766}],"localizedName":"Motoryzacja","id":5},{"children":[{"children":[],"localizedName":"motorówki","id":9219},{"children":[],"localizedName":"skutery wodne","id":9222},{"children":[],"localizedName":"żaglówki","id":9221},{"children":[],"localizedName":"kajaki i pontony","id":9220},{"children":[],"localizedName":"silniki do łodzi","id":9223},{"children":[],"localizedName":"akcesoria do łodzi","id":9224},{"children":[],"localizedName":"inne pojazdy wodne","id":9225},{"children":[],"localizedName":"łodzie wiosłowe","id":9226},{"children":[],"localizedName":"kupię łódź, części, akcesoria","id":9787}],"localizedName":"Łodzie i Pojazdy wodne","id":9218},{"children":[{"children":[],"localizedName":"audio i hi-fi","id":9260},{"children":[],"localizedName":"cesje","id":9353},{"children":[],"localizedName":"fotografia i video","id":9281},{"children":[],"localizedName":"gry video i konsole","id":9265},{"children":[],"localizedName":"komputery i software","id":9238},{"children":[],"localizedName":"radiokomunikacja","id":9352},{"children":[],"localizedName":"tablety i bookreadery","id":9259},{"children":[],"localizedName":"telefony i akcesoria","id":9247},{"children":[],"localizedName":"telewizory i odtwarzacze","id":9276},{"children":[],"localizedName":"elektronika inne","id":9286},{"children":[],"localizedName":"kupię sprzęt elektroniczny","id":9767}],"localizedName":"Elektronika","id":9237},{"children":[{"children":[],"localizedName":"akwarystyka","id":9612},{"children":[],"localizedName":"koty i kocięta","id":9125},{"children":[],"localizedName":"psy i szczenięta","id":9131},{"children":[],"localizedName":"ptaki","id":9617},{"children":[],"localizedName":"inne zwierzaki","id":9126},{"children":[],"localizedName":"zwierzęta gospodarskie","id":9618},{"children":[],"localizedName":"zgubiono lub znaleziono","id":9128},{"children":[],"localizedName":"akcesoria dla zwierząt","id":9129},{"children":[],"localizedName":"usługi dla zwierząt","id":9130},{"children":[],"localizedName":"kupię zwierzaka","id":9775},{"children":[],"localizedName":"szukam akcesoriów, usług dla zwierząt","id":9776}],"localizedName":"Zwierzaki","id":9124},{"children":[{"children":[],"localizedName":"drobne pytania i hobby","id":9030},{"children":[],"localizedName":"sport, taniec i partnerzy do gry","id":9032},{"children":[],"localizedName":"zespoły i muzycy","id":9033},{"children":[],"localizedName":"wolontariat","id":9227},{"children":[],"localizedName":"wydarzenia lokalne","id":9228},{"children":[],"localizedName":"wymiana umiejętności","id":9035},{"children":[],"localizedName":"zgubiono lub znaleziono","id":9036},{"children":[],"localizedName":"przejazdy","id":9037},{"children":[],"localizedName":"podróże","id":9038},{"children":[],"localizedName":"dziękuję","id":9039},{"children":[],"localizedName":"wyznania","id":9084},{"children":[],"localizedName":"szukam starych przyjaciół","id":9132}],"localizedName":"Społeczność","id":6},{"children":[{"children":[],"localizedName":"AGD","id":9366},{"children":[],"localizedName":"meble","id":9376},{"children":[],"localizedName":"narzędzia i materiały budowlane","id":9384},{"children":[],"localizedName":"ogród","id":9398},{"children":[],"localizedName":"produkty żywnościowe i napoje","id":9407},{"children":[],"localizedName":"wyposażenie wnętrz","id":9408},{"children":[],"localizedName":"inne do domu i ogrodu","id":9023},{"children":[],"localizedName":"kupię do ogrodu","id":9784},{"children":[],"localizedName":"kupię do domu","id":9783}],"localizedName":"Dom i Ogród","id":4},{"children":[{"children":[],"localizedName":"karty kolekcjonerskie","id":9673},{"children":[],"localizedName":"książki i poligrafia","id":9674},{"children":[],"localizedName":"lampy, świeczniki i  lustra","id":9675},{"children":[],"localizedName":"meble zabytkowe","id":9676},{"children":[],"localizedName":"medale i odznaczenia","id":9677},{"children":[],"localizedName":"monety i banknoty","id":9678},{"children":[],"localizedName":"obrazy i rzeźby","id":9679},{"children":[],"localizedName":"rękodzieło","id":9680},{"children":[],"localizedName":"zastawy kuchenne","id":9681},{"children":[],"localizedName":"zabytkowe tekstylia i dekoracje","id":9682},{"children":[],"localizedName":"zegary","id":9683},{"children":[],"localizedName":"znaczki pocztowe","id":9684},{"children":[],"localizedName":"inne kolekcje","id":9685},{"children":[],"localizedName":"kupię antyki, kolekcje","id":9762}],"localizedName":"Antyki i kolekcje","id":9672},{"children":[{"children":[],"localizedName":"artykuły szkolne","id":9468},{"children":[],"localizedName":"bezpieczeństwo i zdrowie dziecka","id":9460},{"children":[],"localizedName":"buty dla dzieci","id":9461},{"children":[],"localizedName":"chrzciny i komunie","id":9469},{"children":[],"localizedName":"ciąża i karmienie","id":9464},{"children":[],"localizedName":"foteliki - nosidełka","id":9462},{"children":[],"localizedName":"kąpiel i zdrowie","id":9470},{"children":[],"localizedName":"kojce i chodziki","id":9471},{"children":[],"localizedName":"meble i wystrój pokoju","id":9463},{"children":[],"localizedName":"rowerki i inne pojazdy","id":9472},{"children":[],"localizedName":"odzież dziecięca","id":9465},{"children":[],"localizedName":"wózki dla dzieci","id":9466},{"children":[],"localizedName":"zabawki","id":9467},{"children":[],"localizedName":"inne dla dziecka","id":9489},{"children":[],"localizedName":"kupię ubranka, buty dla dziecka","id":9780},{"children":[],"localizedName":"kupię zabawki","id":9781},{"children":[],"localizedName":"kupię inne dla dziecka","id":9782}],"localizedName":"Dla Dziecka","id":9459},{"children":[{"children":[],"localizedName":"akcesoria i galanteria","id":9542},{"children":[],"localizedName":"biżuteria i zegarki","id":9563},{"children":[],"localizedName":"obuwie damskie","id":9596},{"children":[],"localizedName":"obuwie męskie","id":9604},{"children":[],"localizedName":"odzież damska","id":9565},{"children":[],"localizedName":"odzież męska","id":9584},{"children":[],"localizedName":"odzież i obuwie robocze","id":9660},{"children":[],"localizedName":"pasmanteria","id":9549},{"children":[],"localizedName":"torebki i torby","id":9551},{"children":[],"localizedName":"inne ubrania","id":9553},{"children":[],"localizedName":"walizki i plecaki","id":9552},{"children":[],"localizedName":"kupię ubrania, buty","id":9769},{"children":[],"localizedName":"kupię inne z działu mody","id":9768}],"localizedName":"Moda","id":9541},{"children":[{"children":[],"localizedName":"zdrowie","id":9691},{"children":[],"localizedName":"kosmetyki","id":9697},{"children":[],"localizedName":"perfumy i dezodoranty","id":9698},{"children":[],"localizedName":"kupię produkty zdrowotne, kosmetyki","id":9786}],"localizedName":"Zdrowie i Uroda","id":9690},{"children":[{"children":[],"localizedName":"fitness i siłownia","id":9745},{"children":[],"localizedName":"sport","id":9746},{"children":[],"localizedName":"karty i gadżety sportowe","id":9753},{"children":[],"localizedName":"sprzęt turystyczny","id":9756},{"children":[],"localizedName":"kupię sprzęt fitness, do siłowni","id":9771},{"children":[],"localizedName":"kupię sprzęt sportowy","id":9770}],"localizedName":"Sport i Fitness","id":9706},{"children":[{"children":[],"localizedName":"bilety","id":9491},{"children":[],"localizedName":"instrumenty i akcesoria muzyczne","id":9496},{"children":[],"localizedName":"komiksy i czasopisma","id":9497},{"children":[],"localizedName":"książki","id":9498},{"children":[],"localizedName":"CD, kasety i płyty","id":9514},{"children":[],"localizedName":"filmy i DVD","id":9513},{"children":[],"localizedName":"gry planszowe i puzzle","id":9515},{"children":[],"localizedName":"kupię instrument muzyczny","id":9777},{"children":[],"localizedName":"kupię bilet","id":9778},{"children":[],"localizedName":"kupię inne z działu muzyka i rozrywka","id":9779}],"localizedName":"Muzyka i Rozrywka","id":9490},{"children":[{"children":[],"localizedName":"bar, restauracja i gastronomia","id":9056},{"children":[],"localizedName":"biuro i administracja","id":9052},{"children":[],"localizedName":"praca na budowie i pracownicy fizyczni","id":9142},{"children":[],"localizedName":"fachowcy","id":9203},{"children":[],"localizedName":"finanse i księgowość","id":9050},{"children":[],"localizedName":"grafika i web design","id":9140},{"children":[],"localizedName":"hostessy, modele i aktorzy","id":9141},{"children":[],"localizedName":"hr, kadry i rekrutacja","id":9053},{"children":[],"localizedName":"inżynierowie, technicy i architekci","id":9094},{"children":[],"localizedName":"kierowcy i kurierzy","id":9097},{"children":[],"localizedName":"kontrola i inwentaryzacja","id":9208},{"children":[],"localizedName":"krawiectwo i moda","id":9204},{"children":[],"localizedName":"magazynier","id":9619},{"children":[],"localizedName":"marketing, media i pr","id":9048},{"children":[],"localizedName":"mlm","id":9532},{"children":[],"localizedName":"nauczyciele i edukacja","id":9060},{"children":[],"localizedName":"obsługa klienta i call center","id":9098},{"children":[],"localizedName":"ochrona","id":9200},{"children":[],"localizedName":"opiekunki i nianie","id":9059},{"children":[],"localizedName":"pielęgnacja i uroda","id":9054},{"children":[],"localizedName":"praca dla studentów","id":9206},{"children":[],"localizedName":"praca na produkcji","id":9620},{"children":[],"localizedName":"praca w hotelu","id":9058},{"children":[],"localizedName":"prawo i prokuratura","id":9049},{"children":[],"localizedName":"programiści, informatyka i internet","id":9005},{"children":[],"localizedName":"służba zdrowia i farmacja","id":9055},{"children":[],"localizedName":"spedycja","id":9205},{"children":[],"localizedName":"sport i fitness","id":9202},{"children":[],"localizedName":"sprzątanie i pomoc domowa","id":9138},{"children":[],"localizedName":"sprzedaż, handel  i praca w sklepie","id":9061},{"children":[],"localizedName":"turystyka","id":9207},{"children":[],"localizedName":"ulotki","id":9201},{"children":[],"localizedName":"weterynaria i rolnictwo","id":9095},{"children":[],"localizedName":"video i fotografia","id":9212},{"children":[],"localizedName":"praca inne","id":9099}],"localizedName":"Oferty Pracy","id":8},{"children":[{"children":[],"localizedName":"gastronomia","id":9291},{"children":[],"localizedName":"biuro i administracja","id":9292},{"children":[],"localizedName":"pracownicy fizyczni","id":9293},{"children":[],"localizedName":"specjaliści i technicy","id":9294},{"children":[],"localizedName":"kierowcy i kurierzy","id":9300},{"children":[],"localizedName":"marketing, reklama i PR","id":9304},{"children":[],"localizedName":"opiekunki i edukacja","id":9305},{"children":[],"localizedName":"ochrona","id":9306},{"children":[],"localizedName":"pielęgnacja i uroda","id":9308},{"children":[],"localizedName":"sprzedaż i praca w sklepie","id":9311},{"children":[],"localizedName":"szukam pracy studenckiej","id":9309},{"children":[],"localizedName":"turystyka","id":9312},{"children":[],"localizedName":"praca inne","id":9313}],"localizedName":"Szukający Zatrudnienia","id":9290},{"children":[{"children":[],"localizedName":"biura podróży","id":9150},{"children":[],"localizedName":"współpraca biznesowa","id":9325},{"children":[],"localizedName":"catering","id":9554},{"children":[],"localizedName":"usługi finansowe","id":9066},{"children":[],"localizedName":"fotografia i video","id":9146},{"children":[],"localizedName":"graficy i usługi IT","id":9234},{"children":[],"localizedName":"hurt i handel","id":9065},{"children":[],"localizedName":"komputery serwis i handel","id":9102},{"children":[],"localizedName":"usługi kurierskie","id":9337},{"children":[],"localizedName":"nauka i edukacja","id":9063},{"children":[],"localizedName":"mechanika, autoskup, pomoc drogowa","id":9145},{"children":[],"localizedName":"media i reklama","id":9217},{"children":[],"localizedName":"muzycy i artyści","id":9148},{"children":[],"localizedName":"ogrodnictwo","id":9214},{"children":[],"localizedName":"opieka i agencje niań","id":9152},{"children":[],"localizedName":"pielęgnacja i uroda","id":9064},{"children":[],"localizedName":"usługi prawne","id":9233},{"children":[],"localizedName":"przeprowadzki i transport towarów","id":9144},{"children":[],"localizedName":"przyjęcia, śluby, komunie","id":9104},{"children":[],"localizedName":"remont i budowa","id":9101},{"children":[],"localizedName":"serwis i montaż","id":9236},{"children":[],"localizedName":"sport i fitness","id":9151},{"children":[],"localizedName":"sprzątanie","id":9149},{"children":[],"localizedName":"taxi i przewozy osobowe","id":9147},{"children":[],"localizedName":"telefony","id":9341},{"children":[],"localizedName":"tłumaczenia i redakcja tekstu","id":9216},{"children":[],"localizedName":"utylizacja","id":9213},{"children":[],"localizedName":"wypożyczalnie","id":9215},{"children":[],"localizedName":"zdrowie","id":9235},{"children":[],"localizedName":"inne usługi","id":9105},{"children":[],"localizedName":"szukam usług finansowych","id":9759},{"children":[],"localizedName":"szukam usług budowlanych","id":9760},{"children":[],"localizedName":"szukam innych usług","id":9761},{"children":[],"localizedName":"szukam kursu, lekcji, korepetycji","id":9758}],"localizedName":"Usługi","id":9}],"localizedName":"Wszystkie kategorie","id":0}</script>
+    
+</div>
+                        
+
+
+                        
+                        
+    <div class="location">
+        <span class="icon main-icon">
+            <span class='icon-header-location-pin'></span>
+        </span>
+        <input tabindex="3" type="text" data-all='Polska' placeholder='Polska' value='Polska' autocomplete="off" disabled="disabled" readonly="readonly" />
+        <input type="hidden" name="locId" value="" />
+        <!--[if (IE 8)&!(IEMobile)]>
+        <span class="icon-caret-down"></span>
+        <![endif]-->
+        
+            <script type="text/plain">{"children":[{"children":[{"children":[],"localizedName":"Bardo","id":3200595},{"children":[],"localizedName":"Bielawa","id":3200085},{"children":[],"localizedName":"Bierutów","id":3200435},{"children":[],"localizedName":"Bogatynia","id":3200086},{"children":[],"localizedName":"Boguszów-Gorce","id":3200437},{"children":[],"localizedName":"Bolesławiec","id":3200087},{"children":[],"localizedName":"Bolków","id":3200436},{"children":[],"localizedName":"Brzeg Dolny","id":3200438},{"children":[],"localizedName":"Bystrzyca Kłodzka","id":3200439},{"children":[],"localizedName":"Chocianów","id":3200440},{"children":[],"localizedName":"Chojnów","id":3200441},{"children":[],"localizedName":"Długołęka","id":3200609},{"children":[],"localizedName":"Duszniki Zdrój","id":3200594},{"children":[],"localizedName":"Dzierżoniów","id":3200088},{"children":[],"localizedName":"Głogów","id":3200089},{"children":[],"localizedName":"Góra","id":3200090},{"children":[],"localizedName":"Gryfów Śląski","id":3200442},{"children":[],"localizedName":"Jawor","id":3200091},{"children":[],"localizedName":"Jelcz-Laskowice","id":3200443},{"children":[],"localizedName":"Jelenia Góra","id":3200092},{"children":[],"localizedName":"Kamienna Góra","id":3200093},{"children":[],"localizedName":"Karpacz","id":3200094},{"children":[],"localizedName":"Kąty Wrocławskie","id":3200621},{"children":[],"localizedName":"Kłodzko","id":3200095},{"children":[],"localizedName":"Kowary","id":3200444},{"children":[],"localizedName":"Kudowa-Zdrój","id":3200445},{"children":[],"localizedName":"Legnica","id":3200096},{"children":[],"localizedName":"Lubań","id":3200097},{"children":[],"localizedName":"Lubin","id":3200098},{"children":[],"localizedName":"Lubomierz","id":3200597},{"children":[],"localizedName":"Lwówek Śląski","id":3200099},{"children":[],"localizedName":"Marciszów","id":3200598},{"children":[],"localizedName":"Międzylesie","id":3200599},{"children":[],"localizedName":"Milicz","id":3200100},{"children":[],"localizedName":"Nowa Ruda","id":3200101},{"children":[],"localizedName":"Oborniki Śląskie","id":3200446},{"children":[],"localizedName":"Oleśnica","id":3200103},{"children":[],"localizedName":"Oława","id":3200102},{"children":[],"localizedName":"Piechowice","id":3200434},{"children":[],"localizedName":"Pieszyce","id":3200447},{"children":[],"localizedName":"Piława Górna","id":3200448},{"children":[],"localizedName":"Polanica-Zdrój","id":3200104},{"children":[],"localizedName":"Polkowice","id":3200105},{"children":[],"localizedName":"Sobótka","id":3200600},{"children":[],"localizedName":"Strzegom","id":3200449},{"children":[],"localizedName":"Strzelin","id":3200107},{"children":[],"localizedName":"Syców","id":3200450},{"children":[],"localizedName":"Szczawno-Zdrój","id":3200601},{"children":[],"localizedName":"Szklarska Poręba","id":3200106},{"children":[],"localizedName":"Środa Śląska","id":3200108},{"children":[],"localizedName":"Świdnica","id":3200109},{"children":[],"localizedName":"Świebodzice","id":3200110},{"children":[],"localizedName":"Trzebnica","id":3200111},{"children":[],"localizedName":"Wałbrzych","id":3200112},{"children":[],"localizedName":"Wołów","id":3200113},{"children":[],"localizedName":"Wrocław","id":3200114},{"children":[],"localizedName":"Ząbkowice Śląskie","id":3200115},{"children":[],"localizedName":"Zgorzelec","id":3200116},{"children":[],"localizedName":"Ziębice","id":3200451},{"children":[],"localizedName":"Złotoryja","id":3200117},{"children":[],"localizedName":"Żarów","id":3200452},{"children":[],"localizedName":"Żmigród","id":3200453}],"localizedName":"Dolnośląskie","id":3200007},{"children":[{"children":[],"localizedName":"Aleksandrów Kujawski","id":3200118},{"children":[],"localizedName":"Barcin","id":3200454},{"children":[],"localizedName":"Brodnica","id":3200119},{"children":[],"localizedName":"Bydgoszcz","id":3200120},{"children":[],"localizedName":"Chełmno","id":3200121},{"children":[],"localizedName":"Chełmża","id":3200455},{"children":[],"localizedName":"Ciechocinek","id":3200456},{"children":[],"localizedName":"Gniewkowo","id":3200457},{"children":[],"localizedName":"Golub-Dobrzyń","id":3200122},{"children":[],"localizedName":"Grudziądz","id":3200123},{"children":[],"localizedName":"Inowrocław","id":3200124},{"children":[],"localizedName":"Janikowo","id":3200458},{"children":[],"localizedName":"Koronowo","id":3200459},{"children":[],"localizedName":"Kruszwica","id":3200460},{"children":[],"localizedName":"Lipno","id":3200125},{"children":[],"localizedName":"Mogilno","id":3200126},{"children":[],"localizedName":"Nakło nad Notecią","id":3200127},{"children":[],"localizedName":"Radziejów","id":3200128},{"children":[],"localizedName":"Rypin","id":3200129},{"children":[],"localizedName":"Sępólno Krajeńskie","id":3200130},{"children":[],"localizedName":"Solec Kujawski","id":3200461},{"children":[],"localizedName":"Strzelno","id":3200462},{"children":[],"localizedName":"Szubin","id":3200463},{"children":[],"localizedName":"Świecie","id":3200131},{"children":[],"localizedName":"Toruń","id":3200132},{"children":[],"localizedName":"Tuchola","id":3200133},{"children":[],"localizedName":"Wąbrzeźno","id":3200134},{"children":[],"localizedName":"Więcbork","id":3200464},{"children":[],"localizedName":"Włocławek","id":3200135},{"children":[],"localizedName":"Żnin","id":3200136}],"localizedName":"Kujawsko - pomorskie","id":3200075},{"children":[{"children":[],"localizedName":"Bełżyce","id":3200465},{"children":[],"localizedName":"Biała Podlaska","id":3200137},{"children":[],"localizedName":"Biłgoraj","id":3200138},{"children":[],"localizedName":"Chełm","id":3200139},{"children":[],"localizedName":"Dęblin","id":3200466},{"children":[],"localizedName":"Hrubieszów","id":3200140},{"children":[],"localizedName":"Janów Lubelski","id":3200141},{"children":[],"localizedName":"Krasnystaw","id":3200142},{"children":[],"localizedName":"Kraśnik","id":3200143},{"children":[],"localizedName":"Lubartów","id":3200144},{"children":[],"localizedName":"Lublin","id":3200145},{"children":[],"localizedName":"Łęczna","id":3200146},{"children":[],"localizedName":"Łuków","id":3200147},{"children":[],"localizedName":"Międzyrzec Podlaski","id":3200467},{"children":[],"localizedName":"Opole Lubelskie","id":3200148},{"children":[],"localizedName":"Parczew","id":3200149},{"children":[],"localizedName":"Poniatowa","id":3200468},{"children":[],"localizedName":"Puławy","id":3200150},{"children":[],"localizedName":"Radzyń Podlaski","id":3200151},{"children":[],"localizedName":"Ryki","id":3200152},{"children":[],"localizedName":"Świdnik","id":3200153},{"children":[],"localizedName":"Terespol","id":3200469},{"children":[],"localizedName":"Tomaszów Lubelski","id":3200154},{"children":[],"localizedName":"Włodawa","id":3200155},{"children":[],"localizedName":"Zamość","id":3200156}],"localizedName":"Lubelskie","id":3200076},{"children":[{"children":[],"localizedName":"Drezdenko","id":3200158},{"children":[],"localizedName":"Gorzów Wielkopolski","id":3200157},{"children":[],"localizedName":"Gubin","id":3200159},{"children":[],"localizedName":"Kostrzyn nad Odrą","id":3200470},{"children":[],"localizedName":"Kożuchów","id":3200471},{"children":[],"localizedName":"Krosno Odrzańskie","id":3200160},{"children":[],"localizedName":"Lubsko","id":3200161},{"children":[],"localizedName":"Międzyrzecz","id":3200162},{"children":[],"localizedName":"Nowa Sól","id":3200163},{"children":[],"localizedName":"Rzepin","id":3200472},{"children":[],"localizedName":"Skwierzyna","id":3200473},{"children":[],"localizedName":"Słubice","id":3200164},{"children":[],"localizedName":"Strzelce Krajeńskie","id":3200165},{"children":[],"localizedName":"Sulechów","id":3200166},{"children":[],"localizedName":"Sulęcin","id":3200167},{"children":[],"localizedName":"Szprotawa","id":3200168},{"children":[],"localizedName":"Świebodzin","id":3200169},{"children":[],"localizedName":"Witnica","id":3200474},{"children":[],"localizedName":"Wschowa","id":3200170},{"children":[],"localizedName":"Zielona Góra","id":3200171},{"children":[],"localizedName":"Żagań","id":3200172},{"children":[],"localizedName":"Żary","id":3200173}],"localizedName":"Lubuskie","id":3200077},{"children":[{"children":[],"localizedName":"Aleksandrów Łódzki","id":3200174},{"children":[],"localizedName":"Andrespol","id":3200588},{"children":[],"localizedName":"Bełchatów","id":3200175},{"children":[],"localizedName":"Brzeziny","id":3200176},{"children":[],"localizedName":"Głowno","id":3200177},{"children":[],"localizedName":"Koluszki","id":3200475},{"children":[],"localizedName":"Konstantynów Łódzki","id":3200178},{"children":[],"localizedName":"Kutno","id":3200179},{"children":[],"localizedName":"Łask","id":3200180},{"children":[],"localizedName":"Łęczyca","id":3200181},{"children":[],"localizedName":"Łowicz","id":3200182},{"children":[],"localizedName":"Łódź","id":3200183},{"children":[],"localizedName":"Opoczno","id":3200184},{"children":[],"localizedName":"Ozorków","id":3200185},{"children":[],"localizedName":"Pabianice","id":3200186},{"children":[],"localizedName":"Pajęczno","id":3200187},{"children":[],"localizedName":"Piotrków Trybunalski","id":3200188},{"children":[],"localizedName":"Poddębice","id":3200189},{"children":[],"localizedName":"Radomsko","id":3200190},{"children":[],"localizedName":"Rawa Mazowiecka","id":3200191},{"children":[],"localizedName":"Sieradz","id":3200192},{"children":[],"localizedName":"Skierniewice","id":3200193},{"children":[],"localizedName":"Tomaszów Mazowiecki","id":3200194},{"children":[],"localizedName":"Tuszyn","id":3200476},{"children":[],"localizedName":"Wieluń","id":3200195},{"children":[],"localizedName":"Wieruszów","id":3200196},{"children":[],"localizedName":"Zduńska Wola","id":3200197},{"children":[],"localizedName":"Zelów","id":3200477},{"children":[],"localizedName":"Zgierz","id":3200198},{"children":[],"localizedName":"Żychlin","id":3200478}],"localizedName":"Łódzkie","id":3200004},{"children":[{"children":[],"localizedName":"Alwernia","id":3200610},{"children":[],"localizedName":"Andrychów","id":3200199},{"children":[],"localizedName":"Bochnia","id":3200200},{"children":[],"localizedName":"Brzesko","id":3200201},{"children":[],"localizedName":"Brzeszcze","id":3200479},{"children":[],"localizedName":"Bukowina Tatrzańska","id":3200202},{"children":[],"localizedName":"Bukowno","id":3200480},{"children":[],"localizedName":"Chełmek","id":3200481},{"children":[],"localizedName":"Chrzanów","id":3200203},{"children":[],"localizedName":"Czorsztyn","id":3200611},{"children":[],"localizedName":"Dąbrowa Tarnowska","id":3200204},{"children":[],"localizedName":"Gorlice","id":3200205},{"children":[],"localizedName":"Kęty","id":3200206},{"children":[],"localizedName":"Kocmyrzów","id":3200618},{"children":[],"localizedName":"Kościelisko","id":3200207},{"children":[],"localizedName":"Kraków","id":3200208},{"children":[],"localizedName":"Krościenko nad Dunajcem","id":3200491},{"children":[],"localizedName":"Krynica-Zdrój","id":3200209},{"children":[],"localizedName":"Krzeszowice","id":3200482},{"children":[],"localizedName":"Libiąż","id":3200483},{"children":[],"localizedName":"Limanowa","id":3200210},{"children":[],"localizedName":"Miechów","id":3200211},{"children":[],"localizedName":"Mszana Dolna","id":3200484},{"children":[],"localizedName":"Myślenice","id":3200212},{"children":[],"localizedName":"Niedzica","id":3200612},{"children":[],"localizedName":"Niepołomice","id":3200485},{"children":[],"localizedName":"Nowy Sącz","id":3200213},{"children":[],"localizedName":"Nowy Targ","id":3200214},{"children":[],"localizedName":"Olkusz","id":3200215},{"children":[],"localizedName":"Oświęcim","id":3200216},{"children":[],"localizedName":"Piwniczna-Zdrój","id":3200486},{"children":[],"localizedName":"Proszowice","id":3200217},{"children":[],"localizedName":"Rabka-Zdrój","id":3200487},{"children":[],"localizedName":"Skawina","id":3200218},{"children":[],"localizedName":"Słomniki","id":3200619},{"children":[],"localizedName":"Stary Sącz","id":3200488},{"children":[],"localizedName":"Sucha Beskidzka","id":3200219},{"children":[],"localizedName":"Szczawnica","id":3200220},{"children":[],"localizedName":"Tarnów","id":3200221},{"children":[],"localizedName":"Trzebinia","id":3200222},{"children":[],"localizedName":"Tuchów","id":3200489},{"children":[],"localizedName":"Wadowice","id":3200223},{"children":[],"localizedName":"Wieliczka","id":3200224},{"children":[],"localizedName":"Wolbrom","id":3200490},{"children":[],"localizedName":"Zakopane","id":3200225}],"localizedName":"Małopolskie","id":3200003},{"children":[{"children":[],"localizedName":"Pd - wsch powiaty","id":3200043},{"children":[],"localizedName":"Pd - zach powiaty","id":3200044},{"children":[],"localizedName":"Pn - wsch powiaty","id":3200036},{"children":[],"localizedName":"Pn - zach powiaty","id":3200041},{"children":[],"localizedName":"Południowe powiaty","id":3200042},{"children":[],"localizedName":"Północne powiaty","id":3200027},{"children":[],"localizedName":"Warszawa","id":3200008},{"children":[],"localizedName":"Wschodnie powiaty","id":3200045},{"children":[],"localizedName":"Zachodnie powiaty","id":3200046}],"localizedName":"Mazowieckie","id":3200001},{"children":[{"children":[],"localizedName":"Brzeg","id":3200226},{"children":[],"localizedName":"Głubczyce","id":3200227},{"children":[],"localizedName":"Grodków","id":3200526},{"children":[],"localizedName":"Kędzierzyn-Koźle","id":3200228},{"children":[],"localizedName":"Kluczbork","id":3200229},{"children":[],"localizedName":"Krapkowice","id":3200230},{"children":[],"localizedName":"Namysłów","id":3200231},{"children":[],"localizedName":"Niemodlin","id":3200527},{"children":[],"localizedName":"Nysa","id":3200232},{"children":[],"localizedName":"Olesno","id":3200233},{"children":[],"localizedName":"Opole","id":3200234},{"children":[],"localizedName":"Ozimek","id":3200528},{"children":[],"localizedName":"Paczków","id":3200529},{"children":[],"localizedName":"Praszka","id":3200530},{"children":[],"localizedName":"Prószków","id":3200593},{"children":[],"localizedName":"Prudnik","id":3200235},{"children":[],"localizedName":"Strzelce Opolskie","id":3200236},{"children":[],"localizedName":"Zawadzkie","id":3200531},{"children":[],"localizedName":"Zdzieszowice","id":3200532}],"localizedName":"Opolskie","id":3200078},{"children":[{"children":[],"localizedName":"Brzozów","id":3200237},{"children":[],"localizedName":"Cisna","id":3200607},{"children":[],"localizedName":"Dębica","id":3200238},{"children":[],"localizedName":"Jarosław","id":3200239},{"children":[],"localizedName":"Jasło","id":3200240},{"children":[],"localizedName":"Kolbuszowa","id":3200241},{"children":[],"localizedName":"Krosno","id":3200242},{"children":[],"localizedName":"Lesko","id":3200243},{"children":[],"localizedName":"Leżajsk","id":3200244},{"children":[],"localizedName":"Lubaczów","id":3200245},{"children":[],"localizedName":"Łańcut","id":3200246},{"children":[],"localizedName":"Mielec","id":3200247},{"children":[],"localizedName":"Nisko","id":3200248},{"children":[],"localizedName":"Nowa Dęba","id":3200533},{"children":[],"localizedName":"Przemyśl","id":3200249},{"children":[],"localizedName":"Przeworsk","id":3200250},{"children":[],"localizedName":"Ropczyce","id":3200251},{"children":[],"localizedName":"Rzeszów","id":3200252},{"children":[],"localizedName":"Sanok","id":3200253},{"children":[],"localizedName":"Sędziszów Małopolski","id":3200534},{"children":[],"localizedName":"Stalowa Wola","id":3200254},{"children":[],"localizedName":"Strzebowiska","id":3200608},{"children":[],"localizedName":"Strzyżów","id":3200255},{"children":[],"localizedName":"Tarnobrzeg","id":3200256},{"children":[],"localizedName":"Ustrzyki Dolne","id":3200257}],"localizedName":"Podkarpackie","id":3200079},{"children":[{"children":[],"localizedName":"Augustów","id":3200258},{"children":[],"localizedName":"Białystok","id":3200259},{"children":[],"localizedName":"Bielsk Podlaski","id":3200260},{"children":[],"localizedName":"Czarna Białostocka","id":3200535},{"children":[],"localizedName":"Dąbrowa Białostocka","id":3200536},{"children":[],"localizedName":"Grajewo","id":3200261},{"children":[],"localizedName":"Hajnówka","id":3200262},{"children":[],"localizedName":"Kolno","id":3200263},{"children":[],"localizedName":"Łapy","id":3200264},{"children":[],"localizedName":"Łomża","id":3200265},{"children":[],"localizedName":"Mońki","id":3200266},{"children":[],"localizedName":"Sejny","id":3200267},{"children":[],"localizedName":"Siemiatycze","id":3200268},{"children":[],"localizedName":"Sokółka","id":3200269},{"children":[],"localizedName":"Suwałki","id":3200270},{"children":[],"localizedName":"Wasilków","id":3200537},{"children":[],"localizedName":"Wysokie Mazowieckie","id":3200271},{"children":[],"localizedName":"Zambrów","id":3200272}],"localizedName":"Podlaskie","id":3200080},{"children":[{"children":[],"localizedName":"Bytów","id":3200407},{"children":[],"localizedName":"Chojnice","id":3200408},{"children":[],"localizedName":"Czersk","id":3200539},{"children":[],"localizedName":"Człuchów","id":3200409},{"children":[],"localizedName":"Gdańsk","id":3200072},{"children":[],"localizedName":"Gdynia","id":3200073},{"children":[],"localizedName":"Gniew","id":3200543},{"children":[],"localizedName":"Hel","id":3200410},{"children":[],"localizedName":"Jastarnia","id":3200411},{"children":[],"localizedName":"Jastrzębia Góra","id":3200412},{"children":[],"localizedName":"Kartuzy","id":3200413},{"children":[],"localizedName":"Karwia","id":3200414},{"children":[],"localizedName":"Kościerzyna","id":3200415},{"children":[],"localizedName":"Krynica Morska","id":3200416},{"children":[],"localizedName":"Kwidzyn","id":3200417},{"children":[],"localizedName":"Lębork","id":3200419},{"children":[],"localizedName":"Łeba","id":3200418},{"children":[],"localizedName":"Malbork","id":3200420},{"children":[],"localizedName":"Miastko","id":3200538},{"children":[],"localizedName":"Nowy Dwór Gdański","id":3200421},{"children":[],"localizedName":"Pelplin","id":3200541},{"children":[],"localizedName":"Pępowo","id":3200589},{"children":[],"localizedName":"Prabuty","id":3200540},{"children":[],"localizedName":"Pruszcz Gdański","id":3200422},{"children":[],"localizedName":"Puck","id":3200423},{"children":[],"localizedName":"Reda","id":3200424},{"children":[],"localizedName":"Rumia","id":3200425},{"children":[],"localizedName":"Skarszewy","id":3200542},{"children":[],"localizedName":"Słupsk","id":3200426},{"children":[],"localizedName":"Sopot","id":3200074},{"children":[],"localizedName":"Starogard Gdański","id":3200427},{"children":[],"localizedName":"Stegna","id":3200428},{"children":[],"localizedName":"Sztum","id":3200429},{"children":[],"localizedName":"Sztutowo","id":3200544},{"children":[],"localizedName":"Tczew","id":3200430},{"children":[],"localizedName":"Ustka","id":3200431},{"children":[],"localizedName":"Wejherowo","id":3200432},{"children":[],"localizedName":"Władysławowo","id":3200433},{"children":[],"localizedName":"Żukowo","id":3200590}],"localizedName":"Pomorskie","id":3200005},{"children":[{"children":[],"localizedName":"Będzin","id":3200273},{"children":[],"localizedName":"Bielsko-Biała","id":3200274},{"children":[],"localizedName":"Bieruń","id":3200275},{"children":[],"localizedName":"Blachownia","id":3200545},{"children":[],"localizedName":"Brenna","id":3200605},{"children":[],"localizedName":"Bytom","id":3200277},{"children":[],"localizedName":"Chorzów","id":3200278},{"children":[],"localizedName":"Cieszyn","id":3200279},{"children":[],"localizedName":"Czechowice-Dziedzice","id":3200546},{"children":[],"localizedName":"Czeladź","id":3200547},{"children":[],"localizedName":"Czerwionka-Leszczyny","id":3200548},{"children":[],"localizedName":"Częstochowa","id":3200280},{"children":[],"localizedName":"Dąbrowa Górnicza","id":3200281},{"children":[],"localizedName":"Gliwice","id":3200282},{"children":[],"localizedName":"Imielin","id":3200549},{"children":[],"localizedName":"Jastrzębie-Zdrój","id":3200283},{"children":[],"localizedName":"Jaworzno","id":3200284},{"children":[],"localizedName":"Kalety","id":3200550},{"children":[],"localizedName":"Katowice","id":3200285},{"children":[],"localizedName":"Kłobuck","id":3200286},{"children":[],"localizedName":"Knurów","id":3200551},{"children":[],"localizedName":"Korbielów","id":3200604},{"children":[],"localizedName":"Lędziny","id":3200552},{"children":[],"localizedName":"Lubliniec","id":3200287},{"children":[],"localizedName":"Łaziska Górne","id":3200553},{"children":[],"localizedName":"Mikołów","id":3200288},{"children":[],"localizedName":"Milówka","id":3200606},{"children":[],"localizedName":"Mysłowice","id":3200289},{"children":[],"localizedName":"Myszków","id":3200290},{"children":[],"localizedName":"Orzesze","id":3200554},{"children":[],"localizedName":"Piekary Śląskie","id":3200291},{"children":[],"localizedName":"Poręba","id":3200555},{"children":[],"localizedName":"Pszczyna","id":3200292},{"children":[],"localizedName":"Pszów","id":3200556},{"children":[],"localizedName":"Pyskowice","id":3200557},{"children":[],"localizedName":"Racibórz","id":3200293},{"children":[],"localizedName":"Radlin","id":3200558},{"children":[],"localizedName":"Radzionków","id":3200559},{"children":[],"localizedName":"Ruda Śląska","id":3200294},{"children":[],"localizedName":"Rybnik","id":3200295},{"children":[],"localizedName":"Rydułtowy","id":3200560},{"children":[],"localizedName":"Siemianowice Śląskie","id":3200296},{"children":[],"localizedName":"Siewierz","id":3200602},{"children":[],"localizedName":"Skoczów","id":3200561},{"children":[],"localizedName":"Sosnowiec","id":3200297},{"children":[],"localizedName":"Szczyrk","id":3200299},{"children":[],"localizedName":"Świerklaniec","id":3200603},{"children":[],"localizedName":"Świętochłowice","id":3200298},{"children":[],"localizedName":"Tarnowskie Góry","id":3200300},{"children":[],"localizedName":"Tychy","id":3200301},{"children":[],"localizedName":"Ustroń","id":3200562},{"children":[],"localizedName":"Wisła","id":3200302},{"children":[],"localizedName":"Wodzisław Śląski","id":3200303},{"children":[],"localizedName":"Wojkowice","id":3200563},{"children":[],"localizedName":"Zabrze","id":3200304},{"children":[],"localizedName":"Zawiercie","id":3200305},{"children":[],"localizedName":"Żory","id":3200306},{"children":[],"localizedName":"Żywiec","id":3200307}],"localizedName":"Śląskie","id":3200002},{"children":[{"children":[],"localizedName":"Busko-Zdrój","id":3200308},{"children":[],"localizedName":"Jędrzejów","id":3200309},{"children":[],"localizedName":"Kazimierza Wielka","id":3200310},{"children":[],"localizedName":"Kielce","id":3200311},{"children":[],"localizedName":"Końskie","id":3200312},{"children":[],"localizedName":"Opatów","id":3200313},{"children":[],"localizedName":"Ostrowiec Świętokrzyski","id":3200314},{"children":[],"localizedName":"Pińczów","id":3200315},{"children":[],"localizedName":"Połaniec","id":3200564},{"children":[],"localizedName":"Sandomierz","id":3200316},{"children":[],"localizedName":"Skarżysko-Kamienna","id":3200317},{"children":[],"localizedName":"Starachowice","id":3200318},{"children":[],"localizedName":"Staszów","id":3200319},{"children":[],"localizedName":"Suchedniów","id":3200565},{"children":[],"localizedName":"Włoszczowa","id":3200320}],"localizedName":"Świętokrzyskie","id":3200082},{"children":[{"children":[],"localizedName":"Barczewo","id":3200613},{"children":[],"localizedName":"Bartoszyce","id":3200321},{"children":[],"localizedName":"Biskupiec","id":3200322},{"children":[],"localizedName":"Braniewo","id":3200323},{"children":[],"localizedName":"Dobre Miasto","id":3200324},{"children":[],"localizedName":"Działdowo","id":3200325},{"children":[],"localizedName":"Elbląg","id":3200326},{"children":[],"localizedName":"Ełk","id":3200327},{"children":[],"localizedName":"Giżycko","id":3200328},{"children":[],"localizedName":"Gołdap","id":3200329},{"children":[],"localizedName":"Górowo Iławieckie","id":3200615},{"children":[],"localizedName":"Iława","id":3200330},{"children":[],"localizedName":"Kętrzyn","id":3200331},{"children":[],"localizedName":"Lidzbark Warmiński","id":3200332},{"children":[],"localizedName":"Lubawa","id":3200566},{"children":[],"localizedName":"Mikołajki","id":3200333},{"children":[],"localizedName":"Morąg","id":3200567},{"children":[],"localizedName":"Mrągowo","id":3200334},{"children":[],"localizedName":"Nidzica","id":3200335},{"children":[],"localizedName":"Nowe Miasto Lubawskie","id":3200336},{"children":[],"localizedName":"Olecko","id":3200337},{"children":[],"localizedName":"Olsztyn","id":3200338},{"children":[],"localizedName":"Olsztynek","id":3200568},{"children":[],"localizedName":"Orneta","id":3200569},{"children":[],"localizedName":"Ostróda","id":3200339},{"children":[],"localizedName":"Pasłęk","id":3200570},{"children":[],"localizedName":"Pieniężno","id":3200616},{"children":[],"localizedName":"Pisz","id":3200340},{"children":[],"localizedName":"Ruciane-Nida","id":3200617},{"children":[],"localizedName":"Szczytno","id":3200341},{"children":[],"localizedName":"Węgorzewo","id":3200342}],"localizedName":"Warmińsko-mazurskie","id":3200083},{"children":[{"children":[],"localizedName":"Buk","id":3200587},{"children":[],"localizedName":"Chodzież","id":3200343},{"children":[],"localizedName":"Czarnków","id":3200344},{"children":[],"localizedName":"Gniezno","id":3200345},{"children":[],"localizedName":"Gostyń","id":3200346},{"children":[],"localizedName":"Grodzisk Wielkopolski","id":3200347},{"children":[],"localizedName":"Jarocin","id":3200348},{"children":[],"localizedName":"Jastrowie","id":3200571},{"children":[],"localizedName":"Kalisz","id":3200349},{"children":[],"localizedName":"Kępno","id":3200350},{"children":[],"localizedName":"Koło","id":3200351},{"children":[],"localizedName":"Konin","id":3200352},{"children":[],"localizedName":"Kostrzyn","id":3200572},{"children":[],"localizedName":"Kościan","id":3200353},{"children":[],"localizedName":"Kórnik","id":3200573},{"children":[],"localizedName":"Krotoszyn","id":3200354},{"children":[],"localizedName":"Leszno","id":3200355},{"children":[],"localizedName":"Luboń","id":3200356},{"children":[],"localizedName":"Międzychód","id":3200357},{"children":[],"localizedName":"Mosina","id":3200358},{"children":[],"localizedName":"Murowana Goślina","id":3200359},{"children":[],"localizedName":"Nowy Tomyśl","id":3200360},{"children":[],"localizedName":"Oborniki","id":3200361},{"children":[],"localizedName":"Opalenica","id":3200574},{"children":[],"localizedName":"Ostrów Wielkopolski","id":3200362},{"children":[],"localizedName":"Ostrzeszów","id":3200363},{"children":[],"localizedName":"Piła","id":3200364},{"children":[],"localizedName":"Pleszew","id":3200365},{"children":[],"localizedName":"Pniewy","id":3200575},{"children":[],"localizedName":"Pobiedziska","id":3200576},{"children":[],"localizedName":"Poznań","id":3200366},{"children":[],"localizedName":"Puszczykowo","id":3200577},{"children":[],"localizedName":"Rawicz","id":3200367},{"children":[],"localizedName":"Rogoźno","id":3200578},{"children":[],"localizedName":"Słupca","id":3200368},{"children":[],"localizedName":"Swarzędz","id":3200369},{"children":[],"localizedName":"Szamotuły","id":3200370},{"children":[],"localizedName":"Śrem","id":3200371},{"children":[],"localizedName":"Środa Wielkopolska","id":3200372},{"children":[],"localizedName":"Trzcianka","id":3200373},{"children":[],"localizedName":"Trzemeszno","id":3200579},{"children":[],"localizedName":"Turek","id":3200374},{"children":[],"localizedName":"Wągrowiec","id":3200375},{"children":[],"localizedName":"Witkowo","id":3200580},{"children":[],"localizedName":"Wolsztyn","id":3200376},{"children":[],"localizedName":"Wronki","id":3200581},{"children":[],"localizedName":"Września","id":3200377},{"children":[],"localizedName":"Złotów","id":3200378}],"localizedName":"Wielkopolskie","id":3200006},{"children":[{"children":[],"localizedName":"Barlinek","id":3200379},{"children":[],"localizedName":"Białogard","id":3200380},{"children":[],"localizedName":"Cedynia","id":3200381},{"children":[],"localizedName":"Chojna","id":3200620},{"children":[],"localizedName":"Choszczno","id":3200382},{"children":[],"localizedName":"Czaplinek","id":3200586},{"children":[],"localizedName":"Darłowo","id":3200383},{"children":[],"localizedName":"Dębno","id":3200384},{"children":[],"localizedName":"Drawno","id":3200385},{"children":[],"localizedName":"Drawsko Pomorskie","id":3200386},{"children":[],"localizedName":"Goleniów","id":3200387},{"children":[],"localizedName":"Gryfice","id":3200388},{"children":[],"localizedName":"Gryfino","id":3200389},{"children":[],"localizedName":"Kamień Pomorski","id":3200390},{"children":[],"localizedName":"Kołobrzeg","id":3200391},{"children":[],"localizedName":"Koszalin","id":3200392},{"children":[],"localizedName":"Łobez","id":3200393},{"children":[],"localizedName":"Mielno","id":3200395},{"children":[],"localizedName":"Międzyzdroje","id":3200394},{"children":[],"localizedName":"Myślibórz","id":3200396},{"children":[],"localizedName":"Nowogard","id":3200397},{"children":[],"localizedName":"Police","id":3200398},{"children":[],"localizedName":"Połczyn-Zdrój","id":3200582},{"children":[],"localizedName":"Pyrzyce","id":3200399},{"children":[],"localizedName":"Sławno","id":3200400},{"children":[],"localizedName":"Stargard Szczeciński","id":3200401},{"children":[],"localizedName":"Szczecin","id":3200402},{"children":[],"localizedName":"Szczecinek","id":3200403},{"children":[],"localizedName":"Świdwin","id":3200404},{"children":[],"localizedName":"Świnoujście","id":3200405},{"children":[],"localizedName":"Trzebiatów","id":3200583},{"children":[],"localizedName":"Wałcz","id":3200406},{"children":[],"localizedName":"Wolin","id":3200584},{"children":[],"localizedName":"Złocieniec","id":3200585}],"localizedName":"Zachodniopomorskie","id":3200084}],"localizedName":"Polska","id":202}</script>
+        
+    </div>
+
+                        
+
+
+                        
+                        <div class="button">
+    <button tabindex="4">
+        <span class="icon">
+            <span class='icon-header-search-out'></span>
+            <span class='icon-header-search-over'></span>
+        </span>
+        <span class="label">Szukaj</span>
+    </button>
+</div>
+                        
+
+
+                    </fieldset>
+
+
+                    
+                    
+                    
+
+
+
+                    
+                    
+                    
+
+
+                </form>
+
+
+            </div>
+        </section>
+    </div>
+
+
+    
+
+
+
+
+    
+
+
+    <div class="containment">
+
+        
+
+        <div class="page extra" >
+
+
+            
+
+
+    
+
+    
+
+    
+    
+   
+   
+
+
+
+
+
+            
+            
+    <div class="breadcrumbs ">
+            
+                
+
+
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="category" href="http://www.gumtree.pl/s-malopolskie/v1l3200003p1">
+            <span class="microdata" itemprop="title">Małopolska</span>
+        </a>
+        <meta itemprop="url" content="http://www.gumtree.pl/s-malopolskie/v1l3200003p1" />
+    </span>
+    <span class="icon-chevron-right"></span>
+    <span></span>
+
+
+
+
+
+            
+            
+                
+
+
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="category" href="http://www.gumtree.pl/s-nieruchomosci/krakow/v1c2l3200208p1">
+            <span class="microdata" itemprop="title">Nieruchomości</span>
+        </a>
+        <meta itemprop="url" content="http://www.gumtree.pl/s-nieruchomosci/krakow/v1c2l3200208p1" />
+    </span>
+    <span class="icon-chevron-right"></span>
+    <span></span>
+
+
+
+
+
+            
+        
+            <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a class="category" href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/v1c9008l3200208p1">
+                    <span class="microdata" itemprop="title">
+                        
+                            mieszkania i domy do wynajęcia
+                        
+                        
+                            | 
+                            Kraków
+                        
+                    </span>
+                </a>
+                <meta itemprop="url" content="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/v1c9008l3200208p1"/>
+            </span>
+            <span class="icon-chevron-right"></span>
+            <span></span>
+            <span class="title">ogłoszenie 169136399</span>
+        
+    </div>
+
+<div class="clear"></div>
+
+
+
+
+
+            
+
+            <div class="content">
+                <section role="content">
+                    <div class="wrap">
+                        
+                        
+
+    
+       
+       
+        <div class="vip-controls">
+            
+
+
+
+
+
+        </div>
+
+        <div id="seovip-left-column" class="vip-left-column vip-header-and-details hasImages">
+            <div class="vip-content-header">
+                <div class="vip-title clearfix">
+                    <h1 class="item-title" >
+                        <span class="myAdTitle">2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ</span>
+                        
+                    </h1>
+                    <div class="price">
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 200 zł</span>
+            
+            
+            
+        </span>
+
+
+</div>
+                    
+                </div>
+
+                <div class="vip-gallery seoVip">
+                    
+    <div class="wrap has-thumbs" data-base-js-url="http://inc.t9.classistatic.com/1.1.288/js/">
+
+        
+            <div class="main-bg">
+                <div class="main">
+                    <span class="icon-vip-arrow-left"></span>
+                    <span class='vertical-alignment-helper'></span><img  data-index="0" src = "http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/7JAAAOSw3YNXcYcz/$_20.JPG?set_id=8800005007" alt="2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ" />
+                    
+                    <span class="icon-vip-arrow-right"></span>
+                    <span class="icon-zoom-image"></span>
+                </div>
+                
+                    
+    <div class="counter-pic"><span class="index"></span> z <span class="length"></span></div>
+
+                
+            </div>
+        
+        
+        
+        
+        <script id="vip-gallery-data" type="text/x-bolt-json">
+            {"small":"[http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/7JAAAOSw3YNXcYcz/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/SqwAAOSwGIRXcYcz/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/dyUAAOSwc1FXcYcz/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/dysAAOSwc1FXcYcz/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/Y0EAAOSwZ1BXcYcz/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/P1EAAOSwepJXcYcz/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/d94AAOSwc1FXcYc3/$_19.JPG?set_id=8800005007]","medium":"[http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/7JAAAOSw3YNXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/SqwAAOSwGIRXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/dyUAAOSwc1FXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/dysAAOSwc1FXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/Y0EAAOSwZ1BXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/P1EAAOSwepJXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/d94AAOSwc1FXcYc3/$_20.JPG?set_id=8800005007]","large":"[http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/7JAAAOSw3YNXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/SqwAAOSwGIRXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/dyUAAOSwc1FXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/dysAAOSwc1FXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/Y0EAAOSwZ1BXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/P1EAAOSwepJXcYcz/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/ODAwWDYwMA==/z/d94AAOSwc1FXcYc3/$_20.JPG?set_id=8800005007]","alt-tags":"[2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 1, 2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 2, 2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 3, 2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 4, 2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 5, 2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 6, 2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow zdjęcie: 7]"}
+        </script>
+    </div>
+
+        
+        
+
+
+
+                   
+ <div class='post-it-yourself'>
+    <span class='sudo-link' data-gtm="pc|PostAdBegin|eventLabel|src=SimilarAd" data-o-uri='/cbfg.ugzy?fvzvyneNqVq=1001691363990910474413109'>Dodaj takie ogłoszenie!</span>
+ </div>
+
+                </div>
+                
+                
+<!-- TODO: separate templates with different Locale  -->
+<ul class="selMenu">
+
+<li>
+    <div class="attribute">
+        <span class="name">Data dodania</span>
+        <span class="value">
+            
+                27/06/2016
+            
+        </span>
+        
+    </div>
+</li>
+
+<li>
+    <div class="attribute">
+        <span class="name">Lokalizacja</span>
+            <span class="value">
+                
+<div class="location" >
+    
+    
+        <a href="http://www.gumtree.pl/s-krakow/v1l3200208p1" >Kraków</a>, 
+    
+    
+        <a href="http://www.gumtree.pl/s-malopolskie/v1l3200003p1" >Małopolskie</a>
+    
+    
+</div>
+
+            </span>
+    </div>
+</li>
+
+<!-- Vehicle -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Vehicle -->
+
+
+
+<!-- Property -->
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Do wynajęcia przez</span>
+            <span class="value">Agencja</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Dostępny</span>
+            <span class="value">27/06/2016</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Rodzaj nieruchomości</span>
+            <span class="value">Mieszkanie</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Liczba pokoi</span>
+            <span class="value">2 pokoje</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Liczba łazienek</span>
+            <span class="value">1 łazienka</span>
+        </div>
+    </li>
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Wielkość (m2)</span>
+            <span class="value">47</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Baby, kids, pregnant -->
+
+
+<!-- End Baby, kids, pregnant -->
+
+<!-- Computers and Electronics -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Computers and Electronics -->
+
+<!-- Courses, Workshops -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Courses, Workshops -->
+
+<!-- Home/Fashion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Home Fashion -->
+
+<!-- Services -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Services -->
+
+<!-- Free time/leisure -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Free time -->
+
+<!-- Pet -->
+
+
+
+
+
+
+
+
+
+<!-- End Pet -->
+
+<!-- Job -->
+
+
+
+
+
+
+<!-- new for SG -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+
+  
+
+</li>
 </ul>
-</div>
-</td>
-</tr>
-</table>
-<noscript>
-<style>
-.msgbar{
-padding-top:5px;
-}
-</style>
-</noscript>
-<table class="search-area tbleColpse header-bottom-bg">
-<tr>
-<td style="padding-right:10px" nowrap="true" valign="middle">
-<table class="tbleColpse rel-p" width="100%" >
-<tr>
-<td nowrap="true" align="left">
-<table class="tbleColpse">
-<form action="http://www.gumtree.pl/f-SearchAdRedirect" method="get" name="frmSearchAd" id="frmSearchAd" class="searchform">
-<input type="hidden" name="isSearchForm" value="true">
-<tr>
-<td><div class="ww_table_left"></div></td>
-<td align="left" >
-<table class="tbleColpse" >
-<!--
-<tr>
-<td class="ww_table">
-<div class="toplbl">here:Czego szukasz...?</div>
-</td>
-</tr>
--->
-<tr>
-<td class="ww_table" style="padding-right:10px">
-<div class="flt">
-<span class="left-what"></span>
-<span class="keySpan lf">
-<input title="Czego szukasz...?" id="autoComp" type="text" name="Keyword" value="" class="keyword center-what" autocomplete="off"/>
+
+                <div class="clear"></div>
+            </div>
+            <div class="vip-details seoVip">
+                 
+    <div class="description" >
+        <span class="pre"
+            
+                
+                style="font-family: inherit; white-space: pre-wrap;"
+            
+        ><p>Nr oferty 2650. Kraków. Płaszów, ul. Płaszowska blisko Krakowskiej Akademii. Mieszkanie o powierzchni ok. 48 m2 składa się z dwóch oddzielnych pokoi, kuchni, łazienki i garderoby.</p></span>
+    </div>
+
+    
+
+             </div>
+
+
+
+        </div>
+
+        <div class="vip-right-column">
+            <div class="vip-seller-forms-container">
+                <div class="contact-wrapper ">
+                    <div id="sm-share-cnt" class="clearfix">
+                         <div id="sm-cnt">
+                            
+                               
+    <div id="sm">
+        <ul class="sm-ul buttons clearfix">
+            <li class="button"><a href="#" target="_blank"><span class="icon-seo-facebook sm-icons"></span></a></li>
+            <li class="button"><a href="#" target="_blank"><span class="icon-seo-gmailplus sm-icons"></span></a></li>
+            <li class="button"><a href="#" target="_blank"><span data-text='Sprawdź co dzieje się na Gumtree! {0}' class="icon-seo-twitter sm-icons"></span></a></li>
+            <li class="button"><a href="#" target="_blank"><span class="icon-seo-pinterest sm-icons"></span></a></li>
+            
+            <li class="button last mailto"><a href="#"><span data-subject = 'To może Cię zainteresować! {0}' data-body = 'Witaj! Myślę, że to ogłoszenie na Gumtree może Cię zainteresować. {0} %0D%0ADołącz do społeczności Gumtree:%0D%0AFacebook: https://www.facebook.com/GumtreePolska %0D%0A Google+: https://plus.google.com/103950977256553454134/posts %0D%0A Twitter: https://twitter.com/gumtreepolska' class="icon-seo-mail sm-icons"></span></a></li>
+        </ul>
+    </div>
+
+                            
+                         </div>
+
+                        <div id="share">
+                         
+    <div class="sharevisitInfo no-visit-0">
+        
+        
+        
+    </div>
+
+                        </div>
+                    </div>
+
+                    <div class="abt1 vip-seller-container clearfix">
+
+                        <div class="vip-seller clearfix">
+                            
+
+
+
+
+    <span class="icon-user"></span>
+
+
+<span class="username">
+
+    <a 
+
+        
+        href="/u-oferty-sprzedazy/beata-stawiarz/v1u104744131p1"
+        
+
+        >
+
+        
+            Beata
+        
+
+        <span class="more-ads">(Zobacz więcej ogłoszeń)</span>
+    </a>
 </span>
-<span class="right-what"></span>
+
+
+    
+        
+    
+        <span class="usersince">Użytkownik od 05-2010</span>
+    
+
+    
+
+
+
+
+                        </div>
+
+                        <div class="vip-usr-interactions clearfix">
+                            
+                            <div class="usr-interactions">
+                                <div class="vip vip-contact">
+                                    
+                                    
+<div class='reply_controls clearfix '>
+    
+    <a href="tel:797578988" class="button telephone">
+    <span class="icon-phone-blue icon-phone-green"></span>
+    <span class="icon-phone-white"></span>
+    <span id='phone-number' class="label"  data-shortname-text='Połączenia' data-show-number-text='*** Pokaż numer telefonu'>797578988</span>
+</a>
+    
+    <a href="javascript:void(0)" class="title other-country">
+        <span class="icon-envelope-alt-green"></span>
+        <span class="icon-envelope-alt-white"></span>
+        <span class="label reply-label" data-shortname-text='E-mail'>E-mail</span>
+    </a>
 </div>
-</td>
-</tr>
-</table>
-</td>
-<td class="ww_table" style="padding-right:10px">
-<div id="searchCat" class="jsonly kjmenu_main_wrap">
-<div class="left-all-cat"></div>
-<div id="searchCat_name" class="center-all-cat">Wszystkie kategorie<img border="0" src="http://pic.classistatic.com/image/pics/classifieds/spacer.gif" width="25px" height="1px"/></div>
-<div class="button-arrow"></div>
+
+<form class="replyAd" data-attachment-size="2097152" data-gtm="npc|R2SEmailBegin"  data-success-msg='Twoja wiadomość została wysłana' method="post" action="/rui-api/page/reply/model/pl_PL" novalidate>
+    <input name="machineId" type="hidden"/>
+    <input name="rand" id="rand" type="hidden"/>
+    <input name="fileName" id="fileName" type="hidden"/>
+
+    
+    <div class="gl-messages-replyAds-srp">
+        <a href="javascript:void(0)" class="close_btn">
+            <span class="icon-gl-message-close"></span>
+        </a>
+    </div>
+
+    
+    <label>
+        <span class="label">Wiadomość</span>
+    </label>
+    
+
+    
+  
+<div class="messageArea">
+    
+    <ul class="canned-responses">
+        
+         <li>
+             <label class="checkbox-label">
+                 <input type="checkbox" class="checkbox" />
+                 <span data-i18n="vip.reply.canned.imInterested">Zainteresowała mnie ta oferta. Proszę o kontakt.</span>
+             </label>
+         </li>
+         
+         <li>
+             <label class="checkbox-label">
+                 <input type="checkbox" class="checkbox" />
+                 <span data-i18n="vip.reply.canned.whenWhereICanSeeIt">Gdzie i kiedy mogę to zobaczyć?</span>
+             </label>
+         </li>
+         
+    </ul>
+    
 </div>
-<input class="jsonly" type="hidden" name="CatId" value="0"/>
-</td>
-<td class="ww_table">
-<div id="searchLoc" class="jsonly kjmenu_main_wrap">
-<div class="left-all-cat"></div>
-<div id="searchLoc_name" class="center-all-cat">Kraków<img border="0" src="http://pic.classistatic.com/image/pics/classifieds/spacer.gif" width="25px" height="1px"/></div>
-<div class="button-arrow"></div>
+
+
+
+    
+    <label>
+        
+        <textarea name="replyMessage"></textarea>
+        
+    </label>
+    
+
+    
+    <label>
+        <span class="label">Imię</span>
+        
+        <input name="buyerName" type="text" value=""/>
+        
+    </label>
+    
+
+    
+    <label>
+        <span class="label">E-mail</span>
+        
+        <input name="email" type="email" value=""/>
+        
+    </label>
+    
+
+    
+    <label>
+        <span class="phone label">Telefon (Opcjonalnie)</span>
+        
+        <input name="phoneNumber" type="text" value=""/>
+        
+    </label>
+    
+
+    
+
+    
+    <label class="checkbox-label">
+        <input type="checkbox" name="isSendMeCopyEmail"  />
+        <span class="label">Wyślij mi kopię e-maila</span>
+    </label>
+    
+
+
+
+    <input type="hidden" name="adId" value="1001691363990910474413109"/>
+
+
+
+    <button class="submit-reply" type="submit">Wyślij</button>
+
+    
+<div class="privacypolicy">
+    Klikając "Wyślij", wyrażasz zgodę na nasze <span class=sudo-link data-o-uri="uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/Mnfnql-xbemlfgnavn" data-target="_self"> Zasady korzystania</span> i <span class=sudo-link data-o-uri="/cevinpl-cbyvpl" data-target="_self">Politykę prywatności</span> oraz zgadzasz się na otrzymywanie naszych newsletterów i ofert promocyjnych.
 </div>
-<input class="jsonly" type="hidden" name="Location" value=""/>
-</td>
-<td class="ww_table" style="padding-left:10px">
-<span class="left-search"></span>
-<input id="searchAdGo" type="submit" value="Szukaj" class="searchButton" />
-<span class="right-search"></span>
-</td>
-<td><div class="ww_table_right"></div></td>
-</tr>
+
 </form>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<div id="CategoryDropdown" class="popupWindow">
-<ul class="catlistdropdown">
-<li class="item">
-<span class="cursptr" id="catId0" onClick="swapCat(this,'0');">Wszystkie ogłoszenia</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId2" onClick="swapCat(this,'2');">Nieruchomości</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId4" onClick="swapCat(this,'4');">Sprzedam</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId8" onClick="swapCat(this,'8');">Oferty Pracy</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId5" onClick="swapCat(this,'5');">Motoryzacja</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9290" onClick="swapCat(this,'9290');">Szukający Zatrudnienia</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9541" onClick="swapCat(this,'9541');">Moda</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9218" onClick="swapCat(this,'9218');">Łodzie i Pojazdy wodne</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9237" onClick="swapCat(this,'9237');">Elektronika</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9" onClick="swapCat(this,'9');">Usługi</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9459" onClick="swapCat(this,'9459');">Dla Dziecka</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9124" onClick="swapCat(this,'9124');">Zwierzaki</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9490" onClick="swapCat(this,'9490');">Sport i Rozrywka</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId6" onClick="swapCat(this,'6');">Społeczność</span>
-</li>
-</ul>
-</div>
-<div class=popWords>
-<div class="floatLeft30px">
-Popularne
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/radzikowskiego/c9008" title="radzikowskiego">radzikowskiego</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/wieczysta/c9008" title="wieczysta">wieczysta</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/radzymin/c9008" title="radzymin">radzymin</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/strzeszyn/c9008" title="strzeszyn">strzeszyn</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/saska/c9008" title="saska">saska</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/jab%C5%82onna/c9008" title="jabłonna">jabłonna</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/sosnowiec/c9008" title="sosnowiec">sosnowiec</a>
-</div>
-</div>
-<div class="greyBottom300">
-</div>
-<div id="pagestatus_new" style="">
-</div>
-</div>
-<div id="middle" class="page_viewad">
-<div class="VAStyleA">
-<div id="viewad_header">
-<table class="tbleColpse viewadhdr">
-<tr>
-<td valign="top">
-<div id="breadcrumbVIP">
-<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-<a href="http://www.gumtree.pl" itemprop="url">
-<span itemprop="title">Polska</span>
-</a> &gt; <a href="http://www.gumtree.pl/fp-nieruchomosci/krakow/c2l3200208" itemprop="url">
-<span itemprop="title">Nieruchomości</span>
-</a>
->
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/krakow/c9008l3200208" itemprop="url">
-<span itemprop="title">mieszkania i domy do wynajęcia</span>
-</a>
-&gt; Nr referencyjny ogłoszenia 607878925
-</div>
-</div>
-<div><div id='div-gpt-ad-1363883804543-leader' style="margin:0 auto;text-align:center;">
-</div>
-<div id='div-gpt-ad-vip-topbanner' style='text-align:center;margin:0px auto'></div></div>
-</td>
-<td align="right" valign="top">
-</td>
-</tr>
-</table>
-<table class="viewadtitle">
-<tr>
-<td class="viewadtitleL viewadtitleLComm">
-<table class="tbleColpse">
-<tr>
-<td >
-<div >
-<h1 class="" id="preview-local-title" >
-<!-- google_ad_section_start -->Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego<!-- google_ad_section_end -->
-</h1>
-</div>
-</td>
-</tr>
-</table>
-</td>
-<td class="viewadaction">
-<ul id="viewAd-actions" class="viewAd-actions" >
-<li><span nowrap="true" class="jsonly wl_star_off" title="Zachowaj ogłoszenie">&nbsp;&nbsp;&nbsp;&nbsp;<span class="watchText">Zachowaj</span></span></li>
-<li class="pipe">|</li>
-<li>
-<span class="s2f">
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtU2VuZFRvRnJpZW5kP0FkSWQ9NjA3ODc4OTI1')" class="sudo-link">Udostępnij</span>
-</span>
-</li>
-<li class="pipe">|</li>
-<li>
-<!-- rt:5001 - Removing icon labels if Print has empty content in ViewAd.xml-->
-<span class="print">
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtUHJpbnRBZD9BZElkPTYwNzg3ODkyNQ==', '_blank')" class="sudo-link">Drukuj</span>
-</span>
-</li>
-<li class="pipe">|</li>
-<li> <span class="jsonly" id="reportAd_name">Zgłoś ogłoszenie<span>&nbsp;&nbsp;&nbsp;</span></span>
-<div class="modal" id="modalFrameLayer"></div>
-</li>
-</ul>
-</td>
-</tr>
-</table>
-</div>
-<noscript>
-<style type="text/css">
-.jsonly {
-display:none;
-}
-</style>
-</noscript>
-<table class="adcontent tblClpsePad">
-<tr>
-<td>
-<table width="100%" class="tblClpsePad"
->
-<tr>
-<td class="adImg">
-<div style="margin-bottom:5px;">
-<table cellpadding="0" cellspacing="0" border="0" class="viewad_images viewad_frame_tbl" >
-<tr>
-<td class="viewad_images viewad_frame_fill">
-<table width="100%" height="3" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=bottom class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_tl viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_images viewad_frame_tm viewad_images viewad_frame_brand1" style="font-size:3px">
-<div class="viewad_images viewad_frame_fill"> </div>
-</td>
-<td valign=bottom class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_tr viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_images viewad_frame_m viewad_images viewad_frame_brand2" style="margin:0px">
-<table width="100%" class="gallery viewad_frame_brand2 tbleColpse viewadimgcontr">
-<tr>
-<td align=middle class="imageStack " imggal='main'>
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtVmlld0FkTGFyZ2VJbWFnZT9BZElkPTYwNzg3ODkyNSZLZXl3b3JkPWtyYWtvdw==')" class="sudo-link" title='Zoom'>
-<img class="view" title="Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego" alt="Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego image0" src="http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/bvsAAOSwVFlT1949/$_35.JPG" border="0" />
-</span>
-</td>
-</tr>
-</table>
-<center>
-<table class="img-next-prev tbleColpse">
-<tr>
-<td class="jsonly">
-<div class="prev" imggal='prev'>&nbsp; </div>
-</td>
-<td style="padding:0px 10px 0px 10px">
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtVmlld0FkTGFyZ2VJbWFnZT9BZElkPTYwNzg3ODkyNSZLZXl3b3JkPWtyYWtvdw==')" class="sudo-link" title='Zoom' imggal='viewimg'>
-<div class="view-large">
-<div> Powiększ obraz </div>
-</div>
-</span>
-</td>
-<td class="jsonly">
-<div class="next" imggal='next'>&nbsp; </div>
-</td>
-</tr>
-</table>
-</center>
-<table class='navs' cellpadding="0" cellspacing="0" border="0">
-<tr class="imageNavs">
-</tr>
-<tr class="imageNavs">
-<td imggal="thumb" imgindx="0" class="ni active">
-<img src="http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/bvsAAOSwVFlT1949/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="1" class="ni">
-<img src="http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/gacAAOSwxCxT195J/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="2" class="ni">
-<img src="http://i.ebayimg.com/00/s/NzQ2WDEwMDA=/z/Tu0AAOSwPe1T195v/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="3" class="ni">
-<img src="http://i.ebayimg.com/00/s/NzQ2WDEwMDA=/z/EbQAAOSw7NNT1956/$_14.JPG" border="0"/>
-</td>
-</tr>
-<tr class="imageNavs">
-<td imggal="thumb" imgindx="4" class="ni">
-<img src="http://i.ebayimg.com/00/s/MTAwMFg3NDY=/z/lKUAAOSwRLZT196P/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="5" class="ni">
-<img src="http://i.ebayimg.com/00/s/NzQ2WDEwMDA=/z/a78AAOSwEK9T196h/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="6" class="ni">
-<img src="http://i.ebayimg.com/00/s/MTAwMFg3NDY=/z/bj4AAOSwEK9T1963/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="7" class="ni">
-<img src="http://i.ebayimg.com/00/s/MTAwMFg3NTA=/z/JKUAAOSwQItT197E/$_14.JPG" border="0"/>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_images viewad_frame_fill">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=top class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_bl viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_images viewad_frame_bm viewad_images viewad_frame_brand1" style="font-size:3px;height:3px">
-<div class="viewad_images viewad_frame_fill"> </div>
-</td>
-<td valign=top class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_br viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</div>
-</td>
-<td valign="top" width="99%">
-<div style="font-weight:normal">
-<table cellpadding="0" cellspacing="0" border="0" class="viewad_frame_tbl" style="min-width:260px;">
-<tr>
-<td class="viewad_frame_fill">
-<table width="100%" height="3" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=bottom class="viewad_frame_fill">
-<div class="viewad_frame_tl viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_frame_tm viewad_frame_brand1" style="font-size:3px">
-<div class="viewad_frame_fill"> </div>
-</td>
-<td valign=bottom class="viewad_frame_fill">
-<div class="viewad_frame_tr viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_frame_m viewad_frame_brand2" style='padding:0px 2px 0px 2px' style="margin:0px"> <table id="attributeTable" border="0" cellpadding="3" cellspacing="0" width="100%">
-<col/><col width="99%"/>
-<tbody>
-<tr>
-<td nowrap valign=top class="first_col first_row " >Data dodania
-</td>
-<td class="first_row" > 29/07/2014
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Cena
-</td>
-<td style='font-weight:bold'> Zł  950,00
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Adres
-</td>
-<td itemscope itemtype="http://schema.org/Place"> Doktora Józefa Babińskiego 23, 30-393 Kraków, Polska
-<br>
-<span class="viewmap-link sudo-link">Pokaż mapę</span>
-</td>
-</tr> <div id="viewmap-modal" style="display:none"> <div id="gmap" style="width:100%; height:507px" valign="top">
-<noscript>
-<strong>Adres:</strong> Doktora Józefa Babińskiego 23, 30-393 Kraków, Polska<br>
-</noscript>
-</div>
-</div>
-<tr>
-<td nowrap valign=top class="first_col " >Do wynajęcia przez
-</td>
-<td > Właściciel
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Rodzaj nieruchomości
-</td>
-<td > Mieszkanie
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Liczba pokoi
-</td>
-<td > 2 pokoje
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Wielkość (m2)
-</td>
-<td > 36
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Liczba łazienek
-</td>
-<td > 1 łazienka
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Parking
-</td>
-<td > Ulica
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Przyjazne zwierzakom
-</td>
-<td > Tak
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_frame_fill">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=top class="viewad_frame_fill">
-<div class="viewad_frame_bl viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_frame_bm viewad_frame_brand1" style="font-size:3px;height:3px">
-<div class="viewad_frame_fill"> </div>
-</td>
-<td valign=top class="viewad_frame_fill">
-<div class="viewad_frame_br viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<div id="ad-desc" class="ad-desc" class="marginTop10px" >
-<!-- google_ad_section_start -->
-<span id="preview-local-desc">
-Do wynajęcia od zaraz 2-pokojowe mieszkanie przy ul. Babińskiego 23b ( I piętro). Mieszkanie ma 2 pokoje ( w tym 1 przechodni), kuchnie, łazienkę, przedpokój i balkon z widokiem. Okolica bardzo spokojna. Przystanek autobusowy "Babińskiego" 2 min. od bloku, przystanek "Zachodnia" 7 min. Dojazd do centrum zajmuje ok. 30 min. Do miasta można również dojeżdżać busikami jeżdżącymi ze Skawiny, jest się wówczas w okolicach centrum( busiki jeżdżą pod Dworzec lub pod Pocztę Główną) w ok. 20 min.<br/>Przed blokiem jest miejsce do parkowania. Z balkonu ładny widok, żadnych bloków na horyzoncie:) Mieszkanie przytulne, remontowane kilka lat temu. Mieszkanie w pełni wyposażone (pralka, lodówka, kuchenka, piekarnik). Nowe okna, ogrzewanie miejskie. Opłaty miesięczne to ok. 450 zł przy 2 osobach (czynsz administracyjny + prąd).
-</span>
-<!-- google_ad_section_end -->
-</div>
-<div class="cenvis">
-<span class="visits">Wizyty: 383 </span>
-</div>
-</div>
-</td>
-</tr>
-<tr>
-</tr>
-</table>
-<br/>
-<style>
-.page_viewad #viewAd-actions .s2f, #viewad_header #viewAd-actions .s2f { background-image: url("http://pic.classistatic.com/image/site/ca/icons/facebook.gif"); }
-.stack-adsense-title { background-color: #fdeb6b; } .weburl { text-overflow:ellipsis; overflow: hidden; white-space: nowrap; width: 260px } .right_logo_box.brand_border { text-align: center; height: auto; }
-.viewAdImgTitle { height: auto; }
-</style>
-<div class="similarads clearfix">
-<div class="titlebar">
-Podobne ogłoszenia
-</div>
-<div class="maindiv">
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa606759499" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/ekskluzywny-apartament-3-pokoje-75m2-obok-dworca-okazja-606759499">
-<img src="http://i.ebayimg.com/00/s/ODAyWDEwMjQ=/z/N6cAAOSw9NxTvmZu/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa606759499" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/ekskluzywny-apartament-3-pokoje-75m2-obok-dworca-okazja-606759499">
-<div class="pricediv">
-Zł  3 000,00
-</div>
-<div class="titlediv">
-Ekskluzywny apartament 3-pokoje, 75m2, obok dworca OKAZJA
-</div>
-<div class="datediv">
-Dodane: 10/07/2014
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa607359596" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/plac-matejki-stary-kleparz-kawalerka-sw-filipa-607359596">
-<img src="http://i.ebayimg.com/00/s/MTAwMFg2Njc=/z/89YAAOSwKPNTzCvI/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa607359596" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/plac-matejki-stary-kleparz-kawalerka-sw-filipa-607359596">
-<div class="pricediv">
-Zł  1 100,00
-</div>
-<div class="titlediv">
-PLAC MATEJKI, STARY KLEPARZ, kawalerka, Św. Filipa
-</div>
-<div class="datediv">
-Dodane: 20/07/2014
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa607937278" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/nowoczesne-apartament-75m2-ul-bronowicka-2600pln-607937278">
-<img src="http://i.ebayimg.com/00/s/NDI2WDY0MA==/z/b~IAAOSwVFlT2SZr/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa607937278" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/nowoczesne-apartament-75m2-ul-bronowicka-2600pln-607937278">
-<div class="pricediv">
-Zł  2 600,00
-</div>
-<div class="titlediv">
-Nowoczesne apartament 75m2,ul.Bronowicka 2600pln
-</div>
-<div class="datediv">
-Dodane: 30/07/2014
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa607315619" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/super-lokalizacja-ul-grzegorzecka-jeden-pokoj-607315619">
-<img src="http://i.ebayimg.com/00/s/NDMyWDY0MA==/z/PxEAAOSwq7JTyrb2/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa607315619" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/super-lokalizacja-ul-grzegorzecka-jeden-pokoj-607315619">
-<div class="pricediv">
-Zł  1 350,00
-</div>
-<div class="titlediv">
-Super lokalizacja, ul. Grzegórzecka, jeden pokój
-</div>
-<div class="datediv">
-Dodane: 19/07/2014
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa607888553" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krakow-krowodrza-25m2-nr-9848-607888553">
-<img src="http://i.ebayimg.com/00/s/NDIyWDY0MA==/z/RfsAAOSwVFlT2Edv/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa607888553" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krakow-krowodrza-25m2-nr-9848-607888553">
-<div class="pricediv">
-Zł  1 000,00
-</div>
-<div class="titlediv">
-Mieszkanie Kraków Krowodrza 25m2 (nr: 9848)
-</div>
-<div class="datediv">
-Dodane: 30/07/2014
-</div>
-</a>
-</div>
-</div>
-</div>
-</div>
-<br/>
-<div id="googsense"></div>
-</td>
-<td class="viewadrightcol" style="margin:0px;padding:0px 0px 0px 15px">
-<div class="alternate-box">
-<div class="alternate-contact-info">DANE KONTAKTOWE</div>
-<div class="alternate-phone-box">
-<div class="alternate-phone-icon">&nbsp;</div>
-<div id="phn-text">
-<span class="alternate-phone-number">796...</span>
-<div class="alternate-show-phone-bar">
-<span class="alt-ph-hover"><span class="alternate-show-phone-bar-left">&nbsp;</span><span class="alternate-show-phone-bar-center"><a class="alternate-show-phone-number" href="javascript:">Pokaż numer telefonu</a></span><span class="alternate-show-phone-bar-right">&nbsp;</span></span>
-</div>
-</div>
-</div>
-<div id='phoneclicktracking'></div>
-<noscript>
-<div style="padding-bottom:5px;">
-<div class='PhoneIcon' style="padding-left:20px"><img src="http://ext.classistatic.com/imagesvc/txt2Img/GUEZdyU-ESoSSRTaZ2_migZN4p6ySNa6tvalAmTk8edZ_tEvl1pIsw0YiCmruWY7lfOS2C9fMOrYlqYYRLYuxlqlNZxEKQ3z3L3xROIA6g9VkYpUgu8BCpbDtF9G3dtl697ZG_0GJzgYQ8lfczz8grOcLGgqeZM5lmO6v_2TQ0kpivdwLq4RALJ0PcV45o6zjKe2rHWMA6IXrG9ukmK0xJeQ03Tyg_0iAwuL9yw9Rx8" style="border:none;" /> </div>
-</div>
-</noscript> <div class="alternate-email-label">Skontaktuj się przez e-mail</div>
-<div class="email_block brand_border">
-<div id="viewad_email">
-<form id="ReplyToAdForm" action="/c-ViewAd" method="post" name="viewadfrm">
-<noscript>
-<style type="text/css">
-#ReplyToAdForm .first-input div {
-padding-left : 0px;
-background : transparent;
-}
-</style>
-</noscript>
-<input type="hidden" name="AdId" value="607878925"/>
-<input type="hidden" name="Submit" value="true"/>
-<span id="MTNew" >
-</span>
-<span id="CDOld" >
-<div id="SenderEmailAddress_field" class="first-field" >
-<div class="first-input">
-<a name="FromEmailAddress"></a>
-<div class="input-div">
-<input type="text" name="FromEmailAddress" value=""
-id="SenderEmailAddress"
-title="Twój e-mail"
-style="width:100%"
-class="reply-field"
-size="30"
-/>
-</div>
-</div>
-</div>
-</span>
-<span id="MTOld" >
-<div class="first-field" >
-<div formfield="label" class="first-label ">
-<span id="lblEmailText" ><noscript>Wiadomość</noscript></span>
-</div>
-<div class="first-input">
-<a name="EmailText"></a>
-<div class="input-div">
-<textarea name="EmailText"
-cols="25"
-title="Wiadomość"
-style="width:290px; margin-top:7px;"
-class="reply-field"
-rows="4"
-></textarea>
-</div>
-</div>
-</div>
-</span>
-<span id="CDNew">
-</span>
-<div class="alternate-checkbox">
-<input type="checkbox" name="CopyMe" value="checked" checked/> Wyślij mi kopię e-maila
-</div>
-<div class="alternate-submit-box">
-<span class="alternate-submit-left">&nbsp;</span><input type="submit" id="send" value='WYŚLIJ E-MAIL' class="alternate-submit-center"/><span class="alternate-submit-right">&nbsp;</span>
-<div style="clear:both;"></div>
-</div>
+<form name="fileAttachmentForm" id="fileAttachmentForm" target="uploadedFile" method="post" action="/fileattachmentuploader" enctype="multipart/form-data">
+    <input type="hidden" name="adId" value="1001691363990910474413109"/>
 </form>
-<div class="alternate-help-text">
-Klikając „Wyślij”, wyrażasz zgodę na nasze <span onclick="clickEncoded('L3AtVGVybXNBbmRDb25kaXRpb25z')" class="sudo-link" >Zasady korzystania</span> i <span onclick="clickEncoded('L3AtUHJpdmFjeQ==')" class="sudo-link" >Politykę prywatności</span>. Twoja wiadomość zostanie wysłana do ogłoszeniodawcy i nie będzie widoczna publicznie.
+
+
+
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL"  data-adid="169136399">
+                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                    <span class="label" data-toggle-text='Dodane do Zachowanych'>Dodaj do Zachowanych</span>
+                </div>
+                
+                
+                <div class="vip-seller-form-details">
+                    
+                        
+                            <div class="vip vip-flagad">
+                                
+    <label class="reported-ad is-title-disabled hide">
+        
+        <span class="icon-warning-sign"></span>
+        
+        <span>Ogłoszenie zgłoszone</span>
+    </label>
+    <div class="unreported-ad flagad-container">
+        
+    <span class="sudo-link security-tips"  data-target="_blank">
+    <span class="icon-lock"></span>
+        <span class="security-tips-text">Porady Bezpieczeństwa</span> <span>- Twoje bezpieczeństwo jest dla nas ważne, zachęcamy do zachowania czujności.</span>
+        <span data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NFnsrglCY' data-target="_blank"  >Dowiedz się więcej</span>
+        
+    </span>
+    
+
+        <a class="title" href="javascript:void(0)">
+            
+            <span class="icon-warning-sign"></span>
+            
+            <span class="label">Zgłoś ogłoszenie</span>
+            <span class="caret-icon-area icon-caret-right"></span>
+        </a>
+        <form class="flagAd tallForm"  data-flagad-success='Dziękujemy za zgłoszenie. Sprawdzimy tę ofertę najszybciej jak to możliwe. '
+            method="post" action="/rui-api/page/flag/confirm/pl_PL" novalidate>
+            <label>
+                <span class="label ">Powód</span>
+            </label>
+            <div>
+                <input type="hidden" name="adId" value="1001691363990910474413109" />
+                <input type="hidden" name="captchaToken" value="Q0FQVENIQTowMTQwOjE0NjcwNTg3OTMyNjE6MmMzMTcwY2VmMDJlNjhmNmYyY2IxMjFiYzA4ZDY1MWIzZDFhZjg1Ng==" />                
+                <ul>
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="InappropriateContent"   checked="checked" /><label>Nieodpowiednia treść</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>InappropriateContent=Nieodpowiednia treść</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="DuplicateSpam"   /><label>Duplikat/Spam</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>DuplicateSpam=Duplikat/Spam</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="PossibleFraud"   /><label>Możliwe oszustwo</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>PossibleFraud=Możliwe oszustwo</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="NotRelevant"   /><label>Nieaktualne</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>NotRelevant=Nieaktualne</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="WrongCategory"   /><label>Zła kategoria</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>WrongCategory=Zła kategoria</label></li> -->
+                
+                </ul>
+            </div>
+            <label>
+                <span class="label">E-mail</span>
+                                
+                    <input type="email" name="email" value=""  />
+                
+                <!--  handle error -->
+            </label>
+               <label>
+                <span class="label">Komentarz&nbsp;<span class="optional">(Opcjonalnie)</span></span>
+                <textarea name="comments"></textarea>
+                <!--  handle error -->
+            </label>
+            <label>
+                <span class="label">Wpisz numer</span>
+                <div>            
+                    <img class="imageAlign" name="captchaTokenImg" width="75" height="50" border="0" src="/captcha/image?token=Q0FQVENIQTowMTQwOjE0NjcwNTg3OTMyNjE6MmMzMTcwY2VmMDJlNjhmNmYyY2IxMjFiYzA4ZDY1MWIzZDFhZjg1Ng==" alt='Włącz zdjęcia' />
+                    <!--
+                    <embed src="/captcha/audio?token=Q0FQVENIQTowMTQwOjE0NjcwNTg3OTMyNjE6MmMzMTcwY2VmMDJlNjhmNmYyY2IxMjFiYzA4ZDY1MWIzZDFhZjg1Ng==" width="100%" height="60">
+                        <noembed>
+                              <img src="yourimage.gif" >
+                           </noembed>
+                    </embed>
+                    -->
+                    <input class="textAlign" type="text" name="captchaValue" value=""/>
+                </div>
+                <br class="clear" />                
+            </label>        
+            <label class='privacypolicy'>Wysyłając Zgłoszenie, wyrażasz zgodę na nasze <a href="http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Zasady-korzystania"> Zasady korzystania</a> z Gumtree.</label>
+            <div class="button-area">
+                <button class="action-button" type="submit">Zgłoś</button>
+                <button class="action-button cancel" type="button" name="cancel">Anuluj</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+                            </div>
+                        
+
+                        
+
+                                 
+                    
+                </div>
+            </div>
+
+            <input type='hidden' id='adId' value='1001691363990910474413109' />  
+        </div>
+
+
+
+
+         <div class="vip-seller-form-details seoVip_banner">
+                <div>
+                     
+                     
+                     
+                    
+                        
+
+ 
+
+
+             <div class="moreSearches">
+                <div class="titleContainer">
+                    <span>Popularne</span>
+                </div>
+                <ul class="resultsContainer relSearchMenu">
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/krakow/v1c9008l3200208q0p1">krakow</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/kawalerka+krakow/v1c9008l3200208q0p1">kawalerka krakow</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/mieszkanie+krakow/v1c9008l3200208q0p1">mieszkanie krakow</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/mieszkanie+do+wynajecia/v1c9008l3200208q0p1">mieszkanie do wynajecia</a>
+                    </li>
+                    
+                </ul>
+               </div> 
+
+                           
+                     
+                     
+                    
+                    <div class="suggestedSearch">
+                     
+                     
+
+ 
+
+
+             <div class="moreSearches">
+                <div class="titleContainer">
+                    <span>Proponowane</span>
+                </div>
+                <ul class="resultsContainer relSearchMenu">
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/warszawa/kawalerki+do+wynajecia+warszawa/v1c9008l3200008q0p1">kawalerki do wynajęcia warszawa</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/rzeszow/mieszkania+do+wynajecia+rzeszow/v1c9008l3200252q0p1">mieszkania do wynajęcia rzeszów</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/mieszkania+krakow+wynajem/v1c9008l3200208q0p1">mieszkania kraków wynajem</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie+do+wynajecia+krakow/v1c9008l3200208q0p1">mieszkanie do wynajęcia kraków</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/kawalerka+do+wynajecia/v1c9008q0p1">kawalerka do wynajęcia</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie+krakow+wynajem/v1c9008l3200208q0p1">mieszkanie kraków wynajem</a>
+                    </li>
+                    
+                </ul>
+               </div> 
+
+                      
+                    </div>
+                     
+                     
+              </div>
+              
+              <div>
+                     
+                           
+    <div style="margin-top:10px;">
+        <div class="rightbanner">
+            <div id="div-vip-ad-banner" class="vipbanner"></div>
+        </div>
+    </div>
+    
+                     
+              </div>
+         </div>
+         
+       
+          
+             <div class="seo_similar results list-view">
+                 <div class="section-divider">Podobne ogłoszenia, które mogą Cię zainteresować.</div>
+                 <div class="view">
+                     <ul>
+                        
+                               
+        <li class="result pictures" data-adid="1001671110790910510768709" data-criteoadid="167111079">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/ZEgAAOSwqBJXVmwq/$_19.JPG?set_id=8800005007" alt="2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ z Krakow, zobacz zdjęcie" class="thumbM"/>
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2-pok-47-m2-na-p%C5%82aszowskiej-dla-3-os%C3%B3b-blisko-rm-grzeg%C3%B3rzeckiego-lini-tramwajowej/1001671110790910510768709">2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Nr oferty 2650. Kraków. Płaszów, ul.
+Płaszowska blisko Krakowskiej Akademii. Mieszkanie o powierzchni ok.
+48 m2 składa się z dwóch oddzielnych pokoi, kuchni, łazienki i
+garderoby. Mieszkanie znajduje się na 1 piętrze. Mieszkanie bardzo
+ładne w nowym bloku z 2000 roku. Mieszkanie umeblowane w dużym
+pokoju łóżko, komoda, stół i krzesła w małym duża szafa na
+ubrania. Brak łóżka ale jest możliwo ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 200 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167111079">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001672694720910910876109" data-criteoadid="167269472">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDQ4WDYwMA==/z/AikAAOSwnNBXassf/$_19.JPG?set_id=8800005007" alt="LOFT HOUSE Płaszowska Saska Podgórze z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 9</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/loft-house-p%C5%82aszowska-saska-podg%C3%B3rze/1001672694720910910876109">LOFT HOUSE Płaszowska Saska Podgórze</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >LOFT HOUSE Nieruchomości prezentuje do wynajęcia mieszkanie w bardzo dobrym standardzie o powierzchni 53 m2 z dwoma niezależnymi pokojami i osobną widną kuchnią.LOKALIZACJA:Mieszkanie zlokalizowane jest w spokojnej, dobrze skomunikowanej okolicy przy ulicy Płaszowskiej, w dzielnicy Podgórze. Doskonałe połączenie z krakowskimi uczelniami i centrum miasta.BUDYNEK:Mieszkanie położone jest na parterze ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 600 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167269472">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001682180750910469692109" data-criteoadid="168218075">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDgwWDY0MA==/z/ZhkAAOSwvg9XZQ8d/$_19.JPG?set_id=8800005007" alt="2 pok.dla 3 osób,Płaszów,blisko Akademia Krakowska z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 6</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2-pok-dla-3-os%C3%B3b-p%C5%82asz%C3%B3w-blisko-akademia-krakowska/1001682180750910469692109">2 pok.dla 3 osób,Płaszów,blisko Akademia Krakowska</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Kraków. Płaszów, ul. Płaszowska blisko: Krakowska Akademia.Mieszkanie o powierzchni ok. 48 m2 składa się z dwóch oddzielnych pokoi, kuchni, łazienki i garderoby. Mieszkanie znajduje się na 1 piętrze. Mieszkanie bardzo ładne w nowym bloku z 2000 roku. Mieszkanie umeblowane w dużym pokoju łóżko, komoda, stół i krzesła w małym duża szafa na ubrania. Brak łóżka ale jest możliwość dokupienia przez właś ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 200 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168218075">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001691325410910493764009" data-criteoadid="169132541">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDI5WDY0Ng==/z/89UAAOSw-4BXcXJY/$_19.JPG?set_id=8800005007" alt="3-pok 65 m2, 2009 rok, Podgórze, ul. Płaszowska z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 7</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/3+pok-65-m2-2009-rok-podg%C3%B3rze-ul-p%C5%82aszowska/1001691325410910493764009">3-pok 65 m2, 2009 rok, Podgórze, ul. Płaszowska</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia 3 pokojowe (65 m2) mieszkanie przy ul. Płaszowskiej (Podgórze) razem z miejscem w garażu podziemnym !  Mieszkanie usytuowane jest na parterze w 5 piętrowym bloku z 2009 r.. Składa się z 2 osobnych pokoi, salonu połączonego z aneksem kuchennym, łazienki, przedpokoju, balkonu oraz tarasu.Mieszkanie jest w pełni umeblowane i wyposażone.W kuchni meble w zabudowie, zmywarka, piekarnik elek ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 000 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="169132541">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001676681670910494978909" data-criteoadid="167668167">
+            
+                
+                    <div class="result-link highlight ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NTMwWDgwMA==/z/DnYAAOSwuhhXXe72/$_19.JPG?set_id=8800005007" alt="Ładne i atrakcyjne 2-poz. mieszkanie Kraków Płaszów, ul. Krzywda - wynajmę z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/%C5%82adne-i-atrakcyjne-2+poz-mieszkanie-krak%C3%B3w-p%C5%82asz%C3%B3w-ul-krzywda-+-wynajm%C4%99/1001676681670910494978909">Ładne i atrakcyjne 2-poz. mieszkanie Kraków Płaszów, ul. Krzywda - wynajmę</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Ciekawa oferta:Wynajmę od lipca 2016, ładne i atrakcyjne 2-poziomowe mieszkanie w wyjątkowo cichej, ze starą zielenią okolicy 
+Krakowa-Plaszowa. Stosunkowo nowe, młode budownictwo, mieszkanie o 
+powierzchni użytkowej 64m2,
+ kompozycja o ciekawej architekturze aranżacji wnętrz ze  
+skosami, ściennymi tatuażami, przestronnymi i ustawnymi pokojami w 
+dolnej części i przytulnym poddaszem.Ładna ar ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 550 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167668167">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001664695680910493064409" data-criteoadid="166469568">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NzY4WDY5Mg==/z/Mk8AAOSw0gdXTYVU/$_19.JPG?set_id=8800005007" alt="Wynajem 2 pokojowe 38 mkw, osobna kuchnia ul. Płaszowska z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/wynajem-2-pokojowe-38-mkw-osobna-kuchnia-ul-p%C5%82aszowska/1001664695680910493064409">Wynajem 2 pokojowe 38 mkw, osobna kuchnia ul. Płaszowska</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Posiadamy do wynajęcia komfortowe mieszkanie przy ul. Płaszowskiej 59. Lokalizacja ta zapewnia bardzo dobrą komunikację z centrum Krakowa i innymi dzielnicami, do Rynku Głównego 4km. Nowe budownictwo, 2 bloki, teren ogrodzony, bramy na pilota, teren monitorowany. Mieszkanie o pow. 38 mkw. Składa się z 2 oddzielnych pokoi, osobnej kuchni, przestronnej łazienki, przedpokoju, zadaszonego balkonu. Okn ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166469568">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001663506350910787232609" data-criteoadid="166350635">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/Mzg3WDYxMg==/z/3rIAAOSw6btXTC0K/$_19.JPG?set_id=8800005007" alt="2-pok.słoneczne mieszk.ul.Saska z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 6</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2+pok-s%C5%82oneczne-mieszk-ul-saska/1001663506350910787232609">2-pok.słoneczne mieszk.ul.Saska</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia od 1 lipca 2016 mieszkanie zlokalizowane przy ul.Saskiej w Krakowie, 50m2, 2 pokoje, 3 piętro,  Mieszkanie składa się z:- przedpokój (duża szafa wnękowa z lustrem, pawlacze, półki na buty i klucze)- kuchnia w zabudowie (gazowa, piekarnik w zabudowie, duża lodówka, stół &#43; krzesła, czajnik)- mały pokój (cała ściana w zabudowie w tym duża szafa o szer 120 cm, dużo półek zamkniętych i otw ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 400 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166350635">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001672719240910472156209" data-criteoadid="167271924">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDUwWDYwMA==/z/QQoAAOSwqBJXWA9D/$_19.JPG?set_id=8800005007" alt=" OKAZJA! 2 osobne pokoje, Płaszów, ulica Płaszowska!  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 4</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/okazja-2-osobne-pokoje-p%C5%82asz%C3%B3w-ulica-p%C5%82aszowska/1001672719240910472156209"> OKAZJA! 2 osobne pokoje, Płaszów, ulica Płaszowska! </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia przestronne 2 pokojowe mieszkanie w bloku mieszkalnym w Krakowie, w dzielnicy Płaszów, ul. PłaszowskaMieszkanie:- parter,- 52m2,- 2 niezależne pokoje, osobna jasna kuchnia, łazienka, przedpokój, balkon- ogrzewanie: gazowe.Cena wynajmu: 1200zł &#43; 200zł czynsz administracyjny &#43; media.Kontakt w sprawie oferty:Aneta Nosal
+
+
+
+T: 785 811 636Home Broker 
+    </div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 200 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167271924">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001684216730910468454409" data-criteoadid="168421673">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDgwWDY0MA==/z/pxsAAOSwzJ5XZ~e4/$_19.JPG?set_id=8800005007" alt="2-pokojowe ul. Płaszowska  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 7</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2+pokojowe-ul-p%C5%82aszowska/1001684216730910468454409">2-pokojowe ul. Płaszowska </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia 2-pokojowe mieszkanie w wysokim standardzie w budynku przy ul. Płaszowskiej. Mieszkanie jak i budynek po kapitalnym remoncie. Składa się z dwóch umeblowanych pokoi, wyposażonej kuchni (lodówka, zmywarka) oraz łazienki z wanną. W przedpokoju duża zabudowana szafa. Do mieszkania przynależy duży taras. Mieszkanie na parterze, teren wokół budynku jest ogrodzony i monitorowany. Telewizor w ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 400 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168421673">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001688323890910672916909" data-criteoadid="168832389">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDUwWDgwMA==/z/x~AAAOSwbYZXbQrf/$_19.JPG?set_id=8800005007" alt=" 3 pokojowe | klimatyzacja | Podgórze | Płaszów | taras | Umeblowane  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 9</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/3-pokojowe-klimatyzacja-podg%C3%B3rze-p%C5%82asz%C3%B3w-taras-umeblowane/1001688323890910672916909"> 3 pokojowe | klimatyzacja | Podgórze | Płaszów | taras | Umeblowane </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >LuxHome Group – mieszkania do wynajęciaLuxHome Group poleca przestronne 3 pokojowe mieszkanie z klimatyzacją i dużym tarasem przy ulicy Koszykarskiej.* Saska * Stoczniowców * Nowohucka * Płaszowska * Myśliwska * Kuklińskiego * Wielicka *Mieszkanie dostępne od 1 Maja!Oferowane 3 pokojowe mieszkanie o powierzchni 56,6 m2 znajduje się na 3 piętrze w małym, kameralnym bloku bez windy z 2010 r. W skład ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 300 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168832389">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001652300380910612579109" data-criteoadid="165230038">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/b3IAAOSwH71XO2ZK/$_19.JPG?set_id=8800005007" alt="Mieszkanie o wysokim standardzie do wynajęcia z garażem z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-o-wysokim-standardzie-do-wynaj%C4%99cia-z-gara%C5%BCem/1001652300380910612579109">Mieszkanie o wysokim standardzie do wynajęcia z garażem</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Ekskluzywny apartament do wynajęcia dla osób pracujących lub studentów. Mieszkanie w nowym IV piętrowym bloku przy ulicy Strycharskiej. Składa się z dwóch niezależnych pokoi oraz salonu połączonego z kuchnią, łazienki oraz balkonu. Mieszkanie w pełni wyposażone, kuchnia w zabudowie, płyta indukcyjna, piekarnik, okap, lodówka. Łazienka- prysznic, pralka,toaletka, lustro, łazienka. W pokojach znajdu ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="165230038">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001666870320910470516809" data-criteoadid="166687032">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NTk5WDgwMA==/z/AqIAAOSwJhNXUCDd/$_19.JPG?set_id=8800005007" alt="Podgórze! 3-pokojowe mieszkanie tuż przy linii 20 i 50! +garaż, balkon z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 11</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/podg%C3%B3rze-3+pokojowe-mieszkanie-tu%C5%BC-przy-linii-20-i-50-%2Bgara%C5%BC-balkon/1001666870320910470516809">Podgórze! 3-pokojowe mieszkanie tuż przy linii 20 i 50! &#43;garaż, balkon</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Victoria Estate prezentuje 3-pokojowy nowoczesny apartament z garażem podziemnym na ul. Strycharskiej/Podgórze wolne od 1 lipca!Nieruchomość:Apartament zlokalizowany na II-piętrze IV-piętrowego apartamentowca z 2015 r. na ul. Strycharskiej - Podgórze. Składa się z salonu z aneksem kuchennym, 2 niezależnych pokoi, łazienki, przedpokoju oraz balkonu. W pełni wyposażony i umeblowany: kuchnia- meble w ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166687032">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001685320160910481775309" data-criteoadid="168532016">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NTMzWDgwMA==/z/FDoAAOSwc1FXaT-P/$_19.JPG?set_id=8800005007" alt="mieszkanie wynajem 2 pokojowe z parking płaszowska podgórze z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 5</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-wynajem-2-pokojowe-z-parking-p%C5%82aszowska-podg%C3%B3rze/1001685320160910481775309">mieszkanie wynajem 2 pokojowe z parking płaszowska podgórze</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >witam, mam do wynajęcia mieszkanie 2 pokojowe(sypialnia &#43;salon) od 1 sierpnia 2016 bardzo blisko centrum Krakowa - 10 min tramwajem do Rynku Głównego. Nowy 3 piętrowy blok, całościowe wyposażenie kuchni( zmywarka, mikrofala w zabudowie , piekarnik, płyta indukcyjna, lodówka, pralka) . Cena obejmuje miesięczny wynajem  mieszkania i parkingu podziemnego. Dodatkowo dochodzą koszty czynsz &#43; prąd &#61; oko ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 600 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168532016">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001687521350910468815909" data-criteoadid="168752135">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDI2WDY0MA==/z/A5QAAOSw3YNXa-0v/$_19.JPG?set_id=8800005007" alt=" 1800zł Mieszkanie dla 2-4 osób ul.Długa/ul.Szlak/ul.Karmelicka STARE MIASTO blisko NOWY KLEPARZ  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 9</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/1800z%C5%82-mieszkanie-dla-2+4-os%C3%B3b-ul-d%C5%82uga-ul-szlak-ul-karmelicka-stare-miasto-blisko-nowy-kleparz/1001687521350910468815909"> 1800zł Mieszkanie dla 2-4 osób ul.Długa/ul.Szlak/ul.Karmelicka STARE MIASTO blisko NOWY KLEPARZ </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Mieszkanie dla 4 osób STARE MIASTO ul.DługalLOKALIZACJA:Oferujemy Państwu do wynajęcia wygodne i funkcjonalne mieszkanie w spokojnej, dobrze skomunikowanej okolicy przy ulicy Krowoderskiej doskonałe połączenie z krakowskimi uczelniami, centrum miasta do Rynku Głównego 5 min pieszo. Mieszkanie jest świeżo po odmalowaniu.Mieszkanie jest świetnie zlokalizowane, na ul. Krowoderskiej, bliżej Aleji Słow ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 800 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168752135">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001686633390910472748409" data-criteoadid="168663339">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDUwWDgwMA==/z/cUsAAOSwNuxXatID/$_19.JPG?set_id=8800005007" alt="Do Wynajęcia 3 pokojowe Podgórze, Płaszów ul. Krzywda z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 7</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/do-wynaj%C4%99cia-3-pokojowe-podg%C3%B3rze-p%C5%82asz%C3%B3w-ul-krzywda/1001686633390910472748409">Do Wynajęcia 3 pokojowe Podgórze, Płaszów ul. Krzywda</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Mieszkanie 3-pokojowe mieszkanie dwupoziomowe o powierzchni: 65mkw. położone w zielonej i zacisznej okolicy na Płaszowie, niedaleko przystankuGromadzka. Lokal dostępny natychmiast. Piętro: 3. w bloku 2002W mieszkaniu - dolny poziom: salon, jasna kuchnia, sypialnia, łazienka i przedpokój.Górny poziom: sypialnia oraz garderoba.Wyposażenie: łóżko, kanapy, biurko, regały, szafy, lodówka, stół kuchenny ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168663339">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001688266640910911658609" data-criteoadid="168826664">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDYxWDYxNA==/z/xDYAAOSwbYZXbQGp/$_19.JPG?set_id=8800005007" alt="Mieszkanie nad Stawem koło KSW  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 7</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-nad-stawem-ko%C5%82o-ksw/1001688266640910911658609">Mieszkanie nad Stawem koło KSW </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Witam, mam do wynajęcia mieszkanie 70 m2, 3 pokojowe, (jeden pokój jednoosobowy, dwa pokoje dwuosobowe), osobna kuchnia, łazienka z kabiną prysznicową, pralką i dwoma umywalkami, kuchnia ze zmywarką i mikrofalówką, płytą indukcyjną i piekarnikiem. Mieszkanie 5-cio letnie, duży pokój z balkonem w kierunku Stawu Płaszowskiego. Cicha okolica, jednocześnie dobrze skomunikowana, 3 min. do przystanku tr ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 400 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168826664">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result " data-adid="1001665263100910949727009" data-criteoadid="166526310">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb ">
+                        
+                            <div class="icon-container"></div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/70m-dwupokojowe-podg%C3%B3rze-ul-p%C5%82aszowska-okolice-ksw-tandety-umeblowane/1001665263100910949727009">70m dwupokojowe PODGÓRZE ul. Płaszowska okolice KSW TANDETY umeblowane</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Wynajmę dwupokojowe, umeblowane mieszkanie 70 metrów. Jasna kuchnia, dwa duże pokoje, łazienka, balkon. Mieszkanie na pierwszym piętrze. Zainteresowanych proszę o kontakt 501_729_336.</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 000 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166526310">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001688394220910468992709" data-criteoadid="168839422">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDkzWDgwMA==/z/NzMAAOSwGIRXbRix/$_19.JPG?set_id=8800005007" alt="Stare Miasto, blisko centrum, komfortowe mieszkanie, 2 niezależne pokoje, wysoki standard  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/stare-miasto-blisko-centrum-komfortowe-mieszkanie-2-niezale%C5%BCne-pokoje-wysoki-standard/1001688394220910468992709">Stare Miasto, blisko centrum, komfortowe mieszkanie, 2 niezależne pokoje, wysoki standard </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >
+        Do wynajęcia od czerwca 2-pokojowe mieszkanie o
+powierzchni 83m2 znajdujące się przy ul. Mazowieckiej w Krakowie. 
+
+ 
+
+LOKALIZACJA: 
+
+Mieszkanie znajduje się w pięknym, prestiżowym miejscu
+blisko centrum miasta. O jego atrakcyjności decyduje położenie przy Alei Trzech
+Wieszczów oraz bliskość Nowego Kleparza. Mieszkanie jest bardzo przestronne
+oraz jasne, w pełni umeblowane. W najbliż ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 950 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168839422">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001672637170910739321109" data-criteoadid="167263717">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDIzWDY0MA==/z/gnIAAOSwMNxXV~4H/$_19.JPG?set_id=8800005007" alt="Mieszkanie Kraków Nowa Huta 57m2 (nr: 162466) z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krak%C3%B3w-nowa-huta-57m2-nr-162466/1001672637170910739321109">Mieszkanie Kraków Nowa Huta 57m2 (nr: 162466)</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Mieszkanie 3-pokojowe - Osiedle Krakowiaków. Do wynajęcia mieszkanie o powierzchni 57m2, znajdujące się na czwartym piętrze w dziesięciopiętrowym budynku z windą. Zadbana klatka schodowa. W jego skład wchodzą trzy pokoje o powierzchniach: 16m2, 14m2 i 10m2. Wszystkie pokoje oddzielne. Dodatkowo mamy jasną kuchnię - umeblowaną i wyposażoną, łazienkę oraz przestronny przedpokój z pojemną szafą w zab ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 200 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167263717">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001678592070910471056209" data-criteoadid="167859207">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/MzcyWDgwMA==/z/hbsAAOSwc1FXYARg/$_19.JPG?set_id=8800005007" alt="Mieszkanie 2-pokojowe w okolicy Ronda Matecznego z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 2</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-2+pokojowe-w-okolicy-ronda-matecznego/1001678592070910471056209">Mieszkanie 2-pokojowe w okolicy Ronda Matecznego</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia mieszkanie o powierzchni ok.45m2, znajduje się na I piętrze . Składa się z 2 pokoi w tym jeden z aneksem kuchennym, oddzielnej kuchni z , łazienki z WC oraz przedpokoju.Koszt wynajmu 1300 zł &#43; media wg. zużycia.Biurom Nieruchomości dziękujemy.</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 300 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167859207">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                       </ul>
+                 </div>
+             </div>
+           
+
+         
+          <div class="vip-bottomBlock" >
+              
+               
+    <div id="vip_bottombanner" style="margin:0 auto;width:320px"></div>
+
+               <div class="vip-sponsoredads">
+                        
+        <div id="adcontainer1" class="googleAdContainer"></div>
+    
+               </div>
+        </div>
+
+        <input type='hidden' name='criteoadId' value='169136399' /> 
+        <input type="hidden" name="NcatId" value="9008"/>
+        <input type="hidden" name="NlocId" value="3200208" />
+        <input type="hidden" name="NlocName" value="Krakow" />
+        
+    
+
+    
+    
+    <div class="vip-gallery-preview" style='display:none'>
+        <div class="gallerycontent">
+            
+                <div id="banner-container">
+                    <div id="banner-preview-header" data-gtaid='7162/Gumtree_PL' data-catcanoname="Nieruchomości/mieszkania i domy do wynajęcia"></div>
+                </div>
+            
+            <img id="preview-image" src="" alt="">
+            <div id="vip-gallery-details">
+                <div id="prd-title"></div>
+                <div id="pict-count"></div>
+            </div>
+        </div>
+        
+        <a class="left" href="javascript:void(0)"><span class="icon-vip-popup-arrow-left"></span></a>
+        <a class="right" href="javascript:void(0)"><span class="icon-vip-popup-arrow-right"></span></a>
+        <div id="icon-close"></div>
+    </div>
+    
+
+
+
+                        <div class="clear"></div>
+                    </div>
+                </section>
+            </div>
+
+           
+             
+            <div class="footer">
+                <footer>
+                    
+<div class="footer-links clearfix">
+    <div class="logo">
+        <a href="http://www.gumtree.pl/">
+               <img border="0"  src="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/logo.png" alt="Home"/>
+        </a>
+    </div>
+
+    <div>
+        <h3>Poznaj nas</h3>
+        <ul>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/B-anf'>O Gumtree</span></li>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NMnfnql_Thzgerr'>Zasady zamieszczania</span></li>
+            <li><a href="http://blog.gumtree.pl/">Gumtree Blog</a></li> 
+        </ul>
+    </div>
+
+    <div>
+        <h3>Zobacz więcej</h3>
+        <ul>
+            
+             <li><a href="/t-wyszukiwarka-gory/mieszkania-i-domy-do-wynajecia/krakow/v1c9008l3200208">Najpopularniejsze wyszukiwania</a></li>
+             <li><a href="http://www.gumtree.pl/pages/zawartosc/">Tematy Gumtree</a></li>
+             <li><a href="http://www.gumtree.pl/pages/lokalizacje/">Lokalizacje</a></li>
+             <li><a href="http://www.gumtree.pl/pages/ceny-nieruchomosci">Ceny Nieruchomości</a></li>
+   
+        </ul>
+    </div>
+    
+    <div class="rightColumn">
+        <h3>Sprawy prawne</h3>
+        <ul>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/Mnfnql-xbemlfgnavn'>Zasady korzystania</span></li>
+            <li><span class='sudo-link' data-o-uri="/cevinpl-cbyvpl" data-target="_self">Polityka Prywatności</span></li>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/Pbbxvrf'>Informacje o Cookies</span></li>
+        </ul>
+    </div>
+    
+    <div class="rightColumn">
+        <h3>Pomoc i porady</h3>
+        <ul>
+            <li><a href="http://pomoc.gumtree.pl/PL">Pomoc</a></li>
+            <li><span class="sudo-link" data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NFnsrglCY'>Pozostań bezpiecznym</span></li>
+            <li><span class="sudo-link" data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;ph=1&amp;sf=PbagnpgHfd=&amp;f='>Napisz do nas</span></li>
+             <li><span class="sudo-link" data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NOnfvpfCY'>Promowanie ogłoszeń</span></li>
+        </ul>
+    </div>
 </div>
+
+<div class="social-links">
+
+
+
+    <!--  social media -->
+    <div class="social-media">
+        <ul class="social-media-ul buttons">
+            <li class="button"><a href="https://www.facebook.com/GumtreePolska" target="_blank"><span class="icon-seo-facebook sm-icons"></span></a></li>
+            <li class="button"><a href="https://plus.google.com/103950977256553454134/posts" target="_blank"><span class="icon-seo-gmailplus sm-icons"></span></a></li>
+            <li class="button"><a href="https://twitter.com/gumtreepolska" target="_blank"><span class="icon-seo-twitter sm-icons"></span></a></li>
+            <li class="button"><a href="http://pinterest.com/gumtreepolska" target="_blank"><span class="icon-seo-pinterest sm-icons"></span></a></li>
+            <li class="button"><a href="http://www.youtube.com/user/GumtreePolska" target="_blank"><span class="icon-seo-youtube sm-icons"></span></a></li>
+        </ul>
+    </div>
 </div>
+<div class="cpyrt">Copyright © 2014-2016 eBay.  Wszelkie Prawa zastrzeżone.</div>
+
+                </footer>
+            </div>
+            
+        </div>
+        
+    </div>
 </div>
-<div class="alternate-line">&nbsp;</div>
-<div class="alternate-posted-by-box">
-<div class="alternate-view-all-ads"> <span class="alternate-active-since">
-Aktywny od: lip 2014
-</span>
-</div>
-<div class="alternate-top-p2">&nbsp;</div>
-<div class="alternate-icon-poster ">&nbsp;</div>
-<div class="alternate-poster-info"> <span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtUG9zdGVyc090aGVyQWRzLVcwUVFVc2VySWRaOTM0NjE5NzE=')" class="sudo-link"> Zobacz wszystkie ogłoszenia tego użytkownika Gumtree
-</span>
-</div>
-<div>&nbsp;</div>
-</div>
-</div>
-<div><p>
-<center>
-<script jsinline type="text/javascript">
-mpt = new Date();
-mpts = mpt.getTimezoneOffset() + mpt.getTime();
-if (!document.layers) {
-document.writeln("<scr"+"ipt type=\"text\/javascript\" src=\"http:\/\/altfarm.mediaplex.com\/ad\/js\/10832-110408-23165-0\?mpt=" + mpts + "&mpvc=\"><\/script>");
-} else {
-document.write("<a href=\"http://altfarm.mediaplex.com/ad/ck/10832-110408-23165-0?mpt=" + mpts + "\"><img src=\"http://altfarm.mediaplex.com/ad/bn/10832-110408-23165-0?mpt=" + mpts
-+ "\" alt=\"Click Here\" border=\"0\"></a>" );
-}
-</script>
-<noscript>
-<a href="http://altfarm.mediaplex.com/ad/nc/10832-110408-23165-0">
-<img src="http://altfarm.mediaplex.com/ad/nb/10832-110408-23165-0"
-alt="Click Here" border="0">
-</a>
-</noscript>
-</center>
-<p>
-<!-- Ad section -->
-<div id='div-gpt-ad-1318934199048-0' style='width:300px; height:250px;margin:6px auto'></div>
-<div id='div-gpt-ad-1318934199048-1' style='width:300px; height:250px;margin:6px auto'></div></div>
-<br/>
-<br/>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div id="bottom">
-<div class="footer">
-<div>
-<link type="text/css" rel="stylesheet" href="https://securepic.classistatic.com/image/site/au/global_footer/new_global_footer.css" />
-<style type="text/css">
-.footer {
-border-top: 0px solid #BEC3C7;
-margin: 0px 0px 0px 15px;
-padding: 10px 0 10px 0;
-}
-.footer li {
-list-style:none;
-display: list-item;
-color: #676B5C;
-font-size:11px;
-margin:0;
-padding:0 5px 0 0;
-border-right: 0px solid #ffffcc;
-}
-.get-to-know-us,.explore-gumtree,.legalbits,.tips-help,.blog-latest,.gumtree-elsewhere{
-display:inline;
-float:left;
-}
-.get-to-know-us{
-margin-left:10px;
-}
-.blog-latest{
-margin-left:0px;
-}
-#footer-links > div {
-margin-right: 10px;
-width: 150px;
-}
-#footer-links .gumtree-elsewhere {
-width: 120px;
-}
-#footer .social-facebook,
-#footer .social-twitter,
-#footer .social-google,
-#footer .social-pinterest,
-#footer .social-youtube{ display:block; margin-bottom:3px; height:18px; line-height:18px; padding-left:20px; background-repeat:no-repeat; background-position:left center; background-size:18px 18px; }
-</style>
-<div id="footer" class="footer">
-<div id="footer-links" class="container">
-<div class="gumtree-legal" style="display:inline">
-<h3><a href="http://www.gumtree.pl">
-<img src="http://pic.classistatic.com/image/site/au/global_footer/footer_logo.gif" border="0" alt=""></a></h3>
-</div>
-<div class="get-to-know-us">
-<h3>Poznaj nas</h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?article=122">O Gumtree</a></li>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?category=5">Zasady zamieszczania ogłoszeń</a></li>
-</ul>
-</div>
-<div class="explore-gumtree">
-<h3>Odkryj więcej</h3>
-<ul>
-<li><a href="http://info.gumtree.pl/promowanie/index.html">Promowanie ogłoszeń</a></li>
-<li><a href="http://www.gumtree.pl/c-PopularSearches">Popularne wyszukiwania</a></li>
-</ul>
-</div>
-<div class="legalbits">
-<h3>Sprawy prawne</h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?article=120">Zasady korzystania</a></li>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?article=121">Polityka Prywatności</a></li>
-</ul>
-</div>
-<div class="tips-help">
-<h3>Pomoc i porady </h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php">Pomoc</a></li>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?category=7">Pozostań bezpiecznym </a></li>
-<li><a href="http://gumtreehelp.com/pl/index.php">Napisz do nas </a></li>
-<li><a href="http://blog.gumtree.pl/">Gumtree Blog </a></li>
-</ul>
-</div>
-<div class="gumtree-elsewhere">
-<h3>Śledź nas</h3>
-<ul>
-<li><a class="social-facebook" href="https://www.facebook.com/GumtreePolska" target="_blank">Facebook</a></li>
-<li><a class="social-google" href="https://plus.google.com/103950977256553454134/posts" rel="publisher" target="_blank">Google+</a></li>
-<li><a class="social-twitter" href="https://twitter.com/gumtreepolska" target="_blank">Twitter</a></li>
-<li><a class="social-youtube" href="http://www.youtube.com/user/GumtreePolska" target="_blank">YouTube</a></li>
-<li><a class="social-pinterest" href="http://pinterest.com/gumtreepolska" target="_blank">Pinterest</a></li>
-</ul>
-</div>
-<div class="blog-latest">
-</div>
-</div>
-<!-- Start Alexa Certify Javascript -->
-<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=wS4fj1a4ZP00g+" style="display:none" height="1" width="1" alt="" /></noscript>
-<!-- End Alexa Certify Javascript -->
-<div id="copyright">&nbsp;</div>
-</div>
-<div class="cpyrt">
-Copyright © 2014 eBay International AG
-</div>
-<!--<style> html .fb_share_link { margin-left: 5px; padding:0 0 0 20px; height:16px; background:url(http://b.static.ak.fbcdn.net/images/share/facebook_share_icon.gif?8:26981) no-repeat top left; }</style>
-<a href="http://altfarm.mediaplex.com/ad/ck/9860-90999-23165-0?mpt=1&mpre=http%3A//www.facebook.com/share.php%3Fu%3Dhttp%3A//gumtree.pl.gumtree.pl/c-ViewAd%3FAdId%3D607878925" onclick="return fbs_click()" target="_blank" class="fb_share_link"><font size="2">Dołącz do Fanów na Facebook'u</font></a>&nbsp;&nbsp;|<img src="http://pic.classistatic.com/image/site/au/twitter_16x16_FFFAEE.GIF" hspace="5"/><a href="http://twitter.com/gumtreepolska/" target="_blank"><font size="2">Śledź nas na Twitterze</font></a>-->
-</div>
-</div>
-</div>
-<!-- Start of HtmlPageTail -->
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e884/c3js/classifieds/rel1/common/common-min.js"></script>
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e884/c3js/classifieds/rel1//pages/viewAd-min.js"></script>
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e884/c3js/classifieds/rel1/shared_pages/mapServices-min.js"></script>
-<div id="OandN" class="modal">
-<table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td class="modalHeading">
-<div class="layerTitleText"></div>
-<div class="closeBtn close" title="Close">&nbsp;</div>
-</td>
-</tr>
-<tr class="layerContent">
-<td>
-<div id="OandNContent" class="OandNCont">
-<div class="OandNData">
-<b>Oferty:</b> Ogłoszenia z ceną mogą zawierać również opcję złożenia oferty. Złożone oferty nie są wiążące. Ogłoszeniodawca otrzymuje szczegóły oferty po jej złożeniu. Ogłoszeniodawca może odpowiedzieć na ofertę lub nie.
-<br/><br/></br>
-<b>Powiadomienia:</b> Podczas składania oferty możesz zdecydować się na codzienne powiadomienia, jeśli dla ogłoszenia złożono więcej ofert. Możesz zdecydować o nieprzyjmowaniu tych powiadomień poprzez usunięcie zaznaczenia z pola wyboru.
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<script>
-var kj_ads_queryParam = {"adsenseQuery":"Przytulne, 2 pokojowe, 35m, Ruczaj, Babińskiego","afsChannels":"r_Krakow,Total,c_housing,l_vip","locale":"pl-PL","adsenseClientAFS":"gumtree-pl-vip","type":"google","afcChannels":"r_Krakow,Total,c_housing","pageNum":"1","totalAds":3,"isGoogleTest":false,"adSafe":false,"adsenseClientAFC":"","invocationType":"afs","afcClientId":"ca-gumtree-pl_js"};
-var kj_ads_dispParam = {"layOut":"","mediaplexDomain":"http://mktg.gumtree.pl/cm/bk/","dispType":"vip","trackType":"mplx","mplxUrl":"9860-56167-3840-27?LocClass-AdSenseClick=1&amp;mpuid=;;;;;;;r_Krakow,c_housing;;1406784571895"};
-kj_ads_dispParam.imgPlaceHolderIconUrl = 'http://pic.classistatic.com/image/pics/classifieds/pl-PL/image_placeholder_gt1.gif';
-kj_ads_dispParam.adSenseTitle = 'Linki sponsorowane';
-</script>
-<script>
-Kj_ad.init(kj_ads_queryParam,kj_ads_dispParam);
-</script>
-<style>
-#persistInput.storeMachId {behavior:url(#default#userData);}
-</style>
-<form id="persistForm">
-<input type="hidden" class="storeMachId" id="persistInput"/>
-</form>
-<script>
-Kj.initMachineId({isProduction:true,cookiePath:'http://include.classistatic.com/include/e884/c3js/classifieds/rel1/FLASH/'});
-</script>
-<!-- CC JS Includes -->
-<script type="text/javascript" charset="UTF-8">
-//start-CC JS
-$().ready(function(){$(".s2f").kjmenu_makeMenu({data:"\0030\003Podziel się na Facebooku\0030\004"+"\0031\003Podziel się na Twitterze\0031\004"+"\0033\003Wyślij znajomym\0033",OnSelect:function(mitem){switch(mitem.value){case'0':window.open('http://www.facebook.com/share.php?src=bm&u=http%3A%2F%2Fgumtree.pl%2Fc-ViewAd%3FAdId%3D607878925%26utm_source%3DFacebook%26utm_medium%3DSocial%252BMedia%26utm_campaign%3DPost%252BTo%252BFacebook&t=Przytulne%2C%202%20pokojowe%2C%2035m%2C%20Ruczaj%2C%20Babi%C5%84skiego%20-%20Gumtree%20Polska&v=3');break;case'1':window.open('http://twitter.com/?status=http%3A%2F%2Fgumtree.pl%2Fc-ViewAd%3FAdId%3D607878925');break;case'3':location.href='/c-SendToFriend?AdId=607878925';break;}}});});var googletag=googletag||{};googletag.cmd=googletag.cmd||[];(function(){var gads=document.createElement('script');gads.async=true;gads.type='text/javascript';var useSSL='https:'==document.location.protocol;gads.src=(useSSL?'https:':'http:')+'//www.googletagservices.com/tag/js/gpt.js';var node=document.getElementsByTagName('script')[0];node.parentNode.insertBefore(gads,node);})();$(document).ready(function(){pageURL=window.location.href;curLOC=$("#searchLoc_name").text()||"";curLOC=curLOC.replace(/\W+/g,'_');googletag.cmd.push(function(){googletag.defineSlot('/7162/Gumtree_PL/Nieruchomo_ci_VIP/mieszkania_i_domy_do_wynaj_cia',[300,250],'div-gpt-ad-1318934199048-0').addService(googletag.pubads()).setTargeting("loc",curLOC).setTargeting("kw","Przytulne,2,pokojowe,35m,Ruczaj,Babi,skiego").setTargeting("dc_ref",pageURL);googletag.defineSlot('/7162/Gumtree_PL/Nieruchomo_ci_VIP/mieszkania_i_domy_do_wynaj_cia',[300,250],'div-gpt-ad-1318934199048-1').addService(googletag.pubads()).setTargeting("loc",curLOC).setTargeting("kw","Przytulne,2,pokojowe,35m,Ruczaj,Babi,skiego").setTargeting("dc_ref",pageURL);googletag.defineSlot('/7162/Gumtree_PL/Nieruchomo_ci_VIP/mieszkania_i_domy_do_wynaj_cia',[[728,90],[750,200]],'div-gpt-ad-vip-topbanner').addService(googletag.pubads()).setTargeting("loc",curLOC).setTargeting("kw","Przytulne,2,pokojowe,35m,Ruczaj,Babi,skiego").setTargeting("dc_ref",pageURL);googletag.enableServices();});googletag.cmd.push(function(){googletag.display('div-gpt-ad-1318934199048-0');});googletag.cmd.push(function(){googletag.display('div-gpt-ad-1318934199048-1');});googletag.cmd.push(function(){googletag.display('div-gpt-ad-vip-topbanner');});});setTimeout(function(){var a=document.createElement("script");var b=document.getElementsByTagName("script")[0];a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0017/0492.js?"+Math.floor(new Date().getTime()/3600000);a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)},1);_atrk_opts={atrk_acct:"wS4fj1a4ZP00g+",domain:"gumtree.pl",dynamic:true};(function(){var as=document.createElement('script');as.type='text/javascript';as.async=true;as.src="https://d31qbv1cthcecs.cloudfront.net/atrk.js";var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as,s);})();
-//end -CC JS
-//start-TAIL JS
-Kj.initGA({isGaSiteTrackerId:true,isGaTrackerId:false});$(document).ready(function(){$('.mainTabs a[href$="c-SelectCategory"]').bind('click',function(){Kj.Ga.trackEventsinGA({category:'Header_PostAdTab',action:'Header_PostAdTab_clicked',opt_label:undefined,track_on_area_level:true});});});var catdata="\0030\003Wszystkie kategorie\0030\0031\0030\004\0030-0\003Nieruchomości\0032\0031\0031\0040-0\0030-0_0\003Wszystkie Nieruchomości\0032\0031\0030\0040-0\0030-0_1\003pokoje do wynajęcia\0039000\0031\0031\0040-0\0030-0_2\003mieszkania i domy do wynajęcia\0039008\0031\0031\0040-0\0030-0_3\003mieszkania i domy - sprzedam i kupię\0039073\0031\0031\0040-0\0030-0_4\003działki\0039194\0031\0031\0040-0\0030-0_5\003krótki termin i noclegi\0039074\0031\0031\0040-0\0030-0_6\003kwatery i domki letniskowe\0039193\0031\0031\0040-0\0030-0_7\003lokal i biuro\0039072\0031\0031\0040-0\0030-0_8\003parking i garaż\0039071\0031\0031\004\0030-1\003Motoryzacja\0035\0031\0031\0040-1\0030-1_0\003Wszystkie Motoryzacja\0035\0031\0030\0040-1\0030-1_1\003samochody osobowe\0039026\0031\0031\0040-1\0030-1_2\003samochody dostawcze\0039027\0031\0031\0040-1\0030-1_3\003motocykle i skutery\0039028\0031\0031\0040-1\0030-1_4\003ciągniki i maszyny rolnicze\0039154\0031\0031\0040-1\0030-1_5\003przyczepy i naczepy\0039155\0031\0031\0040-1\0030-1_6\003części i akcesoria\0039029\0031\0031\004\0030-2\003Łodzie i Pojazdy wodne\0039218\0031\0031\0040-2\0030-2_0\003Wszystkie Łodzie i Pojazdy wodne\0039218\0031\0030\0040-2\0030-2_1\003motorówki\0039219\0031\0031\0040-2\0030-2_2\003skutery wodne\0039222\0031\0031\0040-2\0030-2_3\003żaglówki\0039221\0031\0031\0040-2\0030-2_4\003kajaki i pontony\0039220\0031\0031\0040-2\0030-2_5\003silniki do łodzi\0039223\0031\0031\0040-2\0030-2_6\003akcesoria do łodzi\0039224\0031\0031\0040-2\0030-2_7\003inne pojazdy wodne\0039225\0031\0031\0040-2\0030-2_8\003łodzie wiosłowe\0039226\0031\0031\004\0030-3\003Sprzedam\0034\0031\0031\0040-3\0030-3_0\003Wszystkie Sprzedam\0034\0031\0030\0040-3\0030-3_1\003AGD\0039366\0031\0031\0040-3\0030-3_2\003antyki i kolekcje\0039351\0031\0031\0040-3\0030-3_3\003meble\0039376\0031\0031\0040-3\0030-3_4\003narzędzia i materiały budowlane\0039384\0031\0031\0040-3\0030-3_5\003ogród\0039398\0031\0031\0040-3\0030-3_6\003produkty żywnościowe\0039407\0031\0031\0040-3\0030-3_7\003wyposażenie wnętrz\0039408\0031\0031\0040-3\0030-3_8\003zdrowie\0039418\0031\0031\0040-3\0030-3_9\003sprzedam inne\0039023\0031\0031\004\0030-4\003Elektronika\0039237\0031\0031\0040-4\0030-4_0\003Wszystkie Elektronika\0039237\0031\0030\0040-4\0030-4_1\003audio i hi-fi\0039260\0031\0031\0040-4\0030-4_2\003cesje\0039353\0031\0031\0040-4\0030-4_3\003fotografia i video\0039281\0031\0031\0040-4\0030-4_4\003gry video i konsole\0039265\0031\0031\0040-4\0030-4_5\003komputery i software\0039238\0031\0031\0040-4\0030-4_6\003radiokomunikacja\0039352\0031\0031\0040-4\0030-4_7\003tablety i bookreadery\0039259\0031\0031\0040-4\0030-4_8\003telefony i akcesoria\0039247\0031\0031\0040-4\0030-4_9\003telewizory i odtwarzacze\0039276\0031\0031\0040-4\0030-4_10\003elektronika inne\0039286\0031\0031\004\0030-5\003Dla Dziecka\0039459\0031\0031\0040-5\0030-5_0\003Wszystkie Dla Dziecka\0039459\0031\0030\0040-5\0030-5_1\003artykuły szkolne\0039468\0031\0031\0040-5\0030-5_2\003bezpieczeństwo i zdrowie dziecka\0039460\0031\0031\0040-5\0030-5_3\003buty dla dzieci\0039461\0031\0031\0040-5\0030-5_4\003chrzciny, komunie, imprezy\0039469\0031\0031\0040-5\0030-5_5\003ciąża i karmienie\0039464\0031\0031\0040-5\0030-5_6\003foteliki - nosidełka\0039462\0031\0031\0040-5\0030-5_7\003kąpiel i zdrowie\0039470\0031\0031\0040-5\0030-5_8\003kojce i chodziki\0039471\0031\0031\0040-5\0030-5_9\003meble i wystrój pokoju\0039463\0031\0031\0040-5\0030-5_10\003rowerki i inne pojazdy\0039472\0031\0031\0040-5\0030-5_11\003odzież dziecięca\0039465\0031\0031\0040-5\0030-5_12\003wózki dla dzieci\0039466\0031\0031\0040-5\0030-5_13\003zabawki\0039467\0031\0031\0040-5\0030-5_14\003inne dla dziecka\0039489\0031\0031\004\0030-6\003Sport i Rozrywka\0039490\0031\0031\0040-6\0030-6_0\003Wszystkie Sport i Rozrywka\0039490\0031\0030\0040-6\0030-6_1\003bilety\0039491\0031\0031\0040-6\0030-6_2\003instrumenty i akcesoria muzyczne\0039496\0031\0031\0040-6\0030-6_3\003komiksy i czasopisma\0039497\0031\0031\0040-6\0030-6_4\003książki\0039498\0031\0031\0040-6\0030-6_5\003CD, kasety i płyty\0039514\0031\0031\0040-6\0030-6_6\003filmy i DVD\0039513\0031\0031\0040-6\0030-6_7\003gry planszowe i puzzle\0039515\0031\0031\0040-6\0030-6_8\003sport\0039519\0031\0031\0040-6\0030-6_9\003sprzęt turystyczny\0039531\0031\0031\004\0030-7\003Zwierzaki\0039124\0031\0031\0040-7\0030-7_0\003Wszystkie Zwierzaki\0039124\0031\0030\0040-7\0030-7_1\003psy i szczenięta\0039131\0031\0031\0040-7\0030-7_2\003koty i kocięta\0039125\0031\0031\0040-7\0030-7_3\003inne zwierzaki\0039126\0031\0031\0040-7\0030-7_4\003zgubiono lub znaleziono\0039128\0031\0031\0040-7\0030-7_5\003akcesoria dla zwierząt\0039129\0031\0031\0040-7\0030-7_6\003usługi dla zwierząt\0039130\0031\0031\004\0030-8\003Społeczność\0036\0031\0031\0040-8\0030-8_0\003Wszystkie Społeczność\0036\0031\0030\0040-8\0030-8_1\003drobne pytania i hobby\0039030\0031\0031\0040-8\0030-8_2\003sport, taniec i partnerzy do gry\0039032\0031\0031\0040-8\0030-8_3\003zespoły i muzycy\0039033\0031\0031\0040-8\0030-8_4\003wolontariat\0039227\0031\0031\0040-8\0030-8_5\003wydarzenia lokalne\0039228\0031\0031\0040-8\0030-8_6\003wymiana umiejętności\0039035\0031\0031\0040-8\0030-8_7\003zgubiono lub znaleziono\0039036\0031\0031\0040-8\0030-8_8\003przejazdy\0039037\0031\0031\0040-8\0030-8_9\003podróże\0039038\0031\0031\0040-8\0030-8_10\003dziękuję\0039039\0031\0031\0040-8\0030-8_11\003wyznania\0039084\0031\0031\0040-8\0030-8_12\003szukam starych przyjaciół\0039132\0031\0031\004\0030-9\003Oferty Pracy\0038\0031\0031\0040-9\0030-9_0\003Wszystkie Oferty Pracy\0038\0031\0030\0040-9\0030-9_1\003bar, restauracja i gastronomia\0039056\0031\0031\0040-9\0030-9_2\003biuro i administracja\0039052\0031\0031\0040-9\0030-9_3\003praca na budowie i pracownicy fizyczni\0039142\0031\0031\0040-9\0030-9_4\003fachowcy\0039203\0031\0031\0040-9\0030-9_5\003finanse i księgowość\0039050\0031\0031\0040-9\0030-9_6\003grafika i web design\0039140\0031\0031\0040-9\0030-9_7\003hostessy, modele i aktorzy\0039141\0031\0031\0040-9\0030-9_8\003hr, kadry i rekrutacja\0039053\0031\0031\0040-9\0030-9_9\003inżynierowie, technicy i architekci\0039094\0031\0031\0040-9\0030-9_10\003kierowcy i kurierzy\0039097\0031\0031\0040-9\0030-9_11\003kontrola i inwentaryzacja\0039208\0031\0031\0040-9\0030-9_12\003krawiectwo i moda\0039204\0031\0031\0040-9\0030-9_13\003marketing, media i pr\0039048\0031\0031\0040-9\0030-9_14\003praca typu mlm\0039532\0031\0031\0040-9\0030-9_15\003nauczyciele i edukacja\0039060\0031\0031\0040-9\0030-9_16\003ochrona\0039200\0031\0031\0040-9\0030-9_17\003opiekunki i nianie\0039059\0031\0031\0040-9\0030-9_18\003pielęgnacja i uroda\0039054\0031\0031\0040-9\0030-9_19\003praca dla studentów\0039206\0031\0031\0040-9\0030-9_20\003praca w hotelu\0039058\0031\0031\0040-9\0030-9_21\003prawo i prokuratura\0039049\0031\0031\0040-9\0030-9_22\003programiści, informatyka i internet\0039005\0031\0031\0040-9\0030-9_23\003służba zdrowia i farmacja\0039055\0031\0031\0040-9\0030-9_24\003spedycja\0039205\0031\0031\0040-9\0030-9_25\003sport i fitness\0039202\0031\0031\0040-9\0030-9_26\003sprzątanie i pomoc domowa\0039138\0031\0031\0040-9\0030-9_27\003sprzedaż, handel i praca w sklepie\0039061\0031\0031\0040-9\0030-9_28\003telemarketing i call center\0039098\0031\0031\0040-9\0030-9_29\003turystyka\0039207\0031\0031\0040-9\0030-9_30\003ulotki\0039201\0031\0031\0040-9\0030-9_31\003weterynaria i rolnictwo\0039095\0031\0031\0040-9\0030-9_32\003video i fotografia\0039212\0031\0031\0040-9\0030-9_33\003praca inne\0039099\0031\0031\004\0030-10\003Szukający Zatrudnienia\0039290\0031\0031\0040-10\0030-10_0\003Wszystkie Szukający Zatrudnienia\0039290\0031\0030\0040-10\0030-10_1\003gastronomia\0039291\0031\0031\0040-10\0030-10_2\003biuro i administracja\0039292\0031\0031\0040-10\0030-10_3\003pracownicy fizyczni\0039293\0031\0031\0040-10\0030-10_4\003specjaliści i technicy\0039294\0031\0031\0040-10\0030-10_5\003kierowcy i kurierzy\0039300\0031\0031\0040-10\0030-10_6\003marketing i reklama\0039304\0031\0031\0040-10\0030-10_7\003opiekunki i edukacja\0039305\0031\0031\0040-10\0030-10_8\003ochrona\0039306\0031\0031\0040-10\0030-10_9\003pielęgnacja i uroda\0039308\0031\0031\0040-10\0030-10_10\003sprzedaż i praca w sklepie\0039311\0031\0031\0040-10\0030-10_11\003szukam pracy studenckiej\0039309\0031\0031\0040-10\0030-10_12\003turystyka\0039312\0031\0031\0040-10\0030-10_13\003pozostałe\0039313\0031\0031\004\0030-11\003Usługi\0039\0031\0031\0040-11\0030-11_0\003Wszystkie Usługi\0039\0031\0030\0040-11\0030-11_1\003biura podróży\0039150\0031\0031\0040-11\0030-11_2\003współpraca biznesowa\0039325\0031\0031\0040-11\0030-11_3\003catering\0039554\0031\0031\0040-11\0030-11_4\003usługi finansowe\0039066\0031\0031\0040-11\0030-11_5\003fotografia i video\0039146\0031\0031\0040-11\0030-11_6\003graficy i usługi IT\0039234\0031\0031\0040-11\0030-11_7\003hurt i handel\0039065\0031\0031\0040-11\0030-11_8\003komputery serwis i handel\0039102\0031\0031\0040-11\0030-11_9\003usługi kurierskie\0039337\0031\0031\0040-11\0030-11_10\003nauka i edukacja\0039063\0031\0031\0040-11\0030-11_11\003mechanika i autoskup\0039145\0031\0031\0040-11\0030-11_12\003media i reklama\0039217\0031\0031\0040-11\0030-11_13\003muzycy i artyści\0039148\0031\0031\0040-11\0030-11_14\003ogrodnictwo\0039214\0031\0031\0040-11\0030-11_15\003opieka i agencje niań\0039152\0031\0031\0040-11\0030-11_16\003pielęgnacja i uroda\0039064\0031\0031\0040-11\0030-11_17\003usługi prawne\0039233\0031\0031\0040-11\0030-11_18\003przeprowadzki\0039144\0031\0031\0040-11\0030-11_19\003remont i budowa\0039101\0031\0031\0040-11\0030-11_20\003serwis i montaż\0039236\0031\0031\0040-11\0030-11_21\003sport i fitness\0039151\0031\0031\0040-11\0030-11_22\003sprzątanie\0039149\0031\0031\0040-11\0030-11_23\003śluby, wesela i przyjęcia\0039104\0031\0031\0040-11\0030-11_24\003taxi i przewozy osobowe\0039147\0031\0031\0040-11\0030-11_25\003telefony\0039341\0031\0031\0040-11\0030-11_26\003tłumaczenia i redakcja tekstu\0039216\0031\0031\0040-11\0030-11_27\003utylizacja\0039213\0031\0031\0040-11\0030-11_28\003wypożyczalnie\0039215\0031\0031\0040-11\0030-11_29\003zdrowie\0039235\0031\0031\0040-11\0030-11_30\003inne usługi\0039105\0031\0031\004\0030-12\003Moda\0039541\0031\0031\0040-12\0030-12_0\003Wszystkie Moda\0039541\0031\0030\0040-12\0030-12_1\003akcesoria i galanteria\0039542\0031\0031\0040-12\0030-12_2\003biżuteria i zegarki\0039563\0031\0031\0040-12\0030-12_3\003kosmetyki i perfumy\0039544\0031\0031\0040-12\0030-12_4\003obuwie damskie\0039596\0031\0031\0040-12\0030-12_5\003obuwie męskie\0039604\0031\0031\0040-12\0030-12_6\003odzież damska\0039565\0031\0031\0040-12\0030-12_7\003odzież męska\0039584\0031\0031\0040-12\0030-12_8\003pasmanteria\0039549\0031\0031\0040-12\0030-12_9\003torebki i torby\0039551\0031\0031\0040-12\0030-12_10\003walizki i plecaki\0039552\0031\0031\0040-12\0030-12_11\003inne ubrania\0039553\0031\0031\004";$().ready(function(){$("#searchCat").kjmenu_makeMenu({data:catdata,cssWrapperClass:'nationalSite',OnSelect:function(mitem){$("#searchCat_name").html(mitem.name+"<img border='0' src='http://pic.classistatic.com/image/pics/classifieds/spacer.gif' width='25px' height='1px'/></div>");document.frmSearchAd.CatId.value=mitem.value;$('.sfsp').remove();$('.sfasp').remove();}});});var sdata="\0030\003Polska\003202\0031\0030\004\0030-0\003Dolnośląskie\0033200007\0031\0031\0040-0\0030-0_0\003Wszystkie Dolnośląskie\0033200007\0031\0030\0040-0\0030-0_1\003Bielawa\0033200085\0031\0031\0040-0\0030-0_2\003 Bierutów\0033200435\0031\0031\0040-0\0030-0_3\003Bogatynia\0033200086\0031\0031\0040-0\0030-0_4\003 Boguszów-Gorce\0033200437\0031\0031\0040-0\0030-0_5\003Bolesławiec\0033200087\0031\0031\0040-0\0030-0_6\003 Bolków\0033200436\0031\0031\0040-0\0030-0_7\003 Brzeg Dolny\0033200438\0031\0031\0040-0\0030-0_8\003 Bystrzyca Kłodzka\0033200439\0031\0031\0040-0\0030-0_9\003 Chocianów\0033200440\0031\0031\0040-0\0030-0_10\003 Chojnów\0033200441\0031\0031\0040-0\0030-0_11\003Dzierżoniów\0033200088\0031\0031\0040-0\0030-0_12\003Głogów\0033200089\0031\0031\0040-0\0030-0_13\003Góra\0033200090\0031\0031\0040-0\0030-0_14\003 Gryfów Śląski\0033200442\0031\0031\0040-0\0030-0_15\003Jawor\0033200091\0031\0031\0040-0\0030-0_16\003 Jelcz-Laskowice\0033200443\0031\0031\0040-0\0030-0_17\003Jelenia Góra\0033200092\0031\0031\0040-0\0030-0_18\003Kamienna Góra\0033200093\0031\0031\0040-0\0030-0_19\003Karpacz\0033200094\0031\0031\0040-0\0030-0_20\003Kłodzko\0033200095\0031\0031\0040-0\0030-0_21\003 Kowary\0033200444\0031\0031\0040-0\0030-0_22\003 Kudowa-Zdrój\0033200445\0031\0031\0040-0\0030-0_23\003Legnica\0033200096\0031\0031\0040-0\0030-0_24\003Lubań\0033200097\0031\0031\0040-0\0030-0_25\003Lubin\0033200098\0031\0031\0040-0\0030-0_26\003Lwówek Śląski\0033200099\0031\0031\0040-0\0030-0_27\003Milicz\0033200100\0031\0031\0040-0\0030-0_28\003Nowa Ruda\0033200101\0031\0031\0040-0\0030-0_29\003 Oborniki Śląskie\0033200446\0031\0031\0040-0\0030-0_30\003Oława\0033200102\0031\0031\0040-0\0030-0_31\003Oleśnica\0033200103\0031\0031\0040-0\0030-0_32\003Piechowice\0033200434\0031\0031\0040-0\0030-0_33\003 Pieszyce\0033200447\0031\0031\0040-0\0030-0_34\003 Piława Górna\0033200448\0031\0031\0040-0\0030-0_35\003Polanica-Zdrój\0033200104\0031\0031\0040-0\0030-0_36\003Polkowice\0033200105\0031\0031\0040-0\0030-0_37\003 Strzegom\0033200449\0031\0031\0040-0\0030-0_38\003Strzelin\0033200107\0031\0031\0040-0\0030-0_39\003 Syców\0033200450\0031\0031\0040-0\0030-0_40\003Szklarska Poręba\0033200106\0031\0031\0040-0\0030-0_41\003Środa Śląska\0033200108\0031\0031\0040-0\0030-0_42\003Świdnica\0033200109\0031\0031\0040-0\0030-0_43\003Świebodzice\0033200110\0031\0031\0040-0\0030-0_44\003Trzebnica\0033200111\0031\0031\0040-0\0030-0_45\003Wałbrzych\0033200112\0031\0031\0040-0\0030-0_46\003Wołów\0033200113\0031\0031\0040-0\0030-0_47\003Wrocław\0033200114\0031\0031\0040-0\0030-0_48\003Ząbkowice Śląskie\0033200115\0031\0031\0040-0\0030-0_49\003Zgorzelec\0033200116\0031\0031\0040-0\0030-0_50\003 Ziębice\0033200451\0031\0031\0040-0\0030-0_51\003Złotoryja\0033200117\0031\0031\0040-0\0030-0_52\003 Żarów\0033200452\0031\0031\0040-0\0030-0_53\003 Żmigród\0033200453\0031\0031\004\0030-1\003Kujawsko - pomorskie\0033200075\0031\0031\0040-1\0030-1_0\003Wszystkie Kujawsko - pomorskie\0033200075\0031\0030\0040-1\0030-1_1\003Aleksandrów Kujawski\0033200118\0031\0031\0040-1\0030-1_2\003 Barcin\0033200454\0031\0031\0040-1\0030-1_3\003Brodnica\0033200119\0031\0031\0040-1\0030-1_4\003Bydgoszcz\0033200120\0031\0031\0040-1\0030-1_5\003Chełmno\0033200121\0031\0031\0040-1\0030-1_6\003 Chełmża\0033200455\0031\0031\0040-1\0030-1_7\003 Ciechocinek\0033200456\0031\0031\0040-1\0030-1_8\003 Gniewkowo\0033200457\0031\0031\0040-1\0030-1_9\003Golub-Dobrzyń\0033200122\0031\0031\0040-1\0030-1_10\003Grudziądz\0033200123\0031\0031\0040-1\0030-1_11\003Inowrocław\0033200124\0031\0031\0040-1\0030-1_12\003 Janikowo\0033200458\0031\0031\0040-1\0030-1_13\003 Koronowo\0033200459\0031\0031\0040-1\0030-1_14\003 Kruszwica\0033200460\0031\0031\0040-1\0030-1_15\003Lipno\0033200125\0031\0031\0040-1\0030-1_16\003Mogilno\0033200126\0031\0031\0040-1\0030-1_17\003Nakło nad Notecią\0033200127\0031\0031\0040-1\0030-1_18\003Radziejów\0033200128\0031\0031\0040-1\0030-1_19\003Rypin\0033200129\0031\0031\0040-1\0030-1_20\003Sępólno Krajeńskie\0033200130\0031\0031\0040-1\0030-1_21\003 Solec Kujawski\0033200461\0031\0031\0040-1\0030-1_22\003 Strzelno\0033200462\0031\0031\0040-1\0030-1_23\003Świecie\0033200131\0031\0031\0040-1\0030-1_24\003 Szubin\0033200463\0031\0031\0040-1\0030-1_25\003Toruń\0033200132\0031\0031\0040-1\0030-1_26\003Tuchola\0033200133\0031\0031\0040-1\0030-1_27\003Wąbrzeźno\0033200134\0031\0031\0040-1\0030-1_28\003 Więcbork\0033200464\0031\0031\0040-1\0030-1_29\003Włocławek\0033200135\0031\0031\0040-1\0030-1_30\003Żnin\0033200136\0031\0031\004\0030-2\003Lubelskie\0033200076\0031\0031\0040-2\0030-2_0\003Wszystkie Lubelskie\0033200076\0031\0030\0040-2\0030-2_1\003Bełżyce\0033200465\0031\0031\0040-2\0030-2_2\003Biała Podlaska\0033200137\0031\0031\0040-2\0030-2_3\003Biłgoraj\0033200138\0031\0031\0040-2\0030-2_4\003Chełm\0033200139\0031\0031\0040-2\0030-2_5\003Dęblin\0033200466\0031\0031\0040-2\0030-2_6\003Hrubieszów\0033200140\0031\0031\0040-2\0030-2_7\003Janów Lubelski\0033200141\0031\0031\0040-2\0030-2_8\003Krasnystaw\0033200142\0031\0031\0040-2\0030-2_9\003Kraśnik\0033200143\0031\0031\0040-2\0030-2_10\003Lubartów\0033200144\0031\0031\0040-2\0030-2_11\003Lublin\0033200145\0031\0031\0040-2\0030-2_12\003Łęczna\0033200146\0031\0031\0040-2\0030-2_13\003Łuków\0033200147\0031\0031\0040-2\0030-2_14\003Międzyrzec Podlaski\0033200467\0031\0031\0040-2\0030-2_15\003Opole Lubelskie\0033200148\0031\0031\0040-2\0030-2_16\003Parczew\0033200149\0031\0031\0040-2\0030-2_17\003Poniatowa\0033200468\0031\0031\0040-2\0030-2_18\003Puławy\0033200150\0031\0031\0040-2\0030-2_19\003Radzyń Podlaski\0033200151\0031\0031\0040-2\0030-2_20\003Ryki\0033200152\0031\0031\0040-2\0030-2_21\003Świdnik\0033200153\0031\0031\0040-2\0030-2_22\003Terespol\0033200469\0031\0031\0040-2\0030-2_23\003Tomaszów Lubelski\0033200154\0031\0031\0040-2\0030-2_24\003Włodawa\0033200155\0031\0031\0040-2\0030-2_25\003Zamość\0033200156\0031\0031\004\0030-3\003Lubuskie\0033200077\0031\0031\0040-3\0030-3_0\003Wszystkie Lubuskie\0033200077\0031\0030\0040-3\0030-3_1\003Drezdenko\0033200158\0031\0031\0040-3\0030-3_2\003Gorzów Wielkopolski\0033200157\0031\0031\0040-3\0030-3_3\003Gubin\0033200159\0031\0031\0040-3\0030-3_4\003 Kostrzyn nad Odrą\0033200470\0031\0031\0040-3\0030-3_5\003 Kożuchów\0033200471\0031\0031\0040-3\0030-3_6\003Krosno Odrzańskie\0033200160\0031\0031\0040-3\0030-3_7\003Lubsko\0033200161\0031\0031\0040-3\0030-3_8\003Międzyrzecz\0033200162\0031\0031\0040-3\0030-3_9\003Nowa Sól\0033200163\0031\0031\0040-3\0030-3_10\003 Rzepin\0033200472\0031\0031\0040-3\0030-3_11\003sulechów\0033200166\0031\0031\0040-3\0030-3_12\003Słubice\0033200164\0031\0031\0040-3\0030-3_13\003Strzelce Krajeńskie\0033200165\0031\0031\0040-3\0030-3_14\003 Skwierzyna\0033200473\0031\0031\0040-3\0030-3_15\003Sulęcin\0033200167\0031\0031\0040-3\0030-3_16\003Szprotawa\0033200168\0031\0031\0040-3\0030-3_17\003Świebodzin\0033200169\0031\0031\0040-3\0030-3_18\003 Witnica\0033200474\0031\0031\0040-3\0030-3_19\003Wschowa\0033200170\0031\0031\0040-3\0030-3_20\003Zielona Góra\0033200171\0031\0031\0040-3\0030-3_21\003Żagań\0033200172\0031\0031\0040-3\0030-3_22\003Żary\0033200173\0031\0031\004\0030-4\003Łódzkie\0033200004\0031\0031\0040-4\0030-4_0\003Wszystkie Łódzkie\0033200004\0031\0030\0040-4\0030-4_1\003Aleksandrów Łódzki\0033200174\0031\0031\0040-4\0030-4_2\003Bełchatów\0033200175\0031\0031\0040-4\0030-4_3\003Brzeziny\0033200176\0031\0031\0040-4\0030-4_4\003Głowno\0033200177\0031\0031\0040-4\0030-4_5\003 Koluszki\0033200475\0031\0031\0040-4\0030-4_6\003Konstantynów Łódzki\0033200178\0031\0031\0040-4\0030-4_7\003Kutno\0033200179\0031\0031\0040-4\0030-4_8\003Łask\0033200180\0031\0031\0040-4\0030-4_9\003Łęczyca\0033200181\0031\0031\0040-4\0030-4_10\003Łowicz\0033200182\0031\0031\0040-4\0030-4_11\003Łódź\0033200183\0031\0031\0040-4\0030-4_12\003Opoczno\0033200184\0031\0031\0040-4\0030-4_13\003Ozorków\0033200185\0031\0031\0040-4\0030-4_14\003Pabianice\0033200186\0031\0031\0040-4\0030-4_15\003Pajęczno\0033200187\0031\0031\0040-4\0030-4_16\003Piotrków Trybunalski\0033200188\0031\0031\0040-4\0030-4_17\003Poddębice\0033200189\0031\0031\0040-4\0030-4_18\003Radomsko\0033200190\0031\0031\0040-4\0030-4_19\003Rawa Mazowiecka\0033200191\0031\0031\0040-4\0030-4_20\003Sieradz\0033200192\0031\0031\0040-4\0030-4_21\003Skierniewice\0033200193\0031\0031\0040-4\0030-4_22\003 Tuszyn\0033200476\0031\0031\0040-4\0030-4_23\003Tomaszów Mazowiecki\0033200194\0031\0031\0040-4\0030-4_24\003Wieluń\0033200195\0031\0031\0040-4\0030-4_25\003Wieruszów\0033200196\0031\0031\0040-4\0030-4_26\003Zduńska Wola\0033200197\0031\0031\0040-4\0030-4_27\003 Zelów\0033200477\0031\0031\0040-4\0030-4_28\003Zgierz\0033200198\0031\0031\0040-4\0030-4_29\003 Żychlin\0033200478\0031\0031\004\0030-5\003Małopolskie\0033200003\0031\0031\0040-5\0030-5_0\003Wszystkie Małopolskie\0033200003\0031\0030\0040-5\0030-5_1\003Andrychów\0033200199\0031\0031\0040-5\0030-5_2\003Bochnia\0033200200\0031\0031\0040-5\0030-5_3\003Brzesko\0033200201\0031\0031\0040-5\0030-5_4\003Brzeszcze\0033200479\0031\0031\0040-5\0030-5_5\003Bukowina Tatrzańska\0033200202\0031\0031\0040-5\0030-5_6\003Bukowno\0033200480\0031\0031\0040-5\0030-5_7\003Chełmek\0033200481\0031\0031\0040-5\0030-5_8\003Chrzanów\0033200203\0031\0031\0040-5\0030-5_9\003Dąbrowa Tarnowska\0033200204\0031\0031\0040-5\0030-5_10\003Gorlice\0033200205\0031\0031\0040-5\0030-5_11\003Kęty\0033200206\0031\0031\0040-5\0030-5_12\003Kościelisko\0033200207\0031\0031\0040-5\0030-5_13\003Kraków\0033200208\0031\0031\0040-5\0030-5_14\003Krościenko nad Dunajcem\0033200491\0031\0031\0040-5\0030-5_15\003Krynica-Zdrój\0033200209\0031\0031\0040-5\0030-5_16\003Krzeszowice\0033200482\0031\0031\0040-5\0030-5_17\003Libiąż\0033200483\0031\0031\0040-5\0030-5_18\003Limanowa\0033200210\0031\0031\0040-5\0030-5_19\003Miechów\0033200211\0031\0031\0040-5\0030-5_20\003Mszana Dolna\0033200484\0031\0031\0040-5\0030-5_21\003Myślenice\0033200212\0031\0031\0040-5\0030-5_22\003Niepołomice\0033200485\0031\0031\0040-5\0030-5_23\003Nowy Sącz\0033200213\0031\0031\0040-5\0030-5_24\003Nowy Targ\0033200214\0031\0031\0040-5\0030-5_25\003Olkusz\0033200215\0031\0031\0040-5\0030-5_26\003Oświęcim\0033200216\0031\0031\0040-5\0030-5_27\003Piwniczna-Zdrój\0033200486\0031\0031\0040-5\0030-5_28\003Proszowice\0033200217\0031\0031\0040-5\0030-5_29\003Rabka-Zdrój\0033200487\0031\0031\0040-5\0030-5_30\003Skawina\0033200218\0031\0031\0040-5\0030-5_31\003Stary Sącz\0033200488\0031\0031\0040-5\0030-5_32\003Sucha Beskidzka\0033200219\0031\0031\0040-5\0030-5_33\003Szczawnica\0033200220\0031\0031\0040-5\0030-5_34\003Tarnów\0033200221\0031\0031\0040-5\0030-5_35\003Trzebinia\0033200222\0031\0031\0040-5\0030-5_36\003Tuchów\0033200489\0031\0031\0040-5\0030-5_37\003Wadowice\0033200223\0031\0031\0040-5\0030-5_38\003Wieliczka\0033200224\0031\0031\0040-5\0030-5_39\003Wolbrom\0033200490\0031\0031\0040-5\0030-5_40\003Zakopane\0033200225\0031\0031\004\0030-6\003Mazowieckie\0033200001\0031\0031\0040-6\0030-6_0\003Wszystkie Mazowieckie\0033200001\0031\0030\0040-6\0030-6_1\003Warszawa\0033200008\0031\0031\0040-6\0030-6_2\003Północne powiaty\0033200027\0031\0031\0040-6\0030-6_3\003Pn - wsch powiaty\0033200036\0031\0031\0040-6\0030-6_4\003Pn - zach powiaty\0033200041\0031\0031\0040-6\0030-6_5\003Południowe powiaty\0033200042\0031\0031\0040-6\0030-6_6\003Pd - wsch powiaty\0033200043\0031\0031\0040-6\0030-6_7\003Pd - zach powiaty\0033200044\0031\0031\0040-6\0030-6_8\003Wschodnie powiaty\0033200045\0031\0031\0040-6\0030-6_9\003Zachodnie powiaty\0033200046\0031\0031\004\0030-7\003Opolskie\0033200078\0031\0031\0040-7\0030-7_0\003Wszystkie Opolskie\0033200078\0031\0030\0040-7\0030-7_1\003Brzeg\0033200226\0031\0031\0040-7\0030-7_2\003Głubczyce\0033200227\0031\0031\0040-7\0030-7_3\003Grodków\0033200526\0031\0031\0040-7\0030-7_4\003Kędzierzyn-Koźle\0033200228\0031\0031\0040-7\0030-7_5\003Kluczbork\0033200229\0031\0031\0040-7\0030-7_6\003Krapkowice\0033200230\0031\0031\0040-7\0030-7_7\003Namysłów\0033200231\0031\0031\0040-7\0030-7_8\003Niemodlin\0033200527\0031\0031\0040-7\0030-7_9\003Nysa\0033200232\0031\0031\0040-7\0030-7_10\003Olesno\0033200233\0031\0031\0040-7\0030-7_11\003Opole\0033200234\0031\0031\0040-7\0030-7_12\003Ozimek\0033200528\0031\0031\0040-7\0030-7_13\003Paczków\0033200529\0031\0031\0040-7\0030-7_14\003Praszka\0033200530\0031\0031\0040-7\0030-7_15\003Prudnik\0033200235\0031\0031\0040-7\0030-7_16\003Strzelce Opolskie\0033200236\0031\0031\0040-7\0030-7_17\003Zawadzkie\0033200531\0031\0031\0040-7\0030-7_18\003Zdzieszowice\0033200532\0031\0031\004\0030-8\003Podkarpackie\0033200079\0031\0031\0040-8\0030-8_0\003Wszystkie Podkarpackie\0033200079\0031\0030\0040-8\0030-8_1\003Brzozów\0033200237\0031\0031\0040-8\0030-8_2\003Dębica\0033200238\0031\0031\0040-8\0030-8_3\003Jarosław\0033200239\0031\0031\0040-8\0030-8_4\003Jasło\0033200240\0031\0031\0040-8\0030-8_5\003Kolbuszowa\0033200241\0031\0031\0040-8\0030-8_6\003Krosno\0033200242\0031\0031\0040-8\0030-8_7\003Lesko\0033200243\0031\0031\0040-8\0030-8_8\003Leżajsk\0033200244\0031\0031\0040-8\0030-8_9\003Lubaczów\0033200245\0031\0031\0040-8\0030-8_10\003Łańcut\0033200246\0031\0031\0040-8\0030-8_11\003Mielec\0033200247\0031\0031\0040-8\0030-8_12\003Nisko\0033200248\0031\0031\0040-8\0030-8_13\003Nowa Dęba\0033200533\0031\0031\0040-8\0030-8_14\003Przemyśl\0033200249\0031\0031\0040-8\0030-8_15\003Przeworsk\0033200250\0031\0031\0040-8\0030-8_16\003Ropczyce\0033200251\0031\0031\0040-8\0030-8_17\003Rzeszów\0033200252\0031\0031\0040-8\0030-8_18\003Sanok\0033200253\0031\0031\0040-8\0030-8_19\003Sędziszów Małopolski\0033200534\0031\0031\0040-8\0030-8_20\003Stalowa Wola\0033200254\0031\0031\0040-8\0030-8_21\003Strzyżów\0033200255\0031\0031\0040-8\0030-8_22\003Tarnobrzeg\0033200256\0031\0031\0040-8\0030-8_23\003Ustrzyki Dolne\0033200257\0031\0031\004\0030-9\003Podlaskie\0033200080\0031\0031\0040-9\0030-9_0\003Wszystkie Podlaskie\0033200080\0031\0030\0040-9\0030-9_1\003Augustów\0033200258\0031\0031\0040-9\0030-9_2\003Białystok\0033200259\0031\0031\0040-9\0030-9_3\003Bielsk Podlaski\0033200260\0031\0031\0040-9\0030-9_4\003 Czarna Białostocka\0033200535\0031\0031\0040-9\0030-9_5\003 Dąbrowa Białostocka\0033200536\0031\0031\0040-9\0030-9_6\003Grajewo\0033200261\0031\0031\0040-9\0030-9_7\003Hajnówka\0033200262\0031\0031\0040-9\0030-9_8\003Kolno\0033200263\0031\0031\0040-9\0030-9_9\003Łapy\0033200264\0031\0031\0040-9\0030-9_10\003Łomża\0033200265\0031\0031\0040-9\0030-9_11\003Mońki\0033200266\0031\0031\0040-9\0030-9_12\003Sejny\0033200267\0031\0031\0040-9\0030-9_13\003Siemiatycze\0033200268\0031\0031\0040-9\0030-9_14\003Sokółka\0033200269\0031\0031\0040-9\0030-9_15\003Suwałki\0033200270\0031\0031\0040-9\0030-9_16\003 Wasilków\0033200537\0031\0031\0040-9\0030-9_17\003Wysokie Mazowieckie\0033200271\0031\0031\0040-9\0030-9_18\003Zambrów\0033200272\0031\0031\004\0030-10\003Pomorskie\0033200005\0031\0031\0040-10\0030-10_0\003Wszystkie Pomorskie\0033200005\0031\0030\0040-10\0030-10_1\003Bytów\0033200407\0031\0031\0040-10\0030-10_2\003Chojnice\0033200408\0031\0031\0040-10\0030-10_3\003Człuchów\0033200409\0031\0031\0040-10\0030-10_4\003Czersk\0033200539\0031\0031\0040-10\0030-10_5\003Gdańsk\0033200072\0031\0031\0040-10\0030-10_6\003Gdynia\0033200073\0031\0031\0040-10\0030-10_7\003Gniew\0033200543\0031\0031\0040-10\0030-10_8\003Hel\0033200410\0031\0031\0040-10\0030-10_9\003Jastarnia\0033200411\0031\0031\0040-10\0030-10_10\003Jastrzębia Góra\0033200412\0031\0031\0040-10\0030-10_11\003Kartuzy\0033200413\0031\0031\0040-10\0030-10_12\003Karwia\0033200414\0031\0031\0040-10\0030-10_13\003Kościerzyna\0033200415\0031\0031\0040-10\0030-10_14\003Krynica Morska\0033200416\0031\0031\0040-10\0030-10_15\003Kwidzyn\0033200417\0031\0031\0040-10\0030-10_16\003Łeba\0033200418\0031\0031\0040-10\0030-10_17\003Lębork\0033200419\0031\0031\0040-10\0030-10_18\003Malbork\0033200420\0031\0031\0040-10\0030-10_19\003Miastko\0033200538\0031\0031\0040-10\0030-10_20\003Nowy Dwór Gdański\0033200421\0031\0031\0040-10\0030-10_21\003Pelplin\0033200541\0031\0031\0040-10\0030-10_22\003Prabuty\0033200540\0031\0031\0040-10\0030-10_23\003Pruszcz Gdański\0033200422\0031\0031\0040-10\0030-10_24\003Puck\0033200423\0031\0031\0040-10\0030-10_25\003Reda\0033200424\0031\0031\0040-10\0030-10_26\003Rumia\0033200425\0031\0031\0040-10\0030-10_27\003Skarszewy\0033200542\0031\0031\0040-10\0030-10_28\003Słupsk\0033200426\0031\0031\0040-10\0030-10_29\003Sopot\0033200074\0031\0031\0040-10\0030-10_30\003Starogard Gdański\0033200427\0031\0031\0040-10\0030-10_31\003Stegna\0033200428\0031\0031\0040-10\0030-10_32\003Sztum\0033200429\0031\0031\0040-10\0030-10_33\003Sztutowo\0033200544\0031\0031\0040-10\0030-10_34\003Tczew\0033200430\0031\0031\0040-10\0030-10_35\003Ustka\0033200431\0031\0031\0040-10\0030-10_36\003Wejherowo\0033200432\0031\0031\0040-10\0030-10_37\003Władysławowo\0033200433\0031\0031\004\0030-11\003Śląskie\0033200002\0031\0031\0040-11\0030-11_0\003Wszystkie Śląskie\0033200002\0031\0030\0040-11\0030-11_1\003Będzin\0033200273\0031\0031\0040-11\0030-11_2\003Bielsko-Biała\0033200274\0031\0031\0040-11\0030-11_3\003Bieruń\0033200275\0031\0031\0040-11\0030-11_4\003 Blachownia\0033200545\0031\0031\0040-11\0030-11_5\003Bytom\0033200277\0031\0031\0040-11\0030-11_6\003Chorzów\0033200278\0031\0031\0040-11\0030-11_7\003Cieszyn\0033200279\0031\0031\0040-11\0030-11_8\003 Czechowice-Dziedzice\0033200546\0031\0031\0040-11\0030-11_9\003 Czeladź\0033200547\0031\0031\0040-11\0030-11_10\003 Czerwionka-Leszczyny\0033200548\0031\0031\0040-11\0030-11_11\003Częstochowa\0033200280\0031\0031\0040-11\0030-11_12\003Dąbrowa Górnicza\0033200281\0031\0031\0040-11\0030-11_13\003Gliwice\0033200282\0031\0031\0040-11\0030-11_14\003 Imielin\0033200549\0031\0031\0040-11\0030-11_15\003Jastrzębie-Zdrój\0033200283\0031\0031\0040-11\0030-11_16\003Jaworzno\0033200284\0031\0031\0040-11\0030-11_17\003 Kalety\0033200550\0031\0031\0040-11\0030-11_18\003 Knurów\0033200551\0031\0031\0040-11\0030-11_19\003Katowice\0033200285\0031\0031\0040-11\0030-11_20\003Kłobuck\0033200286\0031\0031\0040-11\0030-11_21\003 Lędziny\0033200552\0031\0031\0040-11\0030-11_22\003Lubliniec\0033200287\0031\0031\0040-11\0030-11_23\003 Łaziska Górne\0033200553\0031\0031\0040-11\0030-11_24\003Mikołów\0033200288\0031\0031\0040-11\0030-11_25\003Mysłowice\0033200289\0031\0031\0040-11\0030-11_26\003Myszków\0033200290\0031\0031\0040-11\0030-11_27\003 Orzesze\0033200554\0031\0031\0040-11\0030-11_28\003Piekary Śląskie\0033200291\0031\0031\0040-11\0030-11_29\003 Poręba\0033200555\0031\0031\0040-11\0030-11_30\003Pszczyna\0033200292\0031\0031\0040-11\0030-11_31\003 Pszów\0033200556\0031\0031\0040-11\0030-11_32\003 Pyskowice\0033200557\0031\0031\0040-11\0030-11_33\003Racibórz\0033200293\0031\0031\0040-11\0030-11_34\003 Radlin\0033200558\0031\0031\0040-11\0030-11_35\003 Radzionków\0033200559\0031\0031\0040-11\0030-11_36\003Ruda Śląska\0033200294\0031\0031\0040-11\0030-11_37\003Rybnik\0033200295\0031\0031\0040-11\0030-11_38\003 Rydułtowy\0033200560\0031\0031\0040-11\0030-11_39\003Siemianowice Śląskie\0033200296\0031\0031\0040-11\0030-11_40\003 Skoczów\0033200561\0031\0031\0040-11\0030-11_41\003Sosnowiec\0033200297\0031\0031\0040-11\0030-11_42\003Świętochłowice\0033200298\0031\0031\0040-11\0030-11_43\003Szczyrk\0033200299\0031\0031\0040-11\0030-11_44\003Tarnowskie Góry\0033200300\0031\0031\0040-11\0030-11_45\003Tychy\0033200301\0031\0031\0040-11\0030-11_46\003 Ustroń\0033200562\0031\0031\0040-11\0030-11_47\003Wisła\0033200302\0031\0031\0040-11\0030-11_48\003Wodzisław Śląski\0033200303\0031\0031\0040-11\0030-11_49\003 Wojkowice\0033200563\0031\0031\0040-11\0030-11_50\003Zabrze\0033200304\0031\0031\0040-11\0030-11_51\003Zawiercie\0033200305\0031\0031\0040-11\0030-11_52\003Żory\0033200306\0031\0031\0040-11\0030-11_53\003Żywiec\0033200307\0031\0031\004\0030-12\003Świętokrzyskie\0033200082\0031\0031\0040-12\0030-12_0\003Wszystkie Świętokrzyskie\0033200082\0031\0030\0040-12\0030-12_1\003Busko-Zdrój\0033200308\0031\0031\0040-12\0030-12_2\003Jędrzejów\0033200309\0031\0031\0040-12\0030-12_3\003Kazimierza Wielka\0033200310\0031\0031\0040-12\0030-12_4\003Kielce\0033200311\0031\0031\0040-12\0030-12_5\003Końskie\0033200312\0031\0031\0040-12\0030-12_6\003Opatów\0033200313\0031\0031\0040-12\0030-12_7\003Ostrowiec Świętokrzyski\0033200314\0031\0031\0040-12\0030-12_8\003Pińczów\0033200315\0031\0031\0040-12\0030-12_9\003Połaniec\0033200564\0031\0031\0040-12\0030-12_10\003Sandomierz\0033200316\0031\0031\0040-12\0030-12_11\003Skarżysko-Kamienna\0033200317\0031\0031\0040-12\0030-12_12\003Starachowice\0033200318\0031\0031\0040-12\0030-12_13\003Staszów\0033200319\0031\0031\0040-12\0030-12_14\003Suchedniów\0033200565\0031\0031\0040-12\0030-12_15\003Włoszczowa\0033200320\0031\0031\004\0030-13\003Warmińsko-mazurskie\0033200083\0031\0031\0040-13\0030-13_0\003Wszystkie Warmińsko-mazurskie\0033200083\0031\0030\0040-13\0030-13_1\003Bartoszyce\0033200321\0031\0031\0040-13\0030-13_2\003Biskupiec\0033200322\0031\0031\0040-13\0030-13_3\003Braniewo\0033200323\0031\0031\0040-13\0030-13_4\003Dobre Miasto\0033200324\0031\0031\0040-13\0030-13_5\003Działdowo\0033200325\0031\0031\0040-13\0030-13_6\003Elbląg\0033200326\0031\0031\0040-13\0030-13_7\003Ełk\0033200327\0031\0031\0040-13\0030-13_8\003Giżycko\0033200328\0031\0031\0040-13\0030-13_9\003Gołdap\0033200329\0031\0031\0040-13\0030-13_10\003Iława\0033200330\0031\0031\0040-13\0030-13_11\003Kętrzyn\0033200331\0031\0031\0040-13\0030-13_12\003Lidzbark Warmiński\0033200332\0031\0031\0040-13\0030-13_13\003 Lubawa\0033200566\0031\0031\0040-13\0030-13_14\003Mikołajki\0033200333\0031\0031\0040-13\0030-13_15\003 Morąg\0033200567\0031\0031\0040-13\0030-13_16\003Mrągowo\0033200334\0031\0031\0040-13\0030-13_17\003Nidzica\0033200335\0031\0031\0040-13\0030-13_18\003Nowe Miasto Lubawskie\0033200336\0031\0031\0040-13\0030-13_19\003Olecko\0033200337\0031\0031\0040-13\0030-13_20\003Olsztyn\0033200338\0031\0031\0040-13\0030-13_21\003 Olsztynek\0033200568\0031\0031\0040-13\0030-13_22\003 Orneta\0033200569\0031\0031\0040-13\0030-13_23\003Ostróda\0033200339\0031\0031\0040-13\0030-13_24\003 Pasłęk\0033200570\0031\0031\0040-13\0030-13_25\003Pisz\0033200340\0031\0031\0040-13\0030-13_26\003Szczytno\0033200341\0031\0031\0040-13\0030-13_27\003Węgorzewo\0033200342\0031\0031\004\0030-14\003Wielkopolskie\0033200006\0031\0031\0040-14\0030-14_0\003Wszystkie Wielkopolskie\0033200006\0031\0030\0040-14\0030-14_1\003Chodzież\0033200343\0031\0031\0040-14\0030-14_2\003Czarnków\0033200344\0031\0031\0040-14\0030-14_3\003Gniezno\0033200345\0031\0031\0040-14\0030-14_4\003Gostyń\0033200346\0031\0031\0040-14\0030-14_5\003Grodzisk Wielkopolski\0033200347\0031\0031\0040-14\0030-14_6\003Jarocin\0033200348\0031\0031\0040-14\0030-14_7\003Jastrowie\0033200571\0031\0031\0040-14\0030-14_8\003Kalisz\0033200349\0031\0031\0040-14\0030-14_9\003Kępno\0033200350\0031\0031\0040-14\0030-14_10\003Koło\0033200351\0031\0031\0040-14\0030-14_11\003Konin\0033200352\0031\0031\0040-14\0030-14_12\003Kostrzyn\0033200572\0031\0031\0040-14\0030-14_13\003Kościan\0033200353\0031\0031\0040-14\0030-14_14\003Kórnik\0033200573\0031\0031\0040-14\0030-14_15\003Krotoszyn\0033200354\0031\0031\0040-14\0030-14_16\003Leszno\0033200355\0031\0031\0040-14\0030-14_17\003Luboń\0033200356\0031\0031\0040-14\0030-14_18\003Międzychód\0033200357\0031\0031\0040-14\0030-14_19\003Mosina\0033200358\0031\0031\0040-14\0030-14_20\003Murowana Goślina\0033200359\0031\0031\0040-14\0030-14_21\003Nowy Tomyśl\0033200360\0031\0031\0040-14\0030-14_22\003Oborniki\0033200361\0031\0031\0040-14\0030-14_23\003Opalenica\0033200574\0031\0031\0040-14\0030-14_24\003Ostrów Wielkopolski\0033200362\0031\0031\0040-14\0030-14_25\003Ostrzeszów\0033200363\0031\0031\0040-14\0030-14_26\003Piła\0033200364\0031\0031\0040-14\0030-14_27\003Pleszew\0033200365\0031\0031\0040-14\0030-14_28\003Pniewy\0033200575\0031\0031\0040-14\0030-14_29\003Pobiedziska\0033200576\0031\0031\0040-14\0030-14_30\003Poznań\0033200366\0031\0031\0040-14\0030-14_31\003Puszczykowo\0033200577\0031\0031\0040-14\0030-14_32\003Rawicz\0033200367\0031\0031\0040-14\0030-14_33\003Rogoźno\0033200578\0031\0031\0040-14\0030-14_34\003Słupca\0033200368\0031\0031\0040-14\0030-14_35\003Swarzędz\0033200369\0031\0031\0040-14\0030-14_36\003Szamotuły\0033200370\0031\0031\0040-14\0030-14_37\003Śrem\0033200371\0031\0031\0040-14\0030-14_38\003Środa Wielkopolska\0033200372\0031\0031\0040-14\0030-14_39\003Trzcianka\0033200373\0031\0031\0040-14\0030-14_40\003Trzemeszno\0033200579\0031\0031\0040-14\0030-14_41\003Turek\0033200374\0031\0031\0040-14\0030-14_42\003Wągrowiec\0033200375\0031\0031\0040-14\0030-14_43\003Witkowo\0033200580\0031\0031\0040-14\0030-14_44\003Wolsztyn\0033200376\0031\0031\0040-14\0030-14_45\003Wronki\0033200581\0031\0031\0040-14\0030-14_46\003Września\0033200377\0031\0031\0040-14\0030-14_47\003Złotów\0033200378\0031\0031\004\0030-15\003Zachodniopomorskie\0033200084\0031\0031\0040-15\0030-15_0\003Wszystkie Zachodniopomorskie\0033200084\0031\0030\0040-15\0030-15_1\003Barlinek\0033200379\0031\0031\0040-15\0030-15_2\003Białogard\0033200380\0031\0031\0040-15\0030-15_3\003Cedynia\0033200381\0031\0031\0040-15\0030-15_4\003Choszczno\0033200382\0031\0031\0040-15\0030-15_5\003Czaplinek\0033200586\0031\0031\0040-15\0030-15_6\003Darłowo\0033200383\0031\0031\0040-15\0030-15_7\003Dębno\0033200384\0031\0031\0040-15\0030-15_8\003Drawno\0033200385\0031\0031\0040-15\0030-15_9\003Drawsko Pomorskie\0033200386\0031\0031\0040-15\0030-15_10\003Goleniów\0033200387\0031\0031\0040-15\0030-15_11\003Gryfice\0033200388\0031\0031\0040-15\0030-15_12\003Gryfino\0033200389\0031\0031\0040-15\0030-15_13\003Kamień Pomorski\0033200390\0031\0031\0040-15\0030-15_14\003Kołobrzeg\0033200391\0031\0031\0040-15\0030-15_15\003Koszalin\0033200392\0031\0031\0040-15\0030-15_16\003Łobez\0033200393\0031\0031\0040-15\0030-15_17\003Międzyzdroje\0033200394\0031\0031\0040-15\0030-15_18\003Mielno\0033200395\0031\0031\0040-15\0030-15_19\003Myślibórz\0033200396\0031\0031\0040-15\0030-15_20\003Nowogard\0033200397\0031\0031\0040-15\0030-15_21\003Police\0033200398\0031\0031\0040-15\0030-15_22\003Połczyn-Zdrój\0033200582\0031\0031\0040-15\0030-15_23\003Pyrzyce\0033200399\0031\0031\0040-15\0030-15_24\003Sławno\0033200400\0031\0031\0040-15\0030-15_25\003Stargard Szczeciński\0033200401\0031\0031\0040-15\0030-15_26\003Szczecin\0033200402\0031\0031\0040-15\0030-15_27\003Szczecinek\0033200403\0031\0031\0040-15\0030-15_28\003Świdwin\0033200404\0031\0031\0040-15\0030-15_29\003Świnoujście\0033200405\0031\0031\0040-15\0030-15_30\003Trzebiatów\0033200583\0031\0031\0040-15\0030-15_31\003Wałcz\0033200406\0031\0031\0040-15\0030-15_32\003Wolin\0033200584\0031\0031\0040-15\0030-15_33\003Złocieniec\0033200585\0031\0031\004";var provinceSearchInputHtml='<input name="isProvinceSearch" type="hidden" value="true" />';$().ready(function(){function getURLParameter(name){return decodeURIComponent((location.href.match(RegExp("[QQ]"+name+'Z(.+?)(QQ|$)'))||[,null])[1]);}
-var isProvinceSearch=getURLParameter('isProvinceSearch');document.frmSearchAd.Location.value=Math.abs(3200208);if(isProvinceSearch=='true'){var isProvinceSearchInput=$('input[name=isProvinceSearch]');if(isProvinceSearchInput.length>0){isProvinceSearchInput.val('true');}
-else{$('#frmSearchAd').append(provinceSearchInputHtml);}}
-$("#searchLoc").kjmenu_makeMenu({data:sdata,zindex:90000,cssWrapperClass:'nationalSite',OnSelect:function(mitem){var provinceSearchInput=$('input[name=isProvinceSearch]');if(mitem.value<-1){if(provinceSearchInput.length>0){provinceSearchInput.val('true');}
-else{$('#frmSearchAd').append(provinceSearchInputHtml);}}
-else{if(provinceSearchInput.length>0){provinceSearchInput.remove();}}
-$("#searchLoc_name").html(mitem.name+"<img border='0' src='http://pic.classistatic.com/image/pics/classifieds/spacer.gif' width='25px' height='1px'/>");document.frmSearchAd.Location.value=Math.abs(mitem.value);$('.sfsp').remove();}});});addOnUnloadFunction('disableElement("searchAdGo")');var autoOptions={maxChars:4,hideLabel:'Ukryj',timeout:1,maxEntries:7,containerStyleClass:'keySpan',submitOnlick:true,baseUrl:"http://ac.classistatic.com/ac/10028/202/pl_PL/"};$(document).ready(function(){$("input.keyword").autocomplete1(autoOptions);$("#searchAdGo").click(function(){gAnalyticsPushForSearch("Click-Search",$(".newHeader input[name=distance]").val());});$("form#frmSearchAd").submit(function(){if($("#autoComp")[0].value==="Czego szukasz...?"){$("#autoComp")[0].value="";}
-$("#searchAdGo").attr("disabled","true");return true;});});function gAnalyticsPushForSearch(srchType,numValue){}
-var browsedata="\004\0030\003Nieruchomości\003http://www.gumtree.pl/fp-nieruchomosci/krakow/c2l3200208\004\0030\003Sprzedam\003http://www.gumtree.pl/fp-sprzedam/krakow/c4l3200208\004\0030\003Oferty Pracy\003http://www.gumtree.pl/fp-oferty-pracy/krakow/c8l3200208\004\0030\003Motoryzacja\003http://www.gumtree.pl/fp-motoryzacja/krakow/c5l3200208\004\0030\003Szukający Zatrudnienia\003http://www.gumtree.pl/fp-szukajacy-zatrudnienia/krakow/c9290l3200208\004\0030\003Moda\003http://www.gumtree.pl/fp-moda/krakow/c9541l3200208\004\0030\003Łodzie i Pojazdy wodne\003http://www.gumtree.pl/fp-lodzie-i-pojazdy-wodne/krakow/c9218l3200208\004\0030\003Elektronika\003http://www.gumtree.pl/fp-elektronika/krakow/c9237l3200208\004\0030\003Usługi\003http://www.gumtree.pl/fp-uslugi/krakow/c9l3200208\004\0030\003Dla Dziecka\003http://www.gumtree.pl/fp-dla-dziecka/krakow/c9459l3200208\004\0030\003Zwierzaki\003http://www.gumtree.pl/fp-zwierzaki/krakow/c9124l3200208\004\0030\003Sport i Rozrywka\003http://www.gumtree.pl/fp-sport-i-rozrywka/krakow/c9490l3200208\004\0030\003Społeczność\003http://www.gumtree.pl/fp-spolecznosc/krakow/c6l3200208\004\0030\003Oddam za darmo\003http://www.gumtree.pl/fp-krakow/l3200208?AdType=2&PriceAlternative=3\004\0030\003Wymiana/zamiana\003http://www.gumtree.pl/fp-krakow/l3200208?PriceAlternative=5";$(document).ready(function(){$("#AreaHomeTab,#SiteHomeTab").kjmenu_makeMenu({data:browsedata,OnSelect:function(mitem){document.location.replace(mitem.value);}});$("#changeLocDiv").click(function(){$.ajax({url:'http://www.gumtree.pl/c-GetLocation?CatId=0&PageName=',dataType:'script'});});});function trackHomeTabDropdown(type){var statisticUrl="";if(type=="tabname"){statisticUrl='http://www.gumtree.pl/c-Statistic?StatType=';}else if(type=="link"){statisticUrl='http://www.gumtree.pl/c-Statistic?StatType=HomeTabDropdownCount';}
-statisticUrl=statisticUrl+'&ms='+new Date().getTime();$.get(statisticUrl);return true;}
-var KNS=KNS||{};KNS.popWordSel='.floatLeft30px a';KNS.miscLabels=KNS.miscLabels||{};KNS.miscLabels.keyWordsLabelEn="Popular";$(document).ready(function(){$(KNS.popWordSel).click(function(){Kj.Ga.trackEventsinGA({category:'Clicks on '+KNS.miscLabels.keyWordsLabelEn+' Searches',action:'clicked word # '+($(KNS.popWordSel).index($(this))+1),opt_label:$(this).attr('href'),track_on_area_level:true});});});$(document).ready(function(){Kj.View.initViewAdActions({adId:'607878925',reportdata:"\0032\003Oszustwo/Zabronione\0032\004\0033\003Duplikat/Spam\0033\004\0035\003Nieaktualne\0035\004\0031\003W złej kategorii\0031\004\003r\003Wpisz powód...\003r",url:"http://www.gumtree.pl/c-illegalAdPanel"});});function doFlag(url){if(typeof(url)=='undefined'){return false;}
-$("#pagestatus_new").css("display","");$.get('/c-ReportProblemByAjax?'+url,function(data){$("#pagestatus_new").html(data);});}
-var currentModal;$(document).ready(function(){$('#doMisCat').click(function(e){var options={onOpen:function(){appendModalFrame();$("#modalframe").attr("src","http://www.gumtree.pl/c-wrongCategoryPanel");$('#modalFrameLayer').css('height',227);$('#modalframe').css('height',227);$('#modalFrameLayer').show();e.preventDefault();this.open(true);currentModal=this;}};$('#modalFrameLayer').modal(options);e.preventDefault();});});$(document).ready(function(){$('#doIllegalAd').click(function(e){var options={onOpen:function(){appendModalFrame();$("#modalframe").attr("src","http://www.gumtree.pl/c-illegalAdPanel");$('#modalFrameLayer').height(0);$('#modalFrameLayer').show();e.preventDefault();this.open(true);currentModal=this;}};$('#modalFrameLayer').modal(options);e.preventDefault();});});function scaleIllegalAdModal(height){$('#modalframe').css('height',height);$('#modalFrameLayer').css('height',height);$('#modalFrameLayer').css('margin-top',height/2*-1);}
-function hideModal(){$('#modalframe').remove();currentModal.close(true);currentModal=null;}
-function appendModalFrame(){$("#modalFrameLayer").append('<iframe name="modalframe" id="modalframe" width="100%" scrolling="no" frameborder="0" src="http://pic.classistatic.com/image/pics/classifieds/loading2.gif"></iframe>');}
-function submitCategory(action,l1,l2){url="AdId=607878925&ViolationType=1";if(action=="submit"){try{url+="&L1CatId="+l1+"&L2CatId="+l2;}catch(err){}}
-doFlag(url);hideModal();setTimeout('goTop()',800);}
-function submitIllegal(action,email,msg){url="AdId=607878925&ViolationType=4";if(action=="submit"){try{url+="&Email="+email+"&Description="+msg;}catch(err){alert(err);}}
-else{hideModal();return false;}
-doFlag(url);hideModal();setTimeout('goTop()',800);}
-function goTop(){$(document).scrollTop(0);}
-var KNS=KNS||{};KNS.options=KNS.options||{};$(document).ready(function(){Kj.View.initThumbnailNavigator({pics:{fullImgUrl:'http://www.gumtree.pl/c-ViewAdLargeImage?AdId=607878925&Keyword=krakow',images:['http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/bvsAAOSwVFlT1949/$_35.JPG','http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/gacAAOSwxCxT195J/$_35.JPG','http://i.ebayimg.com/00/s/NzQ2WDEwMDA=/z/Tu0AAOSwPe1T195v/$_35.JPG','http://i.ebayimg.com/00/s/NzQ2WDEwMDA=/z/EbQAAOSw7NNT1956/$_35.JPG','http://i.ebayimg.com/00/s/MTAwMFg3NDY=/z/lKUAAOSwRLZT196P/$_35.JPG','http://i.ebayimg.com/00/s/NzQ2WDEwMDA=/z/a78AAOSwEK9T196h/$_35.JPG','http://i.ebayimg.com/00/s/MTAwMFg3NDY=/z/bj4AAOSwEK9T1963/$_35.JPG','http://i.ebayimg.com/00/s/MTAwMFg3NTA=/z/JKUAAOSwQItT197E/$_35.JPG'],speed:400},totalCount:"8",videoCount:"0",catPath:"Properties/flat+%2F+house+for+rent"});});$(".view").load(function(){$(".imageStack").addClass("hideImageBackGrd");});$("img").load(function(){$(".imageStack2").addClass("hideImageBackGrd");});$(document).ready(function(){var init=false;$('.viewmap-link').click(function(){if(!init)
-{init=true;Kj.Map.displayMap({canvas:"gmap",lat:"50.0067142",longitude:"19.889592100000073",addrTitle:'Adres',directionText:'Zobacz wskazówki dojazdu',adMarkers:[{addr:"Doktora Józefa Babińskiego 23, 30-393 Kraków, Polska",pinType:"addr"}],hl:"pl",zoom:13},"http://maps.googleapis.com/maps/api/js?&client=gme-marktplaats&sensor=false&v=3.10");}});});$(function(){$(".viewmap-link").click(function(e){e.preventDefault();$.cachedScript("http://include.classistatic.com/include/e884/c3js/classifieds/rel1//common/jQuery/jquery.ui.dialog-min.js").done(function(script,textStatus){$("#viewmap-modal").dialog({width:800,modal:true,dialogClass:"dialog-view-image",title:"<span class='fLeft'>Doktora Józefa Babińskiego 23, 30-393 Kraków, Polska</span>",open:function(){$(".ui-icon-closethick").html(" ");},close:function(){$('meta[name="DCSext.page"]').attr("content","ViewAd");}});});});});var catpathvar={'sa606759499':'Properties/flat+%2F+house+for+rent','sa607359596':'Properties/flat+%2F+house+for+rent','sa607937278':'Properties/flat+%2F+house+for+rent','sa607315619':'Properties/flat+%2F+house+for+rent','sa607888553':'Properties/flat+%2F+house+for+rent'};$(document).ready(function(){$(".salink").click(function(e){Kj.Ga.trackEventsinGA({category:'SimilarAds',action:'SimilarAdClick',opt_label:catpathvar[$(e.target).parents('.salink').attr('id')],track_on_area_level:true});});});$(document).ready(function(){Kj.View.initMaskedPhone({catpath:'Properties/flat+%2F+house+for+rent',adId:"607 878 925",phoneRateLimiterEnabled:false,phoneLoggingEnabled:false,tryAgainLaterImg:"http://pic.classistatic.com/image/pics/classifieds/pl-PL/TryAgainLater.png",phoneImg:"http://ext.classistatic.com/imagesvc/txt2Img/GUEZdyU-ESoSSRTaZ2_migZN4p6ySNa6tvalAmTk8edZ_tEvl1pIsw0YiCmruWY7lfOS2C9fMOrYlqYYRLYuxlqlNZxEKQ3z3L3xROIA6g9VkYpUgu8BCpbDtF9G3dtl697ZG_0GJzgYQ8lfczz8grOcLGgqeZM5lmO6v_2TQ0kpivdwLq4RALJ0PcV45o6zjKe2rHWMA6IXrG9ukmK0xJeQ03Tyg_0iAwuL9yw9Rx8",hiddenPhoneImageUrl:"http://www.gumtree.pl/c-PhoneImage?ImageId=a89f3840607878925a53d9d43bz542720f259",phoneClickUrl:"http://www.gumtree.pl/c-UpdateClickCount?AdId=607878925&counterType=phone",isGAUpdated:false});});KNS.options.copyme="CopyMe";KNS.options.catpath='Properties/flat+%2F+house+for+rent';KNS.options.isGAUpdated=false;$(document).ready(function(){Kj.View.initReplyToAd(KNS.options);});$(document).ready(function(){Kj.View.initWebsiteClk({websiteClickUrl:'http://www.gumtree.pl/c-UpdateClickCount?AdId=607878925&counterType=website'});});$(document).ready(function(){$('#AreaHomeTab,#SiteHomeTab').click(function(e){trackHomeTabDropdown('tabname')});$('#AreaHomeText,#SiteHomeText').addClass('browse');var freeIcon=$('#freeIcon2');if(freeIcon.length>0){freeIcon.click(function(e){document.location='c-SelectCategory';return false;});}
-$('.BigSearch').attachHoverPopup('#CategoryDropdown');});Kj.initReady({});
-// End-TAIL JS
-</script>
-<!-- customJs -->
-<!-- End of HtmlPageTail -->
-<div id="flashCookie"></div>
-<div id="myFavorites-panel"> </div>
-<script>
-Kj.initFavoritesFunctionality({domain:'www.gumtree.pl',panelActivated:'true',staticsPath:'http://include.classistatic.com/include/e884/c3js/classifieds/rel1/'});
-</script>
-</body></html>
+
+
+
+    
+        
+
+
+
+
+     
+
+
+    
+
+
+    
+        
+            <script type="text/javascript" src='http://inc.t9.classistatic.com/1.1.288/js/Main_pl_PL.min.js'></script>
+        
+    
+        
+            <script type="text/javascript" src='http://inc.t9.classistatic.com/1.1.288/js/SeoViewPage_pl_PL.min.js'></script>
+        
+    
+    
+
+    
+
+
+
+    <script>
+
+     var bP = {
+             
+             accId : ("/7162/Gumtree_PL/Nieruchomości/mieszkania i domy do wynajęcia").split(' ').join('_').replace(/\,|&_|'/g,""),
+             
+             dc_ref:window.location.href,
+             kw: $('input[name=q]').val() || "no category",
+             ptype: 'vip_r',
+             loc: $('input[name=NlocName]').val(),
+     };
+     
+     
+    
+         
+        
+              BOLT.displayBanner( $.extend({slotDim: [300, 250], slotId : 'div-vip-ad-banner',price :'1200', currency : 'PLN'},bP));
+         
+         
+
+    
+     
+
+        
+ 
+
+
+    </script>
+    
+    
+        <script src="http://www.google.com/adsense/search/async-ads.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8">
+            var x = {"desktopNumAdsTop":"0","desktopNumAdsBottom":"3","mobileNumAdsTop":"0","mobileNumAdsBottom":"3","numRepeated":"0","mobilePubId":"mobile-gumtree-pl","desktopPubId":"gumtree-pl-vip","longerHeadlines":false,"mobileSiteLinks":false,"desktopSiteLinks":true,"channel":"PL_VIP_r","query":"2 pok. 47 m2 na PŁASZOWSKIEJ DLA 3 OSÓB BLISKO RM GRZEGÓRZECKIEGO LINI TRAMWAJOWEJ  Kraków","hl":"pl","adtest":"off","adPage":"0","colorTitleLink":"#333","rolloverAdBackgroundColor":"#FFFFF0","mobileClickableBackground":false};
+            
+            var defaultBlock = {
+                 'lines':'3',
+                 'longerHeadlines': x.longerHeadlines,
+                 'fontSizeTitle': '14',
+                 'fontSizeDescription' : '14',
+                 'lineHeightDescription' : 21,
+                 'fontSizeDomainLink' : '14',
+                 'lineHeightDomainLink' : 21,
+                 'fontFamily' : 'tahoma',
+                 'noTitleUnderline': true,
+                 'colorTitleLink': x.colorTitleLink,
+                 'colorDomainLink' : '#333333',
+                 'colorText' : '#333333',
+                 'colorAdSeparator':'#ffffff',
+                  'colorAdBorder' : '#EEEEEE',
+                  'adBorderSelections' : 'bottom',
+                 'width' : '100%'
+            };
+            var defaultBlock_ext = {
+                //defaultvalue
+                'adIconUrl':'http://afs.googleusercontent.com/gumtree-pl/no-photo-pl.jpg',
+                'adIconSpacingAbove' : 5,
+                'adIconSpacingBefore' : 6,
+                'adIconSpacingAfter' : 10,
+                'adIconLocation' : 'ad-left'
+            }
+            
+            var pageOptions = {
+                'query': x.query,
+                'hl': x.h1,
+                'adtest' : x.adtest,
+                'channel' : x.channel,
+                'adPage' : x.adPage,
+                'linkTarget' : '_blank',
+                'numRepeated': x.numRepeated,
+                'titleBold' : true,
+                //new call back method through all the market
+                'adLoadedCallback':function(containerName, adsLoaded) {
+                    if (adsLoaded) {
+                        if(containerName == 'adcontainer0'){
+                            var exP0, newP;
+                            newP = document.createElement("div");
+                            newP.className='section-divider';
+                            newP.innerHTML = 'Linki sponsorowane';
+                            exP0 = document.getElementById('adcontainer0');
+                            exP0.parentNode.insertBefore(newP,exP0);
+                            $('.content #adcontainer0').css({'background-color':'#ffffff'});
+                        };
+                            
+                        if(containerName == 'adcontainer1'){
+                            var exP1, newP1;
+                            newP1 = document.createElement("div");
+                            newP1.className='section-divider';
+                            newP1.innerHTML = 'Linki sponsorowane';
+                            exP1 = document.getElementById('adcontainer1');
+                            exP1.parentNode.insertBefore(newP1,exP1);
+                            $('.content #adcontainer1').css("background-color", "#ffffff");
+                        }
+                    }
+                }
+                
+            };
+            
+            function init(numAdsTop, numAdsBottom, siteLinks, pubId, clickableBackground, rolloverAdBackgroundColor, adIconW, adIconH){
+                pageOptions.siteLinks = siteLinks;
+                pageOptions.pubId = pubId;
+                pageOptions.rolloverAdBackgroundColor = rolloverAdBackgroundColor;
+                
+                var targetArr = [];
+                if(numAdsTop>0){
+                    var adblock1 = {
+                        'container': 'adcontainer0',
+                        'maxTop': numAdsTop,
+                        'clickableBackgrounds': clickableBackground,
+                        'adIconWidth' : adIconW,
+                        'adIconHeight' : adIconH
+                    };
+                    jQuery.extend(adblock1,defaultBlock);
+                    if(adIconW)
+                    {
+                        jQuery.extend(adblock1,defaultBlock_ext);
+                        
+                    }
+                    targetArr.push(adblock1);
+                }
+    
+                if(numAdsBottom>0){
+                    var adblock2 = {
+                        'container': 'adcontainer1',
+                        'number': numAdsBottom,
+                        'clickableBackgrounds': clickableBackground,
+                        'adIconWidth' : adIconW,
+                        'adIconHeight' : adIconH
+                    };
+                    jQuery.extend(adblock2,defaultBlock);
+                    if(adIconW)
+                    {
+                        jQuery.extend(adblock2,defaultBlock_ext);
+                        
+                    }
+                    targetArr.push(adblock2);
+                }
+                new _googCsa('ads',pageOptions, targetArr);
+            }
+            
+            
+        
+            if (matchMedia("tablet")){
+                init(x.desktopNumAdsTop, x.desktopNumAdsBottom, x.desktopSiteLinks, x.desktopPubId, true, '#FFFFF0', 100, 67);
+            } else {
+                init(x.desktopNumAdsTop, x.desktopNumAdsBottom, x.desktopSiteLinks, x.desktopPubId, true, '#FFFFF0', 120, 80);
+            }
+        
+    
+        </script>
+    
+    
+
+
+
+    
+
+
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--[if (lte IE 9)&!(IEMobile)]>
+        <script src="http://inc.t9.classistatic.com/1.1.288/js//common/polyfills/placeholder.js"></script>
+        <![endif]-->
+    
+
+
+
+
+    
+
+    
+
+    
+
+    
+</body>
+</html>
 """
 
 OFFER2_HTML = u"""
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:fb="http://www.facebook.com/2008/fbml"> 
+    
+    
+    
+    
+
+    
+
+ 
+
+
+
+
+
+
+
+
+
+    
+    
+    
+        
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7]>
+<html data-locale="pl_PL" lang="pl_PL" class="iem7 oldie VIP"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]>
+<html data-locale="pl_PL" lang="pl_PL" class="ie7 lt-ie8 lt-ie9 lt-ie10 oldie VIP"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]>
+<html data-locale="pl_PL" lang="pl_PL" class="ie8 lt-ie9 lt-ie10 oldie VIP"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]>
+<html data-locale="pl_PL" lang="pl_PL" class="ie9 lt-ie10 VIP"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
+<html data-locale="pl_PL" lang="pl_PL" xmlns="http://www.w3.org/1999/html" class="VIP"><!--<![endif]-->
 <head>
-<title>Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka Dom, Mieszkanie do Wynajęcia - Gumtree Małopolskie</title>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<meta name="description" content="Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka, mieszkania i domy do wynajęcia, ogłoszenia drobne na Gumtree"/>
-<meta name="uniq_GUMTREE_POLAND_page_token_name" content="ViewAd"/>
-<meta property="og:image" content="http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/BNEAAOSwstxVSTqn/$_35.JPG"/>
-<meta property="og:title" content="Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka"/>
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/atrakcyjne-mieszkanie-jednopokojowe-na-ul-retoryka-624256983"/>
-<meta property="og:description" content="Atrakcyjne  mieszkanie z balkonem  ( pokój z kuchnią) zlokalizowane na V piętrze w budynku windą   na ul.Retoryka. Mieszkanie wyposażone w lodówkę, pralkę, płytę elektryczną grzewczą, telewizor LCD, ogrzewanie centralne. Do opłat należy doliczyć czyn"/>
-<meta property="og:locality" content="Kraków"/>
-<meta property="og:site_name" content="Gumtree Polska"/>
-<meta property="og:country-name" content="Poland"/>
-<link rel="canonical" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/atrakcyjne-mieszkanie-jednopokojowe-na-ul-retoryka-624256983"/>
-<link rel="SHORTCUT ICON" href="http://pic.classistatic.com/image/pics/classifieds/gumtreeFavicon.ico">
-<link href="http://include.classistatic.com/include/e896/c3css/pages/ViewAdShared-min.css" rel="stylesheet" type="text/css">
-<link href="http://include.classistatic.com/include/e896/c3css/brands/gumtree/PL/all-pl.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-//<!--
-var picsPath = "http://pic.classistatic.com/image/pics/classifieds/";
-var staticPath = "http://include.classistatic.com/include/e896/c3js/classifieds/rel1/";
-var debugNonProdStaticPathPrefix = "s_isProduction => true, s_localStaticPath => null, m_isSecure => false, s_localSecureStaticPath => null, nonProdStaticPathPrefix => ";
-//-->
-</script>
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e896/c3js/classifieds/rel1/shared_pages/flashChecker.js"></script>
-<script src="http://www.google.com/jsapi"></script>
-<noscript>
-<style type="text/css">
-.jsonly {display:none;}
-.collapseWithJS {display:block;}
-.collapseWithJS_inline {display:inline;}
-</style>
-</noscript>
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['siteTracker._setAccount', 'UA-9157637-1']);
-_gaq.push(['siteTracker._setDomainName', '.gumtree.pl']);
-_gaq.push(['siteTracker._setSessionCookieTimeout', 1800000]);
-_gaq.push(['siteTracker._setCampaignCookieTimeout', 15768000000]);
-_gaq.push(['siteTracker._setVisitorCookieTimeout', 63072000000]);
-_gaq.push(['siteTracker._trackPageview', '/ViewAd/properties/flat+%26+house+for+rent/attribute']);
-</script>
-<script type="text/javascript">
-(function() {
-var ga = document.createElement("script");
-ga.type = "text/javascript"; ga.async = true;
-ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-<script type="text/javascript">
-var mpx_custom = {
-new_mpcl: 'p;krakow;9008;Nieruchomo%C5%9Bci;l3;12;338;p;;n;624256983;http%3A%2F%2Fwww.gumtree.pl%2Fcp-mieszkania-i-domy-do-wynajecia%2Fkrakow%2Fatrakcyjne-mieszkanie-jednopokojowe-na-ul-retoryka-624256983%3FfeaturedAd%3Dtrue',
-new_mpvl: document.referrer
-}
-</script>
+    <title>Kawalerka, 30 m2, Śródmieście, ul. Dobrego Pasterza – Kraków – 169137755 | Gumtree</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta name="description" content="Mieszkanie 1-pokojowe, atrakcyjna cena!  Do wynajęcia 2-pokojowe mieszkanie o powierzchni 30 m2 przy ul. Dobrego Pasterza (Prądnik Czerwony)...169137755"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    
+    
+    
+
+    
+    
+
+    
+        <meta property="og:title" content="Kawalerka, 30 m2, Śródmieście, ul. Dobrego Pasterza – Kraków – 169137755 | Gumtree"/>
+        <meta property="og:type" content="product"/>
+        <meta property="og:image" content='http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/TxYAAOSwNuxXcYlD/$_20.JPG?set_id=8800005007'/>
+        <meta property="og:url" content="http://www.gumtree.pl/a-mieszkania-i-domy-do-wynajecia/krakow/kawalerka-30-m2-srodmiescie-ul-dobrego-pasterza/1001691377550910472310409"/>
+        <meta property="og:site_name" content="Gumtree"/>
+        <meta property="og:country-name" content="Poland"/>
+        <meta property="og:description" content="Mieszkanie 1-pokojowe, atrakcyjna cena!  Do wynajęcia 2-pokojowe mieszkanie o powierzchni 30 m2 przy ul. Dobrego Pasterza (Prądnik Czerwony)...169137755"/>
+        <meta property="og:locale" content="pl_PL"/>
+    
+    
+    
+    
+    
+        <link rel="stylesheet" type="text/css" href='http://inc.t9.classistatic.com/1.1.288/css/all/Gumtree/PL/pl_PL/Main.min.css'/>
+
+    
+        <link rel="stylesheet" type="text/css" href='http://inc.t9.classistatic.com/1.1.288/css/all/Gumtree/PL/pl_PL/SeoViewPage.min.css'/>
+
+    
+    <link rel="publisher" href="" />
+    <link rel="shortcut icon" type="image/png" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/shortcut.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/shortcut.png"/>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/shortcut.png"/>
+    <link rel="apple-touch-icon" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-iphone.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-ipad.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-iphone-retina.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/touch-ipad-retina.png"/>
+
+
+
+    
+        <link rel="canonical" href="http://www.gumtree.pl/a-mieszkania-i-domy-do-wynajecia/krakow/kawalerka-30-m2-srodmiescie-ul-dobrego-pasterza/1001691377550910472310409"/>
+    
+    
+    
+      
+      
+    
+    <script>!function(e,t,n){function a(a){var m=o.document.createElement("link"),A=o.document.getElementsByTagName("script")[0],d=a&&r;m.rel="stylesheet",m.href=d?e:a?t:n,A.parentNode.insertBefore(m,A),d||(document.documentElement.className+=" no-svg")}if(3===arguments.length){var o=window,r=!(!o.document.createElementNS||!o.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),m=new o.Image;m.onerror=function(){a(!1)},m.onload=function(){a(1===m.width&&1===m.height)},m.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}}
+    ("http://inc.t9.classistatic.com/1.1.288/css/icons.data.svg_pl_PL.css","http://inc.t9.classistatic.com/1.1.288/css/icons.data.png_pl_PL.css","http://inc.t9.classistatic.com/1.1.288/css/icons.fallback_pl_PL.css");</script>
+
+    <noscript>
+       <link href="http://inc.t9.classistatic.com/1.1.288/css/icons.fallback_pl_PL.css" rel="stylesheet">
+       <style type="text/css">
+            .jsOnly {display:none !important;}
+            .nonJsOnlyInlineBlock{display:inline-block !important;}
+            .nonJsOnlyBlock {display:block !important;}
+            .nonJsOnlyInline {display:inline !important;}
+       </style>
+    </noscript>
+
+    
+    
+      
+
+            <script>
+            var dataLayer = dataLayer || [];
+            dataLayer.push({});(function(l) {
+                var dl=l[0];
+                dl["p"]={};
+                     dl["p"]["t"] = "VIP";
+                     dl["p"]["pl"] = "BOLT-RUI";
+                     dl["p"]["v"] = "1.1.288";
+                     dl["p"]["lng"] ="pl_PL";
+                     
+                dl["u"]={};
+                dl["u"]["tg"]={};
+                     
+                     
+                     
+                     
+                      
+                     
+                     
+                     
+                    
+                dl["c"]={};
+                dl["c"]["c"]={};
+                      dl["c"]["c"]["id"] = "9008";
+                     dl["c"]["l0"]={};dl["c"]["l0"]["id"]="0";
+                     dl["c"]["l1"]={};dl["c"]["l1"]["id"]="2";
+                     dl["c"]["l2"]={};dl["c"]["l2"]["id"]="9008";
+                     
+                     
+                dl["l"]={};
+                dl["l"]["c"]={};
+                      dl["l"]["c"]["id"] = "3200208";
+                     dl["l"]["l0"]={};dl["l"]["l0"]["id"]="202";
+                     dl["l"]["l1"]={};dl["l"]["l1"]["id"]="3200003";
+                     dl["l"]["l2"]={};dl["l"]["l2"]["id"]="3200208";
+                     
+                     
+
+             
+      dl["a"]={};
+        dl["a"]["id"] ="169137755";  
+        dl["a"]["cdt"] ="1467058516"; 
+        dl["a"]["lpdt"] =""; 
+
+
+            })(dataLayer);
+
+                    //gtm script
+                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+                             {'gtm.start': new Date().getTime(),event:'gtm.js'}
+                     );var f=d.getElementsByTagName(s)[0],
+                             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                             '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                     })(window,document,'script','dataLayer','GTM-KSFR4N');
+       </script>
+      
+    
+    <script>
+        var Bolt = Bolt || {};
+        Bolt.BASEJSURL = "http://inc.t9.classistatic.com/1.1.288/js/";
+        Bolt.BASECSSURL = "http://inc.t9.classistatic.com/1.1.288/css/";
+        Bolt.BASEIMAGEURL = "http://inc.t9.classistatic.com/1.1.288/images/";
+        Bolt.BRANDNAME = "Gumtree";
+        Bolt.COUNTRY = "PL";
+        Bolt.DECIMAL = ",";
+        Bolt.PLACEHOLDER = ".";
+        Bolt.LOCALE = "pl_PL";
+        Bolt.LOCALIZEAPIROOTURL = "/rui-api/localize/rui/pl_PL";
+    </script>
+    
+        <input id='ga-account' type='hidden' value='' />
+        <input id='ga-domain' type='hidden' value='' />
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+        
+            
+                _gaq.push(['siteTracker._setAccount', 'UA-9157637-1']);
+                _gaq.push(['siteTracker._setAllowAnchor', true]);
+                _gaq.push(['siteTracker._setDomainName', '.gumtree.pl']);
+                
+                    _gaq.push(['siteTracker._addIgnoredRef', 'gumtree.pl']);
+                
+                _gaq.push(['siteTracker._setSessionCookieTimeout', 1800000]);
+                _gaq.push(['siteTracker._setCampaignCookieTimeout', 15768000000]);
+                _gaq.push(['siteTracker._setVisitorCookieTimeout', 63072000000]);
+                _gaq.push(['siteTracker._trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                    //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+
+
+            
+        
+        </script>
+    
+
+    
+
+    
+
 </head>
 <body>
-<div id="main">
-<div id="top">
-<a name="#top"></a>
-<div id="mediaplex_tracking"></div>
-<script type="text/javascript">
-(function() {
-var mpxtag = document.createElement('script'); mpxtag.type = 'text/javascript'; mpxtag.async = true;
-mpxtag.src = ('https:' == document.location.protocol
-? 'https://secure.img-cdn.mediaplex.com/0/9860/56583/Kijiji-Poland_mp_pvt_brand_landing_ns_2013-04-30.js'
-: 'http://img-cdn.mediaplex.com/0/9860/56583/Kijiji-Poland_mp_pvt_brand_landing_ns_2013-04-30.js');
-var smpx = document.getElementsByTagName('script')[0]; smpx.parentNode.insertBefore(mpxtag, smpx);
-})();
-</script>
-<!-- Start of HtmlPageHeader_03. This ftl is used for national site for Team 9 team -->
-<script> var IsNC2_On = true; </script>
-<script> var IsAdIdsSite_On = false; </script>
-<table class="tbleColpse newHeader nationalSite">
-<tr>
-<td class="national-logo-area">
-<div>
-<a href="http://www.gumtree.pl" >
-<img src="http://pic.classistatic.com/image/pics/classifieds/pl-PL/logo-gumtree.png" width="68" height="76" border="0" alt="Polska ">
-</a>
-</div> </td>
-<td class="header-curve">
-<div class="header-curve-top">&nbsp;</div>
-<div class="header-curve-bottom">&nbsp;</div>
-</td>
-<td class="header-curve-space">
-<div class="header-top-bg">&nbsp;</div>
-<div class="header-bottom-bg">&nbsp;</div>
-</td>
-<td class="v-top">
-<table width="100%" class="tbleColpse">
-<tr>
-<td class="navTabs-new h-top">
-<div class="mainTabs">
-<a href="http://www.gumtree.pl/c-SelectCategory" class="tabLink" >
-<div id="SelectCategoryTab" class="tab"><div class="tab-right"><div class="tab-mid"> <div> + Dodaj ogłoszenie</div>
-</div></div></div>
-</a>
-<a href="http://www.gumtree.pl" class="tabLink" >
-<div id="SiteHomeTab" class="tab"><div class="tab-right"><div class="tab-mid"> <div id="SiteHomeText">Kategorie</div>
-</div></div></div>
-</a>
-<a href="http://www.gumtree.pl/c-DealerDirectory" class="tabLink" >
-<div id="DealerDirectoryTab" class="tab"><div class="tab-right"><div class="tab-mid"> <div>Katalog sprzedawców</div>
-</div></div></div>
-</a>
+    
+<div id="cookieWarning">
+    <div class="messageContainer">
+        Aby zapewnić najwyższą jakość usług i wygodne korzystanie z serwisu, używamy informacji zapisanych w przeglądarce za pomocą plików cookies (pol.: ciasteczek). Korzystając z serwisu wyrażasz zgodę na stosowanie plików <a href="http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies" target="_blank">cookies</a>. W każdej chwili możesz je zablokować korzystając z ustawień swojej przeglądarki internetowej.
+        <a class="accept icon-gl-message-close" style="width:15px;height:15px;margin-top:12px"></a>
+    </div>
 </div>
-</td>
-<td class="lang h-top">
-<div class="menuTop">
-<ul>
-<div id="withoutGreetings">
-<li>
-<!--<a href="https://secure.gumtree.pl/s-SignIn?rup=ViewAd&ruq=AdId%3D624256983" id="log_out" >here:Zaloguj się</a>-->
-<span onclick="clickEncoded('aHR0cHM6Ly9zZWN1cmUuZ3VtdHJlZS5wbC9zLVNpZ25Jbj9ydXA9Vmlld0FkJnJ1cT1BZElkJTNENjI0MjU2OTgz')" class="sd-link">Zaloguj się</span>
-<span class="bar">&nbsp;|&nbsp;</span>
-</li>
-<li>
-<!--<a href="https://secure.gumtree.pl/s-StartRegistration?rup=ViewAd&ruq=AdId%3D624256983" id="log_out" >here:Zarejestruj się</a>-->
-<span onclick="clickEncoded('aHR0cHM6Ly9zZWN1cmUuZ3VtdHJlZS5wbC9zLVN0YXJ0UmVnaXN0cmF0aW9uP3J1cD1WaWV3QWQmcnVxPUFkSWQlM0Q2MjQyNTY5ODM=')" class="sd-link">Zarejestruj się</span>
-<span class="bar">&nbsp;|&nbsp;</span>
-</li>
-<li>
-<!--<a href="http://www.gumtree.pl/c-ManageMyAds" id="log_out" >here:Moje Gumtree</a>-->
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtTWFuYWdlTXlBZHM=')" class="sd-link">Moje Gumtree</span>
-</li>
+
+    
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KSFR4N"
+              height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
+    
+     
+
+    <noscript>
+        <div class="js-message-error">
+            <div>
+                <span class="icon-warning-sign"></span>
+                <div class="no-js pl_PL message"></div>
+            </div>
+        </div>
+    </noscript>
+
+
+    <div class="viewport" id="div-gpt-oop">
+
+    <div class="header">
+    <!-- mobile:false -->
+    <header>
+        <div class="wrap">
+            <div class="elements">
+                <div class="left">
+
+                    
+                    
+
+<div class="logo">
+    <a href="http://www.gumtree.pl/">
+        
+            
+                <img class="logo" src="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/logo.png" alt='Darmowe Ogłoszenia' />
+            
+        
+    </a>
 </div>
+
+
+                </div>
+                <div class="right ">
+
+
+                    
+
+
+                    
+                    
+    <div class="post">
+        <a class="sudo-link sudo-link post-btn postcommercial" data-gtm="pc|PostAdBegin" href="/post.html">
+            <span>
+                
+                    Dodaj ogłoszenie
+                
+            </span>
+        </a>
+    </div>
+
+                    
+
+                    
+                    
+
+
+                    
+                    
+<div class="nav">
+    <nav>
+
+
+
+
+        
+        
+
+
+
+
+<div class="profile" aria-haspopup="true">
+    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zl/nqf.ugzy">
+        <span class="icon  "
+              style="
+               ">
+            <span class="icon-header-profile-out"></span>
+            <span class="icon-header-profile-over"></span>
+        </span>
+        <span class="label">Moje Gumtree</span>
+    </span>
+</div>
+<div class="clear"></div>
+
+        
+
+
+
+
+        <ul>
+            
+            
+                
+                    <li>
+                        <span class="sudo-link sudo-link-toConvert" data-o-uri="/ybtva.ugzy">Zaloguj się</span>
+                    </li>
+                
+            
+
+            
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zljngpuyvfg.ugzy">Zachowane ogłoszenia</span>
+            </li>
+
+            
+            
+            
+            
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zl/nyregf.ugzy">Moje powiadomienia</span>
+            </li>
+
+            
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="/zl/nqf.ugzy">Moje ogłoszenia</span>
+            </li>
+
+            
+            
+                <li>
+                    <span class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  data-o-uri="/zl/cebzbgr.ugzy">Wypromuj ogłoszenia</span>
+                </li>
+            
+
+            
+
+            
+            
+
+            
+            
+
+            
+                <li>
+                    <span class="sudo-link sudo-link-toConvert" data-o-uri="/ertvfgre.ugzy">Zarejestruj się</span>
+                </li>
+            
+
+        </ul>
+    </nav>
+</div>
+                    
+                    
+                    
+    
+        
+            <div class="signin">
+                <span class="sudo-link sudo-link-toConvert" data-o-uri="/ybtva.ugzy">Zaloguj się</span>
+            </div>
+        
+    
+
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+
+<div class="postSection headerPost">
+    <div class="header diff">
+        <div class="right">
+            <div class="post post-btn-wrap">
+                <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
+                    <span class="long">Dodaj ogłoszenie</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+    
+    <div class="searchbar">
+        <section role="search">
+            <div class="wrap">
+
+
+                <form action='/search.html?page=1' class="has-location-true"
+                        data-instant-search="false"
+                        data-clear-searches-message='Wyczyść'
+                        data-saved-search="true"
+                        data-auto-complete="true"
+                        data-auto-complete-api="http://cache.gumtree.pl/rui-api/autocomplete/model/pl_PL/{catId}/{locId}/{value}">
+                    <fieldset>
+
+
+                        
+                        <div class="keyword">
+    <input tabindex="1" type="text" name="q" value="" placeholder='Czego szukasz?' autocomplete="off" />
+</div>
+                        
+
+
+                        
+                        <div class="category">
+    <span class="icon main-icon">
+        <span class='icon-header-categories'></span>
+    </span>
+    <input tabindex="2" type="text" data-all='Wszystkie kategorie' placeholder='Kategoria' value="" autocomplete="off" disabled="disabled" readonly="readonly" />
+    <input type="hidden" name="catId" value="" />
+    <!--[if (IE 8)&!(IEMobile)]>
+        <span class="icon-caret-down"></span>
+    <![endif]-->
+    
+        <script type="text/plain">{"children":[{"children":[{"children":[],"localizedName":"pokoje do wynajęcia","id":9000},{"children":[],"localizedName":"mieszkania i domy do wynajęcia","id":9008},{"children":[],"localizedName":"mieszkania i domy - sprzedam","id":9073},{"children":[],"localizedName":"działki","id":9194},{"children":[],"localizedName":"krótki termin i domki letniskowe","id":9074},{"children":[],"localizedName":"lokal i biuro","id":9072},{"children":[],"localizedName":"parking i garaż","id":9071},{"children":[],"localizedName":"kupię mieszkanie, dom, lokal, działkę","id":9772},{"children":[],"localizedName":"szukam mieszkania do wynajęcia","id":9773},{"children":[],"localizedName":"szukam pokoju do wynajęcia","id":9774}],"localizedName":"Nieruchomości","id":2},{"children":[{"children":[],"localizedName":"samochody osobowe","id":9026},{"children":[],"localizedName":"części i akcesoria samochodowe","id":9636},{"children":[],"localizedName":"samochody dostawcze","id":9027},{"children":[],"localizedName":"motocykle i skutery","id":9028},{"children":[],"localizedName":"części i akcesoria do motocykli","id":9634},{"children":[],"localizedName":"ciągniki i maszyny rolnicze","id":9154},{"children":[],"localizedName":"ciężki sprzęt","id":9622},{"children":[],"localizedName":"przyczepy i naczepy","id":9155},{"children":[],"localizedName":"quady, atv i inne","id":9621},{"children":[],"localizedName":"części i akcesoria do innych pojazdów","id":9635},{"children":[],"localizedName":"kupię samochód","id":9763},{"children":[],"localizedName":"kupię motocykl, skuter, pojazd","id":9764},{"children":[],"localizedName":"kupię części, akcesoria samochodowe","id":9765},{"children":[],"localizedName":"kupię części, akcesoria do innych pojazdów","id":9766}],"localizedName":"Motoryzacja","id":5},{"children":[{"children":[],"localizedName":"motorówki","id":9219},{"children":[],"localizedName":"skutery wodne","id":9222},{"children":[],"localizedName":"żaglówki","id":9221},{"children":[],"localizedName":"kajaki i pontony","id":9220},{"children":[],"localizedName":"silniki do łodzi","id":9223},{"children":[],"localizedName":"akcesoria do łodzi","id":9224},{"children":[],"localizedName":"inne pojazdy wodne","id":9225},{"children":[],"localizedName":"łodzie wiosłowe","id":9226},{"children":[],"localizedName":"kupię łódź, części, akcesoria","id":9787}],"localizedName":"Łodzie i Pojazdy wodne","id":9218},{"children":[{"children":[],"localizedName":"audio i hi-fi","id":9260},{"children":[],"localizedName":"cesje","id":9353},{"children":[],"localizedName":"fotografia i video","id":9281},{"children":[],"localizedName":"gry video i konsole","id":9265},{"children":[],"localizedName":"komputery i software","id":9238},{"children":[],"localizedName":"radiokomunikacja","id":9352},{"children":[],"localizedName":"tablety i bookreadery","id":9259},{"children":[],"localizedName":"telefony i akcesoria","id":9247},{"children":[],"localizedName":"telewizory i odtwarzacze","id":9276},{"children":[],"localizedName":"elektronika inne","id":9286},{"children":[],"localizedName":"kupię sprzęt elektroniczny","id":9767}],"localizedName":"Elektronika","id":9237},{"children":[{"children":[],"localizedName":"akwarystyka","id":9612},{"children":[],"localizedName":"koty i kocięta","id":9125},{"children":[],"localizedName":"psy i szczenięta","id":9131},{"children":[],"localizedName":"ptaki","id":9617},{"children":[],"localizedName":"inne zwierzaki","id":9126},{"children":[],"localizedName":"zwierzęta gospodarskie","id":9618},{"children":[],"localizedName":"zgubiono lub znaleziono","id":9128},{"children":[],"localizedName":"akcesoria dla zwierząt","id":9129},{"children":[],"localizedName":"usługi dla zwierząt","id":9130},{"children":[],"localizedName":"kupię zwierzaka","id":9775},{"children":[],"localizedName":"szukam akcesoriów, usług dla zwierząt","id":9776}],"localizedName":"Zwierzaki","id":9124},{"children":[{"children":[],"localizedName":"drobne pytania i hobby","id":9030},{"children":[],"localizedName":"sport, taniec i partnerzy do gry","id":9032},{"children":[],"localizedName":"zespoły i muzycy","id":9033},{"children":[],"localizedName":"wolontariat","id":9227},{"children":[],"localizedName":"wydarzenia lokalne","id":9228},{"children":[],"localizedName":"wymiana umiejętności","id":9035},{"children":[],"localizedName":"zgubiono lub znaleziono","id":9036},{"children":[],"localizedName":"przejazdy","id":9037},{"children":[],"localizedName":"podróże","id":9038},{"children":[],"localizedName":"dziękuję","id":9039},{"children":[],"localizedName":"wyznania","id":9084},{"children":[],"localizedName":"szukam starych przyjaciół","id":9132}],"localizedName":"Społeczność","id":6},{"children":[{"children":[],"localizedName":"AGD","id":9366},{"children":[],"localizedName":"meble","id":9376},{"children":[],"localizedName":"narzędzia i materiały budowlane","id":9384},{"children":[],"localizedName":"ogród","id":9398},{"children":[],"localizedName":"produkty żywnościowe i napoje","id":9407},{"children":[],"localizedName":"wyposażenie wnętrz","id":9408},{"children":[],"localizedName":"inne do domu i ogrodu","id":9023},{"children":[],"localizedName":"kupię do ogrodu","id":9784},{"children":[],"localizedName":"kupię do domu","id":9783}],"localizedName":"Dom i Ogród","id":4},{"children":[{"children":[],"localizedName":"karty kolekcjonerskie","id":9673},{"children":[],"localizedName":"książki i poligrafia","id":9674},{"children":[],"localizedName":"lampy, świeczniki i  lustra","id":9675},{"children":[],"localizedName":"meble zabytkowe","id":9676},{"children":[],"localizedName":"medale i odznaczenia","id":9677},{"children":[],"localizedName":"monety i banknoty","id":9678},{"children":[],"localizedName":"obrazy i rzeźby","id":9679},{"children":[],"localizedName":"rękodzieło","id":9680},{"children":[],"localizedName":"zastawy kuchenne","id":9681},{"children":[],"localizedName":"zabytkowe tekstylia i dekoracje","id":9682},{"children":[],"localizedName":"zegary","id":9683},{"children":[],"localizedName":"znaczki pocztowe","id":9684},{"children":[],"localizedName":"inne kolekcje","id":9685},{"children":[],"localizedName":"kupię antyki, kolekcje","id":9762}],"localizedName":"Antyki i kolekcje","id":9672},{"children":[{"children":[],"localizedName":"artykuły szkolne","id":9468},{"children":[],"localizedName":"bezpieczeństwo i zdrowie dziecka","id":9460},{"children":[],"localizedName":"buty dla dzieci","id":9461},{"children":[],"localizedName":"chrzciny i komunie","id":9469},{"children":[],"localizedName":"ciąża i karmienie","id":9464},{"children":[],"localizedName":"foteliki - nosidełka","id":9462},{"children":[],"localizedName":"kąpiel i zdrowie","id":9470},{"children":[],"localizedName":"kojce i chodziki","id":9471},{"children":[],"localizedName":"meble i wystrój pokoju","id":9463},{"children":[],"localizedName":"rowerki i inne pojazdy","id":9472},{"children":[],"localizedName":"odzież dziecięca","id":9465},{"children":[],"localizedName":"wózki dla dzieci","id":9466},{"children":[],"localizedName":"zabawki","id":9467},{"children":[],"localizedName":"inne dla dziecka","id":9489},{"children":[],"localizedName":"kupię ubranka, buty dla dziecka","id":9780},{"children":[],"localizedName":"kupię zabawki","id":9781},{"children":[],"localizedName":"kupię inne dla dziecka","id":9782}],"localizedName":"Dla Dziecka","id":9459},{"children":[{"children":[],"localizedName":"akcesoria i galanteria","id":9542},{"children":[],"localizedName":"biżuteria i zegarki","id":9563},{"children":[],"localizedName":"obuwie damskie","id":9596},{"children":[],"localizedName":"obuwie męskie","id":9604},{"children":[],"localizedName":"odzież damska","id":9565},{"children":[],"localizedName":"odzież męska","id":9584},{"children":[],"localizedName":"odzież i obuwie robocze","id":9660},{"children":[],"localizedName":"pasmanteria","id":9549},{"children":[],"localizedName":"torebki i torby","id":9551},{"children":[],"localizedName":"inne ubrania","id":9553},{"children":[],"localizedName":"walizki i plecaki","id":9552},{"children":[],"localizedName":"kupię ubrania, buty","id":9769},{"children":[],"localizedName":"kupię inne z działu mody","id":9768}],"localizedName":"Moda","id":9541},{"children":[{"children":[],"localizedName":"zdrowie","id":9691},{"children":[],"localizedName":"kosmetyki","id":9697},{"children":[],"localizedName":"perfumy i dezodoranty","id":9698},{"children":[],"localizedName":"kupię produkty zdrowotne, kosmetyki","id":9786}],"localizedName":"Zdrowie i Uroda","id":9690},{"children":[{"children":[],"localizedName":"fitness i siłownia","id":9745},{"children":[],"localizedName":"sport","id":9746},{"children":[],"localizedName":"karty i gadżety sportowe","id":9753},{"children":[],"localizedName":"sprzęt turystyczny","id":9756},{"children":[],"localizedName":"kupię sprzęt fitness, do siłowni","id":9771},{"children":[],"localizedName":"kupię sprzęt sportowy","id":9770}],"localizedName":"Sport i Fitness","id":9706},{"children":[{"children":[],"localizedName":"bilety","id":9491},{"children":[],"localizedName":"instrumenty i akcesoria muzyczne","id":9496},{"children":[],"localizedName":"komiksy i czasopisma","id":9497},{"children":[],"localizedName":"książki","id":9498},{"children":[],"localizedName":"CD, kasety i płyty","id":9514},{"children":[],"localizedName":"filmy i DVD","id":9513},{"children":[],"localizedName":"gry planszowe i puzzle","id":9515},{"children":[],"localizedName":"kupię instrument muzyczny","id":9777},{"children":[],"localizedName":"kupię bilet","id":9778},{"children":[],"localizedName":"kupię inne z działu muzyka i rozrywka","id":9779}],"localizedName":"Muzyka i Rozrywka","id":9490},{"children":[{"children":[],"localizedName":"bar, restauracja i gastronomia","id":9056},{"children":[],"localizedName":"biuro i administracja","id":9052},{"children":[],"localizedName":"praca na budowie i pracownicy fizyczni","id":9142},{"children":[],"localizedName":"fachowcy","id":9203},{"children":[],"localizedName":"finanse i księgowość","id":9050},{"children":[],"localizedName":"grafika i web design","id":9140},{"children":[],"localizedName":"hostessy, modele i aktorzy","id":9141},{"children":[],"localizedName":"hr, kadry i rekrutacja","id":9053},{"children":[],"localizedName":"inżynierowie, technicy i architekci","id":9094},{"children":[],"localizedName":"kierowcy i kurierzy","id":9097},{"children":[],"localizedName":"kontrola i inwentaryzacja","id":9208},{"children":[],"localizedName":"krawiectwo i moda","id":9204},{"children":[],"localizedName":"magazynier","id":9619},{"children":[],"localizedName":"marketing, media i pr","id":9048},{"children":[],"localizedName":"mlm","id":9532},{"children":[],"localizedName":"nauczyciele i edukacja","id":9060},{"children":[],"localizedName":"obsługa klienta i call center","id":9098},{"children":[],"localizedName":"ochrona","id":9200},{"children":[],"localizedName":"opiekunki i nianie","id":9059},{"children":[],"localizedName":"pielęgnacja i uroda","id":9054},{"children":[],"localizedName":"praca dla studentów","id":9206},{"children":[],"localizedName":"praca na produkcji","id":9620},{"children":[],"localizedName":"praca w hotelu","id":9058},{"children":[],"localizedName":"prawo i prokuratura","id":9049},{"children":[],"localizedName":"programiści, informatyka i internet","id":9005},{"children":[],"localizedName":"służba zdrowia i farmacja","id":9055},{"children":[],"localizedName":"spedycja","id":9205},{"children":[],"localizedName":"sport i fitness","id":9202},{"children":[],"localizedName":"sprzątanie i pomoc domowa","id":9138},{"children":[],"localizedName":"sprzedaż, handel  i praca w sklepie","id":9061},{"children":[],"localizedName":"turystyka","id":9207},{"children":[],"localizedName":"ulotki","id":9201},{"children":[],"localizedName":"weterynaria i rolnictwo","id":9095},{"children":[],"localizedName":"video i fotografia","id":9212},{"children":[],"localizedName":"praca inne","id":9099}],"localizedName":"Oferty Pracy","id":8},{"children":[{"children":[],"localizedName":"gastronomia","id":9291},{"children":[],"localizedName":"biuro i administracja","id":9292},{"children":[],"localizedName":"pracownicy fizyczni","id":9293},{"children":[],"localizedName":"specjaliści i technicy","id":9294},{"children":[],"localizedName":"kierowcy i kurierzy","id":9300},{"children":[],"localizedName":"marketing, reklama i PR","id":9304},{"children":[],"localizedName":"opiekunki i edukacja","id":9305},{"children":[],"localizedName":"ochrona","id":9306},{"children":[],"localizedName":"pielęgnacja i uroda","id":9308},{"children":[],"localizedName":"sprzedaż i praca w sklepie","id":9311},{"children":[],"localizedName":"szukam pracy studenckiej","id":9309},{"children":[],"localizedName":"turystyka","id":9312},{"children":[],"localizedName":"praca inne","id":9313}],"localizedName":"Szukający Zatrudnienia","id":9290},{"children":[{"children":[],"localizedName":"biura podróży","id":9150},{"children":[],"localizedName":"współpraca biznesowa","id":9325},{"children":[],"localizedName":"catering","id":9554},{"children":[],"localizedName":"usługi finansowe","id":9066},{"children":[],"localizedName":"fotografia i video","id":9146},{"children":[],"localizedName":"graficy i usługi IT","id":9234},{"children":[],"localizedName":"hurt i handel","id":9065},{"children":[],"localizedName":"komputery serwis i handel","id":9102},{"children":[],"localizedName":"usługi kurierskie","id":9337},{"children":[],"localizedName":"nauka i edukacja","id":9063},{"children":[],"localizedName":"mechanika, autoskup, pomoc drogowa","id":9145},{"children":[],"localizedName":"media i reklama","id":9217},{"children":[],"localizedName":"muzycy i artyści","id":9148},{"children":[],"localizedName":"ogrodnictwo","id":9214},{"children":[],"localizedName":"opieka i agencje niań","id":9152},{"children":[],"localizedName":"pielęgnacja i uroda","id":9064},{"children":[],"localizedName":"usługi prawne","id":9233},{"children":[],"localizedName":"przeprowadzki i transport towarów","id":9144},{"children":[],"localizedName":"przyjęcia, śluby, komunie","id":9104},{"children":[],"localizedName":"remont i budowa","id":9101},{"children":[],"localizedName":"serwis i montaż","id":9236},{"children":[],"localizedName":"sport i fitness","id":9151},{"children":[],"localizedName":"sprzątanie","id":9149},{"children":[],"localizedName":"taxi i przewozy osobowe","id":9147},{"children":[],"localizedName":"telefony","id":9341},{"children":[],"localizedName":"tłumaczenia i redakcja tekstu","id":9216},{"children":[],"localizedName":"utylizacja","id":9213},{"children":[],"localizedName":"wypożyczalnie","id":9215},{"children":[],"localizedName":"zdrowie","id":9235},{"children":[],"localizedName":"inne usługi","id":9105},{"children":[],"localizedName":"szukam usług finansowych","id":9759},{"children":[],"localizedName":"szukam usług budowlanych","id":9760},{"children":[],"localizedName":"szukam innych usług","id":9761},{"children":[],"localizedName":"szukam kursu, lekcji, korepetycji","id":9758}],"localizedName":"Usługi","id":9}],"localizedName":"Wszystkie kategorie","id":0}</script>
+    
+</div>
+                        
+
+
+                        
+                        
+    <div class="location">
+        <span class="icon main-icon">
+            <span class='icon-header-location-pin'></span>
+        </span>
+        <input tabindex="3" type="text" data-all='Polska' placeholder='Polska' value='Polska' autocomplete="off" disabled="disabled" readonly="readonly" />
+        <input type="hidden" name="locId" value="" />
+        <!--[if (IE 8)&!(IEMobile)]>
+        <span class="icon-caret-down"></span>
+        <![endif]-->
+        
+            <script type="text/plain">{"children":[{"children":[{"children":[],"localizedName":"Bardo","id":3200595},{"children":[],"localizedName":"Bielawa","id":3200085},{"children":[],"localizedName":"Bierutów","id":3200435},{"children":[],"localizedName":"Bogatynia","id":3200086},{"children":[],"localizedName":"Boguszów-Gorce","id":3200437},{"children":[],"localizedName":"Bolesławiec","id":3200087},{"children":[],"localizedName":"Bolków","id":3200436},{"children":[],"localizedName":"Brzeg Dolny","id":3200438},{"children":[],"localizedName":"Bystrzyca Kłodzka","id":3200439},{"children":[],"localizedName":"Chocianów","id":3200440},{"children":[],"localizedName":"Chojnów","id":3200441},{"children":[],"localizedName":"Długołęka","id":3200609},{"children":[],"localizedName":"Duszniki Zdrój","id":3200594},{"children":[],"localizedName":"Dzierżoniów","id":3200088},{"children":[],"localizedName":"Głogów","id":3200089},{"children":[],"localizedName":"Góra","id":3200090},{"children":[],"localizedName":"Gryfów Śląski","id":3200442},{"children":[],"localizedName":"Jawor","id":3200091},{"children":[],"localizedName":"Jelcz-Laskowice","id":3200443},{"children":[],"localizedName":"Jelenia Góra","id":3200092},{"children":[],"localizedName":"Kamienna Góra","id":3200093},{"children":[],"localizedName":"Karpacz","id":3200094},{"children":[],"localizedName":"Kąty Wrocławskie","id":3200621},{"children":[],"localizedName":"Kłodzko","id":3200095},{"children":[],"localizedName":"Kowary","id":3200444},{"children":[],"localizedName":"Kudowa-Zdrój","id":3200445},{"children":[],"localizedName":"Legnica","id":3200096},{"children":[],"localizedName":"Lubań","id":3200097},{"children":[],"localizedName":"Lubin","id":3200098},{"children":[],"localizedName":"Lubomierz","id":3200597},{"children":[],"localizedName":"Lwówek Śląski","id":3200099},{"children":[],"localizedName":"Marciszów","id":3200598},{"children":[],"localizedName":"Międzylesie","id":3200599},{"children":[],"localizedName":"Milicz","id":3200100},{"children":[],"localizedName":"Nowa Ruda","id":3200101},{"children":[],"localizedName":"Oborniki Śląskie","id":3200446},{"children":[],"localizedName":"Oleśnica","id":3200103},{"children":[],"localizedName":"Oława","id":3200102},{"children":[],"localizedName":"Piechowice","id":3200434},{"children":[],"localizedName":"Pieszyce","id":3200447},{"children":[],"localizedName":"Piława Górna","id":3200448},{"children":[],"localizedName":"Polanica-Zdrój","id":3200104},{"children":[],"localizedName":"Polkowice","id":3200105},{"children":[],"localizedName":"Sobótka","id":3200600},{"children":[],"localizedName":"Strzegom","id":3200449},{"children":[],"localizedName":"Strzelin","id":3200107},{"children":[],"localizedName":"Syców","id":3200450},{"children":[],"localizedName":"Szczawno-Zdrój","id":3200601},{"children":[],"localizedName":"Szklarska Poręba","id":3200106},{"children":[],"localizedName":"Środa Śląska","id":3200108},{"children":[],"localizedName":"Świdnica","id":3200109},{"children":[],"localizedName":"Świebodzice","id":3200110},{"children":[],"localizedName":"Trzebnica","id":3200111},{"children":[],"localizedName":"Wałbrzych","id":3200112},{"children":[],"localizedName":"Wołów","id":3200113},{"children":[],"localizedName":"Wrocław","id":3200114},{"children":[],"localizedName":"Ząbkowice Śląskie","id":3200115},{"children":[],"localizedName":"Zgorzelec","id":3200116},{"children":[],"localizedName":"Ziębice","id":3200451},{"children":[],"localizedName":"Złotoryja","id":3200117},{"children":[],"localizedName":"Żarów","id":3200452},{"children":[],"localizedName":"Żmigród","id":3200453}],"localizedName":"Dolnośląskie","id":3200007},{"children":[{"children":[],"localizedName":"Aleksandrów Kujawski","id":3200118},{"children":[],"localizedName":"Barcin","id":3200454},{"children":[],"localizedName":"Brodnica","id":3200119},{"children":[],"localizedName":"Bydgoszcz","id":3200120},{"children":[],"localizedName":"Chełmno","id":3200121},{"children":[],"localizedName":"Chełmża","id":3200455},{"children":[],"localizedName":"Ciechocinek","id":3200456},{"children":[],"localizedName":"Gniewkowo","id":3200457},{"children":[],"localizedName":"Golub-Dobrzyń","id":3200122},{"children":[],"localizedName":"Grudziądz","id":3200123},{"children":[],"localizedName":"Inowrocław","id":3200124},{"children":[],"localizedName":"Janikowo","id":3200458},{"children":[],"localizedName":"Koronowo","id":3200459},{"children":[],"localizedName":"Kruszwica","id":3200460},{"children":[],"localizedName":"Lipno","id":3200125},{"children":[],"localizedName":"Mogilno","id":3200126},{"children":[],"localizedName":"Nakło nad Notecią","id":3200127},{"children":[],"localizedName":"Radziejów","id":3200128},{"children":[],"localizedName":"Rypin","id":3200129},{"children":[],"localizedName":"Sępólno Krajeńskie","id":3200130},{"children":[],"localizedName":"Solec Kujawski","id":3200461},{"children":[],"localizedName":"Strzelno","id":3200462},{"children":[],"localizedName":"Szubin","id":3200463},{"children":[],"localizedName":"Świecie","id":3200131},{"children":[],"localizedName":"Toruń","id":3200132},{"children":[],"localizedName":"Tuchola","id":3200133},{"children":[],"localizedName":"Wąbrzeźno","id":3200134},{"children":[],"localizedName":"Więcbork","id":3200464},{"children":[],"localizedName":"Włocławek","id":3200135},{"children":[],"localizedName":"Żnin","id":3200136}],"localizedName":"Kujawsko - pomorskie","id":3200075},{"children":[{"children":[],"localizedName":"Bełżyce","id":3200465},{"children":[],"localizedName":"Biała Podlaska","id":3200137},{"children":[],"localizedName":"Biłgoraj","id":3200138},{"children":[],"localizedName":"Chełm","id":3200139},{"children":[],"localizedName":"Dęblin","id":3200466},{"children":[],"localizedName":"Hrubieszów","id":3200140},{"children":[],"localizedName":"Janów Lubelski","id":3200141},{"children":[],"localizedName":"Krasnystaw","id":3200142},{"children":[],"localizedName":"Kraśnik","id":3200143},{"children":[],"localizedName":"Lubartów","id":3200144},{"children":[],"localizedName":"Lublin","id":3200145},{"children":[],"localizedName":"Łęczna","id":3200146},{"children":[],"localizedName":"Łuków","id":3200147},{"children":[],"localizedName":"Międzyrzec Podlaski","id":3200467},{"children":[],"localizedName":"Opole Lubelskie","id":3200148},{"children":[],"localizedName":"Parczew","id":3200149},{"children":[],"localizedName":"Poniatowa","id":3200468},{"children":[],"localizedName":"Puławy","id":3200150},{"children":[],"localizedName":"Radzyń Podlaski","id":3200151},{"children":[],"localizedName":"Ryki","id":3200152},{"children":[],"localizedName":"Świdnik","id":3200153},{"children":[],"localizedName":"Terespol","id":3200469},{"children":[],"localizedName":"Tomaszów Lubelski","id":3200154},{"children":[],"localizedName":"Włodawa","id":3200155},{"children":[],"localizedName":"Zamość","id":3200156}],"localizedName":"Lubelskie","id":3200076},{"children":[{"children":[],"localizedName":"Drezdenko","id":3200158},{"children":[],"localizedName":"Gorzów Wielkopolski","id":3200157},{"children":[],"localizedName":"Gubin","id":3200159},{"children":[],"localizedName":"Kostrzyn nad Odrą","id":3200470},{"children":[],"localizedName":"Kożuchów","id":3200471},{"children":[],"localizedName":"Krosno Odrzańskie","id":3200160},{"children":[],"localizedName":"Lubsko","id":3200161},{"children":[],"localizedName":"Międzyrzecz","id":3200162},{"children":[],"localizedName":"Nowa Sól","id":3200163},{"children":[],"localizedName":"Rzepin","id":3200472},{"children":[],"localizedName":"Skwierzyna","id":3200473},{"children":[],"localizedName":"Słubice","id":3200164},{"children":[],"localizedName":"Strzelce Krajeńskie","id":3200165},{"children":[],"localizedName":"Sulechów","id":3200166},{"children":[],"localizedName":"Sulęcin","id":3200167},{"children":[],"localizedName":"Szprotawa","id":3200168},{"children":[],"localizedName":"Świebodzin","id":3200169},{"children":[],"localizedName":"Witnica","id":3200474},{"children":[],"localizedName":"Wschowa","id":3200170},{"children":[],"localizedName":"Zielona Góra","id":3200171},{"children":[],"localizedName":"Żagań","id":3200172},{"children":[],"localizedName":"Żary","id":3200173}],"localizedName":"Lubuskie","id":3200077},{"children":[{"children":[],"localizedName":"Aleksandrów Łódzki","id":3200174},{"children":[],"localizedName":"Andrespol","id":3200588},{"children":[],"localizedName":"Bełchatów","id":3200175},{"children":[],"localizedName":"Brzeziny","id":3200176},{"children":[],"localizedName":"Głowno","id":3200177},{"children":[],"localizedName":"Koluszki","id":3200475},{"children":[],"localizedName":"Konstantynów Łódzki","id":3200178},{"children":[],"localizedName":"Kutno","id":3200179},{"children":[],"localizedName":"Łask","id":3200180},{"children":[],"localizedName":"Łęczyca","id":3200181},{"children":[],"localizedName":"Łowicz","id":3200182},{"children":[],"localizedName":"Łódź","id":3200183},{"children":[],"localizedName":"Opoczno","id":3200184},{"children":[],"localizedName":"Ozorków","id":3200185},{"children":[],"localizedName":"Pabianice","id":3200186},{"children":[],"localizedName":"Pajęczno","id":3200187},{"children":[],"localizedName":"Piotrków Trybunalski","id":3200188},{"children":[],"localizedName":"Poddębice","id":3200189},{"children":[],"localizedName":"Radomsko","id":3200190},{"children":[],"localizedName":"Rawa Mazowiecka","id":3200191},{"children":[],"localizedName":"Sieradz","id":3200192},{"children":[],"localizedName":"Skierniewice","id":3200193},{"children":[],"localizedName":"Tomaszów Mazowiecki","id":3200194},{"children":[],"localizedName":"Tuszyn","id":3200476},{"children":[],"localizedName":"Wieluń","id":3200195},{"children":[],"localizedName":"Wieruszów","id":3200196},{"children":[],"localizedName":"Zduńska Wola","id":3200197},{"children":[],"localizedName":"Zelów","id":3200477},{"children":[],"localizedName":"Zgierz","id":3200198},{"children":[],"localizedName":"Żychlin","id":3200478}],"localizedName":"Łódzkie","id":3200004},{"children":[{"children":[],"localizedName":"Alwernia","id":3200610},{"children":[],"localizedName":"Andrychów","id":3200199},{"children":[],"localizedName":"Bochnia","id":3200200},{"children":[],"localizedName":"Brzesko","id":3200201},{"children":[],"localizedName":"Brzeszcze","id":3200479},{"children":[],"localizedName":"Bukowina Tatrzańska","id":3200202},{"children":[],"localizedName":"Bukowno","id":3200480},{"children":[],"localizedName":"Chełmek","id":3200481},{"children":[],"localizedName":"Chrzanów","id":3200203},{"children":[],"localizedName":"Czorsztyn","id":3200611},{"children":[],"localizedName":"Dąbrowa Tarnowska","id":3200204},{"children":[],"localizedName":"Gorlice","id":3200205},{"children":[],"localizedName":"Kęty","id":3200206},{"children":[],"localizedName":"Kocmyrzów","id":3200618},{"children":[],"localizedName":"Kościelisko","id":3200207},{"children":[],"localizedName":"Kraków","id":3200208},{"children":[],"localizedName":"Krościenko nad Dunajcem","id":3200491},{"children":[],"localizedName":"Krynica-Zdrój","id":3200209},{"children":[],"localizedName":"Krzeszowice","id":3200482},{"children":[],"localizedName":"Libiąż","id":3200483},{"children":[],"localizedName":"Limanowa","id":3200210},{"children":[],"localizedName":"Miechów","id":3200211},{"children":[],"localizedName":"Mszana Dolna","id":3200484},{"children":[],"localizedName":"Myślenice","id":3200212},{"children":[],"localizedName":"Niedzica","id":3200612},{"children":[],"localizedName":"Niepołomice","id":3200485},{"children":[],"localizedName":"Nowy Sącz","id":3200213},{"children":[],"localizedName":"Nowy Targ","id":3200214},{"children":[],"localizedName":"Olkusz","id":3200215},{"children":[],"localizedName":"Oświęcim","id":3200216},{"children":[],"localizedName":"Piwniczna-Zdrój","id":3200486},{"children":[],"localizedName":"Proszowice","id":3200217},{"children":[],"localizedName":"Rabka-Zdrój","id":3200487},{"children":[],"localizedName":"Skawina","id":3200218},{"children":[],"localizedName":"Słomniki","id":3200619},{"children":[],"localizedName":"Stary Sącz","id":3200488},{"children":[],"localizedName":"Sucha Beskidzka","id":3200219},{"children":[],"localizedName":"Szczawnica","id":3200220},{"children":[],"localizedName":"Tarnów","id":3200221},{"children":[],"localizedName":"Trzebinia","id":3200222},{"children":[],"localizedName":"Tuchów","id":3200489},{"children":[],"localizedName":"Wadowice","id":3200223},{"children":[],"localizedName":"Wieliczka","id":3200224},{"children":[],"localizedName":"Wolbrom","id":3200490},{"children":[],"localizedName":"Zakopane","id":3200225}],"localizedName":"Małopolskie","id":3200003},{"children":[{"children":[],"localizedName":"Pd - wsch powiaty","id":3200043},{"children":[],"localizedName":"Pd - zach powiaty","id":3200044},{"children":[],"localizedName":"Pn - wsch powiaty","id":3200036},{"children":[],"localizedName":"Pn - zach powiaty","id":3200041},{"children":[],"localizedName":"Południowe powiaty","id":3200042},{"children":[],"localizedName":"Północne powiaty","id":3200027},{"children":[],"localizedName":"Warszawa","id":3200008},{"children":[],"localizedName":"Wschodnie powiaty","id":3200045},{"children":[],"localizedName":"Zachodnie powiaty","id":3200046}],"localizedName":"Mazowieckie","id":3200001},{"children":[{"children":[],"localizedName":"Brzeg","id":3200226},{"children":[],"localizedName":"Głubczyce","id":3200227},{"children":[],"localizedName":"Grodków","id":3200526},{"children":[],"localizedName":"Kędzierzyn-Koźle","id":3200228},{"children":[],"localizedName":"Kluczbork","id":3200229},{"children":[],"localizedName":"Krapkowice","id":3200230},{"children":[],"localizedName":"Namysłów","id":3200231},{"children":[],"localizedName":"Niemodlin","id":3200527},{"children":[],"localizedName":"Nysa","id":3200232},{"children":[],"localizedName":"Olesno","id":3200233},{"children":[],"localizedName":"Opole","id":3200234},{"children":[],"localizedName":"Ozimek","id":3200528},{"children":[],"localizedName":"Paczków","id":3200529},{"children":[],"localizedName":"Praszka","id":3200530},{"children":[],"localizedName":"Prószków","id":3200593},{"children":[],"localizedName":"Prudnik","id":3200235},{"children":[],"localizedName":"Strzelce Opolskie","id":3200236},{"children":[],"localizedName":"Zawadzkie","id":3200531},{"children":[],"localizedName":"Zdzieszowice","id":3200532}],"localizedName":"Opolskie","id":3200078},{"children":[{"children":[],"localizedName":"Brzozów","id":3200237},{"children":[],"localizedName":"Cisna","id":3200607},{"children":[],"localizedName":"Dębica","id":3200238},{"children":[],"localizedName":"Jarosław","id":3200239},{"children":[],"localizedName":"Jasło","id":3200240},{"children":[],"localizedName":"Kolbuszowa","id":3200241},{"children":[],"localizedName":"Krosno","id":3200242},{"children":[],"localizedName":"Lesko","id":3200243},{"children":[],"localizedName":"Leżajsk","id":3200244},{"children":[],"localizedName":"Lubaczów","id":3200245},{"children":[],"localizedName":"Łańcut","id":3200246},{"children":[],"localizedName":"Mielec","id":3200247},{"children":[],"localizedName":"Nisko","id":3200248},{"children":[],"localizedName":"Nowa Dęba","id":3200533},{"children":[],"localizedName":"Przemyśl","id":3200249},{"children":[],"localizedName":"Przeworsk","id":3200250},{"children":[],"localizedName":"Ropczyce","id":3200251},{"children":[],"localizedName":"Rzeszów","id":3200252},{"children":[],"localizedName":"Sanok","id":3200253},{"children":[],"localizedName":"Sędziszów Małopolski","id":3200534},{"children":[],"localizedName":"Stalowa Wola","id":3200254},{"children":[],"localizedName":"Strzebowiska","id":3200608},{"children":[],"localizedName":"Strzyżów","id":3200255},{"children":[],"localizedName":"Tarnobrzeg","id":3200256},{"children":[],"localizedName":"Ustrzyki Dolne","id":3200257}],"localizedName":"Podkarpackie","id":3200079},{"children":[{"children":[],"localizedName":"Augustów","id":3200258},{"children":[],"localizedName":"Białystok","id":3200259},{"children":[],"localizedName":"Bielsk Podlaski","id":3200260},{"children":[],"localizedName":"Czarna Białostocka","id":3200535},{"children":[],"localizedName":"Dąbrowa Białostocka","id":3200536},{"children":[],"localizedName":"Grajewo","id":3200261},{"children":[],"localizedName":"Hajnówka","id":3200262},{"children":[],"localizedName":"Kolno","id":3200263},{"children":[],"localizedName":"Łapy","id":3200264},{"children":[],"localizedName":"Łomża","id":3200265},{"children":[],"localizedName":"Mońki","id":3200266},{"children":[],"localizedName":"Sejny","id":3200267},{"children":[],"localizedName":"Siemiatycze","id":3200268},{"children":[],"localizedName":"Sokółka","id":3200269},{"children":[],"localizedName":"Suwałki","id":3200270},{"children":[],"localizedName":"Wasilków","id":3200537},{"children":[],"localizedName":"Wysokie Mazowieckie","id":3200271},{"children":[],"localizedName":"Zambrów","id":3200272}],"localizedName":"Podlaskie","id":3200080},{"children":[{"children":[],"localizedName":"Bytów","id":3200407},{"children":[],"localizedName":"Chojnice","id":3200408},{"children":[],"localizedName":"Czersk","id":3200539},{"children":[],"localizedName":"Człuchów","id":3200409},{"children":[],"localizedName":"Gdańsk","id":3200072},{"children":[],"localizedName":"Gdynia","id":3200073},{"children":[],"localizedName":"Gniew","id":3200543},{"children":[],"localizedName":"Hel","id":3200410},{"children":[],"localizedName":"Jastarnia","id":3200411},{"children":[],"localizedName":"Jastrzębia Góra","id":3200412},{"children":[],"localizedName":"Kartuzy","id":3200413},{"children":[],"localizedName":"Karwia","id":3200414},{"children":[],"localizedName":"Kościerzyna","id":3200415},{"children":[],"localizedName":"Krynica Morska","id":3200416},{"children":[],"localizedName":"Kwidzyn","id":3200417},{"children":[],"localizedName":"Lębork","id":3200419},{"children":[],"localizedName":"Łeba","id":3200418},{"children":[],"localizedName":"Malbork","id":3200420},{"children":[],"localizedName":"Miastko","id":3200538},{"children":[],"localizedName":"Nowy Dwór Gdański","id":3200421},{"children":[],"localizedName":"Pelplin","id":3200541},{"children":[],"localizedName":"Pępowo","id":3200589},{"children":[],"localizedName":"Prabuty","id":3200540},{"children":[],"localizedName":"Pruszcz Gdański","id":3200422},{"children":[],"localizedName":"Puck","id":3200423},{"children":[],"localizedName":"Reda","id":3200424},{"children":[],"localizedName":"Rumia","id":3200425},{"children":[],"localizedName":"Skarszewy","id":3200542},{"children":[],"localizedName":"Słupsk","id":3200426},{"children":[],"localizedName":"Sopot","id":3200074},{"children":[],"localizedName":"Starogard Gdański","id":3200427},{"children":[],"localizedName":"Stegna","id":3200428},{"children":[],"localizedName":"Sztum","id":3200429},{"children":[],"localizedName":"Sztutowo","id":3200544},{"children":[],"localizedName":"Tczew","id":3200430},{"children":[],"localizedName":"Ustka","id":3200431},{"children":[],"localizedName":"Wejherowo","id":3200432},{"children":[],"localizedName":"Władysławowo","id":3200433},{"children":[],"localizedName":"Żukowo","id":3200590}],"localizedName":"Pomorskie","id":3200005},{"children":[{"children":[],"localizedName":"Będzin","id":3200273},{"children":[],"localizedName":"Bielsko-Biała","id":3200274},{"children":[],"localizedName":"Bieruń","id":3200275},{"children":[],"localizedName":"Blachownia","id":3200545},{"children":[],"localizedName":"Brenna","id":3200605},{"children":[],"localizedName":"Bytom","id":3200277},{"children":[],"localizedName":"Chorzów","id":3200278},{"children":[],"localizedName":"Cieszyn","id":3200279},{"children":[],"localizedName":"Czechowice-Dziedzice","id":3200546},{"children":[],"localizedName":"Czeladź","id":3200547},{"children":[],"localizedName":"Czerwionka-Leszczyny","id":3200548},{"children":[],"localizedName":"Częstochowa","id":3200280},{"children":[],"localizedName":"Dąbrowa Górnicza","id":3200281},{"children":[],"localizedName":"Gliwice","id":3200282},{"children":[],"localizedName":"Imielin","id":3200549},{"children":[],"localizedName":"Jastrzębie-Zdrój","id":3200283},{"children":[],"localizedName":"Jaworzno","id":3200284},{"children":[],"localizedName":"Kalety","id":3200550},{"children":[],"localizedName":"Katowice","id":3200285},{"children":[],"localizedName":"Kłobuck","id":3200286},{"children":[],"localizedName":"Knurów","id":3200551},{"children":[],"localizedName":"Korbielów","id":3200604},{"children":[],"localizedName":"Lędziny","id":3200552},{"children":[],"localizedName":"Lubliniec","id":3200287},{"children":[],"localizedName":"Łaziska Górne","id":3200553},{"children":[],"localizedName":"Mikołów","id":3200288},{"children":[],"localizedName":"Milówka","id":3200606},{"children":[],"localizedName":"Mysłowice","id":3200289},{"children":[],"localizedName":"Myszków","id":3200290},{"children":[],"localizedName":"Orzesze","id":3200554},{"children":[],"localizedName":"Piekary Śląskie","id":3200291},{"children":[],"localizedName":"Poręba","id":3200555},{"children":[],"localizedName":"Pszczyna","id":3200292},{"children":[],"localizedName":"Pszów","id":3200556},{"children":[],"localizedName":"Pyskowice","id":3200557},{"children":[],"localizedName":"Racibórz","id":3200293},{"children":[],"localizedName":"Radlin","id":3200558},{"children":[],"localizedName":"Radzionków","id":3200559},{"children":[],"localizedName":"Ruda Śląska","id":3200294},{"children":[],"localizedName":"Rybnik","id":3200295},{"children":[],"localizedName":"Rydułtowy","id":3200560},{"children":[],"localizedName":"Siemianowice Śląskie","id":3200296},{"children":[],"localizedName":"Siewierz","id":3200602},{"children":[],"localizedName":"Skoczów","id":3200561},{"children":[],"localizedName":"Sosnowiec","id":3200297},{"children":[],"localizedName":"Szczyrk","id":3200299},{"children":[],"localizedName":"Świerklaniec","id":3200603},{"children":[],"localizedName":"Świętochłowice","id":3200298},{"children":[],"localizedName":"Tarnowskie Góry","id":3200300},{"children":[],"localizedName":"Tychy","id":3200301},{"children":[],"localizedName":"Ustroń","id":3200562},{"children":[],"localizedName":"Wisła","id":3200302},{"children":[],"localizedName":"Wodzisław Śląski","id":3200303},{"children":[],"localizedName":"Wojkowice","id":3200563},{"children":[],"localizedName":"Zabrze","id":3200304},{"children":[],"localizedName":"Zawiercie","id":3200305},{"children":[],"localizedName":"Żory","id":3200306},{"children":[],"localizedName":"Żywiec","id":3200307}],"localizedName":"Śląskie","id":3200002},{"children":[{"children":[],"localizedName":"Busko-Zdrój","id":3200308},{"children":[],"localizedName":"Jędrzejów","id":3200309},{"children":[],"localizedName":"Kazimierza Wielka","id":3200310},{"children":[],"localizedName":"Kielce","id":3200311},{"children":[],"localizedName":"Końskie","id":3200312},{"children":[],"localizedName":"Opatów","id":3200313},{"children":[],"localizedName":"Ostrowiec Świętokrzyski","id":3200314},{"children":[],"localizedName":"Pińczów","id":3200315},{"children":[],"localizedName":"Połaniec","id":3200564},{"children":[],"localizedName":"Sandomierz","id":3200316},{"children":[],"localizedName":"Skarżysko-Kamienna","id":3200317},{"children":[],"localizedName":"Starachowice","id":3200318},{"children":[],"localizedName":"Staszów","id":3200319},{"children":[],"localizedName":"Suchedniów","id":3200565},{"children":[],"localizedName":"Włoszczowa","id":3200320}],"localizedName":"Świętokrzyskie","id":3200082},{"children":[{"children":[],"localizedName":"Barczewo","id":3200613},{"children":[],"localizedName":"Bartoszyce","id":3200321},{"children":[],"localizedName":"Biskupiec","id":3200322},{"children":[],"localizedName":"Braniewo","id":3200323},{"children":[],"localizedName":"Dobre Miasto","id":3200324},{"children":[],"localizedName":"Działdowo","id":3200325},{"children":[],"localizedName":"Elbląg","id":3200326},{"children":[],"localizedName":"Ełk","id":3200327},{"children":[],"localizedName":"Giżycko","id":3200328},{"children":[],"localizedName":"Gołdap","id":3200329},{"children":[],"localizedName":"Górowo Iławieckie","id":3200615},{"children":[],"localizedName":"Iława","id":3200330},{"children":[],"localizedName":"Kętrzyn","id":3200331},{"children":[],"localizedName":"Lidzbark Warmiński","id":3200332},{"children":[],"localizedName":"Lubawa","id":3200566},{"children":[],"localizedName":"Mikołajki","id":3200333},{"children":[],"localizedName":"Morąg","id":3200567},{"children":[],"localizedName":"Mrągowo","id":3200334},{"children":[],"localizedName":"Nidzica","id":3200335},{"children":[],"localizedName":"Nowe Miasto Lubawskie","id":3200336},{"children":[],"localizedName":"Olecko","id":3200337},{"children":[],"localizedName":"Olsztyn","id":3200338},{"children":[],"localizedName":"Olsztynek","id":3200568},{"children":[],"localizedName":"Orneta","id":3200569},{"children":[],"localizedName":"Ostróda","id":3200339},{"children":[],"localizedName":"Pasłęk","id":3200570},{"children":[],"localizedName":"Pieniężno","id":3200616},{"children":[],"localizedName":"Pisz","id":3200340},{"children":[],"localizedName":"Ruciane-Nida","id":3200617},{"children":[],"localizedName":"Szczytno","id":3200341},{"children":[],"localizedName":"Węgorzewo","id":3200342}],"localizedName":"Warmińsko-mazurskie","id":3200083},{"children":[{"children":[],"localizedName":"Buk","id":3200587},{"children":[],"localizedName":"Chodzież","id":3200343},{"children":[],"localizedName":"Czarnków","id":3200344},{"children":[],"localizedName":"Gniezno","id":3200345},{"children":[],"localizedName":"Gostyń","id":3200346},{"children":[],"localizedName":"Grodzisk Wielkopolski","id":3200347},{"children":[],"localizedName":"Jarocin","id":3200348},{"children":[],"localizedName":"Jastrowie","id":3200571},{"children":[],"localizedName":"Kalisz","id":3200349},{"children":[],"localizedName":"Kępno","id":3200350},{"children":[],"localizedName":"Koło","id":3200351},{"children":[],"localizedName":"Konin","id":3200352},{"children":[],"localizedName":"Kostrzyn","id":3200572},{"children":[],"localizedName":"Kościan","id":3200353},{"children":[],"localizedName":"Kórnik","id":3200573},{"children":[],"localizedName":"Krotoszyn","id":3200354},{"children":[],"localizedName":"Leszno","id":3200355},{"children":[],"localizedName":"Luboń","id":3200356},{"children":[],"localizedName":"Międzychód","id":3200357},{"children":[],"localizedName":"Mosina","id":3200358},{"children":[],"localizedName":"Murowana Goślina","id":3200359},{"children":[],"localizedName":"Nowy Tomyśl","id":3200360},{"children":[],"localizedName":"Oborniki","id":3200361},{"children":[],"localizedName":"Opalenica","id":3200574},{"children":[],"localizedName":"Ostrów Wielkopolski","id":3200362},{"children":[],"localizedName":"Ostrzeszów","id":3200363},{"children":[],"localizedName":"Piła","id":3200364},{"children":[],"localizedName":"Pleszew","id":3200365},{"children":[],"localizedName":"Pniewy","id":3200575},{"children":[],"localizedName":"Pobiedziska","id":3200576},{"children":[],"localizedName":"Poznań","id":3200366},{"children":[],"localizedName":"Puszczykowo","id":3200577},{"children":[],"localizedName":"Rawicz","id":3200367},{"children":[],"localizedName":"Rogoźno","id":3200578},{"children":[],"localizedName":"Słupca","id":3200368},{"children":[],"localizedName":"Swarzędz","id":3200369},{"children":[],"localizedName":"Szamotuły","id":3200370},{"children":[],"localizedName":"Śrem","id":3200371},{"children":[],"localizedName":"Środa Wielkopolska","id":3200372},{"children":[],"localizedName":"Trzcianka","id":3200373},{"children":[],"localizedName":"Trzemeszno","id":3200579},{"children":[],"localizedName":"Turek","id":3200374},{"children":[],"localizedName":"Wągrowiec","id":3200375},{"children":[],"localizedName":"Witkowo","id":3200580},{"children":[],"localizedName":"Wolsztyn","id":3200376},{"children":[],"localizedName":"Wronki","id":3200581},{"children":[],"localizedName":"Września","id":3200377},{"children":[],"localizedName":"Złotów","id":3200378}],"localizedName":"Wielkopolskie","id":3200006},{"children":[{"children":[],"localizedName":"Barlinek","id":3200379},{"children":[],"localizedName":"Białogard","id":3200380},{"children":[],"localizedName":"Cedynia","id":3200381},{"children":[],"localizedName":"Chojna","id":3200620},{"children":[],"localizedName":"Choszczno","id":3200382},{"children":[],"localizedName":"Czaplinek","id":3200586},{"children":[],"localizedName":"Darłowo","id":3200383},{"children":[],"localizedName":"Dębno","id":3200384},{"children":[],"localizedName":"Drawno","id":3200385},{"children":[],"localizedName":"Drawsko Pomorskie","id":3200386},{"children":[],"localizedName":"Goleniów","id":3200387},{"children":[],"localizedName":"Gryfice","id":3200388},{"children":[],"localizedName":"Gryfino","id":3200389},{"children":[],"localizedName":"Kamień Pomorski","id":3200390},{"children":[],"localizedName":"Kołobrzeg","id":3200391},{"children":[],"localizedName":"Koszalin","id":3200392},{"children":[],"localizedName":"Łobez","id":3200393},{"children":[],"localizedName":"Mielno","id":3200395},{"children":[],"localizedName":"Międzyzdroje","id":3200394},{"children":[],"localizedName":"Myślibórz","id":3200396},{"children":[],"localizedName":"Nowogard","id":3200397},{"children":[],"localizedName":"Police","id":3200398},{"children":[],"localizedName":"Połczyn-Zdrój","id":3200582},{"children":[],"localizedName":"Pyrzyce","id":3200399},{"children":[],"localizedName":"Sławno","id":3200400},{"children":[],"localizedName":"Stargard Szczeciński","id":3200401},{"children":[],"localizedName":"Szczecin","id":3200402},{"children":[],"localizedName":"Szczecinek","id":3200403},{"children":[],"localizedName":"Świdwin","id":3200404},{"children":[],"localizedName":"Świnoujście","id":3200405},{"children":[],"localizedName":"Trzebiatów","id":3200583},{"children":[],"localizedName":"Wałcz","id":3200406},{"children":[],"localizedName":"Wolin","id":3200584},{"children":[],"localizedName":"Złocieniec","id":3200585}],"localizedName":"Zachodniopomorskie","id":3200084}],"localizedName":"Polska","id":202}</script>
+        
+    </div>
+
+                        
+
+
+                        
+                        <div class="button">
+    <button tabindex="4">
+        <span class="icon">
+            <span class='icon-header-search-out'></span>
+            <span class='icon-header-search-over'></span>
+        </span>
+        <span class="label">Szukaj</span>
+    </button>
+</div>
+                        
+
+
+                    </fieldset>
+
+
+                    
+                    
+                    
+
+
+
+                    
+                    
+                    
+
+
+                </form>
+
+
+            </div>
+        </section>
+    </div>
+
+
+    
+
+
+
+
+    
+
+
+    <div class="containment">
+
+        
+
+        <div class="page extra" >
+
+
+            
+
+
+    
+
+    
+
+    
+    
+   
+   
+
+
+
+
+
+            
+            
+    <div class="breadcrumbs ">
+            
+                
+
+
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="category" href="http://www.gumtree.pl/s-malopolskie/v1l3200003p1">
+            <span class="microdata" itemprop="title">Małopolska</span>
+        </a>
+        <meta itemprop="url" content="http://www.gumtree.pl/s-malopolskie/v1l3200003p1" />
+    </span>
+    <span class="icon-chevron-right"></span>
+    <span></span>
+
+
+
+
+
+            
+            
+                
+
+
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="category" href="http://www.gumtree.pl/s-nieruchomosci/krakow/v1c2l3200208p1">
+            <span class="microdata" itemprop="title">Nieruchomości</span>
+        </a>
+        <meta itemprop="url" content="http://www.gumtree.pl/s-nieruchomosci/krakow/v1c2l3200208p1" />
+    </span>
+    <span class="icon-chevron-right"></span>
+    <span></span>
+
+
+
+
+
+            
+        
+            <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a class="category" href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/v1c9008l3200208p1">
+                    <span class="microdata" itemprop="title">
+                        
+                            mieszkania i domy do wynajęcia
+                        
+                        
+                            | 
+                            Kraków
+                        
+                    </span>
+                </a>
+                <meta itemprop="url" content="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/krakow/v1c9008l3200208p1"/>
+            </span>
+            <span class="icon-chevron-right"></span>
+            <span></span>
+            <span class="title">ogłoszenie 169137755</span>
+        
+    </div>
+
+<div class="clear"></div>
+
+
+
+
+
+            
+
+            <div class="content">
+                <section role="content">
+                    <div class="wrap">
+                        
+                        
+
+    
+       
+       
+        <div class="vip-controls">
+            
+
+
+
+
+
+        </div>
+
+        <div id="seovip-left-column" class="vip-left-column vip-header-and-details hasImages">
+            <div class="vip-content-header">
+                <div class="vip-title clearfix">
+                    <h1 class="item-title" >
+                        <span class="myAdTitle">Kawalerka, 30 m2, Śródmieście, ul. Dobrego Pasterza</span>
+                        
+                    </h1>
+                    <div class="price">
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">950 zł</span>
+            
+            
+            
+        </span>
+
+
+</div>
+                    
+                </div>
+
+                <div class="vip-gallery seoVip">
+                    
+    <div class="wrap has-thumbs" data-base-js-url="http://inc.t9.classistatic.com/1.1.288/js/">
+
+        
+            <div class="main-bg">
+                <div class="main">
+                    <span class="icon-vip-arrow-left"></span>
+                    <span class='vertical-alignment-helper'></span><img  data-index="0" src = "http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/TxYAAOSwNuxXcYlD/$_20.JPG?set_id=8800005007" alt="Kawalerka, 30 m2, Śródmieście, ul. Dobrego Pasterza" />
+                    
+                    <span class="icon-vip-arrow-right"></span>
+                    <span class="icon-zoom-image"></span>
+                </div>
+                
+                    
+    <div class="counter-pic"><span class="index"></span> z <span class="length"></span></div>
+
+                
+            </div>
+        
+        
+        
+        
+        <script id="vip-gallery-data" type="text/x-bolt-json">
+            {"small":"[http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/TxYAAOSwNuxXcYlD/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/T80AAOSwNuxXcYlG/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/vAoAAOSwZ1BXcYlI/$_19.JPG?set_id=8800005007, http://img.classistatic.com/crop/50x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/k90AAOSwepJXcYlU/$_19.JPG?set_id=8800005007]","medium":"[http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/TxYAAOSwNuxXcYlD/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/T80AAOSwNuxXcYlG/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/vAoAAOSwZ1BXcYlI/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/k90AAOSwepJXcYlU/$_20.JPG?set_id=8800005007]","large":"[http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/TxYAAOSwNuxXcYlD/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/T80AAOSwNuxXcYlG/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/vAoAAOSwZ1BXcYlI/$_20.JPG?set_id=8800005007, http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/k90AAOSwepJXcYlU/$_20.JPG?set_id=8800005007]","alt-tags":"[Kawalerka 30 m2 Śródmieście ul. Dobrego Pasterza z Krakow zdjęcie: 1, Kawalerka 30 m2 Śródmieście ul. Dobrego Pasterza z Krakow zdjęcie: 2, Kawalerka 30 m2 Śródmieście ul. Dobrego Pasterza z Krakow zdjęcie: 3, Kawalerka 30 m2 Śródmieście ul. Dobrego Pasterza z Krakow zdjęcie: 4]"}
+        </script>
+    </div>
+
+        
+        
+
+
+
+                   
+ <div class='post-it-yourself'>
+    <span class='sudo-link' data-gtm="pc|PostAdBegin|eventLabel|src=SimilarAd" data-o-uri='/cbfg.ugzy?fvzvyneNqVq=1001691377550910472310409'>Dodaj takie ogłoszenie!</span>
+ </div>
+
+                </div>
+                
+                
+<!-- TODO: separate templates with different Locale  -->
+<ul class="selMenu">
+
+<li>
+    <div class="attribute">
+        <span class="name">Data dodania</span>
+        <span class="value">
+            
+                27/06/2016
+            
+        </span>
+        
+    </div>
+</li>
+
+<li>
+    <div class="attribute">
+        <span class="name">Lokalizacja</span>
+            <span class="value">
+                
+<div class="location" >
+    
+    
+        <a href="http://www.gumtree.pl/s-krakow/v1l3200208p1" >Kraków</a>, 
+    
+    
+        <a href="http://www.gumtree.pl/s-malopolskie/v1l3200003p1" >Małopolskie</a>
+    
+    
+</div>
+
+            </span>
+    </div>
+</li>
+
+<!-- Vehicle -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Vehicle -->
+
+
+
+<!-- Property -->
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Do wynajęcia przez</span>
+            <span class="value">Agencja</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Dostępny</span>
+            <span class="value">27/06/2016</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Rodzaj nieruchomości</span>
+            <span class="value">Mieszkanie</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Liczba pokoi</span>
+            <span class="value">Kawalerka lub garsoniera</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Liczba łazienek</span>
+            <span class="value">1 łazienka</span>
+        </div>
+    </li>
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Wielkość (m2)</span>
+            <span class="value">30</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+    
+    <li>
+        <div class="attribute">
+            <span class="name">Parking</span>
+            <span class="value">Ulica</span>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Baby, kids, pregnant -->
+
+
+<!-- End Baby, kids, pregnant -->
+
+<!-- Computers and Electronics -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Computers and Electronics -->
+
+<!-- Courses, Workshops -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Courses, Workshops -->
+
+<!-- Home/Fashion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Home Fashion -->
+
+<!-- Services -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Services -->
+
+<!-- Free time/leisure -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Free time -->
+
+<!-- Pet -->
+
+
+
+
+
+
+
+
+
+<!-- End Pet -->
+
+<!-- Job -->
+
+
+
+
+
+
+<!-- new for SG -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+
+  
+
+</li>
 </ul>
-</div>
-</td>
-</tr>
-</table>
-<noscript>
-<style>
-.msgbar{
-padding-top:5px;
-}
-</style>
-</noscript>
-<table class="search-area tbleColpse header-bottom-bg">
-<tr>
-<td style="padding-right:10px" nowrap="true" valign="middle">
-<table class="tbleColpse rel-p" width="100%" >
-<tr>
-<td nowrap="true" align="left">
-<table class="tbleColpse">
-<form action="http://www.gumtree.pl/f-SearchAdRedirect" method="get" name="frmSearchAd" id="frmSearchAd" class="searchform">
-<input type="hidden" name="isSearchForm" value="true">
-<tr>
-<td><div class="ww_table_left"></div></td>
-<td align="left" >
-<table class="tbleColpse" >
-<!--
-<tr>
-<td class="ww_table">
-<div class="toplbl">here:Czego szukasz...?</div>
-</td>
-</tr>
--->
-<tr>
-<td class="ww_table" style="padding-right:10px">
-<div class="flt">
-<span class="left-what"></span>
-<span class="keySpan lf">
-<input title="Czego szukasz...?" id="autoComp" type="text" name="Keyword" value="" class="keyword center-what" autocomplete="off"/>
+
+                <div class="clear"></div>
+            </div>
+            <div class="vip-details seoVip">
+                 
+    <div class="description" >
+        <span class="pre"
+            
+                
+                style="font-family: inherit; white-space: pre-wrap;"
+            
+        ><p></p><p>Mieszkanie 1-pokojowe, atrakcyjna cena!</p>  <p>Do wynajęcia 2-pokojowe mieszkanie o powierzchni 30 m2 przy ul. Dobrego Pasterza (Prądnik Czerwony)</p>  <p>Mieszkanie składa się z komfortowego pokoju, aneksu kuchennego, łazienki oraz przedpokoju. W pokoju na podłodze zadbany parkiet dębowy, w kuchni i łazience terakota.</p>  <p>Mieszkanie częściowo umeblowane (możliwość uzupełnienia umeblowania na życzenie klienta), wyposażone w nowy markowy AGD (pralka, lodówka, płyta elektryczna). Bardzo dobry standard wykończenia.</p>  <p>Ogrzewanie centralne i ciepła woda wliczone w czynsz administracyjny.</p>  <p>Budynek położony w doskonałej lokalizacji. W niewielkiej odległości przystanków komunikacji miejskiej autobusowej. W okolicy liczne sklepy, apteka, przychodnia, TESCO. Do Centrum Handlowego Krokus, Aqua Parku, Multikina 2 przystanki autobusem.<br />Dojazd do centrum Miasta 15min. autobusem lub 10 min. samochodem.</p>  <p>Właściciel zastrzega, że wynajmie mieszkanie wyłącznie osobom bez małych dzieci oraz bez zwierząt. 1-2 spokojne osoby.</p>  <p>Czynsz najmu: 950 zł + czynsz administracyjny 250zł + prąd.</p>  <p>Kontakt do agenta:<br />Marek Wawrzynkiewicz<br />+48 503 588 845<br />marek2 at sadurscy. pl</p><p>Aby zobaczyć ofertę ponownie zapisz adres strony:</p><p>http://krakow.sadurscy.pl/mieszkania/wynajem/%C5%9Ar%C3%B3dmie%C5%9Bcie/Dobrego%20Pasterza/oferta-BS2-MW-169692/</p><p>Lub zapisz jej numer i wpisz w Google:</p><p>BS2-MW-169692</p><p>Kraków, ul. Dobrego Pasterza, Prądnik Czerwony, Grzegórzki, Śródmieście</p></span>
+    </div>
+
+    
+
+             </div>
+
+
+
+        </div>
+
+        <div class="vip-right-column">
+            <div class="vip-seller-forms-container">
+                <div class="contact-wrapper ">
+                    <div id="sm-share-cnt" class="clearfix">
+                         <div id="sm-cnt">
+                            
+                               
+    <div id="sm">
+        <ul class="sm-ul buttons clearfix">
+            <li class="button"><a href="#" target="_blank"><span class="icon-seo-facebook sm-icons"></span></a></li>
+            <li class="button"><a href="#" target="_blank"><span class="icon-seo-gmailplus sm-icons"></span></a></li>
+            <li class="button"><a href="#" target="_blank"><span data-text='Sprawdź co dzieje się na Gumtree! {0}' class="icon-seo-twitter sm-icons"></span></a></li>
+            <li class="button"><a href="#" target="_blank"><span class="icon-seo-pinterest sm-icons"></span></a></li>
+            
+            <li class="button last mailto"><a href="#"><span data-subject = 'To może Cię zainteresować! {0}' data-body = 'Witaj! Myślę, że to ogłoszenie na Gumtree może Cię zainteresować. {0} %0D%0ADołącz do społeczności Gumtree:%0D%0AFacebook: https://www.facebook.com/GumtreePolska %0D%0A Google+: https://plus.google.com/103950977256553454134/posts %0D%0A Twitter: https://twitter.com/gumtreepolska' class="icon-seo-mail sm-icons"></span></a></li>
+        </ul>
+    </div>
+
+                            
+                         </div>
+
+                        <div id="share">
+                         
+    <div class="sharevisitInfo no-visit-0">
+        
+        
+        
+    </div>
+
+                        </div>
+                    </div>
+
+                    <div class="abt1 vip-seller-container clearfix">
+
+                        <div class="vip-seller clearfix">
+                            
+
+
+
+
+    <span class="icon-user"></span>
+
+
+<span class="username">
+
+    <a 
+
+        
+        href="/u-oferty-sprzedazy/m-wawrzynkiewicz/v1u104723104p1"
+        
+
+        >
+
+        
+            Marek Wawrzynkiewicz
+        
+
+        <span class="more-ads">(Zobacz więcej ogłoszeń)</span>
+    </a>
 </span>
-<span class="right-what"></span>
+
+
+    
+        
+    
+        <span class="usersince">Użytkownik od 06-2015</span>
+    
+
+    
+
+
+
+
+                        </div>
+
+                        <div class="vip-usr-interactions clearfix">
+                            
+                            <div class="usr-interactions">
+                                <div class="vip vip-contact">
+                                    
+                                    
+<div class='reply_controls clearfix '>
+    
+    <a href="tel:503-588-845" class="button telephone">
+    <span class="icon-phone-blue icon-phone-green"></span>
+    <span class="icon-phone-white"></span>
+    <span id='phone-number' class="label"  data-shortname-text='Połączenia' data-show-number-text='*** Pokaż numer telefonu'>503-588-845</span>
+</a>
+    
+    <a href="javascript:void(0)" class="title other-country">
+        <span class="icon-envelope-alt-green"></span>
+        <span class="icon-envelope-alt-white"></span>
+        <span class="label reply-label" data-shortname-text='E-mail'>E-mail</span>
+    </a>
 </div>
-</td>
-</tr>
-</table>
-</td>
-<td class="ww_table" style="padding-right:10px">
-<div id="searchCat" class="jsonly kjmenu_main_wrap">
-<div class="left-all-cat"></div>
-<div id="searchCat_name" class="center-all-cat">Wszystkie kategorie<img border="0" src="http://pic.classistatic.com/image/pics/classifieds/spacer.gif" width="25px" height="1px"/></div>
-<div class="button-arrow"></div>
+
+<form class="replyAd" data-attachment-size="2097152" data-gtm="npc|R2SEmailBegin"  data-success-msg='Twoja wiadomość została wysłana' method="post" action="/rui-api/page/reply/model/pl_PL" novalidate>
+    <input name="machineId" type="hidden"/>
+    <input name="rand" id="rand" type="hidden"/>
+    <input name="fileName" id="fileName" type="hidden"/>
+
+    
+    <div class="gl-messages-replyAds-srp">
+        <a href="javascript:void(0)" class="close_btn">
+            <span class="icon-gl-message-close"></span>
+        </a>
+    </div>
+
+    
+    <label>
+        <span class="label">Wiadomość</span>
+    </label>
+    
+
+    
+  
+<div class="messageArea">
+    
+    <ul class="canned-responses">
+        
+         <li>
+             <label class="checkbox-label">
+                 <input type="checkbox" class="checkbox" />
+                 <span data-i18n="vip.reply.canned.imInterested">Zainteresowała mnie ta oferta. Proszę o kontakt.</span>
+             </label>
+         </li>
+         
+         <li>
+             <label class="checkbox-label">
+                 <input type="checkbox" class="checkbox" />
+                 <span data-i18n="vip.reply.canned.whenWhereICanSeeIt">Gdzie i kiedy mogę to zobaczyć?</span>
+             </label>
+         </li>
+         
+    </ul>
+    
 </div>
-<input class="jsonly" type="hidden" name="CatId" value="0"/>
-</td>
-<td class="ww_table">
-<div id="searchLoc" class="jsonly kjmenu_main_wrap">
-<div class="left-all-cat"></div>
-<div id="searchLoc_name" class="center-all-cat">Kraków<img border="0" src="http://pic.classistatic.com/image/pics/classifieds/spacer.gif" width="25px" height="1px"/></div>
-<div class="button-arrow"></div>
+
+
+
+    
+    <label>
+        
+        <textarea name="replyMessage"></textarea>
+        
+    </label>
+    
+
+    
+    <label>
+        <span class="label">Imię</span>
+        
+        <input name="buyerName" type="text" value=""/>
+        
+    </label>
+    
+
+    
+    <label>
+        <span class="label">E-mail</span>
+        
+        <input name="email" type="email" value=""/>
+        
+    </label>
+    
+
+    
+    <label>
+        <span class="phone label">Telefon (Opcjonalnie)</span>
+        
+        <input name="phoneNumber" type="text" value=""/>
+        
+    </label>
+    
+
+    
+
+    
+    <label class="checkbox-label">
+        <input type="checkbox" name="isSendMeCopyEmail"  />
+        <span class="label">Wyślij mi kopię e-maila</span>
+    </label>
+    
+
+
+
+    <input type="hidden" name="adId" value="1001691377550910472310409"/>
+
+
+
+    <button class="submit-reply" type="submit">Wyślij</button>
+
+    
+<div class="privacypolicy">
+    Klikając "Wyślij", wyrażasz zgodę na nasze <span class=sudo-link data-o-uri="uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/Mnfnql-xbemlfgnavn" data-target="_self"> Zasady korzystania</span> i <span class=sudo-link data-o-uri="/cevinpl-cbyvpl" data-target="_self">Politykę prywatności</span> oraz zgadzasz się na otrzymywanie naszych newsletterów i ofert promocyjnych.
 </div>
-<input class="jsonly" type="hidden" name="Location" value=""/>
-</td>
-<td class="ww_table" style="padding-left:10px">
-<span class="left-search"></span>
-<input id="searchAdGo" type="submit" value="Szukaj" class="searchButton" />
-<span class="right-search"></span>
-</td>
-<td><div class="ww_table_right"></div></td>
-</tr>
+
 </form>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<div id="CategoryDropdown" class="popupWindow">
-<ul class="catlistdropdown">
-<li class="item">
-<span class="cursptr" id="catId0" onClick="swapCat(this,'0');">Wszystkie ogłoszenia</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9672" onClick="swapCat(this,'9672');">Antyki i kolekcje</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9690" onClick="swapCat(this,'9690');">Zdrowie i Uroda</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9706" onClick="swapCat(this,'9706');">Sport i Fitness</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId2" onClick="swapCat(this,'2');">Nieruchomości</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId4" onClick="swapCat(this,'4');">Dom i Ogród</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId8" onClick="swapCat(this,'8');">Oferty Pracy</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId5" onClick="swapCat(this,'5');">Motoryzacja</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9541" onClick="swapCat(this,'9541');">Moda</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9290" onClick="swapCat(this,'9290');">Szukający Zatrudnienia</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9218" onClick="swapCat(this,'9218');">Łodzie i Pojazdy wodne</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9237" onClick="swapCat(this,'9237');">Elektronika</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9" onClick="swapCat(this,'9');">Usługi</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9124" onClick="swapCat(this,'9124');">Zwierzaki</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9459" onClick="swapCat(this,'9459');">Dla Dziecka</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId6" onClick="swapCat(this,'6');">Społeczność</span>
-</li>
-<li class="item">
-<span class="cursptr" id="catId9490" onClick="swapCat(this,'9490');">Muzyka i Rozrywka</span>
-</li>
-</ul>
-</div>
-<div class=popWords>
-<div class="floatLeft30px">
-Popularne
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/krowodrza/c9008" title="krowodrza">krowodrza</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/wieliczka/c9008" title="wieliczka">wieliczka</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/jab%C5%82onna/c9008" title="jabłonna">jabłonna</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/sopot/c9008" title="sopot">sopot</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/gda%C5%84sk/c9008" title="gdańsk">gdańsk</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/katowicka/c9008" title="katowicka">katowicka</a>
-</div>
-<div class="floatLeft30px">
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/toru%C5%84/c9008" title="toruń">toruń</a>
-</div>
-</div>
-<div class="greyBottom300">
-</div>
-<div id="pagestatus_new" style="">
-</div>
-</div>
-<div id="middle" class="page_viewad">
-<div class="VAStyleA">
-<div id="viewad_header">
-<table class="tbleColpse viewadhdr">
-<tr>
-<td valign="top">
-<div id="breadcrumbVIP">
-<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-<a href="http://www.gumtree.pl" itemprop="url">
-<span itemprop="title">Polska</span>
-</a> &gt; <a href="http://www.gumtree.pl/fp-nieruchomosci/krakow/c2l3200208" itemprop="url">
-<span itemprop="title">Nieruchomości</span>
-</a>
->
-<a href="http://www.gumtree.pl/fp-mieszkania-i-domy-do-wynajecia/krakow/c9008l3200208" itemprop="url">
-<span itemprop="title">mieszkania i domy do wynajęcia</span>
-</a>
-&gt; Nr referencyjny ogłoszenia 624256983
-</div>
-</div>
-<div><div id='div-gpt-ad-1363883804543-leader' style="margin:0 auto;text-align:center;">
-</div>
-<div id='div-gpt-ad-vip-topbanner' style='text-align:center;margin:0px auto'></div></div>
-</td>
-<td align="right" valign="top">
-</td>
-</tr>
-</table>
-<table class="viewadtitle">
-<tr>
-<td class="viewadtitleL viewadtitleLComm">
-<table class="tbleColpse">
-<tr>
-<td >
-<div >
-<h1 class="" id="preview-local-title" >
-<!-- google_ad_section_start -->Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka<!-- google_ad_section_end -->
-</h1>
-</div>
-</td>
-</tr>
-</table>
-</td>
-<td class="viewadaction">
-<ul id="viewAd-actions" class="viewAd-actions" >
-<li><span nowrap="true" class="jsonly wl_star_off" title="Zachowaj ogłoszenie">&nbsp;&nbsp;&nbsp;&nbsp;<span class="watchText">Zachowaj</span></span></li>
-<li class="pipe">|</li>
-<li>
-<span class="s2f">
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtU2VuZFRvRnJpZW5kP0FkSWQ9NjI0MjU2OTgz')" class="sudo-link">Udostępnij</span>
-</span>
-</li>
-<li class="pipe">|</li>
-<li>
-<!-- rt:5001 - Removing icon labels if Print has empty content in ViewAd.xml-->
-<span class="print">
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtUHJpbnRBZD9BZElkPTYyNDI1Njk4Mw==', '_blank')" class="sudo-link">Drukuj</span>
-</span>
-</li>
-<li class="pipe">|</li>
-<li> <span class="jsonly" id="reportAd_name">Zgłoś ogłoszenie<span>&nbsp;&nbsp;&nbsp;</span></span>
-<div class="modal" id="modalFrameLayer"></div>
-</li>
-</ul>
-</td>
-</tr>
-</table>
-</div>
-<noscript>
-<style type="text/css">
-.jsonly {
-display:none;
-}
-</style>
-</noscript>
-<table class="adcontent tblClpsePad">
-<tr>
-<td>
-<table width="100%" class="tblClpsePad"
->
-<tr>
-<td class="adImg">
-<div style="margin-bottom:5px;">
-<table cellpadding="0" cellspacing="0" border="0" class="viewad_images viewad_frame_tbl" >
-<tr>
-<td class="viewad_images viewad_frame_fill">
-<table width="100%" height="3" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=bottom class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_tl viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_images viewad_frame_tm viewad_images viewad_frame_brand1" style="font-size:3px">
-<div class="viewad_images viewad_frame_fill"> </div>
-</td>
-<td valign=bottom class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_tr viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_images viewad_frame_m viewad_images viewad_frame_brand2" style="margin:0px">
-<table width="100%" class="gallery viewad_frame_brand2 tbleColpse viewadimgcontr">
-<tr>
-<td align=middle class="imageStack " imggal='main'>
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtVmlld0FkTGFyZ2VJbWFnZT9BZElkPTYyNDI1Njk4MyZLZXl3b3JkPWtyYWtvdw==')" class="sudo-link" title='Zoom'>
-<img class="view" title="Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka" alt="Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka image0" src="http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/BNEAAOSwstxVSTqn/$_35.JPG" border="0" />
-</span>
-</td>
-</tr>
-</table>
-<center>
-<table class="img-next-prev tbleColpse">
-<tr>
-<td class="jsonly">
-<div class="prev" imggal='prev'>&nbsp; </div>
-</td>
-<td style="padding:0px 10px 0px 10px">
-<span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtVmlld0FkTGFyZ2VJbWFnZT9BZElkPTYyNDI1Njk4MyZLZXl3b3JkPWtyYWtvdw==')" class="sudo-link" title='Zoom' imggal='viewimg'>
-<div class="view-large">
-<div> Powiększ obraz </div>
-</div>
-</span>
-</td>
-<td class="jsonly">
-<div class="next" imggal='next'>&nbsp; </div>
-</td>
-</tr>
-</table>
-</center>
-<table class='navs' cellpadding="0" cellspacing="0" border="0">
-<tr class="imageNavs">
-</tr>
-<tr class="imageNavs">
-<td imggal="thumb" imgindx="0" class="ni active">
-<img src="http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/BNEAAOSwstxVSTqn/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="1" class="ni">
-<img src="http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/3PEAAOSwBahVSTq5/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="2" class="ni">
-<img src="http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/4rIAAOSwPZ5VSTrI/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="3" class="ni">
-<img src="http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/B8UAAOSwrklVSTrc/$_14.JPG" border="0"/>
-</td>
-</tr>
-<tr class="imageNavs">
-<td imggal="thumb" imgindx="4" class="ni">
-<img src="http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/y5MAAOSwgkRVSTsC/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="5" class="ni">
-<img src="http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/ytUAAOSwEeFVSTsT/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="6" class="ni">
-<img src="http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/7LkAAOSwPZ5VSTsk/$_14.JPG" border="0"/>
-</td>
-<td imggal="thumb" imgindx="7" class="ni">
-<img src="http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/5ZEAAOSwpDdVSTs1/$_14.JPG" border="0"/>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_images viewad_frame_fill">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=top class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_bl viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_images viewad_frame_bm viewad_images viewad_frame_brand1" style="font-size:3px;height:3px">
-<div class="viewad_images viewad_frame_fill"> </div>
-</td>
-<td valign=top class="viewad_images viewad_frame_fill">
-<div class="viewad_images viewad_frame_br viewad_images viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</div>
-</td>
-<td valign="top" width="99%">
-<div style="font-weight:normal">
-<table cellpadding="0" cellspacing="0" border="0" class="viewad_frame_tbl" style="min-width:260px;">
-<tr>
-<td class="viewad_frame_fill">
-<table width="100%" height="3" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=bottom class="viewad_frame_fill">
-<div class="viewad_frame_tl viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_frame_tm viewad_frame_brand1" style="font-size:3px">
-<div class="viewad_frame_fill"> </div>
-</td>
-<td valign=bottom class="viewad_frame_fill">
-<div class="viewad_frame_tr viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_frame_m viewad_frame_brand2" style='padding:0px 2px 0px 2px' style="margin:0px"> <table id="attributeTable" border="0" cellpadding="3" cellspacing="0" width="100%">
-<col/><col width="99%"/>
-<tbody>
-<tr>
-<td nowrap valign=top class="first_col first_row " >Data dodania
-</td>
-<td class="first_row" > 06/05/2015
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Ostatnio zmieniony
-</td>
-<td > 18/05/2015
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Cena
-</td>
-<td style='font-weight:bold'> Zł  1 350,00
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Adres
-</td>
-<td itemscope itemtype="http://schema.org/Place"> Retoryka, Kraków, Polska
-<br>
-<span class="viewmap-link sudo-link">Pokaż mapę</span>
-</td>
-</tr> <div id="viewmap-modal" style="display:none"> <div id="gmap" style="width:100%; height:507px" valign="top">
-<noscript>
-<strong>Adres:</strong> Retoryka, Kraków, Polska<br>
-</noscript>
-</div>
-</div>
-<tr>
-<td nowrap valign=top class="first_col " >Do wynajęcia przez
-</td>
-<td > Właściciel
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Rodzaj nieruchomości
-</td>
-<td > Mieszkanie
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Liczba pokoi
-</td>
-<td > Kawalerka lub garsoniera
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Wielkość (m2)
-</td>
-<td > 26
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Dostępny
-</td>
-<td > 01/07/2015
-</td>
-</tr>
-<tr>
-<td nowrap valign=top class="first_col " >Liczba łazienek
-</td>
-<td > 1 łazienka
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td class="viewad_frame_fill">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td valign=top class="viewad_frame_fill">
-<div class="viewad_frame_bl viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-<td width="99%" class="viewad_frame_bm viewad_frame_brand1" style="font-size:3px;height:3px">
-<div class="viewad_frame_fill"> </div>
-</td>
-<td valign=top class="viewad_frame_fill">
-<div class="viewad_frame_br viewad_frame_brand1" style="font-size:3px;height:3px"> </div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<div id="ad-desc" class="ad-desc" class="marginTop10px" >
-<!-- google_ad_section_start -->
-<span id="preview-local-desc">
-Atrakcyjne  mieszkanie z balkonem  ( pokój z kuchnią) zlokalizowane na V piętrze w budynku windą   na ul.Retoryka. Mieszkanie wyposażone w lodówkę, pralkę, płytę elektryczną grzewczą, telewizor LCD, ogrzewanie centralne. Do opłat należy doliczyć czynsz administracyjny ok.260 zł + zaliczka na media  150 zł oraz kaucję zwrotną 1500 zł<br>
-</span>
-<!-- google_ad_section_end -->
-</div>
-<div class="cenvis">
-<span class="visits">Wizyty: 303 </span>
-</div>
-</div>
-</td>
-</tr>
-<tr>
-</tr>
-</table>
-<br/>
-<style>
-.page_viewad #viewAd-actions .s2f, #viewad_header #viewAd-actions .s2f { background-image: url("http://pic.classistatic.com/image/site/ca/icons/facebook.gif"); }
-.stack-adsense-title { background-color: #fdeb6b; } .weburl { text-overflow:ellipsis; overflow: hidden; white-space: nowrap; width: 260px } .right_logo_box.brand_border { text-align: center; height: auto; }
-.viewAdImgTitle { height: auto; }
-</style>
-<div class="similarads clearfix">
-<div class="titlebar">
-Podobne ogłoszenia
-</div>
-<div class="maindiv">
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa624969852" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krakow-krowodrza-624969852">
-<img src="http://i.ebayimg.com/00/s/NzUwWDEwMjQ=/z/rKkAAOSwl8NVWb2K/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa624969852" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krakow-krowodrza-624969852">
-<div class="pricediv">
-Zł  1 600,00
-</div>
-<div class="titlediv">
-Mieszkanie - Kraków > Krowodrza
-</div>
-<div class="datediv">
-Dodane: 18/05/2015
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa624982399" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/przytulna-kawalerka-28-m2-ul-konarskiego-krowodrza-624982399">
-<img src="http://i.ebayimg.com/00/s/NDUwWDYwMA==/z/-C8AAOSwKrhVV5em/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa624982399" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/przytulna-kawalerka-28-m2-ul-konarskiego-krowodrza-624982399">
-<div class="pricediv">
-Zł  1 100,00
-</div>
-<div class="titlediv">
-Przytulna kawalerka 28 m2 ul.Konarskiego Krowodrza
-</div>
-<div class="datediv">
-Dodane: 18/05/2015
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa624827145" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krakow-debniki-debniki-stare-120m2-nr-12797-624827145">
-<img src="http://i.ebayimg.com/00/s/NDgwWDYzOQ==/z/w20AAOSwNSxVM90Q/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa624827145" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krakow-debniki-debniki-stare-120m2-nr-12797-624827145">
-<div class="pricediv">
-Zł  3 500,00
-</div>
-<div class="titlediv">
-Mieszkanie Kraków Dębniki, Dębniki Stare 120m2 (nr: 12797)
-</div>
-<div class="datediv">
-Dodane: 15/05/2015
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa624714771" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/wynajme-624714771">
-<img src="http://i.ebayimg.com/00/s/NjA2WDY0MA==/z/Bs4AAOSwv0tVUzWQ/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa624714771" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/wynajme-624714771">
-<div class="pricediv">
-Proszę o kontakt
-</div>
-<div class="titlediv">
-Wynajmę
-</div>
-<div class="datediv">
-Dodane: 13/05/2015
-</div>
-</a>
-</div>
-<div class="contentdiv">
-<div class="imagediv">
-<a id="sa624970655" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/do-wynajmu-mieszkanie-polozone-przy-ulicy-wincentego-pola-w-dzie-624970655">
-<img src="http://i.ebayimg.com/00/s/MTA4MVgxNjAw/z/fxIAAOSweW5VWb59/$_14.JPG" border="0" />
-</a>
-</div>
-<a id="sa624970655" class="salink" href="http://www.gumtree.pl/cp-mieszkania-i-domy-do-wynajecia/krakow/do-wynajmu-mieszkanie-polozone-przy-ulicy-wincentego-pola-w-dzie-624970655">
-<div class="pricediv">
-Zł  2 200,00
-</div>
-<div class="titlediv">
-DO WYNAJMU MIESZKANIE POŁOŻONE PRZY ULICY WINCENTEGO POLA W DZIE
-</div>
-<div class="datediv">
-Dodane: 18/05/2015
-</div>
-</a>
-</div>
-</div>
-</div>
-</div>
-<br/>
-<div id="googsense"></div>
-</td>
-<td class="viewadrightcol" style="margin:0px;padding:0px 0px 0px 15px">
-<div class="alternate-box">
-<div class="alternate-contact-info">DANE KONTAKTOWE</div>
-<div class="alternate-phone-box">
-<div class="alternate-phone-icon">&nbsp;</div>
-<div id="phn-text">
-<span class="alternate-phone-number">501...</span>
-<div class="alternate-show-phone-bar">
-<span class="alt-ph-hover"><span class="alternate-show-phone-bar-left">&nbsp;</span><span class="alternate-show-phone-bar-center"><a class="alternate-show-phone-number" href="javascript:">Pokaż numer telefonu</a></span><span class="alternate-show-phone-bar-right">&nbsp;</span></span>
-</div>
-</div>
-</div>
-<div id='phoneclicktracking'></div>
-<noscript>
-<div style="padding-bottom:5px;">
-<div class='PhoneIcon' style="padding-left:20px"><img src="http://ext.classistatic.com/imagesvc/txt2Img/7uG77pHzyXFQNsTl4X_FUr4mQAIO3Wn37djGnzKDoelZ_tEvl1pIsw0YiCmruWY7lfOS2C9fMOrYlqYYRLYuxlqlNZxEKQ3z3L3xROIA6g9VkYpUgu8BCpbDtF9G3dtl697ZG_0GJzgYQ8lfczz8grOcLGgqeZM5lmO6v_2TQ0kpivdwLq4RALJ0PcV45o6zjKe2rHWMA6IXrG9ukmK0xJeQ03Tyg_0iAwuL9yw9Rx8" style="border:none;" /> </div>
-</div>
-</noscript> <div class="alternate-email-label">Skontaktuj się przez e-mail</div>
-<div class="email_block brand_border">
-<div id="viewad_email">
-<form id="ReplyToAdForm" action="/c-ViewAd" method="post" name="viewadfrm">
-<noscript>
-<style type="text/css">
-#ReplyToAdForm .first-input div {
-padding-left : 0px;
-background : transparent;
-}
-</style>
-</noscript>
-<input type="hidden" name="AdId" value="624256983"/>
-<input type="hidden" name="Submit" value="true"/>
-<span id="MTNew" >
-</span>
-<span id="CDOld" >
-<div id="SenderEmailAddress_field" class="first-field" >
-<div class="first-input">
-<a name="FromEmailAddress"></a>
-<div class="input-div">
-<input type="text" name="FromEmailAddress" value=""
-id="SenderEmailAddress"
-title="Twój e-mail"
-style="width:100%"
-class="reply-field"
-size="30"
-/>
-</div>
-</div>
-</div>
-</span>
-<span id="MTOld" >
-<div class="first-field" >
-<div formfield="label" class="first-label ">
-<span id="lblEmailText" ><noscript>Wiadomość</noscript></span>
-</div>
-<div class="first-input">
-<a name="EmailText"></a>
-<div class="input-div">
-<textarea name="EmailText"
-cols="25"
-title="Wiadomość"
-style="width:290px; margin-top:7px;"
-class="reply-field"
-rows="4"
-></textarea>
-</div>
-</div>
-</div>
-</span>
-<span id="CDNew">
-</span>
-<div class="alternate-checkbox">
-<input type="checkbox" name="CopyMe" value="checked" checked/> Wyślij mi kopię e-maila
-</div>
-<div class="alternate-submit-box">
-<span class="alternate-submit-left">&nbsp;</span><input type="submit" id="send" value='WYŚLIJ E-MAIL' class="alternate-submit-center"/><span class="alternate-submit-right">&nbsp;</span>
-<div style="clear:both;"></div>
-</div>
+<form name="fileAttachmentForm" id="fileAttachmentForm" target="uploadedFile" method="post" action="/fileattachmentuploader" enctype="multipart/form-data">
+    <input type="hidden" name="adId" value="1001691377550910472310409"/>
 </form>
-<div class="alternate-help-text">
-Klikając „Wyślij”, wyrażasz zgodę na nasze <span onclick="clickEncoded('L3AtVGVybXNBbmRDb25kaXRpb25z')" class="sudo-link" >Zasady korzystania</span> i <span onclick="clickEncoded('L3AtUHJpdmFjeQ==')" class="sudo-link" >Politykę prywatności</span>. Twoja wiadomość zostanie wysłana do ogłoszeniodawcy i nie będzie widoczna publicznie.
+
+
+
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL"  data-adid="169137755">
+                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                    <span class="label" data-toggle-text='Dodane do Zachowanych'>Dodaj do Zachowanych</span>
+                </div>
+                
+                
+                <div class="vip-seller-form-details">
+                    
+                        
+                            <div class="vip vip-flagad">
+                                
+    <label class="reported-ad is-title-disabled hide">
+        
+        <span class="icon-warning-sign"></span>
+        
+        <span>Ogłoszenie zgłoszone</span>
+    </label>
+    <div class="unreported-ad flagad-container">
+        
+    <span class="sudo-link security-tips"  data-target="_blank">
+    <span class="icon-lock"></span>
+        <span class="security-tips-text">Porady Bezpieczeństwa</span> <span>- Twoje bezpieczeństwo jest dla nas ważne, zachęcamy do zachowania czujności.</span>
+        <span data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NFnsrglCY' data-target="_blank"  >Dowiedz się więcej</span>
+        
+    </span>
+    
+
+        <a class="title" href="javascript:void(0)">
+            
+            <span class="icon-warning-sign"></span>
+            
+            <span class="label">Zgłoś ogłoszenie</span>
+            <span class="caret-icon-area icon-caret-right"></span>
+        </a>
+        <form class="flagAd tallForm"  data-flagad-success='Dziękujemy za zgłoszenie. Sprawdzimy tę ofertę najszybciej jak to możliwe. '
+            method="post" action="/rui-api/page/flag/confirm/pl_PL" novalidate>
+            <label>
+                <span class="label ">Powód</span>
+            </label>
+            <div>
+                <input type="hidden" name="adId" value="1001691377550910472310409" />
+                <input type="hidden" name="captchaToken" value="Q0FQVENIQTozMTQ5OjE0NjcwNTkzODEyODc6NDgzMWFlZGViNjJiN2I3NjdiZjc1MjcyYWVkNDE5NDg0ZWVjMDM5MA==" />                
+                <ul>
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="InappropriateContent"   checked="checked" /><label>Nieodpowiednia treść</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>InappropriateContent=Nieodpowiednia treść</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="DuplicateSpam"   /><label>Duplikat/Spam</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>DuplicateSpam=Duplikat/Spam</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="PossibleFraud"   /><label>Możliwe oszustwo</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>PossibleFraud=Możliwe oszustwo</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="NotRelevant"   /><label>Nieaktualne</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>NotRelevant=Nieaktualne</label></li> -->
+                
+                        <li><input type="radio" class="radio-btn" name="flagAdType" value="WrongCategory"   /><label>Zła kategoria</label></li>                     
+                     <!--  <li><input type="radio" class="radio-btn" name="flagAdType" value="" /><label>WrongCategory=Zła kategoria</label></li> -->
+                
+                </ul>
+            </div>
+            <label>
+                <span class="label">E-mail</span>
+                                
+                    <input type="email" name="email" value=""  />
+                
+                <!--  handle error -->
+            </label>
+               <label>
+                <span class="label">Komentarz&nbsp;<span class="optional">(Opcjonalnie)</span></span>
+                <textarea name="comments"></textarea>
+                <!--  handle error -->
+            </label>
+            <label>
+                <span class="label">Wpisz numer</span>
+                <div>            
+                    <img class="imageAlign" name="captchaTokenImg" width="75" height="50" border="0" src="/captcha/image?token=Q0FQVENIQTozMTQ5OjE0NjcwNTkzODEyODc6NDgzMWFlZGViNjJiN2I3NjdiZjc1MjcyYWVkNDE5NDg0ZWVjMDM5MA==" alt='Włącz zdjęcia' />
+                    <!--
+                    <embed src="/captcha/audio?token=Q0FQVENIQTozMTQ5OjE0NjcwNTkzODEyODc6NDgzMWFlZGViNjJiN2I3NjdiZjc1MjcyYWVkNDE5NDg0ZWVjMDM5MA==" width="100%" height="60">
+                        <noembed>
+                              <img src="yourimage.gif" >
+                           </noembed>
+                    </embed>
+                    -->
+                    <input class="textAlign" type="text" name="captchaValue" value=""/>
+                </div>
+                <br class="clear" />                
+            </label>        
+            <label class='privacypolicy'>Wysyłając Zgłoszenie, wyrażasz zgodę na nasze <a href="http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Zasady-korzystania"> Zasady korzystania</a> z Gumtree.</label>
+            <div class="button-area">
+                <button class="action-button" type="submit">Zgłoś</button>
+                <button class="action-button cancel" type="button" name="cancel">Anuluj</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+                            </div>
+                        
+
+                        
+    <div class="map">
+        <div class="wrapper">
+            
+                
+                    <span class="google-maps-link" data-target="GoogleMaps" data-uri="http://maps.google.com/maps?q=50.0646501,19.9449799">
+                        <img src="http://maps.googleapis.com/maps/api/staticmap?center=50.0646501,19.9449799&zoom=13&size=300x300&sensor=false&gme-marktplaats&markers=color:orange%7C50.0646501,19.9449799" />
+                    </span>
+                
+            
+            
+                <h5 class="full-address">
+                    <span class="icon-map-marker"></span>
+                    <span class="address">Kraków, ul. Dobrego Pasterza, Prądnik Czerwony, Grzegórzki, Śródmieście</span>
+                </h5>
+            
+        </div>
+    </div>
+
+
+                                 
+                    
+                </div>
+            </div>
+
+            <input type='hidden' id='adId' value='1001691377550910472310409' />  
+        </div>
+
+
+
+
+         <div class="vip-seller-form-details seoVip_banner">
+                <div>
+                     
+                     
+                     
+                    
+                        
+
+ 
+
+
+             <div class="moreSearches">
+                <div class="titleContainer">
+                    <span>Popularne</span>
+                </div>
+                <ul class="resultsContainer relSearchMenu">
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/krakow/v1c9008l3200208q0p1">krakow</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/kawalerka+krakow/v1c9008l3200208q0p1">kawalerka krakow</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/mieszkanie+krakow/v1c9008l3200208q0p1">mieszkanie krakow</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/s-mieszkania-i-domy-do-wynajecia/krak%C3%B3w/mieszkanie+do+wynajecia/v1c9008l3200208q0p1">mieszkanie do wynajecia</a>
+                    </li>
+                    
+                </ul>
+               </div> 
+
+                           
+                     
+                     
+                    
+                    <div class="suggestedSearch">
+                     
+                     
+
+ 
+
+
+             <div class="moreSearches">
+                <div class="titleContainer">
+                    <span>Proponowane</span>
+                </div>
+                <ul class="resultsContainer relSearchMenu">
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/rzeszow/mieszkania+do+wynajecia+rzeszow/v1c9008l3200252q0p1">mieszkania do wynajęcia rzeszów</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/pd-+-zach-powiaty/mieszkania+do+wynajecia+pruszkow/v1c9008l3200044q0p1">mieszkania do wynajęcia pruszków</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/wynajem+domow+i+mieszkan/v1c9008q0p1?priceType=free">wynajem domów i mieszkań</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/szczecin/mieszkania+do+wynajecia+szczecin/v1c9008l3200402q0p1">mieszkania do wynajęcia szczecin</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/katowice/mieszkania+do+wynajecia+katowice/v1c9008l3200285q0p1">mieszkania do wynajęcia katowice</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/poznan/mieszkania+wynajem+poznan/v1c9008l3200366q0p1">mieszkania wynajem poznań</a>
+                    </li>
+                    
+                </ul>
+               </div> 
+
+                      
+                    </div>
+                     
+                     
+              </div>
+              
+              <div>
+                     
+                           
+    <div style="margin-top:10px;">
+        <div class="rightbanner">
+            <div id="div-vip-ad-banner" class="vipbanner"></div>
+        </div>
+    </div>
+    
+                     
+              </div>
+         </div>
+         
+       
+          
+             <div class="seo_similar results list-view">
+                 <div class="section-divider">Podobne ogłoszenia, które mogą Cię zainteresować.</div>
+                 <div class="view">
+                     <ul>
+                        
+                               
+        <li class="result pictures" data-adid="1001672654610910672916909" data-criteoadid="167265461">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NjAwWDgwMA==/z/0foAAOSwOVpXWATG/$_19.JPG?set_id=8800005007" alt="4 pokojowy apartament | Taras | Prądnik Czerwony  z Krakow, zobacz zdjęcie" class="thumbM"/>
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/4-pokojowy-apartament-taras-pr%C4%85dnik-czerwony/1001672654610910672916909">4 pokojowy apartament | Taras | Prądnik Czerwony </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >LuxHome Group – mieszkania do wynajęciaLuxHome Group poleca nowy 4 pokojowy apartament z widokowym 160 m2 tarasem przy ulicy Dobrego Pasterza – Prądnik Czerwony.* Prądnik Czerwony * Dobrego Pasterza * Opolska * Lublańska * Rondo Barei * Młyńska * Centrum biurowe Vinci * O3 Business Campus * Capgemini * Krokus * Obi * Norauto * Park Wodny * Multikino *Oferowane mieszkanie o powierzchni 87 m2 usytuo ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">6 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167265461">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001688592140910468995109" data-criteoadid="168859214">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDk2WDgwMA==/z/hWgAAOSw-4BXbUg~/$_19.JPG?set_id=8800005007" alt="[Eng] Apartament 3 sypialnie | Taras 163 m2 | ul. Dobrego Pasterza | **Apartamenty Kaskada** z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/eng-apartament-3-sypialnie-taras-163-m2-ul-dobrego-pasterza-apartamenty-kaskada/1001688592140910468995109">[Eng] Apartament 3 sypialnie | Taras 163 m2 | ul. Dobrego Pasterza | **Apartamenty Kaskada**</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia nowoczesne, nigdy niezamieszkane mieszkanie w prestiżowej inwestycji Apartamenty Kaskada przy ul. Dobrego Pasterza na Prądniku Czerwonym.ENGLISH VERSION BELOW!LOKALIZACJA:W sercu biznesowego centrum Krakowa znajduje się prestiżowa inwestycja realizowana przez Super Krak - Apartamenty Kaskada. Kompleks usytuowany jest w północnej części Krakowa - Prądnik Czerwony, ul. Dobrego Pasterza. ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">6 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168859214">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001662633620910739320809" data-criteoadid="166263362">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDIzWDY0MA==/z/QXoAAOSwagdXSvkO/$_19.JPG?set_id=8800005007" alt="Mieszkanie Kraków Prądnik Czerwony 51m2 (nr: 157789) z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 7</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-krak%C3%B3w-pr%C4%85dnik-czerwony-51m2-nr-157789/1001662633620910739320809">Mieszkanie Kraków Prądnik Czerwony 51m2 (nr: 157789)</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Nowe 2-pokojowe, atrakcyjna cena, dobrze wyposażone!Do wynajęcia 2-pokojowe mieszkanie o powierzchni 50 m2 przy ul. Dobrego Pasterza (Prądnik Czerwony)Mieszkanie składa się z przestronnego pokoju, komfortowej sypialni, dużej osobnej i jasnej kuchni, łazienki oraz przedpokoju. Z salonu wyjście balkon. W pokojach na podłodze nowe wysokiej jakości panele, w kuchni, przedpokoju i łazience terakota. W  ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166263362">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001677583710910470344609" data-criteoadid="167758371">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/MTIwMFgxNjAw/z/koAAAOSwvg9XXs1Z/$_19.JPG?set_id=8800005007" alt="4 POKOJE, UL. DOBREGO PASTERZA, PRĄDNIK CZERWONY z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/4-pokoje-ul-dobrego-pasterza-pr%C4%85dnik-czerwony/1001677583710910470344609">4 POKOJE, UL. DOBREGO PASTERZA, PRĄDNIK CZERWONY</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia od zaraz nowe dwupokojowe mieszkanie, ul. Dobrego Pasterza - dzielnica Prądnik Czerwony. Doskonała propozycja zarówno dla osoby pracującej, pary jak i rodziny z dziećmi. Zaledwie 3 km od Rynku Głównego, 900m od Opolskiej Estakady. W pobliżu Centrum Biurowe Quattro Business Park - Grupy Buma. MIESZKANIEZnajduje się na 9 piętrze w 10 piętrowym nowym bloku mieszkalnym. Składa się z: czte ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">6 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167758371">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001670658780910947199909" data-criteoadid="167065878">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDgwWDY0MA==/z/KvsAAOSwMNxXVZIu/$_19.JPG?set_id=8800005007" alt="2 niezależne pokoje, umeblowane, wolne od 1 lipca - Prądnik Czerwony! z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2-niezale%C5%BCne-pokoje-umeblowane-wolne-od-1-lipca-+-pr%C4%85dnik-czerwony/1001670658780910947199909">2 niezależne pokoje, umeblowane, wolne od 1 lipca - Prądnik Czerwony!</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Victoria Estate prezentuje dwupokojowe mieszkanie zlokalizowane na ul. Dobrego Pasterza wolne od 1 lipca!Nieruchomość:Mieszkanie znajduje się przy ul. Dobrego Pasterza, na pierwszym piętrze w trzypiętrowym bloku. Składa się z dwóch niezależnych pokoi, kuchni, łazienki, korytarza. Częściowo umeblowane: kuchnia- meble, lodówka, kuchenka gazowa, okap, stół, krzesła; 1 pokój - łóżko, półki; 2 pokój -  ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 000 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167065878">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001690810720910969921409" data-criteoadid="169081072">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NjgwWDEwMjQ=/z/goEAAOSwbYZXcQTt/$_19.JPG?set_id=2?set_id=6172554881" alt="2 pokojowe, Prądnik Czerwony, ul. Dobrego Pasterza z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2-pokojowe-pr%C4%85dnik-czerwony-ul-dobrego-pasterza/1001690810720910969921409">2 pokojowe, Prądnik Czerwony, ul. Dobrego Pasterza</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia OD 15 SIEPRNIA 2 pokojowe mieszkanie o powierzchni 60 m2, ul. Dobrego PasterzaLOKALIZACJA:Mieszkanie znajduje się w bardzo dogodnej lokalizacji umożliwiającej szybki dojazd do centrum o każdej porze dnia i nocy. Budynek znajduje się przy ul. Dobrego Pasterza.Budynek znajduje się w bezpośrednim sąsiedztwie Ronda Stanisława Barei. Dojazd do centrum miasta (Galerii Krakowskej)zajmuje 10- ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 200 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="169081072">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001690057610910515735309" data-criteoadid="169005761">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDgwWDY0MA==/z/rFcAAOSwepJXcAPC/$_19.JPG?set_id=8800005007" alt="2 pokojowe mieszkanie w nowym budynku (2014) na Prądniku Czerwonym z miejscem postojowym z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 11</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2-pokojowe-mieszkanie-w-nowym-budynku-2014-na-pr%C4%85dniku-czerwonym-z-miejscem-postojowym/1001690057610910515735309">2 pokojowe mieszkanie w nowym budynku (2014) na Prądniku Czerwonym z miejscem postojowym</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia od 01.07.2016 2 pokojowe MIESZKANIE o powierzchni 35m2 w NOWYM budynku (2014) z MIEJSCEM POSTOJOWYM w podziemnym garażu w dzielnicy Prądnik Czerwony w Krakowie. Budynek znajduje się na ul. Łepkowskiego (blisko al. 29 Listopada oraz ul. Dobrego Pasterza). Prądnik Czerwony to Dzielnica Krakowa oddalona od centrum miasta o około 3 km. Dojazd autobusem miejskim do Rynku zajmuje około 10 m ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="169005761">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001679155190910510768709" data-criteoadid="167915519">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDUwWDYwMA==/z/ggoAAOSwepJXYPam/$_19.JPG?set_id=8800005007" alt="2 POK. 34 M2 BLISKO AL. 29 LISTOPADA, DOBREGO PASTERZA z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2-pok-34-m2-blisko-al-29-listopada-dobrego-pasterza/1001679155190910510768709">2 POK. 34 M2 BLISKO AL. 29 LISTOPADA, DOBREGO PASTERZA</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >PRZYTULNE 2-POKOJOWE MIESZKANKO Z DUŻYM BALKONEM. KAMERALNE ZAMKNIĘTE OSIEDLE NA PRĄDNIKU CZERWONYM.LOKALIZACJA:- Prądnik Czerwony, ul. Rezedowa- blisko do al. 29 Listopada oraz ul. Dobrego Pasterza- bezproblemowy dostęp do komunikacji miejskiej- ok. 15 minut zajmuje dojazd do centrum miasta- w pobliżu cała infrastruktura handlowo-usługowa- niedaleko Park Wodny, Multikino, hipermarket Real, C.H. K ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 200 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167915519">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001685312830910469913709" data-criteoadid="168531283">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDY4WDc2MA==/z/1WsAAOSw3YNXaUMz/$_19.JPG?set_id=8800005007" alt="Prądnik Czerwony, Dobrego Pasterza, blisko Quattro 2 sypialnie + salon / Nice flat near Quattro BP z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/pr%C4%85dnik-czerwony-dobrego-pasterza-blisko-quattro-2-sypialnie-%2B-salon-nice-flat-near-quattro-bp/1001685312830910469913709">Prądnik Czerwony, Dobrego Pasterza, blisko Quattro 2 sypialnie &#43; salon / Nice flat near Quattro BP</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia od zaraz 3-pokojowe mieszkanie o powierzchni 55m2 znajdujące się przy ul. Bohomolca / Dobrego Pasterza w Krakowie.LOKALIZACJAPrądnik Czerwony - tu warto zamieszkać!Lokalizacja inwestycji doskonale łączy w sobie trzy ważne aspekty życia codziennego - dobrze rozwiniętą komunikację, bezpieczeństwo i komfort wypoczynku oraz szeroki dostęp do infrastruktury handlowo-usługowej. Te niezaprze ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168531283">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001691379600910955766109" data-criteoadid="169137960">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NTMzWDgwMA==/z/5s4AAOSwFwpXcYpr/$_19.JPG?set_id=8800005007" alt="3-pok 52 m2, Prądnik Czerwony, ul. Słoneckiego z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 4</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/3+pok-52-m2-pr%C4%85dnik-czerwony-ul-s%C5%82oneckiego/1001691379600910955766109">3-pok 52 m2, Prądnik Czerwony, ul. Słoneckiego</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia mieszkanie 3 pokojowe o powierzchni 52m2 na ulicy Słoneckiego.Mieszkanie znajduje się na wysokim parterze w 13-pietrowym bloku. Składa się z 3 osobnych pokoi, oddzielnej kuchni, przedpokoju, łazienki, osobne WC, balkonu i piwnicy. Mieszkanie umeblowane i wyposażone w niezbędny sprzęt. Ogrzewanie i ciepła woda miejskie rozliczane według liczników.Bardzo dobra lokalizacja praktycznie na ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="169137960">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001681894710910730614209" data-criteoadid="168189471">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/ODAwWDUzNQ==/z/pVEAAOSwvg9XZGCn/$_19.JPG?set_id=8800005007" alt="Mieszkanie dwupokojowe Dobrego Pasterza - super lokalizacja z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 11</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-dwupokojowe-dobrego-pasterza-+-super-lokalizacja/1001681894710910730614209">Mieszkanie dwupokojowe Dobrego Pasterza - super lokalizacja</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >WitamOferuję do wynajęcia mieszkanie dwupokojowe w dzielnicy Prądnik Czerwony - ulica Dobrego Pasterza.Super lokalizacja: przystanek 1 min z mieszkania - linia 105, 139, 184, 439, 169 (autobusem do rynku 10 min, pieszo 40 pod kościół Mariacki) W pobliżu:sklepy - 2x Biedronka, Tesco, Lidl, Auchan, Obipoczta; kościół; plac Imbramowski krakowskie uczelnie: UE, PK, UR (linia 105), AGH (linia 139, 439, ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168189471">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001675555740910910876109" data-criteoadid="167555574">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDIzWDY0MA==/z/DtgAAOSwGIRXaqK3/$_19.JPG?set_id=8800005007" alt="LOFT HOUSE Dobrego Pasterza Prądnik Czerwony z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 8</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/loft-house-dobrego-pasterza-pr%C4%85dnik-czerwony/1001675555740910910876109">LOFT HOUSE Dobrego Pasterza Prądnik Czerwony</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >LOFT HOUSE Nieruchomości prezentuje do wynajęcia mieszkanie w bardzo dobrym standardzie o powierzchni 33 m2 z 1 niezależnym pokojem i osobną, jasną kuchnią.LOKALIZACJA:Mieszkanie zlokalizowane jest w spokojnej, dobrze skomunikowanej okolicy przy ulicy Dobrego Pasterza w dzielnicy Prądnik Czerwony. Doskonałe połączenie z krakowskimi uczelniami, centrum miasta.BUDYNEK:Mieszkanie położone jest na 10  ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167555574">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001672506590910468471909" data-criteoadid="167250659">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/ODAwWDYwMA==/z/iOwAAOSw9eVXV-lr/$_19.JPG?set_id=8800005007" alt="Okazja! Mieszkanie w podwyższonym standardzie z miejscem postojowym/4pok/86m2/Dobrego Pasterza z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 12</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/okazja-mieszkanie-w-podwy%C5%BCszonym-standardzie-z-miejscem-postojowym-4pok-86m2-dobrego-pasterza/1001672506590910468471909">Okazja! Mieszkanie w podwyższonym standardzie z miejscem postojowym/4pok/86m2/Dobrego Pasterza</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia mieszkanie z miejscem postojowym w cenie w super lokalizacji Prądnik Czerwony okolice Dobrego Pasterza.Oferujemy do wynajęcia 4 pokojowe mieszkanie o powierzchni 86m2 w pełni umeblowane i wyposażone.Mieszkanie znajduje się na 1 piętrze 3 piętrowego bloku z 2006r.Nieruchomość składa się z 3 niezależnych sypialni, salonu połączonego z aneksem kuchennym, 2 łazienek z wc, przedpokoju.Z ka ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 300 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="167250659">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001691348800910493764009" data-criteoadid="169134880">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NjAwWDQ1MA==/z/MBoAAOSwepJXcYAl/$_19.JPG?set_id=8800005007" alt="3-pok 86 m2, 2000 rok, Mistrzejowice, os. Oświecenia z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 7</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/3+pok-86-m2-2000-rok-mistrzejowice-os-o%C5%9Bwiecenia/1001691348800910493764009">3-pok 86 m2, 2000 rok, Mistrzejowice, os. Oświecenia</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Do wynajęcia od połowy grudnia przestronne, trzypokojowe mieszkanie o powierzchni 86 m2, położone na 6 piętrze w nowym, 8-piętrowym bloku z windą.  Lokalizacja:  Mieszkanie położone w atrakcyjnej okolicy na osiedlu Oświecenia (w pobliżu ulicy Dobrego Pasterza). Osiedle charakteryzuje się dobrze rozwiniętą lokalną infrastrukturą, w pobliżu wiele sklepów (m. in. Real, Biedronka), Park Wodny, Multiki ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 900 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="169134880">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001681761850910972314309" data-criteoadid="168176185">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NjE1WDQ1OQ==/z/iBUAAOSwnNBXZB5c/$_19.JPG?set_id=8800005007" alt="Nowe 3 pok; Dobrego Pasterza - Śródmieście/Prądnik Czerwony - do negocjacji z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 9</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/nowe-3-pok-dobrego-pasterza-+-%C5%9Br%C3%B3dmie%C5%9Bcie-pr%C4%85dnik-czerwony-+-do-negocjacji/1001681761850910972314309">Nowe 3 pok; Dobrego Pasterza - Śródmieście/Prądnik Czerwony - do negocjacji</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Prosperity Nieruchomości prezentuje nowoczesne 3-pokojowe mieszkanie w niedalekiej odległości od centrum - Śródmieście/Prądnik CzerwonyNIERUCHOMOŚĆ:Mieszkanie umiejscowione jest na pierwszym piętrze w prestiżowej i nowoczesnej inwestycji w niedalekiej odległości od centrum Krakowa przy ul. Bohomolca. Składa się z przestronnego salonu z otwartą kuchnią, dwóch sypialni, łazienki, przedpokoju i balko ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168176185">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001667981460910471914009" data-criteoadid="166798146">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/ODAwWDUzMw==/z/uNIAAOSwepJXUXln/$_19.JPG?set_id=8800005007" alt="dwa nieprzechodnie pokoje PRĄDNIK CZERWONY, balkon, osobno wc, obok Ronda Barei z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 8</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/dwa-nieprzechodnie-pokoje-pr%C4%85dnik-czerwony-balkon-osobno-wc-obok-ronda-barei/1001667981460910471914009">dwa nieprzechodnie pokoje PRĄDNIK CZERWONY, balkon, osobno wc, obok Ronda Barei</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >
+oferta bezpośrednio od właściciela -
+bez kosztów prowizji dla pośredników oplaty: 1500 zl za miesiąc,
+dodatkowo czynsz: woda, ogrzewanie miejskie !! ( tj. 300 zł.) &#43; prąd
+i gaz wg zużycia 
+
+
+
+przy ulicy Dobrego Pasterza (kolo Ronda
+Barei), 45 m, 4 pietro w wieżowcu z windą, 2 samodzielne pokoje,
+kuchnia, łazienka z wanną, osobne wc z umywalką, duży balkon,
+piwnica, domofon, mieszkanie  ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166798146">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001604353360910734417109" data-criteoadid="160435336">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NTMzWDgwMA==/z/bXwAAOSwJQdW-ixs/$_19.JPG?set_id=8800005007" alt="2-pokojowe Prądnik Czerwony dla spokojnej pary 1400 zł + prąd i woda z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/2+pokojowe-pr%C4%85dnik-czerwony-dla-spokojnej-pary-1400-z%C5%82-%2B-pr%C4%85d-i-woda/1001604353360910734417109">2-pokojowe Prądnik Czerwony dla spokojnej pary 1400 zł &#43; prąd i woda</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Wynajmę mieszkanie: dwa pokoje z aneksem kuchennym i łazienką na Prądniku Czerwonym. Dla spokojnej niepalącej pary. Mieszkanie jest na parterze w domu wolnostojącym w całości przeznaczonym na najem - właściciel mieszka osobno. Mieszkanie po remoncie (wymiana paneli, malowanie, wymiana drzwi, wymiana mebli kuchennych, zlewu, okapu, oświetlenia). Wyposażone: pralka, lodówka i kuchenka, w kuchni komp ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 400 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="160435336">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001666600960910468702809" data-criteoadid="166660096">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/MzM0WDUwMA==/z/UVEAAOSwMNxXT~Pm/$_19.JPG?set_id=8800005007" alt="INDEPRO poleca - mieszkanie, Dobrego Pasterza, 127m2, 3 pokoje z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 8</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/indepro-poleca-+-mieszkanie-dobrego-pasterza-127m2-3-pokoje/1001666600960910468702809">INDEPRO poleca - mieszkanie, Dobrego Pasterza, 127m2, 3 pokoje</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >Trzypokojowe, dwupoziomowe mieszkanie o powierzchni całkowitej 
+127 m2 (użytkowej 80m2) położone przy ul. Dobrego Pasterza (Prądnik 
+Czerwony).
+
+Mieszkanie znajduje się na pierwszym piętrze w jednopiętrowym  
+dwurodzinnym domku szeregowym, ocieplonym i odnowionym (1999 r., cegła) 
+ na kameralnym osiedlu w sąsiedztwie niskiej zabudowy. Teren domu  
+monitorowany. 
+
+Mieszkanie w dobrym stani ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="166660096">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001681577000910940061109" data-criteoadid="168157700">
+            
+                
+                    <div class="result-link  ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/NDY5WDc2MQ==/z/EksAAOSwMNxXY-p8/$_19.JPG?set_id=8800005007" alt="Nowa kawalerka z miejscem postojowym, Dobrego Pasterza, Prądnik Czerwony, Quattro Business Park z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/nowa-kawalerka-z-miejscem-postojowym-dobrego-pasterza-pr%C4%85dnik-czerwony-quattro-business-park/1001681577000910940061109">Nowa kawalerka z miejscem postojowym, Dobrego Pasterza, Prądnik Czerwony, Quattro Business Park</a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >o wynajęcia kawalerka o powierzchni 33 m2 znajdująca się w 10-piętrowym boku przy ulicy Dobrego Pasterza.LOKALIZACJA: Mieszkanie znajduje się w budynku z 2015 r., w dzielnicy Prądnik Czerwony.Zlokalizowane jest w bliskiej okolicy Parku Wodnego, Multikina, Centrum Handlowego Krokus, OBI, Quattro Business Park . Mieszkanie zostało zakupione od dewelopera i jest dostępne od 15.06.2016r w pełni umeblo ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">1 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168157700">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                               
+        <li class="result pictures" data-adid="1001680847200910552984909" data-criteoadid="168084720">
+            
+                
+                    <div class="result-link highlight ">
+                
+            
+            
+
+
+                  <div class="thumb shrtHght">
+                        
+                            <div id="img-cnt">
+                            
+                                 <img src="http://inc.t9.classistatic.com/1.1.288/images//loading.gif" data-src="http://img.classistatic.com/crop/75x50/i.ebayimg.com/00/s/Mzk4WDYwMA==/z/fvMAAOSw-4BXYuhF/$_19.JPG?set_id=8800005007" alt="Mieszkanie 55m2 3 pokoje Dobrego Pasterza/Bohomolca  z Krakow, zobacz zdjęcie"  class="thumbM"/>
+                                
+                             
+                            
+                            <div id="pht-cnt">Zdjęć: 10</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <div class="container" data-telopt="" data-cannedkeys="">
+
+                        <div class="title">
+                                                    
+                            <a class="href-link" href="/a-mieszkania-i-domy-do-wynajecia/krakow/mieszkanie-55m2-3-pokoje-dobrego-pasterza-bohomolca/1001680847200910552984909">Mieszkanie 55m2 3 pokoje Dobrego Pasterza/Bohomolca </a>
+                            
+                        </div>
+
+                        
+                            <div class="description hidden" >For English please call.Ładne i przestronne mieszkanie, 3 pokoje 55 m2, Prądnik Czerwony Prezentowana nieruchomość to bardzo ładnie urządzone mieszkanie o powierzchni 55 m2,
+usytuowane na pierwszym piętrze w sześciopiętrowym bloku. Do dyspozycji w
+mieszkaniu mamy hol, kuchnię wraz z salonem, 2 pokoje, łazienkę z WC.
+Ogrzewanie i ciepła woda są miejskie. Nieruchomość jest nowa, jest urządzona, w ...</div>
+                        
+                        <div class=attributes-ctnr>
+                            
+                                
+                            
+                        </div>
+                        
+                        
+                        <div class="info">
+                            <div class="price">
+                                
+
+
+    
+
+    
+
+        
+
+
+
+
+
+    
+    
+        <span class="value">
+    
+        
+            <span class="amount">2 500 zł</span>
+            
+            
+            
+        </span>
+
+
+
+                            </div>
+
+                            
+                        </div>  
+                        
+                         <div class="category-location">
+                         
+                               
+                                 <span class="locationName city">Krakow</span>
+                                
+                               
+                           
+                       </div>
+                         
+                        
+                        <div class="meta-info"></div>
+                        
+                             
+
+                            <div class="reply-action">
+                                <div class="addAdTofav " data-synchurl = "http://www.gumtree.pl/rui-api/synchwatchlist/model/synch/pl_PL" data-adid="168084720">
+                                    <span class="starIcon icon-star-icon-gray-line" data-toggle-class="icon-star-icon-gray-line icon-star-icon"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    
+                </div>
+            </li>
+
+                           
+                       </ul>
+                 </div>
+             </div>
+           
+
+         
+          <div class="vip-bottomBlock" >
+              
+               
+    <div id="vip_bottombanner" style="margin:0 auto;width:320px"></div>
+
+               <div class="vip-sponsoredads">
+                        
+        <div id="adcontainer1" class="googleAdContainer"></div>
+    
+               </div>
+        </div>
+
+        <input type='hidden' name='criteoadId' value='169137755' /> 
+        <input type="hidden" name="NcatId" value="9008"/>
+        <input type="hidden" name="NlocId" value="3200208" />
+        <input type="hidden" name="NlocName" value="Krakow" />
+        
+    
+
+    
+    
+    <div class="vip-gallery-preview" style='display:none'>
+        <div class="gallerycontent">
+            
+                <div id="banner-container">
+                    <div id="banner-preview-header" data-gtaid='7162/Gumtree_PL' data-catcanoname="Nieruchomości/mieszkania i domy do wynajęcia"></div>
+                </div>
+            
+            <img id="preview-image" src="" alt="">
+            <div id="vip-gallery-details">
+                <div id="prd-title"></div>
+                <div id="pict-count"></div>
+            </div>
+        </div>
+        
+        <a class="left" href="javascript:void(0)"><span class="icon-vip-popup-arrow-left"></span></a>
+        <a class="right" href="javascript:void(0)"><span class="icon-vip-popup-arrow-right"></span></a>
+        <div id="icon-close"></div>
+    </div>
+    
+
+
+
+                        <div class="clear"></div>
+                    </div>
+                </section>
+            </div>
+
+           
+             
+            <div class="footer">
+                <footer>
+                    
+<div class="footer-links clearfix">
+    <div class="logo">
+        <a href="http://www.gumtree.pl/">
+               <img border="0"  src="http://inc.t9.classistatic.com/1.1.288/images/pl_PL/logo.png" alt="Home"/>
+        </a>
+    </div>
+
+    <div>
+        <h3>Poznaj nas</h3>
+        <ul>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/B-anf'>O Gumtree</span></li>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NMnfnql_Thzgerr'>Zasady zamieszczania</span></li>
+            <li><a href="http://blog.gumtree.pl/">Gumtree Blog</a></li> 
+        </ul>
+    </div>
+
+    <div>
+        <h3>Zobacz więcej</h3>
+        <ul>
+            
+             <li><a href="/t-wyszukiwarka-gory/mieszkania-i-domy-do-wynajecia/krakow/v1c9008l3200208">Najpopularniejsze wyszukiwania</a></li>
+             <li><a href="http://www.gumtree.pl/pages/zawartosc/">Tematy Gumtree</a></li>
+             <li><a href="http://www.gumtree.pl/pages/lokalizacje/">Lokalizacje</a></li>
+             <li><a href="http://www.gumtree.pl/pages/ceny-nieruchomosci">Ceny Nieruchomości</a></li>
+   
+        </ul>
+    </div>
+    
+    <div class="rightColumn">
+        <h3>Sprawy prawne</h3>
+        <ul>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/Mnfnql-xbemlfgnavn'>Zasady korzystania</span></li>
+            <li><span class='sudo-link' data-o-uri="/cevinpl-cbyvpl" data-target="_self">Polityka Prywatności</span></li>
+            <li><span class='sudo-link' data-o-uri='uggc://cbzbp.thzgerr.cy/CY/negvpyrf/cy/XO_Negvpyr/Pbbxvrf'>Informacje o Cookies</span></li>
+        </ul>
+    </div>
+    
+    <div class="rightColumn">
+        <h3>Pomoc i porady</h3>
+        <ul>
+            <li><a href="http://pomoc.gumtree.pl/PL">Pomoc</a></li>
+            <li><span class="sudo-link" data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NFnsrglCY'>Pozostań bezpiecznym</span></li>
+            <li><span class="sudo-link" data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;ph=1&amp;sf=PbagnpgHfd=&amp;f='>Napisz do nas</span></li>
+             <li><span class="sudo-link" data-o-uri='uggc://cbzbp.thzgerr.cy/CY?ynat=cy&amp;y=cy&amp;p=CXO%3NOnfvpfCY'>Promowanie ogłoszeń</span></li>
+        </ul>
+    </div>
 </div>
+
+<div class="social-links">
+
+
+
+    <!--  social media -->
+    <div class="social-media">
+        <ul class="social-media-ul buttons">
+            <li class="button"><a href="https://www.facebook.com/GumtreePolska" target="_blank"><span class="icon-seo-facebook sm-icons"></span></a></li>
+            <li class="button"><a href="https://plus.google.com/103950977256553454134/posts" target="_blank"><span class="icon-seo-gmailplus sm-icons"></span></a></li>
+            <li class="button"><a href="https://twitter.com/gumtreepolska" target="_blank"><span class="icon-seo-twitter sm-icons"></span></a></li>
+            <li class="button"><a href="http://pinterest.com/gumtreepolska" target="_blank"><span class="icon-seo-pinterest sm-icons"></span></a></li>
+            <li class="button"><a href="http://www.youtube.com/user/GumtreePolska" target="_blank"><span class="icon-seo-youtube sm-icons"></span></a></li>
+        </ul>
+    </div>
 </div>
+<div class="cpyrt">Copyright © 2014-2016 eBay.  Wszelkie Prawa zastrzeżone.</div>
+
+                </footer>
+            </div>
+            
+        </div>
+        
+    </div>
 </div>
-<div class="alternate-line">&nbsp;</div>
-<div class="alternate-posted-by-box">
-<div class="alternate-view-all-ads"> <span class="alternate-active-since">
-Użytkownik od: kwi 2010
-</span>
-</div>
-<div class="alternate-top-p2">&nbsp;</div>
-<div class="alternate-icon-poster member">&nbsp;</div>
-<div class="alternate-poster-info"> <span onclick="clickEncoded('aHR0cDovL3d3dy5ndW10cmVlLnBsL2MtUG9zdGVyc090aGVyQWRzLVcwUVFVc2VySWRaNTAxNjkzMTI=')" class="sudo-link"> Zobacz wszystkie ogłoszenia tego użytkownika Gumtree
-</span>
-</div>
-<div>&nbsp;</div>
-</div>
-</div>
-<div><p>
-<center>
-<script jsinline type="text/javascript">
-mpt = new Date();
-mpts = mpt.getTimezoneOffset() + mpt.getTime();
-if (!document.layers) {
-document.writeln("<scr"+"ipt type=\"text\/javascript\" src=\"http:\/\/altfarm.mediaplex.com\/ad\/js\/10832-110408-23165-0\?mpt=" + mpts + "&mpvc=\"><\/script>");
-} else {
-document.write("<a href=\"http://altfarm.mediaplex.com/ad/ck/10832-110408-23165-0?mpt=" + mpts + "\"><img src=\"http://altfarm.mediaplex.com/ad/bn/10832-110408-23165-0?mpt=" + mpts
-+ "\" alt=\"Click Here\" border=\"0\"></a>" );
-}
-</script>
-<noscript>
-<a href="http://altfarm.mediaplex.com/ad/nc/10832-110408-23165-0">
-<img src="http://altfarm.mediaplex.com/ad/nb/10832-110408-23165-0"
-alt="Click Here" border="0">
-</a>
-</noscript>
-</center>
-<p>
-<!-- Ad section -->
-<div id='div-gpt-ad-1318934199048-0' style='width:300px; height:250px;margin:6px auto'></div>
-<div id='div-gpt-ad-1318934199048-1' style='width:300px; height:250px;margin:6px auto'></div></div>
-<br/>
-<br/>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div id="bottom">
-<div class="footer">
-<div>
-<link type="text/css" rel="stylesheet" href="https://securepic.classistatic.com/image/site/au/global_footer/new_global_footer.css" />
-<style type="text/css">
-.footer {
-border-top: 0px solid #BEC3C7;
-margin: 0px 0px 0px 15px;
-padding: 10px 0 10px 0;
-}
-.footer li {
-list-style:none;
-display: list-item;
-color: #676B5C;
-font-size:11px;
-margin:0;
-padding:0 5px 0 0;
-border-right: 0px solid #ffffcc;
-}
-.get-to-know-us,.explore-gumtree,.legalbits,.tips-help,.blog-latest,.gumtree-elsewhere{
-display:inline;
-float:left;
-}
-.get-to-know-us{
-margin-left:10px;
-}
-.blog-latest{
-margin-left:0px;
-}
-#footer-links > div {
-margin-right: 10px;
-width: 150px;
-}
-#footer-links .gumtree-elsewhere {
-width: 120px;
-}
-#footer .social-facebook,
-#footer .social-twitter,
-#footer .social-google,
-#footer .social-pinterest,
-#footer .social-youtube{ display:block; margin-bottom:3px; height:18px; line-height:18px; padding-left:20px; background-repeat:no-repeat; background-position:left center; background-size:18px 18px; }
-</style>
-<div id="footer" class="footer">
-<div id="footer-links" class="container">
-<div class="gumtree-legal" style="display:inline">
-<h3><a href="http://www.gumtree.pl">
-<img src="http://pic.classistatic.com/image/site/au/global_footer/footer_logo.gif" border="0" alt=""></a></h3>
-</div>
-<div class="get-to-know-us">
-<h3>Poznaj nas</h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?article=122">O Gumtree</a></li>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?category=5">Zasady zamieszczania ogłoszeń</a></li>
-</ul>
-</div>
-<div class="explore-gumtree">
-<h3>Odkryj więcej</h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?category=8">Promowanie ogłoszeń</a></li>
-<li><a href="http://www.gumtree.pl/c-PopularSearches">Popularne wyszukiwania</a></li>
-</ul>
-</div>
-<div class="legalbits">
-<h3>Sprawy prawne</h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?article=120">Zasady korzystania</a></li>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?article=121">Polityka Prywatności</a></li>
-</ul>
-</div>
-<div class="tips-help">
-<h3>Pomoc i porady </h3>
-<ul>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php">Pomoc</a></li>
-<li><a href="http://gumtreehelp.com/pl/knowledgebase.php?category=7">Pozostań bezpiecznym </a></li>
-<li><a href="http://gumtreehelp.com/pl/index.php">Napisz do nas </a></li>
-<li><a href="http://blog.gumtree.pl/">Gumtree Blog </a></li>
-</ul>
-</div>
-<div class="gumtree-elsewhere">
-<h3>Śledź nas</h3>
-<ul>
-<li><a class="social-facebook" href="https://www.facebook.com/GumtreePolska" target="_blank">Facebook</a></li>
-<li><a class="social-google" href="https://plus.google.com/103950977256553454134/posts" rel="publisher" target="_blank">Google+</a></li>
-<li><a class="social-twitter" href="https://twitter.com/gumtreepolska" target="_blank">Twitter</a></li>
-<li><a class="social-youtube" href="http://www.youtube.com/user/GumtreePolska" target="_blank">YouTube</a></li>
-<li><a class="social-pinterest" href="http://pinterest.com/gumtreepolska" target="_blank">Pinterest</a></li>
-</ul>
-</div>
-<div class="blog-latest">
-</div>
-</div>
-<!-- Start Alexa Certify Javascript -->
-<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=wS4fj1a4ZP00g+" style="display:none" height="1" width="1" alt="" /></noscript>
-<!-- End Alexa Certify Javascript -->
-<div id="copyright">&nbsp;</div>
-</div>
-<div class="cpyrt">
-Copyright © 2015 eBay International AG
-</div>
-<!--<style> html .fb_share_link { margin-left: 5px; padding:0 0 0 20px; height:16px; background:url(http://b.static.ak.fbcdn.net/images/share/facebook_share_icon.gif?8:26981) no-repeat top left; }</style>
-<a href="http://altfarm.mediaplex.com/ad/ck/9860-90999-23165-0?mpt=1&mpre=http%3A//www.facebook.com/share.php%3Fu%3Dhttp%3A//gumtree.pl.gumtree.pl/c-ViewAd%3FAdId%3D624256983" onclick="return fbs_click()" target="_blank" class="fb_share_link"><font size="2">Dołącz do Fanów na Facebook'u</font></a>&nbsp;&nbsp;|<img src="http://pic.classistatic.com/image/site/au/twitter_16x16_FFFAEE.GIF" hspace="5"/><a href="http://twitter.com/gumtreepolska/" target="_blank"><font size="2">Śledź nas na Twitterze</font></a>-->
-</div>
-</div>
-</div>
-<!-- Start of HtmlPageTail -->
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e896/c3js/classifieds/rel1/common/common-min.js"></script>
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e896/c3js/classifieds/rel1//pages/viewAd-min.js"></script>
-<script type="text/javascript" language="JavaScript" src="http://include.classistatic.com/include/e896/c3js/classifieds/rel1/shared_pages/mapServices-min.js"></script>
-<div id="OandN" class="modal">
-<table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td class="modalHeading">
-<div class="layerTitleText"></div>
-<div class="closeBtn close" title="Close">&nbsp;</div>
-</td>
-</tr>
-<tr class="layerContent">
-<td>
-<div id="OandNContent" class="OandNCont">
-<div class="OandNData">
-<b>Oferty:</b> Ogłoszenia z ceną mogą zawierać również opcję złożenia oferty. Złożone oferty nie są wiążące. Ogłoszeniodawca otrzymuje szczegóły oferty po jej złożeniu. Ogłoszeniodawca może odpowiedzieć na ofertę lub nie.
-<br/><br/></br>
-<b>Powiadomienia:</b> Podczas składania oferty możesz zdecydować się na codzienne powiadomienia, jeśli dla ogłoszenia złożono więcej ofert. Możesz zdecydować o nieprzyjmowaniu tych powiadomień poprzez usunięcie zaznaczenia z pola wyboru.
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<script>
-var kj_ads_queryParam = {"adsenseQuery":"Atrakcyjne mieszkanie jednopokojowe na ul.Retoryka","afsChannels":"r_Krakow,Total,c_housing,l_vip","locale":"pl-PL","adsenseClientAFS":"gumtree-pl-vip","type":"google","afcChannels":"r_Krakow,Total,c_housing","pageNum":"1","totalAds":3,"isGoogleTest":false,"adSafe":false,"adsenseClientAFC":"","invocationType":"afs","afcClientId":"ca-gumtree-pl_js"};
-var kj_ads_dispParam = {"layOut":"","mediaplexDomain":"http://mktg.gumtree.pl/cm/bk/","dispType":"vip","trackType":"mplx","mplxUrl":"9860-56167-3840-27?LocClass-AdSenseClick=1&amp;mpuid=;;;;;;;r_Krakow,c_housing;;1431970463999"};
-kj_ads_dispParam.imgPlaceHolderIconUrl = 'http://pic.classistatic.com/image/pics/classifieds/pl-PL/image_placeholder_gt1.gif';
-kj_ads_dispParam.adSenseTitle = 'Linki sponsorowane';
-</script>
-<script>
-Kj_ad.init(kj_ads_queryParam,kj_ads_dispParam);
-</script>
-<style>
-#persistInput.storeMachId {behavior:url(#default#userData);}
-</style>
-<form id="persistForm">
-<input type="hidden" class="storeMachId" id="persistInput"/>
-</form>
-<script>
-Kj.initMachineId({isProduction:true,cookiePath:'http://include.classistatic.com/include/e896/c3js/classifieds/rel1/FLASH/'});
-</script>
-<!-- CC JS Includes -->
-<script type="text/javascript" charset="UTF-8">
-//start-CC JS
-$().ready(function(){$(".s2f").kjmenu_makeMenu({data:"\0030\003Podziel się na Facebooku\0030\004"+"\0031\003Podziel się na Twitterze\0031\004"+"\0033\003Wyślij znajomym\0033",OnSelect:function(mitem){switch(mitem.value){case'0':window.open('http://www.facebook.com/share.php?src=bm&u=http%3A%2F%2Fgumtree.pl%2Fc-ViewAd%3FAdId%3D624256983%26utm_source%3DFacebook%26utm_medium%3DSocial%252BMedia%26utm_campaign%3DPost%252BTo%252BFacebook&t=Atrakcyjne%20mieszkanie%20%20jednopokojowe%20%20na%20ul.Retoryka%20-%20Gumtree%20Polska&v=3');break;case'1':window.open('http://twitter.com/?status=http%3A%2F%2Fgumtree.pl%2Fc-ViewAd%3FAdId%3D624256983');break;case'3':location.href='/c-SendToFriend?AdId=624256983';break;}}});});var googletag=googletag||{};googletag.cmd=googletag.cmd||[];(function(){var gads=document.createElement('script');gads.async=true;gads.type='text/javascript';var useSSL='https:'==document.location.protocol;gads.src=(useSSL?'https:':'http:')+'//www.googletagservices.com/tag/js/gpt.js';var node=document.getElementsByTagName('script')[0];node.parentNode.insertBefore(gads,node);})();$(document).ready(function(){pageURL=window.location.href;curLOC=$("#searchLoc_name").text()||"";curLOC=curLOC.replace(/\W+/g,'_');googletag.cmd.push(function(){googletag.defineSlot('/7162/Gumtree_PL/Nieruchomo_ci_VIP/mieszkania_i_domy_do_wynaj_cia',[300,250],'div-gpt-ad-1318934199048-0').addService(googletag.pubads()).setTargeting("loc",curLOC).setTargeting("kw","Atrakcyjne,mieszkanie,jednopokojowe,na,ul,Retoryka").setTargeting("dc_ref",pageURL);googletag.defineSlot('/7162/Gumtree_PL/Nieruchomo_ci_VIP/mieszkania_i_domy_do_wynaj_cia',[300,250],'div-gpt-ad-1318934199048-1').addService(googletag.pubads()).setTargeting("loc",curLOC).setTargeting("kw","Atrakcyjne,mieszkanie,jednopokojowe,na,ul,Retoryka").setTargeting("dc_ref",pageURL);googletag.defineSlot('/7162/Gumtree_PL/Nieruchomo_ci_VIP/mieszkania_i_domy_do_wynaj_cia',[[728,90],[750,200]],'div-gpt-ad-vip-topbanner').addService(googletag.pubads()).setTargeting("loc",curLOC).setTargeting("kw","Atrakcyjne,mieszkanie,jednopokojowe,na,ul,Retoryka").setTargeting("dc_ref",pageURL);googletag.enableServices();});googletag.cmd.push(function(){googletag.display('div-gpt-ad-1318934199048-0');});googletag.cmd.push(function(){googletag.display('div-gpt-ad-1318934199048-1');});googletag.cmd.push(function(){googletag.display('div-gpt-ad-vip-topbanner');});});setTimeout(function(){var a=document.createElement("script");var b=document.getElementsByTagName("script")[0];a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0017/0492.js?"+Math.floor(new Date().getTime()/3600000);a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)},1);_atrk_opts={atrk_acct:"wS4fj1a4ZP00g+",domain:"gumtree.pl",dynamic:true};(function(){var as=document.createElement('script');as.type='text/javascript';as.async=true;as.src="https://d31qbv1cthcecs.cloudfront.net/atrk.js";var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as,s);})();
-//end -CC JS
-//start-TAIL JS
-Kj.initGA({isGaSiteTrackerId:true,isGaTrackerId:false});$(document).ready(function(){$('.mainTabs a[href$="c-SelectCategory"]').bind('click',function(){Kj.Ga.trackEventsinGA({category:'Header_PostAdTab',action:'Header_PostAdTab_clicked',opt_label:undefined,track_on_area_level:true});});});var catdata="\0030\003Wszystkie kategorie\0030\0031\0030\004\0030-0\003Nieruchomości\0032\0031\0031\0040-0\0030-0_0\003Wszystkie Nieruchomości\0032\0031\0030\0040-0\0030-0_1\003pokoje do wynajęcia\0039000\0031\0031\0040-0\0030-0_2\003mieszkania i domy do wynajęcia\0039008\0031\0031\0040-0\0030-0_3\003mieszkania i domy - sprzedam i kupię\0039073\0031\0031\0040-0\0030-0_4\003działki\0039194\0031\0031\0040-0\0030-0_5\003krótki termin i domki letniskowe\0039074\0031\0031\0040-0\0030-0_6\003lokal i biuro\0039072\0031\0031\0040-0\0030-0_7\003parking i garaż\0039071\0031\0031\004\0030-1\003Motoryzacja\0035\0031\0031\0040-1\0030-1_0\003Wszystkie Motoryzacja\0035\0031\0030\0040-1\0030-1_1\003samochody osobowe\0039026\0031\0031\0040-1\0030-1_2\003części i akcesoria samochodowe\0039636\0031\0031\0040-1\0030-1_3\003samochody dostawcze\0039027\0031\0031\0040-1\0030-1_4\003motocykle i skutery\0039028\0031\0031\0040-1\0030-1_5\003części i akcesoria do motocykli\0039634\0031\0031\0040-1\0030-1_6\003ciągniki i maszyny rolnicze\0039154\0031\0031\0040-1\0030-1_7\003ciężki sprzęt\0039622\0031\0031\0040-1\0030-1_8\003przyczepy i naczepy\0039155\0031\0031\0040-1\0030-1_9\003quady, atv i inne\0039621\0031\0031\0040-1\0030-1_10\003części i akcesoria do innych pojazdów\0039635\0031\0031\004\0030-2\003Łodzie i Pojazdy wodne\0039218\0031\0031\0040-2\0030-2_0\003Wszystkie Łodzie i Pojazdy wodne\0039218\0031\0030\0040-2\0030-2_1\003motorówki\0039219\0031\0031\0040-2\0030-2_2\003skutery wodne\0039222\0031\0031\0040-2\0030-2_3\003żaglówki\0039221\0031\0031\0040-2\0030-2_4\003kajaki i pontony\0039220\0031\0031\0040-2\0030-2_5\003silniki do łodzi\0039223\0031\0031\0040-2\0030-2_6\003akcesoria do łodzi\0039224\0031\0031\0040-2\0030-2_7\003inne pojazdy wodne\0039225\0031\0031\0040-2\0030-2_8\003łodzie wiosłowe\0039226\0031\0031\004\0030-3\003Elektronika\0039237\0031\0031\0040-3\0030-3_0\003Wszystkie Elektronika\0039237\0031\0030\0040-3\0030-3_1\003audio i hi-fi\0039260\0031\0031\0040-3\0030-3_2\003cesje\0039353\0031\0031\0040-3\0030-3_3\003fotografia i video\0039281\0031\0031\0040-3\0030-3_4\003gry video i konsole\0039265\0031\0031\0040-3\0030-3_5\003komputery i software\0039238\0031\0031\0040-3\0030-3_6\003radiokomunikacja\0039352\0031\0031\0040-3\0030-3_7\003tablety i bookreadery\0039259\0031\0031\0040-3\0030-3_8\003telefony i akcesoria\0039247\0031\0031\0040-3\0030-3_9\003telewizory i odtwarzacze\0039276\0031\0031\0040-3\0030-3_10\003elektronika inne\0039286\0031\0031\004\0030-4\003Zwierzaki\0039124\0031\0031\0040-4\0030-4_0\003Wszystkie Zwierzaki\0039124\0031\0030\0040-4\0030-4_1\003akwarystyka\0039612\0031\0031\0040-4\0030-4_2\003koty i kocięta\0039125\0031\0031\0040-4\0030-4_3\003psy i szczenięta\0039131\0031\0031\0040-4\0030-4_4\003ptaki\0039617\0031\0031\0040-4\0030-4_5\003inne zwierzaki\0039126\0031\0031\0040-4\0030-4_6\003zwierzęta gospodarskie\0039618\0031\0031\0040-4\0030-4_7\003zgubiono lub znaleziono\0039128\0031\0031\0040-4\0030-4_8\003akcesoria dla zwierząt\0039129\0031\0031\0040-4\0030-4_9\003usługi dla zwierząt\0039130\0031\0031\004\0030-5\003Społeczność\0036\0031\0031\0040-5\0030-5_0\003Wszystkie Społeczność\0036\0031\0030\0040-5\0030-5_1\003drobne pytania i hobby\0039030\0031\0031\0040-5\0030-5_2\003sport, taniec i partnerzy do gry\0039032\0031\0031\0040-5\0030-5_3\003zespoły i muzycy\0039033\0031\0031\0040-5\0030-5_4\003wolontariat\0039227\0031\0031\0040-5\0030-5_5\003wydarzenia lokalne\0039228\0031\0031\0040-5\0030-5_6\003wymiana umiejętności\0039035\0031\0031\0040-5\0030-5_7\003zgubiono lub znaleziono\0039036\0031\0031\0040-5\0030-5_8\003przejazdy\0039037\0031\0031\0040-5\0030-5_9\003podróże\0039038\0031\0031\0040-5\0030-5_10\003dziękuję\0039039\0031\0031\0040-5\0030-5_11\003wyznania\0039084\0031\0031\0040-5\0030-5_12\003szukam starych przyjaciół\0039132\0031\0031\004\0030-6\003Dom i Ogród\0034\0031\0031\0040-6\0030-6_0\003Wszystkie Dom i Ogród\0034\0031\0030\0040-6\0030-6_1\003AGD\0039366\0031\0031\0040-6\0030-6_2\003meble\0039376\0031\0031\0040-6\0030-6_3\003narzędzia i materiały budowlane\0039384\0031\0031\0040-6\0030-6_4\003ogród\0039398\0031\0031\0040-6\0030-6_5\003produkty żywnościowe i napoje\0039407\0031\0031\0040-6\0030-6_6\003wyposażenie wnętrz\0039408\0031\0031\0040-6\0030-6_7\003inne do domu i ogrodu\0039023\0031\0031\004\0030-7\003Antyki i kolekcje\0039672\0031\0031\0040-7\0030-7_0\003Wszystkie Antyki i kolekcje\0039672\0031\0030\0040-7\0030-7_1\003karty kolekcjonerskie\0039673\0031\0031\0040-7\0030-7_2\003książki i poligrafia\0039674\0031\0031\0040-7\0030-7_3\003lampy, świeczniki i lustra\0039675\0031\0031\0040-7\0030-7_4\003meble zabytkowe\0039676\0031\0031\0040-7\0030-7_5\003medale i odznaczenia\0039677\0031\0031\0040-7\0030-7_6\003monety i banknoty\0039678\0031\0031\0040-7\0030-7_7\003obrazy i rzeźby\0039679\0031\0031\0040-7\0030-7_8\003rękodzieło\0039680\0031\0031\0040-7\0030-7_9\003zastawy kuchenne\0039681\0031\0031\0040-7\0030-7_10\003zabytkowe tekstylia i dekoracje\0039682\0031\0031\0040-7\0030-7_11\003zegary\0039683\0031\0031\0040-7\0030-7_12\003znaczki pocztowe\0039684\0031\0031\0040-7\0030-7_13\003inne kolekcje\0039685\0031\0031\004\0030-8\003Dla Dziecka\0039459\0031\0031\0040-8\0030-8_0\003Wszystkie Dla Dziecka\0039459\0031\0030\0040-8\0030-8_1\003artykuły szkolne\0039468\0031\0031\0040-8\0030-8_2\003bezpieczeństwo i zdrowie dziecka\0039460\0031\0031\0040-8\0030-8_3\003buty dla dzieci\0039461\0031\0031\0040-8\0030-8_4\003chrzciny i komunie\0039469\0031\0031\0040-8\0030-8_5\003ciąża i karmienie\0039464\0031\0031\0040-8\0030-8_6\003foteliki - nosidełka\0039462\0031\0031\0040-8\0030-8_7\003kąpiel i zdrowie\0039470\0031\0031\0040-8\0030-8_8\003kojce i chodziki\0039471\0031\0031\0040-8\0030-8_9\003meble i wystrój pokoju\0039463\0031\0031\0040-8\0030-8_10\003rowerki i inne pojazdy\0039472\0031\0031\0040-8\0030-8_11\003odzież dziecięca\0039465\0031\0031\0040-8\0030-8_12\003wózki dla dzieci\0039466\0031\0031\0040-8\0030-8_13\003zabawki\0039467\0031\0031\0040-8\0030-8_14\003inne dla dziecka\0039489\0031\0031\004\0030-9\003Moda\0039541\0031\0031\0040-9\0030-9_0\003Wszystkie Moda\0039541\0031\0030\0040-9\0030-9_1\003akcesoria i galanteria\0039542\0031\0031\0040-9\0030-9_2\003biżuteria i zegarki\0039563\0031\0031\0040-9\0030-9_3\003obuwie damskie\0039596\0031\0031\0040-9\0030-9_4\003obuwie męskie\0039604\0031\0031\0040-9\0030-9_5\003odzież damska\0039565\0031\0031\0040-9\0030-9_6\003odzież męska\0039584\0031\0031\0040-9\0030-9_7\003odzież i obuwie robocze\0039660\0031\0031\0040-9\0030-9_8\003pasmanteria\0039549\0031\0031\0040-9\0030-9_9\003torebki i torby\0039551\0031\0031\0040-9\0030-9_10\003inne ubrania\0039553\0031\0031\0040-9\0030-9_11\003walizki i plecaki\0039552\0031\0031\004\0030-10\003Zdrowie i Uroda\0039690\0031\0031\0040-10\0030-10_0\003Wszystkie Zdrowie i Uroda\0039690\0031\0030\0040-10\0030-10_1\003zdrowie\0039691\0031\0031\0040-10\0030-10_2\003kosmetyki\0039697\0031\0031\0040-10\0030-10_3\003perfumy i dezodoranty\0039698\0031\0031\004\0030-11\003Sport i Fitness\0039706\0031\0031\0040-11\0030-11_0\003Wszystkie Sport i Fitness\0039706\0031\0030\0040-11\0030-11_1\003fitness i siłownia\0039745\0031\0031\0040-11\0030-11_2\003sport\0039746\0031\0031\0040-11\0030-11_3\003karty i gadżety sportowe\0039753\0031\0031\0040-11\0030-11_4\003sprzęt turystyczny\0039756\0031\0031\004\0030-12\003Muzyka i Rozrywka\0039490\0031\0031\0040-12\0030-12_0\003Wszystkie Muzyka i Rozrywka\0039490\0031\0030\0040-12\0030-12_1\003bilety\0039491\0031\0031\0040-12\0030-12_2\003instrumenty i akcesoria muzyczne\0039496\0031\0031\0040-12\0030-12_3\003komiksy i czasopisma\0039497\0031\0031\0040-12\0030-12_4\003książki\0039498\0031\0031\0040-12\0030-12_5\003CD, kasety i płyty\0039514\0031\0031\0040-12\0030-12_6\003filmy i DVD\0039513\0031\0031\0040-12\0030-12_7\003gry planszowe i puzzle\0039515\0031\0031\004\0030-13\003Oferty Pracy\0038\0031\0031\0040-13\0030-13_0\003Wszystkie Oferty Pracy\0038\0031\0030\0040-13\0030-13_1\003bar, restauracja i gastronomia\0039056\0031\0031\0040-13\0030-13_2\003biuro i administracja\0039052\0031\0031\0040-13\0030-13_3\003praca na budowie i pracownicy fizyczni\0039142\0031\0031\0040-13\0030-13_4\003fachowcy\0039203\0031\0031\0040-13\0030-13_5\003finanse i księgowość\0039050\0031\0031\0040-13\0030-13_6\003grafika i web design\0039140\0031\0031\0040-13\0030-13_7\003hostessy, modele i aktorzy\0039141\0031\0031\0040-13\0030-13_8\003hr, kadry i rekrutacja\0039053\0031\0031\0040-13\0030-13_9\003inżynierowie, technicy i architekci\0039094\0031\0031\0040-13\0030-13_10\003kierowcy i kurierzy\0039097\0031\0031\0040-13\0030-13_11\003kontrola i inwentaryzacja\0039208\0031\0031\0040-13\0030-13_12\003krawiectwo i moda\0039204\0031\0031\0040-13\0030-13_13\003magazynier\0039619\0031\0031\0040-13\0030-13_14\003marketing, media i pr\0039048\0031\0031\0040-13\0030-13_15\003mlm\0039532\0031\0031\0040-13\0030-13_16\003nauczyciele i edukacja\0039060\0031\0031\0040-13\0030-13_17\003obsługa klienta i call center\0039098\0031\0031\0040-13\0030-13_18\003ochrona\0039200\0031\0031\0040-13\0030-13_19\003opiekunki i nianie\0039059\0031\0031\0040-13\0030-13_20\003pielęgnacja i uroda\0039054\0031\0031\0040-13\0030-13_21\003praca dla studentów\0039206\0031\0031\0040-13\0030-13_22\003praca na produkcji\0039620\0031\0031\0040-13\0030-13_23\003praca w hotelu\0039058\0031\0031\0040-13\0030-13_24\003prawo i prokuratura\0039049\0031\0031\0040-13\0030-13_25\003programiści, informatyka i internet\0039005\0031\0031\0040-13\0030-13_26\003służba zdrowia i farmacja\0039055\0031\0031\0040-13\0030-13_27\003spedycja\0039205\0031\0031\0040-13\0030-13_28\003sport i fitness\0039202\0031\0031\0040-13\0030-13_29\003sprzątanie i pomoc domowa\0039138\0031\0031\0040-13\0030-13_30\003sprzedaż, handel i praca w sklepie\0039061\0031\0031\0040-13\0030-13_31\003turystyka\0039207\0031\0031\0040-13\0030-13_32\003ulotki\0039201\0031\0031\0040-13\0030-13_33\003weterynaria i rolnictwo\0039095\0031\0031\0040-13\0030-13_34\003video i fotografia\0039212\0031\0031\0040-13\0030-13_35\003praca inne\0039099\0031\0031\004\0030-14\003Szukający Zatrudnienia\0039290\0031\0031\0040-14\0030-14_0\003Wszystkie Szukający Zatrudnienia\0039290\0031\0030\0040-14\0030-14_1\003gastronomia\0039291\0031\0031\0040-14\0030-14_2\003biuro i administracja\0039292\0031\0031\0040-14\0030-14_3\003pracownicy fizyczni\0039293\0031\0031\0040-14\0030-14_4\003specjaliści i technicy\0039294\0031\0031\0040-14\0030-14_5\003kierowcy i kurierzy\0039300\0031\0031\0040-14\0030-14_6\003marketing, reklama i PR\0039304\0031\0031\0040-14\0030-14_7\003opiekunki i edukacja\0039305\0031\0031\0040-14\0030-14_8\003ochrona\0039306\0031\0031\0040-14\0030-14_9\003pielęgnacja i uroda\0039308\0031\0031\0040-14\0030-14_10\003sprzedaż i praca w sklepie\0039311\0031\0031\0040-14\0030-14_11\003szukam pracy studenckiej\0039309\0031\0031\0040-14\0030-14_12\003turystyka\0039312\0031\0031\0040-14\0030-14_13\003praca inne\0039313\0031\0031\004\0030-15\003Usługi\0039\0031\0031\0040-15\0030-15_0\003Wszystkie Usługi\0039\0031\0030\0040-15\0030-15_1\003biura podróży\0039150\0031\0031\0040-15\0030-15_2\003współpraca biznesowa\0039325\0031\0031\0040-15\0030-15_3\003catering\0039554\0031\0031\0040-15\0030-15_4\003usługi finansowe\0039066\0031\0031\0040-15\0030-15_5\003fotografia i video\0039146\0031\0031\0040-15\0030-15_6\003graficy i usługi IT\0039234\0031\0031\0040-15\0030-15_7\003hurt i handel\0039065\0031\0031\0040-15\0030-15_8\003komputery serwis i handel\0039102\0031\0031\0040-15\0030-15_9\003usługi kurierskie\0039337\0031\0031\0040-15\0030-15_10\003nauka i edukacja\0039063\0031\0031\0040-15\0030-15_11\003mechanika, autoskup, pomoc drogowa\0039145\0031\0031\0040-15\0030-15_12\003media i reklama\0039217\0031\0031\0040-15\0030-15_13\003muzycy i artyści\0039148\0031\0031\0040-15\0030-15_14\003ogrodnictwo\0039214\0031\0031\0040-15\0030-15_15\003opieka i agencje niań\0039152\0031\0031\0040-15\0030-15_16\003pielęgnacja i uroda\0039064\0031\0031\0040-15\0030-15_17\003usługi prawne\0039233\0031\0031\0040-15\0030-15_18\003przeprowadzki i transport towarów\0039144\0031\0031\0040-15\0030-15_19\003przyjęcia, śluby, komunie\0039104\0031\0031\0040-15\0030-15_20\003remont i budowa\0039101\0031\0031\0040-15\0030-15_21\003serwis i montaż\0039236\0031\0031\0040-15\0030-15_22\003sport i fitness\0039151\0031\0031\0040-15\0030-15_23\003sprzątanie\0039149\0031\0031\0040-15\0030-15_24\003taxi i przewozy osobowe\0039147\0031\0031\0040-15\0030-15_25\003telefony\0039341\0031\0031\0040-15\0030-15_26\003tłumaczenia i redakcja tekstu\0039216\0031\0031\0040-15\0030-15_27\003utylizacja\0039213\0031\0031\0040-15\0030-15_28\003wypożyczalnie\0039215\0031\0031\0040-15\0030-15_29\003zdrowie\0039235\0031\0031\0040-15\0030-15_30\003inne usługi\0039105\0031\0031\004";$().ready(function(){$("#searchCat").kjmenu_makeMenu({data:catdata,cssWrapperClass:'nationalSite',OnSelect:function(mitem){$("#searchCat_name").html(mitem.name+"<img border='0' src='http://pic.classistatic.com/image/pics/classifieds/spacer.gif' width='25px' height='1px'/></div>");document.frmSearchAd.CatId.value=mitem.value;$('.sfsp').remove();$('.sfasp').remove();}});});var sdata="\0030\003Polska\003202\0031\0030\004\0030-0\003Dolnośląskie\0033200007\0031\0031\0040-0\0030-0_0\003Wszystkie Dolnośląskie\0033200007\0031\0030\0040-0\0030-0_1\003Bardo\0033200595\0031\0031\0040-0\0030-0_2\003Bielawa\0033200085\0031\0031\0040-0\0030-0_3\003 Bierutów\0033200435\0031\0031\0040-0\0030-0_4\003Bogatynia\0033200086\0031\0031\0040-0\0030-0_5\003 Boguszów-Gorce\0033200437\0031\0031\0040-0\0030-0_6\003Bolesławiec\0033200087\0031\0031\0040-0\0030-0_7\003 Bolków\0033200436\0031\0031\0040-0\0030-0_8\003 Brzeg Dolny\0033200438\0031\0031\0040-0\0030-0_9\003 Bystrzyca Kłodzka\0033200439\0031\0031\0040-0\0030-0_10\003 Chocianów\0033200440\0031\0031\0040-0\0030-0_11\003 Chojnów\0033200441\0031\0031\0040-0\0030-0_12\003Długołęka\0033200609\0031\0031\0040-0\0030-0_13\003Duszniki Zdrój\0033200594\0031\0031\0040-0\0030-0_14\003Dzierżoniów\0033200088\0031\0031\0040-0\0030-0_15\003Głogów\0033200089\0031\0031\0040-0\0030-0_16\003Góra\0033200090\0031\0031\0040-0\0030-0_17\003 Gryfów Śląski\0033200442\0031\0031\0040-0\0030-0_18\003Jawor\0033200091\0031\0031\0040-0\0030-0_19\003 Jelcz-Laskowice\0033200443\0031\0031\0040-0\0030-0_20\003Jelenia Góra\0033200092\0031\0031\0040-0\0030-0_21\003Kamienna Góra\0033200093\0031\0031\0040-0\0030-0_22\003Karpacz\0033200094\0031\0031\0040-0\0030-0_23\003Kąty Wrocławskie\0033200621\0031\0031\0040-0\0030-0_24\003Kłodzko\0033200095\0031\0031\0040-0\0030-0_25\003 Kowary\0033200444\0031\0031\0040-0\0030-0_26\003 Kudowa-Zdrój\0033200445\0031\0031\0040-0\0030-0_27\003Legnica\0033200096\0031\0031\0040-0\0030-0_28\003Lubań\0033200097\0031\0031\0040-0\0030-0_29\003Lubomierz\0033200597\0031\0031\0040-0\0030-0_30\003Lubin\0033200098\0031\0031\0040-0\0030-0_31\003Lwówek Śląski\0033200099\0031\0031\0040-0\0030-0_32\003Międzylesie\0033200599\0031\0031\0040-0\0030-0_33\003Milicz\0033200100\0031\0031\0040-0\0030-0_34\003Nowa Ruda\0033200101\0031\0031\0040-0\0030-0_35\003 Oborniki Śląskie\0033200446\0031\0031\0040-0\0030-0_36\003Oława\0033200102\0031\0031\0040-0\0030-0_37\003Oleśnica\0033200103\0031\0031\0040-0\0030-0_38\003Piechowice\0033200434\0031\0031\0040-0\0030-0_39\003 Pieszyce\0033200447\0031\0031\0040-0\0030-0_40\003 Piława Górna\0033200448\0031\0031\0040-0\0030-0_41\003Polanica-Zdrój\0033200104\0031\0031\0040-0\0030-0_42\003Polkowice\0033200105\0031\0031\0040-0\0030-0_43\003 Strzegom\0033200449\0031\0031\0040-0\0030-0_44\003Strzelin\0033200107\0031\0031\0040-0\0030-0_45\003 Syców\0033200450\0031\0031\0040-0\0030-0_46\003Marciszów\0033200598\0031\0031\0040-0\0030-0_47\003Sobótka\0033200600\0031\0031\0040-0\0030-0_48\003Środa Śląska\0033200108\0031\0031\0040-0\0030-0_49\003Szklarska Poręba\0033200106\0031\0031\0040-0\0030-0_50\003Świdnica\0033200109\0031\0031\0040-0\0030-0_51\003Świebodzice\0033200110\0031\0031\0040-0\0030-0_52\003Szczawno-Zdrój\0033200601\0031\0031\0040-0\0030-0_53\003Trzebnica\0033200111\0031\0031\0040-0\0030-0_54\003Wałbrzych\0033200112\0031\0031\0040-0\0030-0_55\003Wołów\0033200113\0031\0031\0040-0\0030-0_56\003Wrocław\0033200114\0031\0031\0040-0\0030-0_57\003Ząbkowice Śląskie\0033200115\0031\0031\0040-0\0030-0_58\003Zgorzelec\0033200116\0031\0031\0040-0\0030-0_59\003 Ziębice\0033200451\0031\0031\0040-0\0030-0_60\003Złotoryja\0033200117\0031\0031\0040-0\0030-0_61\003 Żarów\0033200452\0031\0031\0040-0\0030-0_62\003 Żmigród\0033200453\0031\0031\004\0030-1\003Kujawsko - pomorskie\0033200075\0031\0031\0040-1\0030-1_0\003Wszystkie Kujawsko - pomorskie\0033200075\0031\0030\0040-1\0030-1_1\003Aleksandrów Kujawski\0033200118\0031\0031\0040-1\0030-1_2\003 Barcin\0033200454\0031\0031\0040-1\0030-1_3\003Brodnica\0033200119\0031\0031\0040-1\0030-1_4\003Bydgoszcz\0033200120\0031\0031\0040-1\0030-1_5\003Chełmno\0033200121\0031\0031\0040-1\0030-1_6\003 Chełmża\0033200455\0031\0031\0040-1\0030-1_7\003 Ciechocinek\0033200456\0031\0031\0040-1\0030-1_8\003 Gniewkowo\0033200457\0031\0031\0040-1\0030-1_9\003Golub-Dobrzyń\0033200122\0031\0031\0040-1\0030-1_10\003Grudziądz\0033200123\0031\0031\0040-1\0030-1_11\003Inowrocław\0033200124\0031\0031\0040-1\0030-1_12\003 Janikowo\0033200458\0031\0031\0040-1\0030-1_13\003 Koronowo\0033200459\0031\0031\0040-1\0030-1_14\003 Kruszwica\0033200460\0031\0031\0040-1\0030-1_15\003Lipno\0033200125\0031\0031\0040-1\0030-1_16\003Mogilno\0033200126\0031\0031\0040-1\0030-1_17\003Nakło nad Notecią\0033200127\0031\0031\0040-1\0030-1_18\003Radziejów\0033200128\0031\0031\0040-1\0030-1_19\003Rypin\0033200129\0031\0031\0040-1\0030-1_20\003Sępólno Krajeńskie\0033200130\0031\0031\0040-1\0030-1_21\003 Solec Kujawski\0033200461\0031\0031\0040-1\0030-1_22\003 Strzelno\0033200462\0031\0031\0040-1\0030-1_23\003Świecie\0033200131\0031\0031\0040-1\0030-1_24\003 Szubin\0033200463\0031\0031\0040-1\0030-1_25\003Toruń\0033200132\0031\0031\0040-1\0030-1_26\003Tuchola\0033200133\0031\0031\0040-1\0030-1_27\003Wąbrzeźno\0033200134\0031\0031\0040-1\0030-1_28\003 Więcbork\0033200464\0031\0031\0040-1\0030-1_29\003Włocławek\0033200135\0031\0031\0040-1\0030-1_30\003Żnin\0033200136\0031\0031\004\0030-2\003Lubelskie\0033200076\0031\0031\0040-2\0030-2_0\003Wszystkie Lubelskie\0033200076\0031\0030\0040-2\0030-2_1\003Bełżyce\0033200465\0031\0031\0040-2\0030-2_2\003Biała Podlaska\0033200137\0031\0031\0040-2\0030-2_3\003Biłgoraj\0033200138\0031\0031\0040-2\0030-2_4\003Chełm\0033200139\0031\0031\0040-2\0030-2_5\003Dęblin\0033200466\0031\0031\0040-2\0030-2_6\003Hrubieszów\0033200140\0031\0031\0040-2\0030-2_7\003Janów Lubelski\0033200141\0031\0031\0040-2\0030-2_8\003Krasnystaw\0033200142\0031\0031\0040-2\0030-2_9\003Kraśnik\0033200143\0031\0031\0040-2\0030-2_10\003Lubartów\0033200144\0031\0031\0040-2\0030-2_11\003Lublin\0033200145\0031\0031\0040-2\0030-2_12\003Łęczna\0033200146\0031\0031\0040-2\0030-2_13\003Łuków\0033200147\0031\0031\0040-2\0030-2_14\003Międzyrzec Podlaski\0033200467\0031\0031\0040-2\0030-2_15\003Opole Lubelskie\0033200148\0031\0031\0040-2\0030-2_16\003Parczew\0033200149\0031\0031\0040-2\0030-2_17\003Poniatowa\0033200468\0031\0031\0040-2\0030-2_18\003Puławy\0033200150\0031\0031\0040-2\0030-2_19\003Radzyń Podlaski\0033200151\0031\0031\0040-2\0030-2_20\003Ryki\0033200152\0031\0031\0040-2\0030-2_21\003Świdnik\0033200153\0031\0031\0040-2\0030-2_22\003Terespol\0033200469\0031\0031\0040-2\0030-2_23\003Tomaszów Lubelski\0033200154\0031\0031\0040-2\0030-2_24\003Włodawa\0033200155\0031\0031\0040-2\0030-2_25\003Zamość\0033200156\0031\0031\004\0030-3\003Lubuskie\0033200077\0031\0031\0040-3\0030-3_0\003Wszystkie Lubuskie\0033200077\0031\0030\0040-3\0030-3_1\003Drezdenko\0033200158\0031\0031\0040-3\0030-3_2\003Gorzów Wielkopolski\0033200157\0031\0031\0040-3\0030-3_3\003Gubin\0033200159\0031\0031\0040-3\0030-3_4\003 Kostrzyn nad Odrą\0033200470\0031\0031\0040-3\0030-3_5\003 Kożuchów\0033200471\0031\0031\0040-3\0030-3_6\003Krosno Odrzańskie\0033200160\0031\0031\0040-3\0030-3_7\003Lubsko\0033200161\0031\0031\0040-3\0030-3_8\003Międzyrzecz\0033200162\0031\0031\0040-3\0030-3_9\003Nowa Sól\0033200163\0031\0031\0040-3\0030-3_10\003 Rzepin\0033200472\0031\0031\0040-3\0030-3_11\003sulechów\0033200166\0031\0031\0040-3\0030-3_12\003Słubice\0033200164\0031\0031\0040-3\0030-3_13\003Strzelce Krajeńskie\0033200165\0031\0031\0040-3\0030-3_14\003 Skwierzyna\0033200473\0031\0031\0040-3\0030-3_15\003Sulęcin\0033200167\0031\0031\0040-3\0030-3_16\003Szprotawa\0033200168\0031\0031\0040-3\0030-3_17\003Świebodzin\0033200169\0031\0031\0040-3\0030-3_18\003 Witnica\0033200474\0031\0031\0040-3\0030-3_19\003Wschowa\0033200170\0031\0031\0040-3\0030-3_20\003Zielona Góra\0033200171\0031\0031\0040-3\0030-3_21\003Żagań\0033200172\0031\0031\0040-3\0030-3_22\003Żary\0033200173\0031\0031\004\0030-4\003Łódzkie\0033200004\0031\0031\0040-4\0030-4_0\003Wszystkie Łódzkie\0033200004\0031\0030\0040-4\0030-4_1\003Aleksandrów Łódzki\0033200174\0031\0031\0040-4\0030-4_2\003Andrespol\0033200588\0031\0031\0040-4\0030-4_3\003Bełchatów\0033200175\0031\0031\0040-4\0030-4_4\003Brzeziny\0033200176\0031\0031\0040-4\0030-4_5\003Głowno\0033200177\0031\0031\0040-4\0030-4_6\003 Koluszki\0033200475\0031\0031\0040-4\0030-4_7\003Konstantynów Łódzki\0033200178\0031\0031\0040-4\0030-4_8\003Kutno\0033200179\0031\0031\0040-4\0030-4_9\003Łask\0033200180\0031\0031\0040-4\0030-4_10\003Łęczyca\0033200181\0031\0031\0040-4\0030-4_11\003Łowicz\0033200182\0031\0031\0040-4\0030-4_12\003Łódź\0033200183\0031\0031\0040-4\0030-4_13\003Opoczno\0033200184\0031\0031\0040-4\0030-4_14\003Ozorków\0033200185\0031\0031\0040-4\0030-4_15\003Pabianice\0033200186\0031\0031\0040-4\0030-4_16\003Pajęczno\0033200187\0031\0031\0040-4\0030-4_17\003Piotrków Trybunalski\0033200188\0031\0031\0040-4\0030-4_18\003Poddębice\0033200189\0031\0031\0040-4\0030-4_19\003Radomsko\0033200190\0031\0031\0040-4\0030-4_20\003Rawa Mazowiecka\0033200191\0031\0031\0040-4\0030-4_21\003Sieradz\0033200192\0031\0031\0040-4\0030-4_22\003Skierniewice\0033200193\0031\0031\0040-4\0030-4_23\003 Tuszyn\0033200476\0031\0031\0040-4\0030-4_24\003Tomaszów Mazowiecki\0033200194\0031\0031\0040-4\0030-4_25\003Wieluń\0033200195\0031\0031\0040-4\0030-4_26\003Wieruszów\0033200196\0031\0031\0040-4\0030-4_27\003Zduńska Wola\0033200197\0031\0031\0040-4\0030-4_28\003 Zelów\0033200477\0031\0031\0040-4\0030-4_29\003Zgierz\0033200198\0031\0031\0040-4\0030-4_30\003 Żychlin\0033200478\0031\0031\004\0030-5\003Małopolskie\0033200003\0031\0031\0040-5\0030-5_0\003Wszystkie Małopolskie\0033200003\0031\0030\0040-5\0030-5_1\003Alwernia\0033200610\0031\0031\0040-5\0030-5_2\003Andrychów\0033200199\0031\0031\0040-5\0030-5_3\003Bochnia\0033200200\0031\0031\0040-5\0030-5_4\003Brzesko\0033200201\0031\0031\0040-5\0030-5_5\003Brzeszcze\0033200479\0031\0031\0040-5\0030-5_6\003Bukowina Tatrzańska\0033200202\0031\0031\0040-5\0030-5_7\003Bukowno\0033200480\0031\0031\0040-5\0030-5_8\003Chełmek\0033200481\0031\0031\0040-5\0030-5_9\003Chrzanów\0033200203\0031\0031\0040-5\0030-5_10\003Czorsztyn\0033200611\0031\0031\0040-5\0030-5_11\003Dąbrowa Tarnowska\0033200204\0031\0031\0040-5\0030-5_12\003Gorlice\0033200205\0031\0031\0040-5\0030-5_13\003Kęty\0033200206\0031\0031\0040-5\0030-5_14\003Kocmyrzów\0033200618\0031\0031\0040-5\0030-5_15\003Kościelisko\0033200207\0031\0031\0040-5\0030-5_16\003Kraków\0033200208\0031\0031\0040-5\0030-5_17\003Krościenko nad Dunajcem\0033200491\0031\0031\0040-5\0030-5_18\003Krynica-Zdrój\0033200209\0031\0031\0040-5\0030-5_19\003Krzeszowice\0033200482\0031\0031\0040-5\0030-5_20\003Libiąż\0033200483\0031\0031\0040-5\0030-5_21\003Limanowa\0033200210\0031\0031\0040-5\0030-5_22\003Miechów\0033200211\0031\0031\0040-5\0030-5_23\003Mszana Dolna\0033200484\0031\0031\0040-5\0030-5_24\003Myślenice\0033200212\0031\0031\0040-5\0030-5_25\003Niedzica\0033200612\0031\0031\0040-5\0030-5_26\003Niepołomice\0033200485\0031\0031\0040-5\0030-5_27\003Nowy Sącz\0033200213\0031\0031\0040-5\0030-5_28\003Nowy Targ\0033200214\0031\0031\0040-5\0030-5_29\003Olkusz\0033200215\0031\0031\0040-5\0030-5_30\003Oświęcim\0033200216\0031\0031\0040-5\0030-5_31\003Piwniczna-Zdrój\0033200486\0031\0031\0040-5\0030-5_32\003Proszowice\0033200217\0031\0031\0040-5\0030-5_33\003Rabka-Zdrój\0033200487\0031\0031\0040-5\0030-5_34\003Skawina\0033200218\0031\0031\0040-5\0030-5_35\003Słomniki\0033200619\0031\0031\0040-5\0030-5_36\003Stary Sącz\0033200488\0031\0031\0040-5\0030-5_37\003Sucha Beskidzka\0033200219\0031\0031\0040-5\0030-5_38\003Szczawnica\0033200220\0031\0031\0040-5\0030-5_39\003Tarnów\0033200221\0031\0031\0040-5\0030-5_40\003Trzebinia\0033200222\0031\0031\0040-5\0030-5_41\003Tuchów\0033200489\0031\0031\0040-5\0030-5_42\003Wadowice\0033200223\0031\0031\0040-5\0030-5_43\003Wieliczka\0033200224\0031\0031\0040-5\0030-5_44\003Wolbrom\0033200490\0031\0031\0040-5\0030-5_45\003Zakopane\0033200225\0031\0031\004\0030-6\003Mazowieckie\0033200001\0031\0031\0040-6\0030-6_0\003Wszystkie Mazowieckie\0033200001\0031\0030\0040-6\0030-6_1\003Warszawa\0033200008\0031\0031\0040-6\0030-6_2\003Północne powiaty\0033200027\0031\0031\0040-6\0030-6_3\003Pn - wsch powiaty\0033200036\0031\0031\0040-6\0030-6_4\003Pn - zach powiaty\0033200041\0031\0031\0040-6\0030-6_5\003Południowe powiaty\0033200042\0031\0031\0040-6\0030-6_6\003Pd - wsch powiaty\0033200043\0031\0031\0040-6\0030-6_7\003Pd - zach powiaty\0033200044\0031\0031\0040-6\0030-6_8\003Wschodnie powiaty\0033200045\0031\0031\0040-6\0030-6_9\003Zachodnie powiaty\0033200046\0031\0031\004\0030-7\003Opolskie\0033200078\0031\0031\0040-7\0030-7_0\003Wszystkie Opolskie\0033200078\0031\0030\0040-7\0030-7_1\003Brzeg\0033200226\0031\0031\0040-7\0030-7_2\003Głubczyce\0033200227\0031\0031\0040-7\0030-7_3\003Grodków\0033200526\0031\0031\0040-7\0030-7_4\003Kędzierzyn-Koźle\0033200228\0031\0031\0040-7\0030-7_5\003Kluczbork\0033200229\0031\0031\0040-7\0030-7_6\003Krapkowice\0033200230\0031\0031\0040-7\0030-7_7\003Namysłów\0033200231\0031\0031\0040-7\0030-7_8\003Niemodlin\0033200527\0031\0031\0040-7\0030-7_9\003Nysa\0033200232\0031\0031\0040-7\0030-7_10\003Olesno\0033200233\0031\0031\0040-7\0030-7_11\003Opole\0033200234\0031\0031\0040-7\0030-7_12\003Ozimek\0033200528\0031\0031\0040-7\0030-7_13\003Paczków\0033200529\0031\0031\0040-7\0030-7_14\003Praszka\0033200530\0031\0031\0040-7\0030-7_15\003Prószków\0033200593\0031\0031\0040-7\0030-7_16\003Prudnik\0033200235\0031\0031\0040-7\0030-7_17\003Strzelce Opolskie\0033200236\0031\0031\0040-7\0030-7_18\003Zawadzkie\0033200531\0031\0031\0040-7\0030-7_19\003Zdzieszowice\0033200532\0031\0031\004\0030-8\003Podkarpackie\0033200079\0031\0031\0040-8\0030-8_0\003Wszystkie Podkarpackie\0033200079\0031\0030\0040-8\0030-8_1\003Brzozów\0033200237\0031\0031\0040-8\0030-8_2\003Cisna\0033200607\0031\0031\0040-8\0030-8_3\003Dębica\0033200238\0031\0031\0040-8\0030-8_4\003Jarosław\0033200239\0031\0031\0040-8\0030-8_5\003Jasło\0033200240\0031\0031\0040-8\0030-8_6\003Kolbuszowa\0033200241\0031\0031\0040-8\0030-8_7\003Krosno\0033200242\0031\0031\0040-8\0030-8_8\003Lesko\0033200243\0031\0031\0040-8\0030-8_9\003Leżajsk\0033200244\0031\0031\0040-8\0030-8_10\003Lubaczów\0033200245\0031\0031\0040-8\0030-8_11\003Łańcut\0033200246\0031\0031\0040-8\0030-8_12\003Mielec\0033200247\0031\0031\0040-8\0030-8_13\003Nisko\0033200248\0031\0031\0040-8\0030-8_14\003Nowa Dęba\0033200533\0031\0031\0040-8\0030-8_15\003Przemyśl\0033200249\0031\0031\0040-8\0030-8_16\003Przeworsk\0033200250\0031\0031\0040-8\0030-8_17\003Ropczyce\0033200251\0031\0031\0040-8\0030-8_18\003Rzeszów\0033200252\0031\0031\0040-8\0030-8_19\003Sanok\0033200253\0031\0031\0040-8\0030-8_20\003Sędziszów Małopolski\0033200534\0031\0031\0040-8\0030-8_21\003Stalowa Wola\0033200254\0031\0031\0040-8\0030-8_22\003Strzebowiska\0033200608\0031\0031\0040-8\0030-8_23\003Strzyżów\0033200255\0031\0031\0040-8\0030-8_24\003Tarnobrzeg\0033200256\0031\0031\0040-8\0030-8_25\003Ustrzyki Dolne\0033200257\0031\0031\004\0030-9\003Podlaskie\0033200080\0031\0031\0040-9\0030-9_0\003Wszystkie Podlaskie\0033200080\0031\0030\0040-9\0030-9_1\003Augustów\0033200258\0031\0031\0040-9\0030-9_2\003Białystok\0033200259\0031\0031\0040-9\0030-9_3\003Bielsk Podlaski\0033200260\0031\0031\0040-9\0030-9_4\003 Czarna Białostocka\0033200535\0031\0031\0040-9\0030-9_5\003 Dąbrowa Białostocka\0033200536\0031\0031\0040-9\0030-9_6\003Grajewo\0033200261\0031\0031\0040-9\0030-9_7\003Hajnówka\0033200262\0031\0031\0040-9\0030-9_8\003Kolno\0033200263\0031\0031\0040-9\0030-9_9\003Łapy\0033200264\0031\0031\0040-9\0030-9_10\003Łomża\0033200265\0031\0031\0040-9\0030-9_11\003Mońki\0033200266\0031\0031\0040-9\0030-9_12\003Sejny\0033200267\0031\0031\0040-9\0030-9_13\003Siemiatycze\0033200268\0031\0031\0040-9\0030-9_14\003Sokółka\0033200269\0031\0031\0040-9\0030-9_15\003Suwałki\0033200270\0031\0031\0040-9\0030-9_16\003 Wasilków\0033200537\0031\0031\0040-9\0030-9_17\003Wysokie Mazowieckie\0033200271\0031\0031\0040-9\0030-9_18\003Zambrów\0033200272\0031\0031\004\0030-10\003Pomorskie\0033200005\0031\0031\0040-10\0030-10_0\003Wszystkie Pomorskie\0033200005\0031\0030\0040-10\0030-10_1\003Bytów\0033200407\0031\0031\0040-10\0030-10_2\003Chojnice\0033200408\0031\0031\0040-10\0030-10_3\003Człuchów\0033200409\0031\0031\0040-10\0030-10_4\003Czersk\0033200539\0031\0031\0040-10\0030-10_5\003Gdańsk\0033200072\0031\0031\0040-10\0030-10_6\003Gdynia\0033200073\0031\0031\0040-10\0030-10_7\003Gniew\0033200543\0031\0031\0040-10\0030-10_8\003Hel\0033200410\0031\0031\0040-10\0030-10_9\003Jastarnia\0033200411\0031\0031\0040-10\0030-10_10\003Jastrzębia Góra\0033200412\0031\0031\0040-10\0030-10_11\003Kartuzy\0033200413\0031\0031\0040-10\0030-10_12\003Karwia\0033200414\0031\0031\0040-10\0030-10_13\003Kościerzyna\0033200415\0031\0031\0040-10\0030-10_14\003Krynica Morska\0033200416\0031\0031\0040-10\0030-10_15\003Kwidzyn\0033200417\0031\0031\0040-10\0030-10_16\003Łeba\0033200418\0031\0031\0040-10\0030-10_17\003Lębork\0033200419\0031\0031\0040-10\0030-10_18\003Malbork\0033200420\0031\0031\0040-10\0030-10_19\003Miastko\0033200538\0031\0031\0040-10\0030-10_20\003Nowy Dwór Gdański\0033200421\0031\0031\0040-10\0030-10_21\003Pelplin\0033200541\0031\0031\0040-10\0030-10_22\003Pępowo\0033200589\0031\0031\0040-10\0030-10_23\003Prabuty\0033200540\0031\0031\0040-10\0030-10_24\003Pruszcz Gdański\0033200422\0031\0031\0040-10\0030-10_25\003Puck\0033200423\0031\0031\0040-10\0030-10_26\003Reda\0033200424\0031\0031\0040-10\0030-10_27\003Rumia\0033200425\0031\0031\0040-10\0030-10_28\003Skarszewy\0033200542\0031\0031\0040-10\0030-10_29\003Słupsk\0033200426\0031\0031\0040-10\0030-10_30\003Sopot\0033200074\0031\0031\0040-10\0030-10_31\003Starogard Gdański\0033200427\0031\0031\0040-10\0030-10_32\003Stegna\0033200428\0031\0031\0040-10\0030-10_33\003Sztum\0033200429\0031\0031\0040-10\0030-10_34\003Sztutowo\0033200544\0031\0031\0040-10\0030-10_35\003Tczew\0033200430\0031\0031\0040-10\0030-10_36\003Ustka\0033200431\0031\0031\0040-10\0030-10_37\003Wejherowo\0033200432\0031\0031\0040-10\0030-10_38\003Władysławowo\0033200433\0031\0031\0040-10\0030-10_39\003Żukowo\0033200590\0031\0031\004\0030-11\003Śląskie\0033200002\0031\0031\0040-11\0030-11_0\003Wszystkie Śląskie\0033200002\0031\0030\0040-11\0030-11_1\003Będzin\0033200273\0031\0031\0040-11\0030-11_2\003Bielsko-Biała\0033200274\0031\0031\0040-11\0030-11_3\003Bieruń\0033200275\0031\0031\0040-11\0030-11_4\003Blachownia\0033200545\0031\0031\0040-11\0030-11_5\003Brenna\0033200605\0031\0031\0040-11\0030-11_6\003Bytom\0033200277\0031\0031\0040-11\0030-11_7\003Chorzów\0033200278\0031\0031\0040-11\0030-11_8\003Cieszyn\0033200279\0031\0031\0040-11\0030-11_9\003Czechowice-Dziedzice\0033200546\0031\0031\0040-11\0030-11_10\003Czeladź\0033200547\0031\0031\0040-11\0030-11_11\003Czerwionka-Leszczyny\0033200548\0031\0031\0040-11\0030-11_12\003Częstochowa\0033200280\0031\0031\0040-11\0030-11_13\003Dąbrowa Górnicza\0033200281\0031\0031\0040-11\0030-11_14\003Gliwice\0033200282\0031\0031\0040-11\0030-11_15\003Imielin\0033200549\0031\0031\0040-11\0030-11_16\003Jastrzębie-Zdrój\0033200283\0031\0031\0040-11\0030-11_17\003Jaworzno\0033200284\0031\0031\0040-11\0030-11_18\003Kalety\0033200550\0031\0031\0040-11\0030-11_19\003Knurów\0033200551\0031\0031\0040-11\0030-11_20\003Katowice\0033200285\0031\0031\0040-11\0030-11_21\003Kłobuck\0033200286\0031\0031\0040-11\0030-11_22\003Korbielów\0033200604\0031\0031\0040-11\0030-11_23\003Lędziny\0033200552\0031\0031\0040-11\0030-11_24\003Lubliniec\0033200287\0031\0031\0040-11\0030-11_25\003Łaziska Górne\0033200553\0031\0031\0040-11\0030-11_26\003Mikołów\0033200288\0031\0031\0040-11\0030-11_27\003Milówka\0033200606\0031\0031\0040-11\0030-11_28\003Mysłowice\0033200289\0031\0031\0040-11\0030-11_29\003Myszków\0033200290\0031\0031\0040-11\0030-11_30\003Orzesze\0033200554\0031\0031\0040-11\0030-11_31\003Piekary Śląskie\0033200291\0031\0031\0040-11\0030-11_32\003Poręba\0033200555\0031\0031\0040-11\0030-11_33\003Pszczyna\0033200292\0031\0031\0040-11\0030-11_34\003Pszów\0033200556\0031\0031\0040-11\0030-11_35\003Pyskowice\0033200557\0031\0031\0040-11\0030-11_36\003Racibórz\0033200293\0031\0031\0040-11\0030-11_37\003Radlin\0033200558\0031\0031\0040-11\0030-11_38\003Radzionków\0033200559\0031\0031\0040-11\0030-11_39\003Ruda Śląska\0033200294\0031\0031\0040-11\0030-11_40\003Rybnik\0033200295\0031\0031\0040-11\0030-11_41\003Rydułtowy\0033200560\0031\0031\0040-11\0030-11_42\003Siemianowice Śląskie\0033200296\0031\0031\0040-11\0030-11_43\003Siewierz\0033200602\0031\0031\0040-11\0030-11_44\003Skoczów\0033200561\0031\0031\0040-11\0030-11_45\003Sosnowiec\0033200297\0031\0031\0040-11\0030-11_46\003Świeklaniec\0033200603\0031\0031\0040-11\0030-11_47\003Świętochłowice\0033200298\0031\0031\0040-11\0030-11_48\003Szczyrk\0033200299\0031\0031\0040-11\0030-11_49\003Tarnowskie Góry\0033200300\0031\0031\0040-11\0030-11_50\003Tychy\0033200301\0031\0031\0040-11\0030-11_51\003Ustroń\0033200562\0031\0031\0040-11\0030-11_52\003Wisła\0033200302\0031\0031\0040-11\0030-11_53\003Wodzisław Śląski\0033200303\0031\0031\0040-11\0030-11_54\003Wojkowice\0033200563\0031\0031\0040-11\0030-11_55\003Zabrze\0033200304\0031\0031\0040-11\0030-11_56\003Zawiercie\0033200305\0031\0031\0040-11\0030-11_57\003Żory\0033200306\0031\0031\0040-11\0030-11_58\003Żywiec\0033200307\0031\0031\004\0030-12\003Świętokrzyskie\0033200082\0031\0031\0040-12\0030-12_0\003Wszystkie Świętokrzyskie\0033200082\0031\0030\0040-12\0030-12_1\003Busko-Zdrój\0033200308\0031\0031\0040-12\0030-12_2\003Jędrzejów\0033200309\0031\0031\0040-12\0030-12_3\003Kazimierza Wielka\0033200310\0031\0031\0040-12\0030-12_4\003Kielce\0033200311\0031\0031\0040-12\0030-12_5\003Końskie\0033200312\0031\0031\0040-12\0030-12_6\003Opatów\0033200313\0031\0031\0040-12\0030-12_7\003Ostrowiec Świętokrzyski\0033200314\0031\0031\0040-12\0030-12_8\003Pińczów\0033200315\0031\0031\0040-12\0030-12_9\003Połaniec\0033200564\0031\0031\0040-12\0030-12_10\003Sandomierz\0033200316\0031\0031\0040-12\0030-12_11\003Skarżysko-Kamienna\0033200317\0031\0031\0040-12\0030-12_12\003Starachowice\0033200318\0031\0031\0040-12\0030-12_13\003Staszów\0033200319\0031\0031\0040-12\0030-12_14\003Suchedniów\0033200565\0031\0031\0040-12\0030-12_15\003Włoszczowa\0033200320\0031\0031\004\0030-13\003Warmińsko-mazurskie\0033200083\0031\0031\0040-13\0030-13_0\003Wszystkie Warmińsko-mazurskie\0033200083\0031\0030\0040-13\0030-13_1\003Barczewo\0033200613\0031\0031\0040-13\0030-13_2\003Bartoszyce\0033200321\0031\0031\0040-13\0030-13_3\003Biskupiec\0033200322\0031\0031\0040-13\0030-13_4\003Braniewo\0033200323\0031\0031\0040-13\0030-13_5\003Dobre Miasto\0033200324\0031\0031\0040-13\0030-13_6\003Działdowo\0033200325\0031\0031\0040-13\0030-13_7\003Elbląg\0033200326\0031\0031\0040-13\0030-13_8\003Ełk\0033200327\0031\0031\0040-13\0030-13_9\003Giżycko\0033200328\0031\0031\0040-13\0030-13_10\003Gołdap\0033200329\0031\0031\0040-13\0030-13_11\003Górowo Iławieckie\0033200615\0031\0031\0040-13\0030-13_12\003Iława\0033200330\0031\0031\0040-13\0030-13_13\003Kętrzyn\0033200331\0031\0031\0040-13\0030-13_14\003Lidzbark Warmiński\0033200332\0031\0031\0040-13\0030-13_15\003 Lubawa\0033200566\0031\0031\0040-13\0030-13_16\003Mikołajki\0033200333\0031\0031\0040-13\0030-13_17\003 Morąg\0033200567\0031\0031\0040-13\0030-13_18\003Mrągowo\0033200334\0031\0031\0040-13\0030-13_19\003Nidzica\0033200335\0031\0031\0040-13\0030-13_20\003Nowe Miasto Lubawskie\0033200336\0031\0031\0040-13\0030-13_21\003Olecko\0033200337\0031\0031\0040-13\0030-13_22\003Olsztyn\0033200338\0031\0031\0040-13\0030-13_23\003 Olsztynek\0033200568\0031\0031\0040-13\0030-13_24\003 Orneta\0033200569\0031\0031\0040-13\0030-13_25\003Ostróda\0033200339\0031\0031\0040-13\0030-13_26\003 Pasłęk\0033200570\0031\0031\0040-13\0030-13_27\003Pieniężno\0033200616\0031\0031\0040-13\0030-13_28\003Pisz\0033200340\0031\0031\0040-13\0030-13_29\003Ruciane-Nida\0033200617\0031\0031\0040-13\0030-13_30\003Szczytno\0033200341\0031\0031\0040-13\0030-13_31\003Węgorzewo\0033200342\0031\0031\004\0030-14\003Wielkopolskie\0033200006\0031\0031\0040-14\0030-14_0\003Wszystkie Wielkopolskie\0033200006\0031\0030\0040-14\0030-14_1\003Buk\0033200587\0031\0031\0040-14\0030-14_2\003Chodzież\0033200343\0031\0031\0040-14\0030-14_3\003Czarnków\0033200344\0031\0031\0040-14\0030-14_4\003Gniezno\0033200345\0031\0031\0040-14\0030-14_5\003Gostyń\0033200346\0031\0031\0040-14\0030-14_6\003Grodzisk Wielkopolski\0033200347\0031\0031\0040-14\0030-14_7\003Jarocin\0033200348\0031\0031\0040-14\0030-14_8\003Jastrowie\0033200571\0031\0031\0040-14\0030-14_9\003Kalisz\0033200349\0031\0031\0040-14\0030-14_10\003Kępno\0033200350\0031\0031\0040-14\0030-14_11\003Koło\0033200351\0031\0031\0040-14\0030-14_12\003Konin\0033200352\0031\0031\0040-14\0030-14_13\003Kostrzyn\0033200572\0031\0031\0040-14\0030-14_14\003Kościan\0033200353\0031\0031\0040-14\0030-14_15\003Kórnik\0033200573\0031\0031\0040-14\0030-14_16\003Krotoszyn\0033200354\0031\0031\0040-14\0030-14_17\003Leszno\0033200355\0031\0031\0040-14\0030-14_18\003Luboń\0033200356\0031\0031\0040-14\0030-14_19\003Międzychód\0033200357\0031\0031\0040-14\0030-14_20\003Mosina\0033200358\0031\0031\0040-14\0030-14_21\003Murowana Goślina\0033200359\0031\0031\0040-14\0030-14_22\003Nowy Tomyśl\0033200360\0031\0031\0040-14\0030-14_23\003Oborniki\0033200361\0031\0031\0040-14\0030-14_24\003Opalenica\0033200574\0031\0031\0040-14\0030-14_25\003Ostrów Wielkopolski\0033200362\0031\0031\0040-14\0030-14_26\003Ostrzeszów\0033200363\0031\0031\0040-14\0030-14_27\003Piła\0033200364\0031\0031\0040-14\0030-14_28\003Pleszew\0033200365\0031\0031\0040-14\0030-14_29\003Pniewy\0033200575\0031\0031\0040-14\0030-14_30\003Pobiedziska\0033200576\0031\0031\0040-14\0030-14_31\003Poznań\0033200366\0031\0031\0040-14\0030-14_32\003Puszczykowo\0033200577\0031\0031\0040-14\0030-14_33\003Rawicz\0033200367\0031\0031\0040-14\0030-14_34\003Rogoźno\0033200578\0031\0031\0040-14\0030-14_35\003Słupca\0033200368\0031\0031\0040-14\0030-14_36\003Swarzędz\0033200369\0031\0031\0040-14\0030-14_37\003Szamotuły\0033200370\0031\0031\0040-14\0030-14_38\003Śrem\0033200371\0031\0031\0040-14\0030-14_39\003Środa Wielkopolska\0033200372\0031\0031\0040-14\0030-14_40\003Trzcianka\0033200373\0031\0031\0040-14\0030-14_41\003Trzemeszno\0033200579\0031\0031\0040-14\0030-14_42\003Turek\0033200374\0031\0031\0040-14\0030-14_43\003Wągrowiec\0033200375\0031\0031\0040-14\0030-14_44\003Witkowo\0033200580\0031\0031\0040-14\0030-14_45\003Wolsztyn\0033200376\0031\0031\0040-14\0030-14_46\003Wronki\0033200581\0031\0031\0040-14\0030-14_47\003Września\0033200377\0031\0031\0040-14\0030-14_48\003Złotów\0033200378\0031\0031\004\0030-15\003Zachodniopomorskie\0033200084\0031\0031\0040-15\0030-15_0\003Wszystkie Zachodniopomorskie\0033200084\0031\0030\0040-15\0030-15_1\003Barlinek\0033200379\0031\0031\0040-15\0030-15_2\003Białogard\0033200380\0031\0031\0040-15\0030-15_3\003Cedynia\0033200381\0031\0031\0040-15\0030-15_4\003Chojna\0033200620\0031\0031\0040-15\0030-15_5\003Choszczno\0033200382\0031\0031\0040-15\0030-15_6\003Czaplinek\0033200586\0031\0031\0040-15\0030-15_7\003Darłowo\0033200383\0031\0031\0040-15\0030-15_8\003Dębno\0033200384\0031\0031\0040-15\0030-15_9\003Drawno\0033200385\0031\0031\0040-15\0030-15_10\003Drawsko Pomorskie\0033200386\0031\0031\0040-15\0030-15_11\003Goleniów\0033200387\0031\0031\0040-15\0030-15_12\003Gryfice\0033200388\0031\0031\0040-15\0030-15_13\003Gryfino\0033200389\0031\0031\0040-15\0030-15_14\003Kamień Pomorski\0033200390\0031\0031\0040-15\0030-15_15\003Kołobrzeg\0033200391\0031\0031\0040-15\0030-15_16\003Koszalin\0033200392\0031\0031\0040-15\0030-15_17\003Łobez\0033200393\0031\0031\0040-15\0030-15_18\003Międzyzdroje\0033200394\0031\0031\0040-15\0030-15_19\003Mielno\0033200395\0031\0031\0040-15\0030-15_20\003Myślibórz\0033200396\0031\0031\0040-15\0030-15_21\003Nowogard\0033200397\0031\0031\0040-15\0030-15_22\003Police\0033200398\0031\0031\0040-15\0030-15_23\003Połczyn-Zdrój\0033200582\0031\0031\0040-15\0030-15_24\003Pyrzyce\0033200399\0031\0031\0040-15\0030-15_25\003Sławno\0033200400\0031\0031\0040-15\0030-15_26\003Stargard Szczeciński\0033200401\0031\0031\0040-15\0030-15_27\003Szczecin\0033200402\0031\0031\0040-15\0030-15_28\003Szczecinek\0033200403\0031\0031\0040-15\0030-15_29\003Świdwin\0033200404\0031\0031\0040-15\0030-15_30\003Świnoujście\0033200405\0031\0031\0040-15\0030-15_31\003Trzebiatów\0033200583\0031\0031\0040-15\0030-15_32\003Wałcz\0033200406\0031\0031\0040-15\0030-15_33\003Wolin\0033200584\0031\0031\0040-15\0030-15_34\003Złocieniec\0033200585\0031\0031\004";var provinceSearchInputHtml='<input name="isProvinceSearch" type="hidden" value="true" />';$().ready(function(){function getURLParameter(name){return decodeURIComponent((location.href.match(RegExp("[QQ]"+name+'Z(.+?)(QQ|$)'))||[,null])[1]);}
-var isProvinceSearch=getURLParameter('isProvinceSearch');document.frmSearchAd.Location.value=Math.abs(3200208);if(isProvinceSearch=='true'){var isProvinceSearchInput=$('input[name=isProvinceSearch]');if(isProvinceSearchInput.length>0){isProvinceSearchInput.val('true');}
-else{$('#frmSearchAd').append(provinceSearchInputHtml);}}
-$("#searchLoc").kjmenu_makeMenu({data:sdata,zindex:90000,cssWrapperClass:'nationalSite',OnSelect:function(mitem){var provinceSearchInput=$('input[name=isProvinceSearch]');if(mitem.value<-1){if(provinceSearchInput.length>0){provinceSearchInput.val('true');}
-else{$('#frmSearchAd').append(provinceSearchInputHtml);}}
-else{if(provinceSearchInput.length>0){provinceSearchInput.remove();}}
-$("#searchLoc_name").html(mitem.name+"<img border='0' src='http://pic.classistatic.com/image/pics/classifieds/spacer.gif' width='25px' height='1px'/>");document.frmSearchAd.Location.value=Math.abs(mitem.value);$('.sfsp').remove();}});});addOnUnloadFunction('disableElement("searchAdGo")');var autoOptions={maxChars:4,hideLabel:'Ukryj',timeout:1,maxEntries:7,containerStyleClass:'keySpan',submitOnlick:true,baseUrl:"http://ac.classistatic.com/ac/10028/202/pl_PL/"};$(document).ready(function(){$("input.keyword").autocomplete1(autoOptions);$("#searchAdGo").click(function(){gAnalyticsPushForSearch("Click-Search",$(".newHeader input[name=distance]").val());});$("form#frmSearchAd").submit(function(){if($("#autoComp")[0].value==="Czego szukasz...?"){$("#autoComp")[0].value="";}
-$("#searchAdGo").attr("disabled","true");return true;});});function gAnalyticsPushForSearch(srchType,numValue){}
-var browsedata="\004\0030\003Antyki i kolekcje\003http://www.gumtree.pl/fp-antyki-i-kolekcje/krakow/c9672l3200208\004\0030\003Zdrowie i Uroda\003http://www.gumtree.pl/fp-zdrowie-i-uroda/krakow/c9690l3200208\004\0030\003Sport i Fitness\003http://www.gumtree.pl/fp-sport-i-fitness/krakow/c9706l3200208\004\0030\003Nieruchomości\003http://www.gumtree.pl/fp-nieruchomosci/krakow/c2l3200208\004\0030\003Dom i Ogród\003http://www.gumtree.pl/fp-dom-i-ogrod/krakow/c4l3200208\004\0030\003Oferty Pracy\003http://www.gumtree.pl/fp-oferty-pracy/krakow/c8l3200208\004\0030\003Motoryzacja\003http://www.gumtree.pl/fp-motoryzacja/krakow/c5l3200208\004\0030\003Moda\003http://www.gumtree.pl/fp-moda/krakow/c9541l3200208\004\0030\003Szukający Zatrudnienia\003http://www.gumtree.pl/fp-szukajacy-zatrudnienia/krakow/c9290l3200208\004\0030\003Łodzie i Pojazdy wodne\003http://www.gumtree.pl/fp-lodzie-i-pojazdy-wodne/krakow/c9218l3200208\004\0030\003Elektronika\003http://www.gumtree.pl/fp-elektronika/krakow/c9237l3200208\004\0030\003Usługi\003http://www.gumtree.pl/fp-uslugi/krakow/c9l3200208\004\0030\003Zwierzaki\003http://www.gumtree.pl/fp-zwierzaki/krakow/c9124l3200208\004\0030\003Dla Dziecka\003http://www.gumtree.pl/fp-dla-dziecka/krakow/c9459l3200208\004\0030\003Społeczność\003http://www.gumtree.pl/fp-spolecznosc/krakow/c6l3200208\004\0030\003Muzyka i Rozrywka\003http://www.gumtree.pl/fp-muzyka-i-rozrywka/krakow/c9490l3200208\004\0030\003Oddam za darmo\003http://www.gumtree.pl/fp-krakow/l3200208?AdType=2&PriceAlternative=3\004\0030\003Wymiana/zamiana\003http://www.gumtree.pl/fp-krakow/l3200208?PriceAlternative=5";$(document).ready(function(){$("#AreaHomeTab,#SiteHomeTab").kjmenu_makeMenu({data:browsedata,OnSelect:function(mitem){document.location.replace(mitem.value);}});$("#changeLocDiv").click(function(){$.ajax({url:'http://www.gumtree.pl/c-GetLocation?CatId=0&PageName=',dataType:'script'});});});function trackHomeTabDropdown(type){var statisticUrl="";if(type=="tabname"){statisticUrl='http://www.gumtree.pl/c-Statistic?StatType=';}else if(type=="link"){statisticUrl='http://www.gumtree.pl/c-Statistic?StatType=HomeTabDropdownCount';}
-statisticUrl=statisticUrl+'&ms='+new Date().getTime();$.get(statisticUrl);return true;}
-var KNS=KNS||{};KNS.popWordSel='.floatLeft30px a';KNS.miscLabels=KNS.miscLabels||{};KNS.miscLabels.keyWordsLabelEn="Popular";$(document).ready(function(){$(KNS.popWordSel).click(function(){Kj.Ga.trackEventsinGA({category:'Clicks on '+KNS.miscLabels.keyWordsLabelEn+' Searches',action:'clicked word # '+($(KNS.popWordSel).index($(this))+1),opt_label:$(this).attr('href'),track_on_area_level:true});});});$(document).ready(function(){Kj.View.initViewAdActions({adId:'624256983',reportdata:"\0032\003Oszustwo/Zabronione\0032\004\0033\003Duplikat/Spam\0033\004\0035\003Nieaktualne\0035\004\0031\003W złej kategorii\0031\004\003r\003Wpisz powód...\003r",url:"http://www.gumtree.pl/c-illegalAdPanel"});});function doFlag(url){if(typeof(url)=='undefined'){return false;}
-$("#pagestatus_new").css("display","");$.get('/c-ReportProblemByAjax?'+url,function(data){$("#pagestatus_new").html(data);});}
-var currentModal;$(document).ready(function(){$('#doMisCat').click(function(e){var options={onOpen:function(){appendModalFrame();$("#modalframe").attr("src","http://www.gumtree.pl/c-wrongCategoryPanel");$('#modalFrameLayer').css('height',227);$('#modalframe').css('height',227);$('#modalFrameLayer').show();e.preventDefault();this.open(true);currentModal=this;}};$('#modalFrameLayer').modal(options);e.preventDefault();});});$(document).ready(function(){$('#doIllegalAd').click(function(e){var options={onOpen:function(){appendModalFrame();$("#modalframe").attr("src","http://www.gumtree.pl/c-illegalAdPanel");$('#modalFrameLayer').height(0);$('#modalFrameLayer').show();e.preventDefault();this.open(true);currentModal=this;}};$('#modalFrameLayer').modal(options);e.preventDefault();});});function scaleIllegalAdModal(height){$('#modalframe').css('height',height);$('#modalFrameLayer').css('height',height);$('#modalFrameLayer').css('margin-top',height/2*-1);}
-function hideModal(){$('#modalframe').remove();currentModal.close(true);currentModal=null;}
-function appendModalFrame(){$("#modalFrameLayer").append('<iframe name="modalframe" id="modalframe" width="100%" scrolling="no" frameborder="0" src="http://pic.classistatic.com/image/pics/classifieds/loading2.gif"></iframe>');}
-function submitCategory(action,l1,l2){url="AdId=624256983&ViolationType=1";if(action=="submit"){try{url+="&L1CatId="+l1+"&L2CatId="+l2;}catch(err){}}
-doFlag(url);hideModal();setTimeout('goTop()',800);}
-function submitIllegal(action,email,msg){url="AdId=624256983&ViolationType=4";if(action=="submit"){try{url+="&Email="+email+"&Description="+msg;}catch(err){alert(err);}}
-else{hideModal();return false;}
-doFlag(url);hideModal();setTimeout('goTop()',800);}
-function goTop(){$(document).scrollTop(0);}
-var KNS=KNS||{};KNS.options=KNS.options||{};$(document).ready(function(){Kj.View.initThumbnailNavigator({pics:{fullImgUrl:'http://www.gumtree.pl/c-ViewAdLargeImage?AdId=624256983&Keyword=krakow',images:['http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/BNEAAOSwstxVSTqn/$_35.JPG','http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/3PEAAOSwBahVSTq5/$_35.JPG','http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/4rIAAOSwPZ5VSTrI/$_35.JPG','http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/B8UAAOSwrklVSTrc/$_35.JPG','http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/y5MAAOSwgkRVSTsC/$_35.JPG','http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/ytUAAOSwEeFVSTsT/$_35.JPG','http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/7LkAAOSwPZ5VSTsk/$_35.JPG','http://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/5ZEAAOSwpDdVSTs1/$_35.JPG'],speed:400},totalCount:"8",videoCount:"0",catPath:"Properties/flat+%26+house+for+rent"});});$(".view").load(function(){$(".imageStack").addClass("hideImageBackGrd");});$("img").load(function(){$(".imageStack2").addClass("hideImageBackGrd");});$(document).ready(function(){var init=false;$('.viewmap-link').click(function(){if(!init)
-{init=true;Kj.Map.displayMap({canvas:"gmap",lat:"50.0578133",longitude:"19.92846129999998",addrTitle:'Adres',directionText:'Zobacz wskazówki dojazdu',adMarkers:[{addr:"Retoryka, Kraków, Polska",pinType:"addr"}],hl:"pl",zoom:13},"http://maps.googleapis.com/maps/api/js?&client=gme-marktplaats&sensor=false&v=3.10");}});});$(function(){$(".viewmap-link").click(function(e){e.preventDefault();$.cachedScript("http://include.classistatic.com/include/e896/c3js/classifieds/rel1//common/jQuery/jquery.ui.dialog-min.js").done(function(script,textStatus){$("#viewmap-modal").dialog({width:800,modal:true,dialogClass:"dialog-view-image",title:"<span class='fLeft'>Retoryka, Kraków, Polska</span>",open:function(){$(".ui-icon-closethick").html(" ");},close:function(){$('meta[name="DCSext.page"]').attr("content","ViewAd");}});});});});var catpathvar={'sa624969852':'Properties/flat+%26+house+for+rent','sa624982399':'Properties/flat+%26+house+for+rent','sa624827145':'Properties/flat+%26+house+for+rent','sa624714771':'Properties/flat+%26+house+for+rent','sa624970655':'Properties/flat+%26+house+for+rent'};$(document).ready(function(){$(".salink").click(function(e){Kj.Ga.trackEventsinGA({category:'SimilarAds',action:'SimilarAdClick',opt_label:catpathvar[$(e.target).parents('.salink').attr('id')],track_on_area_level:true});});});$(document).ready(function(){Kj.View.initMaskedPhone({catpath:'Properties/flat+%26+house+for+rent',adId:"624 256 983",phoneRateLimiterEnabled:false,phoneLoggingEnabled:false,tryAgainLaterImg:"http://pic.classistatic.com/image/pics/classifieds/pl-PL/TryAgainLater.png",phoneImg:"http://ext.classistatic.com/imagesvc/txt2Img/7uG77pHzyXFQNsTl4X_FUr4mQAIO3Wn37djGnzKDoelZ_tEvl1pIsw0YiCmruWY7lfOS2C9fMOrYlqYYRLYuxlqlNZxEKQ3z3L3xROIA6g9VkYpUgu8BCpbDtF9G3dtl697ZG_0GJzgYQ8lfczz8grOcLGgqeZM5lmO6v_2TQ0kpivdwLq4RALJ0PcV45o6zjKe2rHWMA6IXrG9ukmK0xJeQ03Tyg_0iAwuL9yw9Rx8",hiddenPhoneImageUrl:"http://www.gumtree.pl/c-PhoneImage?ImageId=ebfa7f25624256983a555a22a0z194a1f18a1",phoneClickUrl:"http://www.gumtree.pl/c-UpdateClickCount?AdId=624256983&counterType=phone",isGAUpdated:false});});KNS.options.copyme="CopyMe";KNS.options.catpath='Properties/flat+%26+house+for+rent';KNS.options.isGAUpdated=false;$(document).ready(function(){Kj.View.initReplyToAd(KNS.options);});$(document).ready(function(){Kj.View.initWebsiteClk({websiteClickUrl:'http://www.gumtree.pl/c-UpdateClickCount?AdId=624256983&counterType=website'});});$(document).ready(function(){$('#AreaHomeTab,#SiteHomeTab').click(function(e){trackHomeTabDropdown('tabname')});$('#AreaHomeText,#SiteHomeText').addClass('browse');var freeIcon=$('#freeIcon2');if(freeIcon.length>0){freeIcon.click(function(e){document.location='c-SelectCategory';return false;});}
-$('.BigSearch').attachHoverPopup('#CategoryDropdown');});Kj.initReady({});
-// End-TAIL JS
-</script>
-<!-- customJs -->
-<!-- End of HtmlPageTail -->
-<div id="flashCookie"></div>
-<div id="myFavorites-panel"> </div>
-<script>
-Kj.initFavoritesFunctionality({domain:'www.gumtree.pl',panelActivated:'true',staticsPath:'http://include.classistatic.com/include/e896/c3js/classifieds/rel1/'});
-</script>
-</body></html>
+
+
+
+    
+        
+
+
+
+
+     
+
+
+    
+
+
+    
+        
+            <script type="text/javascript" src='http://inc.t9.classistatic.com/1.1.288/js/Main_pl_PL.min.js'></script>
+        
+    
+        
+            <script type="text/javascript" src='http://inc.t9.classistatic.com/1.1.288/js/SeoViewPage_pl_PL.min.js'></script>
+        
+    
+    
+
+    
+
+
+
+    <script>
+
+     var bP = {
+             
+             accId : ("/7162/Gumtree_PL/Nieruchomości/mieszkania i domy do wynajęcia").split(' ').join('_').replace(/\,|&_|'/g,""),
+             
+             dc_ref:window.location.href,
+             kw: $('input[name=q]').val() || "no category",
+             ptype: 'vip_r',
+             loc: $('input[name=NlocName]').val(),
+     };
+     
+     
+    
+         
+        
+              BOLT.displayBanner( $.extend({slotDim: [300, 250], slotId : 'div-vip-ad-banner',price :'950', currency : 'PLN'},bP));
+         
+         
+
+    
+     
+
+        
+ 
+
+
+    </script>
+    
+    
+        <script src="http://www.google.com/adsense/search/async-ads.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8">
+            var x = {"desktopNumAdsTop":"0","desktopNumAdsBottom":"3","mobileNumAdsTop":"0","mobileNumAdsBottom":"3","numRepeated":"0","mobilePubId":"mobile-gumtree-pl","desktopPubId":"gumtree-pl-vip","longerHeadlines":false,"mobileSiteLinks":false,"desktopSiteLinks":true,"channel":"PL_VIP_r","query":"Kawalerka, 30 m2, Śródmieście, ul. Dobrego Pasterza  Kraków","hl":"pl","adtest":"off","adPage":"0","colorTitleLink":"#333","rolloverAdBackgroundColor":"#FFFFF0","mobileClickableBackground":false};
+            
+            var defaultBlock = {
+                 'lines':'3',
+                 'longerHeadlines': x.longerHeadlines,
+                 'fontSizeTitle': '14',
+                 'fontSizeDescription' : '14',
+                 'lineHeightDescription' : 21,
+                 'fontSizeDomainLink' : '14',
+                 'lineHeightDomainLink' : 21,
+                 'fontFamily' : 'tahoma',
+                 'noTitleUnderline': true,
+                 'colorTitleLink': x.colorTitleLink,
+                 'colorDomainLink' : '#333333',
+                 'colorText' : '#333333',
+                 'colorAdSeparator':'#ffffff',
+                  'colorAdBorder' : '#EEEEEE',
+                  'adBorderSelections' : 'bottom',
+                 'width' : '100%'
+            };
+            var defaultBlock_ext = {
+                //defaultvalue
+                'adIconUrl':'http://afs.googleusercontent.com/gumtree-pl/no-photo-pl.jpg',
+                'adIconSpacingAbove' : 5,
+                'adIconSpacingBefore' : 6,
+                'adIconSpacingAfter' : 10,
+                'adIconLocation' : 'ad-left'
+            }
+            
+            var pageOptions = {
+                'query': x.query,
+                'hl': x.h1,
+                'adtest' : x.adtest,
+                'channel' : x.channel,
+                'adPage' : x.adPage,
+                'linkTarget' : '_blank',
+                'numRepeated': x.numRepeated,
+                'titleBold' : true,
+                //new call back method through all the market
+                'adLoadedCallback':function(containerName, adsLoaded) {
+                    if (adsLoaded) {
+                        if(containerName == 'adcontainer0'){
+                            var exP0, newP;
+                            newP = document.createElement("div");
+                            newP.className='section-divider';
+                            newP.innerHTML = 'Linki sponsorowane';
+                            exP0 = document.getElementById('adcontainer0');
+                            exP0.parentNode.insertBefore(newP,exP0);
+                            $('.content #adcontainer0').css({'background-color':'#ffffff'});
+                        };
+                            
+                        if(containerName == 'adcontainer1'){
+                            var exP1, newP1;
+                            newP1 = document.createElement("div");
+                            newP1.className='section-divider';
+                            newP1.innerHTML = 'Linki sponsorowane';
+                            exP1 = document.getElementById('adcontainer1');
+                            exP1.parentNode.insertBefore(newP1,exP1);
+                            $('.content #adcontainer1').css("background-color", "#ffffff");
+                        }
+                    }
+                }
+                
+            };
+            
+            function init(numAdsTop, numAdsBottom, siteLinks, pubId, clickableBackground, rolloverAdBackgroundColor, adIconW, adIconH){
+                pageOptions.siteLinks = siteLinks;
+                pageOptions.pubId = pubId;
+                pageOptions.rolloverAdBackgroundColor = rolloverAdBackgroundColor;
+                
+                var targetArr = [];
+                if(numAdsTop>0){
+                    var adblock1 = {
+                        'container': 'adcontainer0',
+                        'maxTop': numAdsTop,
+                        'clickableBackgrounds': clickableBackground,
+                        'adIconWidth' : adIconW,
+                        'adIconHeight' : adIconH
+                    };
+                    jQuery.extend(adblock1,defaultBlock);
+                    if(adIconW)
+                    {
+                        jQuery.extend(adblock1,defaultBlock_ext);
+                        
+                    }
+                    targetArr.push(adblock1);
+                }
+    
+                if(numAdsBottom>0){
+                    var adblock2 = {
+                        'container': 'adcontainer1',
+                        'number': numAdsBottom,
+                        'clickableBackgrounds': clickableBackground,
+                        'adIconWidth' : adIconW,
+                        'adIconHeight' : adIconH
+                    };
+                    jQuery.extend(adblock2,defaultBlock);
+                    if(adIconW)
+                    {
+                        jQuery.extend(adblock2,defaultBlock_ext);
+                        
+                    }
+                    targetArr.push(adblock2);
+                }
+                new _googCsa('ads',pageOptions, targetArr);
+            }
+            
+            
+        
+            if (matchMedia("tablet")){
+                init(x.desktopNumAdsTop, x.desktopNumAdsBottom, x.desktopSiteLinks, x.desktopPubId, true, '#FFFFF0', 100, 67);
+            } else {
+                init(x.desktopNumAdsTop, x.desktopNumAdsBottom, x.desktopSiteLinks, x.desktopPubId, true, '#FFFFF0', 120, 80);
+            }
+        
+    
+        </script>
+    
+    
+
+
+
+    
+
+
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--[if (lte IE 9)&!(IEMobile)]>
+        <script src="http://inc.t9.classistatic.com/1.1.288/js//common/polyfills/placeholder.js"></script>
+        <![endif]-->
+    
+
+
+
+
+    
+
+    
+
+    
+
+    
+</body>
+</html>
+
 """

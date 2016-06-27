@@ -5,6 +5,7 @@ Created on 18-01-2015
 '''
 import urllib
 
+# note: the min area/max area constraints are no longer supported by gumtree api
 class OfferSearchQuery(object):
     """
     Offer search query. 

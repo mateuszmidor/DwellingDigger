@@ -347,7 +347,7 @@ LOKALIZACJA: Budynek położony jest przy ulicy Chmieleniec, w zacisznej częśc
         </span>
             <small class="small c62 lheight22">
                 <span class="pdingleft10 brlefte5">
-                                            Dodane                                        o 16:23, 14. Stycznia 2015, <span class="nowrap">ID ogłoszenia: <span class="rel inlblk">125968309                    </span></span>
+                                            Dodane                                        o 16:23, 14 Stycznia 2015, <span class="nowrap">ID ogłoszenia: <span class="rel inlblk">125968309                    </span></span>
                 </span>
             </small>
         </p>

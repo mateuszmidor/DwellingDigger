@@ -758,8 +758,8 @@ Ogłoszenia wyróżnione
 </div>
 </div>
 <div class="ar-text-wrap clearfix">
-<div class="ar-title">
-<a href="http://www.gumtree.pl/offer1"</a><br/>
+<div class="title">
+<<a class="href-link" href="/offer1"</a><br/>
 </div>
 <div class="ar-descr"> <span >Oferuję do wynajęcia ładne mieszkanie na Ruczaju przy ul. Pszczelnej. Mieszkanie zlokalizowane na 2 piętrze w bloku oddanym w 2009 roku. Pokoje nieprzechodnie (w każdym z pokoi dwuosobowa wersalka), kuchnia, łazienka. Mieszkanie w pełni wyposażone i urządzone. Mieszkanie znajduje się w otoczeniu zieleni w spokojnej okolicy. W bliskiej odległości przystanki komunikacji miejskiej (autobus i tramwaj) oraz sklepy. Zapraszamy do oglądnięcia mieszkania Koszt: 1500 zł odstępne + czynsz (150 zł) + media ...</span>
 <div class="search_row_cat_name_wrapper">
@@ -805,8 +805,8 @@ Ogłoszenia wyróżnione
 </div>
 </div>
 <div class="ar-text-wrap clearfix">
-<div class="ar-title">
-<a href="http://www.gumtree.pl/offer2"</a><br/>
+<div class="title">
+<<a class="href-link" href="/offer2"</a><br/>
 </div>
 <div class="ar-descr"> <span >.....Do wynajęcia mieszkanie 2 pokojowe w dzielnicy <u>RUCZAJ</u> przy ul.RACIBORSKIEJ. Szybki dojazd do centrum, bardzo dobra komunikacja – tramwaje, autobusy. Doskonała infrastruktura osiedla – szkoły, przedszkola, basen, liczne markety. Mieszkanie ma 46 m2, mieści się na 3 piętrze w bloku. Mieszkanie składa się z dwóch oddzielnych pokoi, oddzielnej kuchni, korytarza, łazienki. Mieszkanie jest umeblowane. Mogą zamieszkać nawet 4 osoby, mile widziani studenci
 Zapraszam do oglądania mieszkania.</span>
@@ -851,8 +851,8 @@ Zapraszam do oglądania mieszkania.</span>
 </div>
 </div>
 <div class="ar-text-wrap clearfix">
-<div class="ar-title">
-<a href="http://www.gumtree.pl/offer3"</a><br/>
+<div class="title">
+<<a class="href-link" href="/offer3"</a><br/>
 </div>
 <div class="ar-descr"> <span ><u>Ruczaj</u> - ul. Miłkowskiego - dwupokojowe mieszkanie 37 m² na III piętrze wynajmę studentkom tel. 666-095-640</span>
 <div class="search_row_cat_name_wrapper">
