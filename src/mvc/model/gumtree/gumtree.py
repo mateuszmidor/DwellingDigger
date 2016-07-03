@@ -5,7 +5,8 @@ Created on 20-01-2015
 FACADE. All needed functionality from gumtree package you can find here
 '''
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
-from src.mvc.model.gumtree.offer_search_query import OfferSearchQuery
+from src.mvc.model.gumtree.apartment_offer_search_query import ApartmentOfferSearchQuery
+from src.mvc.model.gumtree.singleroom_offer_search_query import SingleroomOfferSearchQuery
 from src.mvc.model.gumtree.offer_searcher import OfferSearcher
 from src.mvc.model.gumtree.offer_extractor import OfferExtractor
 
@@ -18,8 +19,14 @@ class Gumtree(object):
     @staticmethod
     def get_urls(offer_params, max_offer_count=5, web_document_fetcher=WebDocumentFetcher):
         
-        query = OfferSearchQuery.from_offer_params(offer_params)
-        return OfferSearcher.search(query, max_offer_count, web_document_fetcher)
+        # want single room offers?
+        if str(offer_params.get_num_rooms()) == "0":
+            singleroom_query = SingleroomOfferSearchQuery.from_offer_params(offer_params)
+            return OfferSearcher.search(singleroom_query, max_offer_count, web_document_fetcher)
+            
+        # want apartments
+        apartment_query = ApartmentOfferSearchQuery.from_offer_params(offer_params)
+        return OfferSearcher.search(apartment_query, max_offer_count, web_document_fetcher)
         
                
     @staticmethod

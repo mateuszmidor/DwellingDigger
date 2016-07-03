@@ -4,7 +4,8 @@ Created on 25-01-2015
 @author: mateusz
 FACADE. All needed functionality from olx package you can find here
 '''
-from src.mvc.model.olx.offer_search_query import OfferSearchQuery
+from src.mvc.model.olx.apartment_offer_search_query import ApartmentOfferSearchQuery
+from src.mvc.model.olx.singleroom_offer_search_query import SingleroomOfferSearchQuery
 from src.mvc.model.olx.offer_searcher import OfferSearcher
 from src.mvc.model.olx.offer_extractor import OfferExtractor
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
@@ -18,8 +19,14 @@ class Olx(object):
     @staticmethod
     def get_urls(offer_params, max_offer_count=5, web_document_fetcher=WebDocumentFetcher):
         
-        query = OfferSearchQuery.from_offer_params(offer_params)
-        return OfferSearcher.search(query, int(max_offer_count), web_document_fetcher)
+        # want single room offers?
+        if str(offer_params.get_num_rooms()) == "0":
+            singleroom_query = SingleroomOfferSearchQuery.from_offer_params(offer_params)
+            return OfferSearcher.search(singleroom_query, max_offer_count, web_document_fetcher)
+            
+        # want apartments
+        apartment_query = ApartmentOfferSearchQuery.from_offer_params(offer_params)
+        return OfferSearcher.search(apartment_query, max_offer_count, web_document_fetcher)
     
     
     @staticmethod

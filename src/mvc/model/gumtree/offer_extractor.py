@@ -107,23 +107,26 @@ class OfferExtractor(object):
 
     @staticmethod
     def extract_num_rooms(offer_html):
-        start_tag = u'<span class="name">Liczba pokoi</span>'
-        stop_tag = u'</div>' 
-        
-        # extract entire section eg "<span class="value">5 pokoi</span>", or
-        # <span class="value">Kawalerka lub garsoniera</span>
-        num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
-        
-        # extract number and label, eg. "2 pokoje", or "Kawalerka lub garsoniera"
-        num_rooms_label = OfferExtractor.strip_from_html_tags(num_rooms_section).strip()
-        
-        # get the number 
-        num_rooms_str = num_rooms_label.split()[0]
-        if u"Kawalerka" in num_rooms_str:
+        try:
+            start_tag = u'<span class="name">Liczba pokoi</span>'
+            stop_tag = u'</div>' 
+            
+            # extract entire section eg "<span class="value">5 pokoi</span>", or
+            # <span class="value">Kawalerka lub garsoniera</span>
+            num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+            
+            # extract number and label, eg. "2 pokoje", or "Kawalerka lub garsoniera"
+            num_rooms_label = OfferExtractor.strip_from_html_tags(num_rooms_section).strip()
+            
+            # get the number 
+            num_rooms_str = num_rooms_label.split()[0]
+            if u"Kawalerka" in num_rooms_str:
+                return 1
+            
+            # return numeric
+            return int(num_rooms_str)
+        except:
             return 1
-        
-        # return numeric
-        return int(num_rooms_str)
     
   
     @staticmethod

@@ -12,12 +12,14 @@ import src.ioc.initialize_dependency_injection  # @UnusedImport
 import cProfile
 import pstats
 
-from src.mvc.model.gumtree.offer_search_query import OfferSearchQuery as GumtreeOfferSearchQuery
 from src.mvc.model.gumtree.offer_searcher import OfferSearcher as GumtreeOfferSearcher
+from src.mvc.model.gumtree.apartment_offer_search_query import ApartmentOfferSearchQuery as GumtreeApartmentOfferSearchQuery
+from src.mvc.model.gumtree.singleroom_offer_search_query import SingleroomOfferSearchQuery as GumtreeSingleroomOfferSearchQuery
 from src.mvc.model.gumtree.gumtree import Gumtree
 
 from src.mvc.model.olx.offer_searcher import OfferSearcher as OlxOfferSearcher
-from src.mvc.model.olx.offer_search_query import OfferSearchQuery as OlxOfferSearchQuery
+from src.mvc.model.olx.apartment_offer_search_query import ApartmentOfferSearchQuery as OlxApartmentOfferSearchQuery
+from src.mvc.model.olx.singleroom_offer_search_query import SingleroomOfferSearchQuery as OlxSingleroomOfferSearchQuery
 from src.mvc.model.olx.olx import Olx
 
 from src.outerspaceaccess.web_document_fetcher import WebDocumentFetcher
@@ -36,9 +38,9 @@ class Demo(object):
 
 #         run_func = Demo.print_learning_samples
 #         run_func = Demo.print_5_olx_offer_urls
-#         run_func = Demo.print_5_olx_offer_details
+        run_func = Demo.print_5_olx_offer_details
 #         run_func = Demo.print_5_gumtree_offer_urls
-        run_func = Demo.print_5_gumtree_offer_details
+#         run_func = Demo.print_5_gumtree_offer_details
 #         run_func = Demo.evaluate_address_extractor
         Demo.profile_func(run_func)
 
@@ -88,7 +90,8 @@ class Demo(object):
         """Prints out details of 5 offers found on OLX"""
 
         params = OfferParams.from_key_values(city=u"Kraków",
-                                             num_rooms=3)
+                                             whereabouts=u"kazimierz",
+                                             num_rooms=u"0") # 0 rooms means: single rooms not apartments
         offers = Olx.get_offers(offer_params=params, max_offer_count=5)
         for i, offer in enumerate(offers, 1):
             print("%i." % i)
@@ -104,8 +107,8 @@ class Demo(object):
     def print_5_olx_offer_urls():
         """Prints out 5 urls to offers found on OLX"""
 
-        query = OlxOfferSearchQuery.from_key_values(city=u"Krakow",
-                                                    whereabouts=u"ruczaj")
+        query = OlxSingleroomOfferSearchQuery.from_key_values(city=u"Krakow",
+                                                                whereabouts=u"ruczaj")
         print(query)
         urls = OlxOfferSearcher.search(query, 5, WebDocumentFetcher)
         for i, url in enumerate(urls, 1):
@@ -117,9 +120,8 @@ class Demo(object):
         """Prints out details of 5 offers found on Gumtree"""
 
         params = OfferParams.from_key_values(city="Krakow",
-                                             whereabouts="prądnik",
-                                             num_rooms="1",
-                                             max_price="1200")
+                                             whereabouts="kazimierz",
+                                             num_rooms="0") # 0 rooms = single room offers
 
         offers = Gumtree.get_offers(offer_params=params, max_offer_count=5)
         for i, offer in enumerate(offers, 1):
@@ -136,7 +138,9 @@ class Demo(object):
     def print_5_gumtree_offer_urls():
         """Prints out 5 urls to offers found on Gumtree"""
 
-        query = GumtreeOfferSearchQuery.from_key_values(city="Krakow")
+        query = GumtreeSingleroomOfferSearchQuery.from_key_values(city="Krakow",
+                                                        whereabouts="kazimierz")
+        print(query)
         for url in GumtreeOfferSearcher.search(query, 5, WebDocumentFetcher):
             print(url)
 

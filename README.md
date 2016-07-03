@@ -16,3 +16,6 @@ Test run:
 Server install:
 -copy the dirtree on FTP
 -recursively change persmissions of *.py files to executable
+
+Usage:
+-search with num rooms = 0 -> single rooms instead of apartments

@@ -66,7 +66,7 @@ class OfferSearcher(object):
         self.curr_url_number += 1
 
         # and return url
-        return self.urls.pop()
+        return self.urls.pop(0)
     
     
     def __fetch_urls(self):

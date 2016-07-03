@@ -126,41 +126,47 @@ class OfferExtractor(object):
 
     @staticmethod
     def extract_num_rooms(offer_html):
-        start_tag = u'Liczba pokoi'
-        stop_tag = u'</strong>' 
-        
-        # extract entire section from html table
-        num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
-        
-        # extract number and label, eg. "2 pokoje"
-        number_label = OfferExtractor.strip_from_html_tags(num_rooms_section).strip()
-        
-        # get the number 
-        num_rooms_str = number_label.split()[0] 
-        
-        if u"Kawalerka" in num_rooms_str:
+        try:
+            start_tag = u'Liczba pokoi'
+            stop_tag = u'</strong>' 
+            
+            # extract entire section from html table
+            num_rooms_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+            
+            # extract number and label, eg. "2 pokoje"
+            number_label = OfferExtractor.strip_from_html_tags(num_rooms_section).strip()
+            
+            # get the number 
+            num_rooms_str = number_label.split()[0] 
+            
+            if u"Kawalerka" in num_rooms_str:
+                return 1
+            
+            # return numeric
+            return int(num_rooms_str)
+        except:
             return 1
-        
-        # return numeric
-        return int(num_rooms_str)
     
    
     @staticmethod
     def extract_area(offer_html):
-        start_tag = 'Powierzchnia'
-        stop_tag = '</strong>' 
-        
-        # extract entire section from html table
-        area_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
-        
-        # extract area and unit, eg. "55 m"
-        area_label = OfferExtractor.strip_from_html_tags(area_section).strip()
-        
-        # get the number
-        area_str = area_label.split()[0]
-        
-        # return numeric
-        return int(area_str)
+        try:
+            start_tag = 'Powierzchnia'
+            stop_tag = '</strong>' 
+            
+            # extract entire section from html table
+            area_section = OfferExtractor.get_string_between(offer_html, start_tag, stop_tag)
+            
+            # extract area and unit, eg. "55 m"
+            area_label = OfferExtractor.strip_from_html_tags(area_section).strip()
+            
+            # get the number
+            area_str = area_label.split()[0]
+            
+            # return numeric
+            return int(area_str)
+        except:
+            return 0
         
     
     @staticmethod

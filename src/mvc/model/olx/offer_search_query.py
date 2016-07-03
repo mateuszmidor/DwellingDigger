@@ -17,15 +17,7 @@ class OfferSearchQuery(object):
     """
     
  
-#     OLX offer query url example:
-#     http://olx.pl/nieruchomosci/mieszkania/wynajem/krakow/q-kurdwan%C3%B3w/?
-#     search%5Bfilter_float_price%3Afrom%5D=800&
-#     search%5Bfilter_float_price%3Ato%5D=1600&
-#     search%5Bfilter_enum_rooms%5D%5B0%5D=two&
-#     search%5Bfilter_float_m%3Afrom%5D=40&
-#     search%5Bfilter_float_m%3Ato%5D=70
-  
-    __OLX_QUERY_BASE_URL = u'http://olx.pl/nieruchomosci/mieszkania/wynajem'
+
 
 
     @classmethod
@@ -138,6 +130,9 @@ class OfferSearchQuery(object):
     
     
     def __add_num_rooms(self, args, num_rooms):
+        if not num_rooms:
+            return args
+        
         template = u"search%5Bfilter_enum_rooms%5D%5B0%5D={0}"
         
         # "four" in OLX exactly means "four or more" , so lets fall back to "four" if no other number matches
@@ -171,16 +166,20 @@ class OfferSearchQuery(object):
         template = u"search%5Bfilter_float_m%3Ato%5D={0}"
         return self.__add_arg(args, template, max_area)    
     
+    def __add_distance(self, args, dist):
+        template = u"search[dist]={0}"
+        return self.__add_arg(args, template, dist) 
     
     def as_url_string(self):
         
         # Build the base url
-        url = OfferSearchQuery.__OLX_QUERY_BASE_URL
+        url = self.OLX_QUERY_BASE_URL # OLX_QUERY_BASE_URL to be provided by descendant class
         url = self.__add_city(url, self.__city)
         url = self.__add_whereabouts(url, self.__whereabouts)
             
         # Build the argument list
         args = ""
+        args = self.__add_distance(args, "5") # 5km
         args = self.__add_min_price(args, self.__min_price)
         args = self.__add_max_price(args, self.__max_price)
         args = self.__add_num_rooms(args, self.__num_rooms)
