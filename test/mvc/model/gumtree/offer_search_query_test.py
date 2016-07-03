@@ -4,11 +4,11 @@ Created on 18-01-2015
 @author: mateusz
 '''
 import unittest
-from src.mvc.model.gumtree.offer_search_query import OfferSearchQuery
+from src.mvc.model.gumtree.apartment_offer_search_query import ApartmentOfferSearchQuery
 
 class OfferParamsStub():
     """ 
-    This guy is used to test OfferSearchQuery.from_offer_params 
+    This guy is used to test ApartmentOfferSearchQuery.from_offer_params 
     Could be nicely replaced with Mock but using __getattr__ is more fun :)
     """
     
@@ -32,7 +32,7 @@ class OfferSearchQuerryTest(unittest.TestCase):
 
     def test_raises_on_empty_city(self):
         try:
-            query = OfferSearchQuery.from_key_values(city="")  # @UnusedVariable
+            query = ApartmentOfferSearchQuery.from_key_values(city="")  # @UnusedVariable
             self.fail("Empty 'city' param should cause ValueError exception")
         except ValueError:
             # valid case
@@ -43,7 +43,7 @@ class OfferSearchQuerryTest(unittest.TestCase):
             
     def test_from_key_values(self):
         EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/v1c9008l3200208q0p{_page}?nr=10&pr=500,1000'
-        query = OfferSearchQuery.from_key_values(city="Krakow",
+        query = ApartmentOfferSearchQuery.from_key_values(city="Krakow",
                                                  whereabouts="Nowa Huta",
                                                  num_rooms="1",
                                                  min_price="500",
@@ -56,12 +56,12 @@ class OfferSearchQuerryTest(unittest.TestCase):
     def test_from_offer_params(self):
         EXPECTED_QUERY_STRING = 'http://www.gumtree.pl/s-mieszkania-i-domy-do-wynajecia/Krakow/Nowa%20Huta/v1c9008l3200208q0p{_page}?nr=10&pr=500,1000'
         params = OfferParamsStub()
-        query = OfferSearchQuery.from_offer_params(params)
+        query = ApartmentOfferSearchQuery.from_offer_params(params)
         self.assertEquals(EXPECTED_QUERY_STRING, query.as_url_string())
         
         
     def test_returns_str(self):
-        query = OfferSearchQuery.from_key_values(city="Krakow")
+        query = ApartmentOfferSearchQuery.from_key_values(city="Krakow")
         result = query.as_url_string()
         self.assertTrue(isinstance(result, str), 
                         "'as_url_string' should return 'str' object, not '%s'" % type(result).__name__)
