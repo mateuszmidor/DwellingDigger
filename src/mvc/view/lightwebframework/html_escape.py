@@ -19,6 +19,9 @@ class HtmlEscape(object):
                              u">": u"&gt;",
                              u"<": u"&lt;",
                              u"\n" : u"<br />",
-                             u"\r" : u""} 
+                             u"\t" : u"&#09", 
+                             u"\r" : u"",
+                             u"\b" : u"",
+                             u"\f" : u""}
         return u"".join(html_escape_table.get(c,c) for c in text)       
         

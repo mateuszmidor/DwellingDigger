@@ -72,7 +72,27 @@ class HtmlEscapeTest(unittest.TestCase):
         result = HtmlEscape.escape(STRING)
         self.assertEqual(result, EXPECTED, 
                          "Escaped string should be '%s' but was '%s'" % (EXPECTED, result)) 
-                                  
+        
+    def test_tabulator(self):
+        STRING = "left\tright"
+        EXPECTED = "left&#09right"
+        result = HtmlEscape.escape(STRING)
+        self.assertEqual(result, EXPECTED, 
+                         "Escaped string should be '%s' but was '%s'" % (EXPECTED, result)) 
+        
+    def test_backspace(self):
+        STRING = "left \b right"
+        EXPECTED = "left  right"
+        result = HtmlEscape.escape(STRING)
+        self.assertEqual(result, EXPECTED, 
+                         "Escaped string should be '%s' but was '%s'" % (EXPECTED, result)) 
+ 
+    def test_form_feed(self):
+        STRING = "left \f right"
+        EXPECTED = "left  right"
+        result = HtmlEscape.escape(STRING)
+        self.assertEqual(result, EXPECTED, 
+                         "Escaped string should be '%s' but was '%s'" % (EXPECTED, result)) 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
